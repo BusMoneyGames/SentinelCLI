@@ -1,0 +1,45 @@
+[2018.07.08-18.42.19:767][371]Listing all textures.
+[2018.07.08-18.42.19:767][371]Cooked/OnDisk: Width x Height (Size in KB, Authored Bias), Current/InMem: Width x Height (Size in KB), Format, LODGroup, Name, Streaming, Usage Count
+[2018.07.08-18.42.19:767][371]2048x2048 (32768 KB, ?), 2048x2048 (32768 KB), PF_FloatRGBA, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultBloomKernel.DefaultBloomKernel, NO, 0
+[2018.07.08-18.42.19:767][371]2048x2048 (2731 KB, ?), 2048x2048 (2731 KB), PF_DXT1, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Blue.T_Sky_Blue, YES, 2
+[2018.07.08-18.42.19:767][371]512x256 (683 KB, ?), 512x256 (683 KB), PF_B8G8R8A8, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Clouds_M.T_Sky_Clouds_M, YES, 2
+[2018.07.08-18.42.19:767][371]512x512 (341 KB, ?), 512x512 (341 KB), PF_DXT5, TEXTUREGROUP_World, /Engine/EngineMaterials/T_Default_Material_Grid_M.T_Default_Material_Grid_M, YES, 1
+[2018.07.08-18.42.19:767][371]256x256 (256 KB, ?), 256x256 (256 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/PreintegratedSkinBRDF.PreintegratedSkinBRDF, NO, 0
+[2018.07.08-18.42.19:767][371]512x512 (171 KB, ?), 512x512 (171 KB), PF_DXT1, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Stars.T_Sky_Stars, YES, 2
+[2018.07.08-18.42.19:767][371]512x256 (128 KB, ?), 512x256 (128 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineFonts/RobotoDistanceField.RobotoDistanceField:RobotoDistanceField_PageA, NO, 0
+[2018.07.08-18.42.19:767][371]256x256 (85 KB, ?), 256x256 (85 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:HQ_Lightmap0_1, YES, 1
+[2018.07.08-18.42.19:768][371]256x256 (85 KB, ?), 128x128 (21 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Engine/EngineMaterials/T_Default_Material_Grid_N.T_Default_Material_Grid_N, YES, 1
+[2018.07.08-18.42.19:768][371]128x128 (21 KB, ?), 128x128 (21 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:ShadowMapTexture2D_0, YES, 1
+[2018.07.08-18.42.19:768][371]64x64 (21 KB, ?), 64x64 (21 KB), PF_B8G8R8A8, TEXTUREGROUP_Bokeh, /Engine/EngineMaterials/DefaultBokeh.DefaultBokeh, NO, 0
+[2018.07.08-18.42.19:768][371]128x128 (21 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture, YES, 1
+[2018.07.08-18.42.19:768][371]1024x1024 (1365 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Normal.GearVRController_Normal, YES, 0
+[2018.07.08-18.42.19:768][371]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Color.GearVRController_Color, YES, 0
+[2018.07.08-18.42.19:768][371]64x64 (5 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:HQ_Lightmap0_2, NO, 1
+[2018.07.08-18.42.19:768][371]32x32 (5 KB, ?), 32x32 (5 KB), PF_B8G8R8A8, TEXTUREGROUP_UI, /Engine/EngineResources/GradientTexture0.GradientTexture0, NO, 0
+[2018.07.08-18.42.19:768][371]64x64 (4 KB, ?), 64x64 (4 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq, NO, 0
+[2018.07.08-18.42.19:768][371]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_AO.GearVRController_AO, YES, 0
+[2018.07.08-18.42.19:768][371]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid, YES, 0
+[2018.07.08-18.42.19:768][371]512x512 (171 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings, YES, 0
+[2018.07.08-18.42.19:768][371]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/DefaultTexture.DefaultTexture, YES, 0
+[2018.07.08-18.42.19:768][371]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse, YES, 0
+[2018.07.08-18.42.19:768][371]64x64 (3 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:LQ_Lightmap_0_2, NO, 0
+[2018.07.08-18.42.19:768][371]256x256 (43 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:LQ_Lightmap_0_1, YES, 0
+[2018.07.08-18.42.19:768][371]512x8 (2 KB, ?), 512x8 (2 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/MiniFont.MiniFont, NO, 0
+[2018.07.08-18.42.19:768][371]32x32 (1 KB, ?), 32x32 (1 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:ShadowMapTexture2D_1, NO, 1
+[2018.07.08-18.42.19:768][371]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture, NO, 0
+[2018.07.08-18.42.19:768][371]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/Black.Black, NO, 0
+[2018.07.08-18.42.19:768][371]2x2 (0 KB, ?), 2x2 (0 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/WeightMapPlaceholderTexture.WeightMapPlaceholderTexture, NO, 0
+[2018.07.08-18.42.19:768][371]Total size: InMem= 36.41 MB  OnDisk= 39.69 MB  Count=29
+[2018.07.08-18.42.19:768][371]Total PF_B8G8R8A8 size: InMem= 0.94 MB  OnDisk= 0.94 MB 
+[2018.07.08-18.42.19:768][371]Total PF_G8 size: InMem= 0.15 MB  OnDisk= 0.15 MB 
+[2018.07.08-18.42.19:768][371]Total PF_DXT1 size: InMem= 2.85 MB  OnDisk= 4.40 MB 
+[2018.07.08-18.42.19:768][371]Total PF_DXT5 size: InMem= 0.44 MB  OnDisk= 2.11 MB 
+[2018.07.08-18.42.19:768][371]Total PF_FloatRGBA size: InMem= 32.00 MB  OnDisk= 32.00 MB 
+[2018.07.08-18.42.19:768][371]Total PF_BC5 size: InMem= 0.02 MB  OnDisk= 0.08 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_World size: InMem= 32.62 MB  OnDisk= 35.80 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_WorldNormalMap size: InMem= 0.02 MB  OnDisk= 0.08 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Skybox size: InMem= 3.50 MB  OnDisk= 3.50 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_UI size: InMem= 0.13 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Lightmap size: InMem= 0.09 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Shadowmap size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Bokeh size: InMem= 0.02 MB  OnDisk= 0.02 MB 

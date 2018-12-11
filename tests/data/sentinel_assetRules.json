@@ -1,0 +1,161 @@
+{
+	"AssetRules": [
+		{
+			"Type": "StaticMesh",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["SM"],
+			"Postfix":[""],
+			"Subtypes":[
+				{
+					"SubTypeName": "BuildingModule",
+					"Convention":"[Prefix]_[SubType]_[AssetName][Iterator]"
+				}
+			]
+		},
+		{
+			"Type": "Skeleton",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["Skeleton"],
+			"Postfix":[""]
+		},
+				{
+			"Type": "SkeletalMesh",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["SKM"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "Texture2D",
+			"Convention": "[Prefix]_[AssetName][Iterator]_[Postfix]",
+			"Prefix":["T"],
+			"Postfix":["BC","N","S","UI"]
+		},
+		{
+			"Type": "TextureCube",
+			"Convention": "[Prefix]_[AssetName][Iterator]_[Postfix]",
+			"Prefix":["HDRI","HDR"],
+			"Postfix":[]
+		},
+		{
+			"Type": "VectorFieldStatic",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["VF"],
+			"Postfix":[]
+		},
+		{
+			"Type": "SubsurfaceProfile",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["SSProfile"],
+			"Postfix":[]
+		},
+		{
+			"Type": "Blueprint",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["BP"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "WidgetBlueprint",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["BP"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "MapBuildDataRegistry",
+			"Convention": "[Prefix]_[AssetName][Iterator]_[Postfix]",
+			"Prefix":["Map"],
+			"Postfix":["BuiltData"]
+		},
+		{
+			"Type": "World",
+			"Convention": "[Prefix]_[AssetName][Iterator]_[Postfix]",
+			"Prefix":["Map"],
+			"Postfix":["Sentinel"]
+		},
+		{
+			"Type": "Material",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["M"],
+			"Postfix":[""]
+		},
+			{
+			"Type": "MaterialInstanceConstant",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["MI"],
+			"Postfix":[""]
+		},
+					{
+			"Type": "MaterialFunction",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["MF"],
+			"Postfix":[""]
+		},
+				{
+			"Type": "ParticleSystem",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["P"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "UserDefinedStruct",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["SM"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "BlackboardData",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["BB"],
+			"Postfix":[""]
+		},
+				{
+			"Type": "AnimBlueprint",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["AnimBP"],
+			"Postfix":[""]
+		},
+						{
+			"Type": "AnimSequence",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["Anim"],
+			"Postfix":[""]
+		},
+			{
+			"Type": "BehaviorTree",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["BT"],
+			"Postfix":[""]
+		},
+					{
+			"Type": "SoundWave",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["Wave"],
+			"Postfix":[""]
+		},
+			{
+			"Type": "SoundCue",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["Cue"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "CurveFloat",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["Curve"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "Font",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["Font"],
+			"Postfix":[""]
+		},
+		{
+			"Type": "FontFace",
+			"Convention": "[Prefix]_[AssetName][Iterator]",
+			"Prefix":["Font"],
+			"Postfix":[""]
+		}
+
+	]
+}

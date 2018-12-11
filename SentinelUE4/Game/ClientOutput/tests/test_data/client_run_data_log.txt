@@ -1,0 +1,1305 @@
+Log file open, 07/08/18 18:41:37
+LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
+LogWindows: File 'aqProf.dll' does not exist
+LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi.dll' does not exist
+LogWindows: Failed to load 'VtuneApi32e.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi32e.dll' does not exist
+LogInit: Display: Running engine for game: sentinelUE4
+LogInit: Display: Project file not found: ../../../sentinelUE4/sentinelUE4.uproject
+LogInit: Display: 	Attempting to find via project info helper.
+LogUProjectInfo: Found projects:
+LogPlatformFile: Not using cached read wrapper
+LogInit: Display: RandInit(1655304606) SRandInit(1655304606).
+LogTaskGraph: Started task graph with 5 named threads and 35 total threads with 3 sets of task threads.
+LogStats: Stats thread started at 0.372470
+LogD3D11RHI: Aftermath initialized
+LogICUInternationalization: Display: ICU TimeZone Detection - Raw Offset: +0:00, Platform Override: ''
+LogPluginManager: Mounting plugin FunctionalTestingEditor
+LogPluginManager: Mounting plugin RuntimeTests
+LogPluginManager: Mounting plugin ScreenshotTools
+LogPluginManager: Mounting plugin EditorTests
+LogPluginManager: Mounting plugin Paper2D
+LogPluginManager: Mounting plugin LightPropagationVolume
+LogPluginManager: Mounting plugin CryptoKeys
+LogPluginManager: Mounting plugin FacialAnimation
+LogPluginManager: Mounting plugin DatasmithContent
+LogPluginManager: Mounting plugin CharacterAI
+LogPluginManager: Mounting plugin HTML5Networking
+LogPluginManager: Mounting plugin AvfMedia
+LogPluginManager: Mounting plugin ImgMedia
+LogPluginManager: Mounting plugin LinearTimecode
+LogPluginManager: Mounting plugin MediaCompositing
+LogPluginManager: Mounting plugin WmfMedia
+LogPluginManager: Mounting plugin TcpMessaging
+LogPluginManager: Mounting plugin UdpMessaging
+LogPluginManager: Mounting plugin ActorSequence
+LogPluginManager: Mounting plugin OnlineSubsystem
+LogPluginManager: Mounting plugin OnlineSubsystemNull
+LogPluginManager: Mounting plugin OnlineSubsystemUtils
+LogPluginManager: Mounting plugin AndroidPermission
+LogPluginManager: Mounting plugin AppleARKit
+LogPluginManager: Mounting plugin ProceduralMeshComponent
+LogPluginManager: Mounting plugin LiveLink
+LogPluginManager: Mounting plugin ArchVisCharacter
+LogPluginManager: Mounting plugin AudioCapture
+LogPluginManager: Mounting plugin CableComponent
+LogPluginManager: Mounting plugin CustomMeshComponent
+LogPluginManager: Mounting plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting plugin ImmediatePhysics
+LogPluginManager: Mounting plugin LocationServicesBPLibrary
+LogPluginManager: Mounting plugin MobilePatchingUtils
+LogPluginManager: Mounting plugin OculusVR
+LogPluginManager: Mounting plugin PhysXVehicles
+LogPluginManager: Mounting plugin RuntimePhysXCooking
+LogPluginManager: Mounting plugin SteamVR
+LogPluginManager: Mounting plugin WindowsMoviePlayer
+LogStreaming: Display: Took  0.026s to configure plugins.
+LogInit: Using libcurl 7.47.1
+LogInit:  - built for x86_64-pc-win32
+LogInit:  - supports SSL with OpenSSL/1.0.2g
+LogInit:  - supports HTTP deflate (compression) using libz 1.2.8
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_IDN
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = false  - Libcurl will NOT verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - bDontReuseConnections = false  - Libcurl will reuse connections
+LogInit:  - CertBundlePath = nullptr  - Libcurl will use whatever was configured at build time.
+LogInit:  - MaxHostConnections = 16  - Libcurl will limit the number of connections to a host
+LogInit:  - LocalHostAddr = Default
+LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+LogInit: WinSock: I am DESKTOP-7I92MD6 (192.168.1.79:0)
+LogInit: Build: ++UE4+Release-4.19-CL-4033788
+LogInit: Engine Version: 4.19.2-4033788+++UE4+Release-4.19
+LogInit: Compatible Engine Version: 4.19.0-3944462+++UE4+Release-4.19
+LogInit: Net CL: 3944462
+LogDevObjectVersion: Number of dev versions registered: 18
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 2
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 23
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 33
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 2
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 0
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 25
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 6
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 1
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 2
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 16
+LogDevObjectVersion:   Dev-ReflectionCapture (6B266CEC-1EC7-4B8F-A30B-E4D90942FC07): 1
+LogDevObjectVersion:   Dev-Automation (0DF73D61-A23F-47EA-B727-89E90C41499A): 1
+LogInit: Compiled (64-bit): Apr 27 2018 02:10:52
+LogInit: Compiled with Visual C++: 19.00.24215.01
+LogInit: Build Configuration: Development
+LogInit: Branch Name: ++UE4+Release-4.19
+LogInit: Command Line:  -sentinelTest_Startup
+LogInit: Base Directory: E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Binaries/Win64/
+LogInit: Installed Engine Build: 0
+LogStreaming: Display: Took  0.000s to delete old logs.
+LogInit: Presizing for max 2097152 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+LogStreaming: Display: Async Loading initialized: Event Driven Loader: true, Async Loading Thread: false
+LogInit: Object subsystem initialized
+[2018.07.08-18.41.37:730][  0]LogInit: Selected Device Profile: [WindowsNoEditor]
+[2018.07.08-18.41.37:730][  0]LogInit: Applying CVar settings loaded from the selected device profile: [WindowsNoEditor]
+[2018.07.08-18.41.37:733][  0]LogInit: Computer: DESKTOP-7I92MD6
+[2018.07.08-18.41.37:733][  0]LogInit: User: Notandi
+[2018.07.08-18.41.37:733][  0]LogInit: CPU Page size=4096, Cores=6
+[2018.07.08-18.41.37:733][  0]LogInit: High frequency timer resolution =3.609382 MHz
+[2018.07.08-18.41.37:733][  0]LogMemory: Memory total: Physical=31.9GB (32GB approx)
+[2018.07.08-18.41.37:733][  0]LogMemory: Platform Memory Stats for WindowsNoEditor
+[2018.07.08-18.41.37:733][  0]LogMemory: Process Physical Memory: 103.38 MB used, 103.38 MB peak
+[2018.07.08-18.41.37:733][  0]LogMemory: Process Virtual Memory: 115.48 MB used, 115.48 MB peak
+[2018.07.08-18.41.37:733][  0]LogMemory: Physical Memory: 16484.21 MB used,  16208.25 MB free, 32692.45 MB total
+[2018.07.08-18.41.37:733][  0]LogMemory: Virtual Memory: 4540.13 MB used,  16208.25 MB free, 134217728.00 MB total
+[2018.07.08-18.41.37:745][  0]LogInit: Using OS detected language (en-GB).
+[2018.07.08-18.41.37:745][  0]LogInit: Using OS detected locale (is-IS).
+[2018.07.08-18.41.37:745][  0]LogTextLocalizationManager: No localization for 'en-GB' exists, so 'en' will be used for the language.
+[2018.07.08-18.41.37:745][  0]LogTextLocalizationManager: No localization for 'is-IS' exists, so 'en' will be used for the locale.
+[2018.07.08-18.41.37:762][  0]LogStreaming: Display: Took  0.017s to EndInitTextLocalization.
+[2018.07.08-18.41.37:776][  0]LogSlate: New Slate User Created.  User Index 0, Is Virtual User: 0
+[2018.07.08-18.41.37:776][  0]LogSlate: Slate User Registered.  User Index 0, Is Virtual User: 0
+[2018.07.08-18.41.37:779][  0]LogD3D11RHI: D3D11 adapters:
+[2018.07.08-18.41.37:815][  0]LogD3D11RHI:    0. 'NVIDIA GeForce GTX 1080 Ti' (Feature Level 11_0)
+[2018.07.08-18.41.37:815][  0]LogD3D11RHI:       11127/0/16346 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:2, VendorId:0x10de
+[2018.07.08-18.41.37:816][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2018.07.08-18.41.37:816][  0]LogD3D11RHI:       0/0/16346 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2018.07.08-18.41.37:816][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2018.07.08-18.41.37:825][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2018.07.08-18.41.37:825][  0]LogD3D11RHI:     GPU DeviceId: 0x1b06 (for the marketing name, search the web for "GPU Device Id")
+[2018.07.08-18.41.37:825][  0]LogWindows: EnumDisplayDevices:
+[2018.07.08-18.41.37:825][  0]LogWindows:    0. 'NVIDIA GeForce GTX 1080 Ti' (P:1 D:1)
+[2018.07.08-18.41.37:825][  0]LogWindows:    1. 'NVIDIA GeForce GTX 1080 Ti' (P:0 D:1)
+[2018.07.08-18.41.37:825][  0]LogWindows:    2. 'NVIDIA GeForce GTX 1080 Ti' (P:0 D:0)
+[2018.07.08-18.41.37:825][  0]LogWindows:    3. 'NVIDIA GeForce GTX 1080 Ti' (P:0 D:0)
+[2018.07.08-18.41.37:825][  0]LogWindows: DebugString: GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter FoundDriverCount:0 
+[2018.07.08-18.41.37:825][  0]LogD3D11RHI:     Adapter Name: NVIDIA GeForce GTX 1080 Ti
+[2018.07.08-18.41.37:825][  0]LogD3D11RHI:   Driver Version: Unknown (internal:Unknown, unified:Unknown)
+[2018.07.08-18.41.37:825][  0]LogD3D11RHI:      Driver Date: Unknown
+[2018.07.08-18.41.37:825][  0]LogRHI: Texture pool is 7788 MB (70% of 11127 MB)
+[2018.07.08-18.41.37:850][  0]LogD3D11RHI: [Aftermath] Aftermath enabled and primed
+[2018.07.08-18.41.37:850][  0]LogD3D11RHI: [Aftermath] Aftermath enabled and primed
+[2018.07.08-18.41.37:850][  0]LogD3D11RHI: Async texture creation enabled
+[2018.07.08-18.41.37:876][  0]LogD3D11RHI: GPU Timing Frequency: 1000.000000 (Debug: 2 2)
+[2018.07.08-18.41.37:925][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
+[2018.07.08-18.41.37:925][  0]LogSlate: Using Freetype 2.6.0
+[2018.07.08-18.41.37:925][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.07.08-18.41.37:925][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.07.08-18.41.37:958][  0]LogAssetRegistry: FAssetRegistry took 0.0074 seconds to start up
+[2018.07.08-18.41.38:017][  0]LogPackageLocalizationCache: Processed 11 localized package path(s) for 1 prioritized culture(s) in 0.002795 seconds
+[2018.07.08-18.41.38:018][  0]LogPakFile: New pak file ../../../sentinelUE4/Content/Paks/sentinelUE4-WindowsNoEditor.pak added to pak precacher.
+[2018.07.08-18.41.38:019][  0]LogInit: Selected Device Profile: [WindowsNoEditor]
+[2018.07.08-18.41.38:045][  0]LogNetVersion: sentinelUE4 , NetCL: 3944462, EngineNetVer: 2, GameNetVer: 0 (Checksum: 1101483687)
+[2018.07.08-18.41.38:148][  0]LogMoviePlayer: Initializing movie player
+[2018.07.08-18.41.38:302][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2018.07.08-18.41.38:302][  0]LogOcInput: OculusInput pre-init called
+[2018.07.08-18.41.38:305][  0]LogUObjectArray: 32150 objects as part of root set at end of initial load.
+[2018.07.08-18.41.38:305][  0]LogUObjectAllocator: 5924816 out of 0 bytes used by permanent object pool.
+[2018.07.08-18.41.38:305][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2018.07.08-18.41.38:316][  0]LogEngine: Initializing Engine...
+[2018.07.08-18.41.38:316][  0]LogHMD: Oculus plugin initialized. Version: 4.19.2-4033788+++UE4+Release-4.19, OVRPlugin: 1.21.0
+[2018.07.08-18.41.38:327][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: Construct from data asset -  0.000 s
+[2018.07.08-18.41.38:327][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: GameplayTagTreeChangedEvent.Broadcast -  0.000 s
+[2018.07.08-18.41.38:386][  0]LogInit: XAudio2 using 'U2879G6 (NVIDIA High Definition Audio)' : 2 channels at 48 kHz using 16 bits per sample (channel mask 0x3)
+[2018.07.08-18.41.38:394][  0]LogInit: FAudioDevice initialized.
+[2018.07.08-18.41.38:405][  0]LogInit: Texture streaming: Enabled
+[2018.07.08-18.41.38:428][  0]LogInit: Display: Game Engine Initialized.
+[2018.07.08-18.41.38:428][  0]LogGameplayTags: Display: UGameplayTagsManager::DoneAddingNativeTags. DelegateIsBound: 0
+[2018.07.08-18.41.38:428][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: Construct from data asset -  0.000 s
+[2018.07.08-18.41.38:428][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: GameplayTagTreeChangedEvent.Broadcast -  0.000 s
+[2018.07.08-18.41.38:435][  0]LogInit: Display: Starting Game.
+[2018.07.08-18.41.38:435][  0]LogNet: Browse: /Game/Maps/Map_StartupTest?Name=Player
+[2018.07.08-18.41.38:435][  0]LogLoadingSplash: Loading begins
+[2018.07.08-18.41.38:435][  0]LogLoad: LoadMap: /Game/Maps/Map_StartupTest?Name=Player
+[2018.07.08-18.41.38:452][  0]LogAIModule: Creating AISystem for world Map_StartupTest
+[2018.07.08-18.41.38:452][  0]LogLoad: Game class is 'BP_BaseTestGamemode_C'
+[2018.07.08-18.41.38:453][  0]LogWorld: Bringing World /Game/Maps/Map_StartupTest.Map_StartupTest up for play (max tick rate 0) at 2018.07.08-18.41.38
+[2018.07.08-18.41.38:454][  0]LogWorld: Bringing up level for play took: 0.000793
+[2018.07.08-18.41.38:455][  0]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Found test configuration: sentinelTest_Startup
+[2018.07.08-18.41.38:455][  0]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Attempting to load: Map_StartupTest_sentinel
+[2018.07.08-18.41.38:479][  0]LogPackageName: SearchForPackageOnDisk took   0.024s to resolve Map_StartupTest_sentinel.
+[2018.07.08-18.41.38:479][  0]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Succesfully Loaded sentinel level: Map_StartupTest_sentinel
+[2018.07.08-18.41.38:479][  0]LogLoadingSplash: Loading ends
+[2018.07.08-18.41.38:479][  0]LogLoad: Took 0.044294 seconds to LoadMap(/Game/Maps/Map_StartupTest)
+[2018.07.08-18.41.38:514][  0]LogSlate: Took 0.000102 seconds to synchronously load lazily loaded font '../../../Engine/Content/EngineFonts/Faces/RobotoRegular.ufont' (155K)
+[2018.07.08-18.41.38:522][  0]LogLoad: (Engine Initialization) Total time: 1.51 seconds
+[2018.07.08-18.41.38:556][  0]LogRenderer: Reallocating scene render targets to support 2560x1440 Format 10 NumSamples 1 (Frame:1).
+[2018.07.08-18.41.38:596][  0]LogOcInput: OculusInput is initialized
+[2018.07.08-18.41.38:598][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2018.07.08-18.41.38:788][ 12]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Waiting for settings actor to load...
+[2018.07.08-18.41.38:788][ 12]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Succesfully found settings actor
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Initializing Test!
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Running with default configuration...
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Found: Test__Looking_At_Concreete_0
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Found: Test__Looking_At_Cone_0
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Found: Test__Looking_At_Cube_0
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] 3 Tests
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Starting test: 1 out of 3
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [LookingDownAtCube] Start Test Setup
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [LookingDownAtCube] Finish Test Setup
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [LookingDownAtCube] Start Test Running
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING PROFILING FOR: Looking_At_Cube
+[2018.07.08-18.41.38:789][ 12]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING TEXTURE PROFILING FOR: Looking_At_Cube
+[2018.07.08-18.41.38:789][ 12]Listing all textures.
+[2018.07.08-18.41.38:789][ 12]Cooked/OnDisk: Width x Height (Size in KB, Authored Bias), Current/InMem: Width x Height (Size in KB), Format, LODGroup, Name, Streaming, Usage Count
+[2018.07.08-18.41.38:789][ 12]2048x2048 (32768 KB, ?), 2048x2048 (32768 KB), PF_FloatRGBA, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultBloomKernel.DefaultBloomKernel, NO, 0
+[2018.07.08-18.41.38:789][ 12]256x256 (256 KB, ?), 256x256 (256 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/PreintegratedSkinBRDF.PreintegratedSkinBRDF, NO, 0
+[2018.07.08-18.41.38:789][ 12]512x256 (128 KB, ?), 512x256 (128 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineFonts/RobotoDistanceField.RobotoDistanceField:RobotoDistanceField_PageA, NO, 0
+[2018.07.08-18.41.38:789][ 12]256x256 (85 KB, ?), 256x256 (85 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:HQ_Lightmap0_1, YES, 4
+[2018.07.08-18.41.38:789][ 12]1024x1024 (1365 KB, ?), 256x256 (85 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Game/Assets/3D/TestAssets/T_TestGraph_normal.T_TestGraph_normal, YES, 1
+[2018.07.08-18.41.38:789][ 12]1024x1024 (1365 KB, ?), 256x256 (85 KB), PF_G8, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/TestGraph_roughness.TestGraph_roughness, YES, 1
+[2018.07.08-18.41.38:789][ 12]1024x1024 (1365 KB, ?), 256x256 (85 KB), PF_G8, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/T_TestGraph_metallic.T_TestGraph_metallic, YES, 1
+[2018.07.08-18.41.38:789][ 12]1024x1024 (683 KB, ?), 256x256 (43 KB), PF_DXT1, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/T_TestGraph_basecolor.T_TestGraph_basecolor, YES, 1
+[2018.07.08-18.41.38:789][ 12]256x64 (21 KB, ?), 256x64 (21 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:ShadowMapTexture2D_0, YES, 4
+[2018.07.08-18.41.38:789][ 12]64x64 (21 KB, ?), 64x64 (21 KB), PF_B8G8R8A8, TEXTUREGROUP_Bokeh, /Engine/EngineMaterials/DefaultBokeh.DefaultBokeh, NO, 0
+[2018.07.08-18.41.38:789][ 12]256x256 (85 KB, ?), 64x64 (5 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Engine/EngineMaterials/T_Default_Material_Grid_N.T_Default_Material_Grid_N, YES, 0
+[2018.07.08-18.41.38:789][ 12]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Color.GearVRController_Color, YES, 0
+[2018.07.08-18.41.38:789][ 12]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Engine/EngineMaterials/T_Default_Material_Grid_M.T_Default_Material_Grid_M, YES, 0
+[2018.07.08-18.41.38:789][ 12]1024x1024 (1365 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Normal.GearVRController_Normal, YES, 0
+[2018.07.08-18.41.38:789][ 12]128x128 (21 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture, YES, 1
+[2018.07.08-18.41.38:789][ 12]32x32 (5 KB, ?), 32x32 (5 KB), PF_B8G8R8A8, TEXTUREGROUP_UI, /Engine/EngineResources/GradientTexture0.GradientTexture0, NO, 0
+[2018.07.08-18.41.38:789][ 12]64x64 (4 KB, ?), 64x64 (4 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq, NO, 0
+[2018.07.08-18.41.38:789][ 12]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_AO.GearVRController_AO, YES, 0
+[2018.07.08-18.41.38:789][ 12]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid, YES, 0
+[2018.07.08-18.41.38:789][ 12]256x256 (43 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:LQ_Lightmap_0_1, YES, 0
+[2018.07.08-18.41.38:789][ 12]512x512 (171 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings, YES, 0
+[2018.07.08-18.41.38:789][ 12]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse, YES, 0
+[2018.07.08-18.41.38:789][ 12]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/DefaultTexture.DefaultTexture, YES, 0
+[2018.07.08-18.41.38:789][ 12]512x8 (2 KB, ?), 512x8 (2 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/MiniFont.MiniFont, NO, 0
+[2018.07.08-18.41.38:789][ 12]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture, NO, 0
+[2018.07.08-18.41.38:789][ 12]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/Black.Black, NO, 0
+[2018.07.08-18.41.38:789][ 12]2x2 (0 KB, ?), 2x2 (0 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/WeightMapPlaceholderTexture.WeightMapPlaceholderTexture, NO, 0
+[2018.07.08-18.41.38:789][ 12]Total size: InMem= 32.85 MB  OnDisk= 40.85 MB  Count=27
+[2018.07.08-18.41.38:789][ 12]Total PF_B8G8R8A8 size: InMem= 0.28 MB  OnDisk= 0.28 MB 
+[2018.07.08-18.41.38:789][ 12]Total PF_G8 size: InMem= 0.32 MB  OnDisk= 2.82 MB 
+[2018.07.08-18.41.38:789][ 12]Total PF_DXT1 size: InMem= 0.06 MB  OnDisk= 2.23 MB 
+[2018.07.08-18.41.38:789][ 12]Total PF_DXT5 size: InMem= 0.10 MB  OnDisk= 2.10 MB 
+[2018.07.08-18.41.38:789][ 12]Total PF_FloatRGBA size: InMem= 32.00 MB  OnDisk= 32.00 MB 
+[2018.07.08-18.41.38:790][ 12]Total PF_BC5 size: InMem= 0.09 MB  OnDisk= 1.42 MB 
+[2018.07.08-18.41.38:790][ 12]Total TEXTUREGROUP_World size: InMem= 32.50 MB  OnDisk= 39.13 MB 
+[2018.07.08-18.41.38:790][ 12]Total TEXTUREGROUP_WorldNormalMap size: InMem= 0.09 MB  OnDisk= 1.42 MB 
+[2018.07.08-18.41.38:790][ 12]Total TEXTUREGROUP_UI size: InMem= 0.13 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.41.38:790][ 12]Total TEXTUREGROUP_Lightmap size: InMem= 0.09 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.41.38:790][ 12]Total TEXTUREGROUP_Shadowmap size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.41.38:790][ 12]Total TEXTUREGROUP_Bokeh size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.41.38:998][ 25]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING TEXTURE PROFILING FOR: Looking_At_Cube
+[2018.07.08-18.41.39:208][ 38]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING GPU PROFILING FOR: Looking_At_Cube
+[2018.07.08-18.41.39:208][ 38]r.ProfileGPU.ShowUI = "0"
+[2018.07.08-18.41.39:208][ 38]r.ProfileGPU.PrintAssetSummary = "1"
+[2018.07.08-18.41.39:208][ 38]r.ShowMaterialDrawEvents = "1"
+[2018.07.08-18.41.39:208][ 38]Profiling the next GPU frame
+[2018.07.08-18.41.39:324][ 41]LogD3D11RHI: Warning: 
+[2018.07.08-18.41.39:324][ 41]LogD3D11RHI: Warning: 
+[2018.07.08-18.41.39:329][ 42]LogRHI: Perf marker hierarchy, total GPU time 4.11ms
+[2018.07.08-18.41.39:329][ 42]LogRHI: Warning: Profiled range was continuous.
+[2018.07.08-18.41.39:330][ 42]LogRHI: 100.0% 4.11ms   FRAME 74 draws 62859 prims 123142 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI: 97.0% 3.98ms   Scene 73 draws 60559 prims 118542 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.0% 0.00ms   PrePass DDM_AllOpaque (Forced by DBuffer) 5 draws 1102 prims 902 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   BeginRenderingPrePass 1 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.6% 0.02ms   ComputeLightGrid 5 draws 5 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.4% 0.02ms   CullLights 40x23x32 NumLights 0 NumCaptures 0 4 draws 4 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.2% 0.01ms   Compact 1 draws 1 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.0% 0.00ms   BeginOcclusionTests 0 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   ViewOcclusionTests 0 0 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     7.4% 0.30ms   HZB SetupMip 0 2048x1024 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.8% 0.03ms   HZB SetupMips Mips:1..10 1024x512 10 draws 10 prims 30 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.0% 0.00ms   CompositionBeforeBasePass 0 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.4% 0.02ms   BeginRenderingSceneColor 1 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     3.5% 0.14ms   BasePass 4 draws 1102 prims 902 verts 7632 prims/ms 6247 verts/ms
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.0% 0.00ms   RenderVelocities 1 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:    47.8% 1.96ms   LightCompositionTasks_PreLighting 4 draws 4 prims 12 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.7% 0.03ms   AmbientOcclusionSetup 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:       14.3% 0.59ms   AmbientOcclusionPS 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:       31.4% 1.29ms   AmbientOcclusionPS 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        1.3% 0.05ms   ApplyAOToBasePassSceneColor 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.1% 0.01ms   ClearStencilFromBasePass 1 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     1.0% 0.04ms   ClearTranslucentVolumeLighting 1 draws 128 prims 256 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     5.7% 0.23ms   Lights 3 draws 257 prims 515 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        5.7% 0.23ms   DirectLighting 3 draws 257 prims 515 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:           5.7% 0.23ms   NonShadowedLights 3 draws 257 prims 515 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:              4.9% 0.20ms   StandardDeferredLighting 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:              0.8% 0.03ms   InjectNonShadowedTranslucentLighting 2 draws 256 prims 512 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:           0.0% 0.00ms   IndirectLighting 0 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     2.9% 0.12ms   FilterTranslucentVolume 64x64x64 Cascades:2 2 draws 256 prims 512 verts 2174 prims/ms 4348 verts/ms
+[2018.07.08-18.41.39:330][ 42]LogRHI:     1.5% 0.06ms   ScreenSpaceReflections 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     2.5% 0.10ms   ReflectionEnvironment PixelShader 1 draws 2 prims 4 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.0% 0.00ms   Translucency 0 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.0% 0.00ms   Translucency 1 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   BeginSeparateTranslucency 1 draws 0 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:    22.7% 0.93ms   PostProcessing 32 draws 57691 prims 115403 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        1.6% 0.07ms   BokehDOFRecombine#2 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        6.8% 0.28ms   TemporalAA 2560x1440 2 draws 2 prims 6 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        3.1% 0.13ms   VelocityFlattenCS 2560x1440 1 draws 1 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.5% 0.02ms   VelocityScatter 2560x1440 3 draws 57600 prims 115200 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        1.4% 0.06ms   MotionBlur 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.5% 0.02ms   Downsample 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        1.3% 0.06ms   PostProcessHistogram 1 draws 1 prims 0 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.7% 0.03ms   PostProcessHistogramReduce 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.3% 0.01ms   PostProcessEyeAdaptation 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   Downsample 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.1% 0.00ms   Downsample 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   Downsample 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   Downsample 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   Downsample 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Horizontal 20x23 in 20x23 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.1% 0.00ms   PostProcessWeightedSampleSum#32Vertical 40x23 in 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 40x45 in 40x45 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Vertical 80x45 in 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 80x90 in 80x90 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Vertical 160x90 in 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#14Horizontal 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#14Vertical 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#14Horizontal 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.3% 0.01ms   PostProcessWeightedSampleSum#14Vertical 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.6% 0.03ms   PostProcessWeightedSampleSum#9Horizontal 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        1.2% 0.05ms   PostProcessWeightedSampleSum#9Vertical 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        0.3% 0.01ms   PostProcessCombineLUTs [1] 32x32x32 1 draws 64 prims 128 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:        2.8% 0.11ms   Tonemapper#4 GammaOnly=0 HandleScreenPercentage=0  2560x1440 2 draws 1 prims 3 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:  0.0% 0.00ms   SlateUI 1 draws 2300 prims 4600 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     0.0% 0.00ms   CanvasFlush 1 draws 2300 prims 4600 verts
+[2018.07.08-18.41.39:330][ 42]LogRHI:     3.0% 0.12ms   Other Children
+[2018.07.08-18.41.39:330][ 42]LogRHI: Total Nodes 101 Draws 74
+[2018.07.08-18.41.39:331][ 42]LogRHI: 
+[2018.07.08-18.41.39:331][ 42]LogRHI: 
+[2018.07.08-18.41.39:331][ 42]LogRHI: 
+[2018.07.08-18.41.39:331][ 42]LogRHI: MeshList,TriangleCount,DrawCallCount
+[2018.07.08-18.41.39:331][ 42]LogRHI: 2560x1440,57606,6
+[2018.07.08-18.41.39:331][ 42]LogRHI: 64x64x64 Cascades:2,256,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: [1] 32x32x32,64,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: SetupMips Mips:1..10 1024x512,10,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 1280x720 in 1280x720,2,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: 1280x720,2,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: 320x180 in 320x180,2,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: 640x360 in 640x360,2,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: 160x90,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 80x90 in 80x90,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 640x360,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 160x90 in 160x90,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 40x23 in 40x23,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 40x45 in 40x45,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 80x45 in 80x45,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 20x23 in 20x23,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 320x180,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: SetupMip 0 2048x1024,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 80x45,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 40x23,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: GammaOnly=0 HandleScreenPercentage=0  2560x1440,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 
+[2018.07.08-18.41.39:331][ 42]LogRHI: MaterialList,TriangleCount,DrawCallCount
+[2018.07.08-18.41.39:331][ 42]LogRHI: VelocityScatter,57600,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: FilterTranslucentVolume,256,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessCombineLUTs,64,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: HZB,11,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: Downsample,6,6
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessWeightedSampleSum#32Horizontal,3,3
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessWeightedSampleSum#32Vertical,3,3
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessWeightedSampleSum#14Vertical,2,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessWeightedSampleSum#14Horizontal,2,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: TemporalAA,2,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: AmbientOcclusionPS,2,2
+[2018.07.08-18.41.39:331][ 42]LogRHI: AmbientOcclusionSetup,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessWeightedSampleSum#9Vertical,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: ApplyAOToBasePassSceneColor,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessWeightedSampleSum#9Horizontal,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: ScreenSpaceReflections,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: BokehDOFRecombine#2,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: MotionBlur,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: Tonemapper#4,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: 
+[2018.07.08-18.41.39:331][ 42]LogRHI: MiscList,TriangleCount,DrawCallCount
+[2018.07.08-18.41.39:331][ 42]LogRHI: CanvasFlush,2300,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: InjectNonShadowedTranslucentLighting,256,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: ClearTranslucentVolumeLighting,128,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessEyeAdaptation,1,1
+[2018.07.08-18.41.39:331][ 42]LogRHI: PostProcessHistogramReduce,1,1
+[2018.07.08-18.41.41:224][144]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING GPU PROFILING FOR: Looking_At_Cube
+[2018.07.08-18.41.43:224][268]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING PROFILING FOR: Looking_At_Cube
+[2018.07.08-18.41.45:224][392]LogCheatManager: BugItGo -467.376465 -11.886159 515.000000 -43.799892 3.600114 0.000002
+[2018.07.08-18.41.45:224][392]LogCheatManager: ?BugLoc=X=-467.376 Y=-11.886 Z=515.000?BugRot=P=-43.799892 Y=3.600114 R=0.000002
+[2018.07.08-18.41.45:259][392]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/Looking_At_Cube_game/Looking_At_Cube_game_00000.txt
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [LookingDownAtCube] Finish Test Running
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [LookingDownAtCube] Start Test Cleanup
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [LookingDownAtCube] Finish Test Cleanup
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Starting test: 2 out of 3
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [DoughnutConcreete] Start Test Setup
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [DoughnutConcreete] Finish Test Setup
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [DoughnutConcreete] Start Test Running
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING PROFILING FOR: Looking_At_Concreete
+[2018.07.08-18.41.46:231][438]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING TEXTURE PROFILING FOR: Looking_At_Concreete
+[2018.07.08-18.41.46:231][438]Listing all textures.
+[2018.07.08-18.41.46:231][438]Cooked/OnDisk: Width x Height (Size in KB, Authored Bias), Current/InMem: Width x Height (Size in KB), Format, LODGroup, Name, Streaming, Usage Count
+[2018.07.08-18.41.46:231][438]2048x2048 (32768 KB, ?), 2048x2048 (32768 KB), PF_FloatRGBA, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultBloomKernel.DefaultBloomKernel, NO, 0
+[2018.07.08-18.41.46:231][438]1024x1024 (1365 KB, ?), 512x512 (341 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Game/Assets/3D/TestAssets/T_TestGraph_normal.T_TestGraph_normal, YES, 1
+[2018.07.08-18.41.46:231][438]1024x1024 (1365 KB, ?), 512x512 (341 KB), PF_G8, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/TestGraph_roughness.TestGraph_roughness, YES, 1
+[2018.07.08-18.41.46:231][438]1024x1024 (1365 KB, ?), 512x512 (341 KB), PF_G8, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/T_TestGraph_metallic.T_TestGraph_metallic, YES, 1
+[2018.07.08-18.41.46:231][438]256x256 (256 KB, ?), 256x256 (256 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/PreintegratedSkinBRDF.PreintegratedSkinBRDF, NO, 0
+[2018.07.08-18.41.46:231][438]1024x1024 (683 KB, ?), 512x512 (171 KB), PF_DXT1, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/T_TestGraph_basecolor.T_TestGraph_basecolor, YES, 1
+[2018.07.08-18.41.46:231][438]512x256 (128 KB, ?), 512x256 (128 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineFonts/RobotoDistanceField.RobotoDistanceField:RobotoDistanceField_PageA, NO, 0
+[2018.07.08-18.41.46:231][438]256x256 (85 KB, ?), 256x256 (85 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:HQ_Lightmap0_1, YES, 4
+[2018.07.08-18.41.46:231][438]256x64 (21 KB, ?), 256x64 (21 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:ShadowMapTexture2D_0, YES, 4
+[2018.07.08-18.41.46:231][438]64x64 (21 KB, ?), 64x64 (21 KB), PF_B8G8R8A8, TEXTUREGROUP_Bokeh, /Engine/EngineMaterials/DefaultBokeh.DefaultBokeh, NO, 0
+[2018.07.08-18.41.46:231][438]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Engine/EngineMaterials/T_Default_Material_Grid_M.T_Default_Material_Grid_M, YES, 0
+[2018.07.08-18.41.46:231][438]256x256 (85 KB, ?), 64x64 (5 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Engine/EngineMaterials/T_Default_Material_Grid_N.T_Default_Material_Grid_N, YES, 0
+[2018.07.08-18.41.46:231][438]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Color.GearVRController_Color, YES, 0
+[2018.07.08-18.41.46:231][438]1024x1024 (1365 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Normal.GearVRController_Normal, YES, 0
+[2018.07.08-18.41.46:231][438]128x128 (21 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture, YES, 1
+[2018.07.08-18.41.46:231][438]32x32 (5 KB, ?), 32x32 (5 KB), PF_B8G8R8A8, TEXTUREGROUP_UI, /Engine/EngineResources/GradientTexture0.GradientTexture0, NO, 0
+[2018.07.08-18.41.46:231][438]64x64 (4 KB, ?), 64x64 (4 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq, NO, 0
+[2018.07.08-18.41.46:231][438]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_AO.GearVRController_AO, YES, 0
+[2018.07.08-18.41.46:231][438]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid, YES, 0
+[2018.07.08-18.41.46:231][438]256x256 (43 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:LQ_Lightmap_0_1, YES, 0
+[2018.07.08-18.41.46:231][438]512x512 (171 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings, YES, 0
+[2018.07.08-18.41.46:231][438]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse, YES, 0
+[2018.07.08-18.41.46:231][438]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/DefaultTexture.DefaultTexture, YES, 0
+[2018.07.08-18.41.46:231][438]512x8 (2 KB, ?), 512x8 (2 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/MiniFont.MiniFont, NO, 0
+[2018.07.08-18.41.46:231][438]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture, NO, 0
+[2018.07.08-18.41.46:231][438]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/Black.Black, NO, 0
+[2018.07.08-18.41.46:231][438]2x2 (0 KB, ?), 2x2 (0 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/WeightMapPlaceholderTexture.WeightMapPlaceholderTexture, NO, 0
+[2018.07.08-18.41.46:231][438]Total size: InMem= 33.72 MB  OnDisk= 40.85 MB  Count=27
+[2018.07.08-18.41.46:231][438]Total PF_B8G8R8A8 size: InMem= 0.28 MB  OnDisk= 0.28 MB 
+[2018.07.08-18.41.46:231][438]Total PF_G8 size: InMem= 0.82 MB  OnDisk= 2.82 MB 
+[2018.07.08-18.41.46:231][438]Total PF_DXT1 size: InMem= 0.19 MB  OnDisk= 2.23 MB 
+[2018.07.08-18.41.46:231][438]Total PF_DXT5 size: InMem= 0.10 MB  OnDisk= 2.10 MB 
+[2018.07.08-18.41.46:231][438]Total PF_FloatRGBA size: InMem= 32.00 MB  OnDisk= 32.00 MB 
+[2018.07.08-18.41.46:231][438]Total PF_BC5 size: InMem= 0.34 MB  OnDisk= 1.42 MB 
+[2018.07.08-18.41.46:231][438]Total TEXTUREGROUP_World size: InMem= 33.12 MB  OnDisk= 39.13 MB 
+[2018.07.08-18.41.46:231][438]Total TEXTUREGROUP_WorldNormalMap size: InMem= 0.34 MB  OnDisk= 1.42 MB 
+[2018.07.08-18.41.46:231][438]Total TEXTUREGROUP_UI size: InMem= 0.13 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.41.46:231][438]Total TEXTUREGROUP_Lightmap size: InMem= 0.09 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.41.46:231][438]Total TEXTUREGROUP_Shadowmap size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.41.46:231][438]Total TEXTUREGROUP_Bokeh size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.41.46:440][451]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING TEXTURE PROFILING FOR: Looking_At_Concreete
+[2018.07.08-18.41.46:649][464]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING GPU PROFILING FOR: Looking_At_Concreete
+[2018.07.08-18.41.46:649][464]r.ProfileGPU.ShowUI = "0"
+[2018.07.08-18.41.46:649][464]r.ProfileGPU.PrintAssetSummary = "1"
+[2018.07.08-18.41.46:649][464]r.ShowMaterialDrawEvents = "1"
+[2018.07.08-18.41.46:650][464]Profiling the next GPU frame
+[2018.07.08-18.41.46:784][467]LogD3D11RHI: Warning: 
+[2018.07.08-18.41.46:784][467]LogD3D11RHI: Warning: 
+[2018.07.08-18.41.46:791][468]LogRHI: Perf marker hierarchy, total GPU time 4.70ms
+[2018.07.08-18.41.46:791][468]LogRHI: Warning: Profiled range was continuous.
+[2018.07.08-18.41.46:791][468]LogRHI: 100.0% 4.70ms   FRAME 70 draws 61079 prims 120406 verts
+[2018.07.08-18.41.46:791][468]LogRHI: 92.5% 4.35ms   Scene 69 draws 59895 prims 118038 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.0% 0.00ms   PrePass DDM_AllOpaque (Forced by DBuffer) 3 draws 770 prims 650 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   BeginRenderingPrePass 1 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.5% 0.03ms   ComputeLightGrid 5 draws 5 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.3% 0.02ms   CullLights 40x23x32 NumLights 0 NumCaptures 0 4 draws 4 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.2% 0.01ms   Compact 1 draws 1 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.0% 0.00ms   BeginOcclusionTests 0 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   ViewOcclusionTests 0 0 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:    15.3% 0.72ms   HZB SetupMip 0 2048x1024 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.7% 0.03ms   HZB SetupMips Mips:1..10 1024x512 10 draws 10 prims 30 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.0% 0.00ms   CompositionBeforeBasePass 0 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.4% 0.02ms   BeginRenderingSceneColor 1 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     2.0% 0.09ms   BasePass 2 draws 770 prims 650 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.0% 0.00ms   RenderVelocities 1 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:    42.7% 2.01ms   LightCompositionTasks_PreLighting 4 draws 4 prims 12 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.6% 0.03ms   AmbientOcclusionSetup 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:       12.8% 0.60ms   AmbientOcclusionPS 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:       28.2% 1.32ms   AmbientOcclusionPS 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        1.2% 0.06ms   ApplyAOToBasePassSceneColor 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.1% 0.01ms   ClearStencilFromBasePass 1 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.9% 0.04ms   ClearTranslucentVolumeLighting 1 draws 128 prims 256 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     3.5% 0.16ms   Lights 3 draws 257 prims 515 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        3.5% 0.16ms   DirectLighting 3 draws 257 prims 515 verts
+[2018.07.08-18.41.46:791][468]LogRHI:           3.5% 0.16ms   NonShadowedLights 3 draws 257 prims 515 verts
+[2018.07.08-18.41.46:791][468]LogRHI:              2.8% 0.13ms   StandardDeferredLighting 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:              0.7% 0.03ms   InjectNonShadowedTranslucentLighting 2 draws 256 prims 512 verts
+[2018.07.08-18.41.46:791][468]LogRHI:           0.0% 0.00ms   IndirectLighting 0 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     2.5% 0.12ms   FilterTranslucentVolume 64x64x64 Cascades:2 2 draws 256 prims 512 verts 2174 prims/ms 4348 verts/ms
+[2018.07.08-18.41.46:791][468]LogRHI:     1.3% 0.06ms   ScreenSpaceReflections 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     1.7% 0.08ms   ReflectionEnvironment PixelShader 1 draws 2 prims 4 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.0% 0.00ms   Translucency 0 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.0% 0.00ms   Translucency 1 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   BeginSeparateTranslucency 1 draws 0 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:    20.6% 0.97ms   PostProcessing 32 draws 57691 prims 115403 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        1.4% 0.07ms   BokehDOFRecombine#2 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        6.7% 0.31ms   TemporalAA 2560x1440 2 draws 2 prims 6 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        2.7% 0.12ms   VelocityFlattenCS 2560x1440 1 draws 1 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.5% 0.02ms   VelocityScatter 2560x1440 3 draws 57600 prims 115200 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        1.3% 0.06ms   MotionBlur 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.4% 0.02ms   Downsample 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        1.2% 0.06ms   PostProcessHistogram 1 draws 1 prims 0 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.7% 0.03ms   PostProcessHistogramReduce 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.3% 0.01ms   PostProcessEyeAdaptation 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   Downsample 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.1% 0.00ms   Downsample 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   Downsample 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   Downsample 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   Downsample 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Horizontal 20x23 in 20x23 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.1% 0.00ms   PostProcessWeightedSampleSum#32Vertical 40x23 in 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 40x45 in 40x45 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.1% 0.00ms   PostProcessWeightedSampleSum#32Vertical 80x45 in 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 80x90 in 80x90 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#32Vertical 160x90 in 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#14Horizontal 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#14Vertical 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#14Horizontal 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.3% 0.01ms   PostProcessWeightedSampleSum#14Vertical 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.5% 0.02ms   PostProcessWeightedSampleSum#9Horizontal 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.9% 0.04ms   PostProcessWeightedSampleSum#9Vertical 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        0.3% 0.01ms   PostProcessCombineLUTs [1] 32x32x32 1 draws 64 prims 128 verts
+[2018.07.08-18.41.46:791][468]LogRHI:        2.5% 0.12ms   Tonemapper#4 GammaOnly=0 HandleScreenPercentage=0  2560x1440 2 draws 1 prims 3 verts
+[2018.07.08-18.41.46:791][468]LogRHI:  0.0% 0.00ms   SlateUI 1 draws 1184 prims 2368 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     0.0% 0.00ms   CanvasFlush 1 draws 1184 prims 2368 verts
+[2018.07.08-18.41.46:791][468]LogRHI:     7.4% 0.35ms   Other Children
+[2018.07.08-18.41.46:791][468]LogRHI: Total Nodes 101 Draws 70
+[2018.07.08-18.41.46:791][468]LogRHI: 
+[2018.07.08-18.41.46:791][468]LogRHI: 
+[2018.07.08-18.41.46:791][468]LogRHI: 
+[2018.07.08-18.41.46:791][468]LogRHI: MeshList,TriangleCount,DrawCallCount
+[2018.07.08-18.41.46:791][468]LogRHI: 2560x1440,57606,6
+[2018.07.08-18.41.46:791][468]LogRHI: 64x64x64 Cascades:2,256,1
+[2018.07.08-18.41.46:791][468]LogRHI: [1] 32x32x32,64,1
+[2018.07.08-18.41.46:791][468]LogRHI: SetupMips Mips:1..10 1024x512,10,1
+[2018.07.08-18.41.46:791][468]LogRHI: 1280x720 in 1280x720,2,2
+[2018.07.08-18.41.46:791][468]LogRHI: 1280x720,2,2
+[2018.07.08-18.41.46:791][468]LogRHI: 320x180 in 320x180,2,2
+[2018.07.08-18.41.46:791][468]LogRHI: 640x360 in 640x360,2,2
+[2018.07.08-18.41.46:791][468]LogRHI: 160x90,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 80x90 in 80x90,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 640x360,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 160x90 in 160x90,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 40x23 in 40x23,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 40x45 in 40x45,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 80x45 in 80x45,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 20x23 in 20x23,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 320x180,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: SetupMip 0 2048x1024,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 80x45,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 40x23,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: GammaOnly=0 HandleScreenPercentage=0  2560x1440,1,1
+[2018.07.08-18.41.46:791][468]LogRHI: 
+[2018.07.08-18.41.46:792][468]LogRHI: MaterialList,TriangleCount,DrawCallCount
+[2018.07.08-18.41.46:792][468]LogRHI: VelocityScatter,57600,1
+[2018.07.08-18.41.46:792][468]LogRHI: FilterTranslucentVolume,256,1
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessCombineLUTs,64,1
+[2018.07.08-18.41.46:792][468]LogRHI: HZB,11,2
+[2018.07.08-18.41.46:792][468]LogRHI: Downsample,6,6
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessWeightedSampleSum#32Horizontal,3,3
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessWeightedSampleSum#32Vertical,3,3
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessWeightedSampleSum#14Vertical,2,2
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessWeightedSampleSum#14Horizontal,2,2
+[2018.07.08-18.41.46:792][468]LogRHI: TemporalAA,2,1
+[2018.07.08-18.41.46:792][468]LogRHI: AmbientOcclusionPS,2,2
+[2018.07.08-18.41.46:792][468]LogRHI: AmbientOcclusionSetup,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessWeightedSampleSum#9Vertical,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: ApplyAOToBasePassSceneColor,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessWeightedSampleSum#9Horizontal,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: ScreenSpaceReflections,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: BokehDOFRecombine#2,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: MotionBlur,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: Tonemapper#4,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: 
+[2018.07.08-18.41.46:792][468]LogRHI: MiscList,TriangleCount,DrawCallCount
+[2018.07.08-18.41.46:792][468]LogRHI: CanvasFlush,1184,1
+[2018.07.08-18.41.46:792][468]LogRHI: InjectNonShadowedTranslucentLighting,256,1
+[2018.07.08-18.41.46:792][468]LogRHI: ClearTranslucentVolumeLighting,128,1
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessEyeAdaptation,1,1
+[2018.07.08-18.41.46:792][468]LogRHI: PostProcessHistogramReduce,1,1
+[2018.07.08-18.41.48:655][571]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING GPU PROFILING FOR: Looking_At_Concreete
+[2018.07.08-18.41.50:656][695]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Starting CPU Profiling
+[2018.07.08-18.41.50:657][695]LogStats: Opening stats file: ../../../sentinelUE4/Saved/Profiling/UnrealStats/Map_StartupTest-WindowsNoEditor-07.08-18.41.50/Map_StartupTest-WindowsNoEditor-08-18.41.50.ue4stats.inprogress
+[2018.07.08-18.41.55:660][  5]LogStats: Wrote stats file: ../../../sentinelUE4/Saved/Profiling/UnrealStats/Map_StartupTest-WindowsNoEditor-07.08-18.41.50/Map_StartupTest-WindowsNoEditor-08-18.41.50.ue4stats
+[2018.07.08-18.41.55:660][  5]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Stopping CPU Profiling
+[2018.07.08-18.41.55:660][  5]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING PROFILING FOR: Looking_At_Concreete
+[2018.07.08-18.41.57:656][129]LogCheatManager: BugItGo 66.654724 -408.577057 127.000000 0.800000 -0.600006 0.000000
+[2018.07.08-18.41.57:656][129]LogCheatManager: ?BugLoc=X=66.655 Y=-408.577 Z=127.000?BugRot=P=0.800000 Y=-0.600006 R=0.000000
+[2018.07.08-18.41.57:690][129]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/Looking_At_Concreete_game/Looking_At_Concreete_game_00000.txt
+[2018.07.08-18.42.00:672][301]LogCheatManager: BugItGo 66.654724 -408.577057 127.000000 0.800000 -0.600006 0.000000
+[2018.07.08-18.42.00:672][301]LogCheatManager: ?BugLoc=X=66.655 Y=-408.577 Z=127.000?BugRot=P=0.800000 Y=-0.600006 R=0.000000
+[2018.07.08-18.42.00:705][301]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/Looking_At_Concreete_game/Looking_At_Concreete_game_00001.txt
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [LookingDownAtCube] Finish Test Running
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [LookingDownAtCube] Start Test Cleanup
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [LookingDownAtCube] Finish Test Cleanup
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [DoughnutConcreete] Finish Test Running
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [DoughnutConcreete] Start Test Cleanup
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [DoughnutConcreete] Finish Test Cleanup
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Starting test: 3 out of 3
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [LookDownCone] Start Test Setup
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [LookDownCone] Finish Test Setup
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [LookDownCone] Start Test Running
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING PROFILING FOR: Looking_At_Cone
+[2018.07.08-18.42.01:672][349]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING TEXTURE PROFILING FOR: Looking_At_Cone
+[2018.07.08-18.42.01:672][349]Listing all textures.
+[2018.07.08-18.42.01:673][349]Cooked/OnDisk: Width x Height (Size in KB, Authored Bias), Current/InMem: Width x Height (Size in KB), Format, LODGroup, Name, Streaming, Usage Count
+[2018.07.08-18.42.01:673][349]2048x2048 (32768 KB, ?), 2048x2048 (32768 KB), PF_FloatRGBA, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultBloomKernel.DefaultBloomKernel, NO, 0
+[2018.07.08-18.42.01:673][349]1024x1024 (1365 KB, ?), 1024x1024 (1365 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Game/Assets/3D/TestAssets/T_TestGraph_normal.T_TestGraph_normal, YES, 1
+[2018.07.08-18.42.01:673][349]1024x1024 (1365 KB, ?), 1024x1024 (1365 KB), PF_G8, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/TestGraph_roughness.TestGraph_roughness, YES, 1
+[2018.07.08-18.42.01:673][349]1024x1024 (1365 KB, ?), 1024x1024 (1365 KB), PF_G8, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/T_TestGraph_metallic.T_TestGraph_metallic, YES, 1
+[2018.07.08-18.42.01:673][349]1024x1024 (683 KB, ?), 1024x1024 (683 KB), PF_DXT1, TEXTUREGROUP_World, /Game/Assets/3D/TestAssets/T_TestGraph_basecolor.T_TestGraph_basecolor, YES, 1
+[2018.07.08-18.42.01:673][349]256x256 (256 KB, ?), 256x256 (256 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/PreintegratedSkinBRDF.PreintegratedSkinBRDF, NO, 0
+[2018.07.08-18.42.01:673][349]512x256 (128 KB, ?), 512x256 (128 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineFonts/RobotoDistanceField.RobotoDistanceField:RobotoDistanceField_PageA, NO, 0
+[2018.07.08-18.42.01:673][349]256x256 (85 KB, ?), 256x256 (85 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:HQ_Lightmap0_1, YES, 4
+[2018.07.08-18.42.01:673][349]256x64 (21 KB, ?), 256x64 (21 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:ShadowMapTexture2D_0, YES, 4
+[2018.07.08-18.42.01:673][349]64x64 (21 KB, ?), 64x64 (21 KB), PF_B8G8R8A8, TEXTUREGROUP_Bokeh, /Engine/EngineMaterials/DefaultBokeh.DefaultBokeh, NO, 0
+[2018.07.08-18.42.01:673][349]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Engine/EngineMaterials/T_Default_Material_Grid_M.T_Default_Material_Grid_M, YES, 0
+[2018.07.08-18.42.01:673][349]256x256 (85 KB, ?), 64x64 (5 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Engine/EngineMaterials/T_Default_Material_Grid_N.T_Default_Material_Grid_N, YES, 0
+[2018.07.08-18.42.01:673][349]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Color.GearVRController_Color, YES, 0
+[2018.07.08-18.42.01:673][349]1024x1024 (1365 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Normal.GearVRController_Normal, YES, 0
+[2018.07.08-18.42.01:673][349]128x128 (21 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture, YES, 1
+[2018.07.08-18.42.01:673][349]32x32 (5 KB, ?), 32x32 (5 KB), PF_B8G8R8A8, TEXTUREGROUP_UI, /Engine/EngineResources/GradientTexture0.GradientTexture0, NO, 0
+[2018.07.08-18.42.01:673][349]64x64 (4 KB, ?), 64x64 (4 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq, NO, 0
+[2018.07.08-18.42.01:673][349]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_AO.GearVRController_AO, YES, 0
+[2018.07.08-18.42.01:673][349]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid, YES, 0
+[2018.07.08-18.42.01:673][349]256x256 (43 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTest_BuiltData.Map_StartupTest_BuiltData:LQ_Lightmap_0_1, YES, 0
+[2018.07.08-18.42.01:673][349]512x512 (171 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings, YES, 0
+[2018.07.08-18.42.01:673][349]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse, YES, 0
+[2018.07.08-18.42.01:673][349]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/DefaultTexture.DefaultTexture, YES, 0
+[2018.07.08-18.42.01:673][349]512x8 (2 KB, ?), 512x8 (2 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/MiniFont.MiniFont, NO, 0
+[2018.07.08-18.42.01:673][349]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture, NO, 0
+[2018.07.08-18.42.01:673][349]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/Black.Black, NO, 0
+[2018.07.08-18.42.01:673][349]2x2 (0 KB, ?), 2x2 (0 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/WeightMapPlaceholderTexture.WeightMapPlaceholderTexture, NO, 0
+[2018.07.08-18.42.01:673][349]Total size: InMem= 37.22 MB  OnDisk= 40.85 MB  Count=27
+[2018.07.08-18.42.01:673][349]Total PF_B8G8R8A8 size: InMem= 0.28 MB  OnDisk= 0.28 MB 
+[2018.07.08-18.42.01:673][349]Total PF_G8 size: InMem= 2.82 MB  OnDisk= 2.82 MB 
+[2018.07.08-18.42.01:673][349]Total PF_DXT1 size: InMem= 0.69 MB  OnDisk= 2.23 MB 
+[2018.07.08-18.42.01:673][349]Total PF_DXT5 size: InMem= 0.10 MB  OnDisk= 2.10 MB 
+[2018.07.08-18.42.01:673][349]Total PF_FloatRGBA size: InMem= 32.00 MB  OnDisk= 32.00 MB 
+[2018.07.08-18.42.01:673][349]Total PF_BC5 size: InMem= 1.34 MB  OnDisk= 1.42 MB 
+[2018.07.08-18.42.01:673][349]Total TEXTUREGROUP_World size: InMem= 35.62 MB  OnDisk= 39.13 MB 
+[2018.07.08-18.42.01:673][349]Total TEXTUREGROUP_WorldNormalMap size: InMem= 1.34 MB  OnDisk= 1.42 MB 
+[2018.07.08-18.42.01:673][349]Total TEXTUREGROUP_UI size: InMem= 0.13 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.01:673][349]Total TEXTUREGROUP_Lightmap size: InMem= 0.09 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.01:673][349]Total TEXTUREGROUP_Shadowmap size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.42.01:673][349]Total TEXTUREGROUP_Bokeh size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.42.01:882][362]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING TEXTURE PROFILING FOR: Looking_At_Cone
+[2018.07.08-18.42.02:091][375]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING GPU PROFILING FOR: Looking_At_Cone
+[2018.07.08-18.42.02:091][375]r.ProfileGPU.ShowUI = "0"
+[2018.07.08-18.42.02:091][375]r.ProfileGPU.PrintAssetSummary = "1"
+[2018.07.08-18.42.02:091][375]r.ShowMaterialDrawEvents = "1"
+[2018.07.08-18.42.02:091][375]Profiling the next GPU frame
+[2018.07.08-18.42.02:230][378]LogD3D11RHI: Warning: 
+[2018.07.08-18.42.02:230][378]LogD3D11RHI: Warning: 
+[2018.07.08-18.42.02:235][379]LogRHI: Perf marker hierarchy, total GPU time 4.04ms
+[2018.07.08-18.42.02:235][379]LogRHI: Warning: Profiled range was continuous.
+[2018.07.08-18.42.02:235][379]LogRHI: 100.0% 4.04ms   FRAME 70 draws 60231 prims 119750 verts
+[2018.07.08-18.42.02:235][379]LogRHI: 96.5% 3.90ms   Scene 69 draws 58927 prims 117142 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.0% 0.00ms   PrePass DDM_AllOpaque (Forced by DBuffer) 3 draws 286 prims 202 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.0% 0.00ms   BeginRenderingPrePass 1 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.6% 0.02ms   ComputeLightGrid 5 draws 5 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.4% 0.02ms   CullLights 40x23x32 NumLights 0 NumCaptures 0 4 draws 4 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.2% 0.01ms   Compact 1 draws 1 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.0% 0.00ms   BeginOcclusionTests 0 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.0% 0.00ms   ViewOcclusionTests 0 0 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     7.2% 0.29ms   HZB SetupMip 0 2048x1024 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.9% 0.03ms   HZB SetupMips Mips:1..10 1024x512 10 draws 10 prims 30 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.0% 0.00ms   CompositionBeforeBasePass 0 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.4% 0.02ms   BeginRenderingSceneColor 1 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     2.6% 0.10ms   BasePass 2 draws 286 prims 202 verts 2765 prims/ms 1953 verts/ms
+[2018.07.08-18.42.02:235][379]LogRHI:     0.0% 0.00ms   RenderVelocities 1 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:    49.1% 1.98ms   LightCompositionTasks_PreLighting 4 draws 4 prims 12 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.8% 0.03ms   AmbientOcclusionSetup 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:       14.8% 0.60ms   AmbientOcclusionPS 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:       32.2% 1.30ms   AmbientOcclusionPS 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        1.3% 0.05ms   ApplyAOToBasePassSceneColor 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.2% 0.01ms   ClearStencilFromBasePass 1 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     1.0% 0.04ms   ClearTranslucentVolumeLighting 1 draws 128 prims 256 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     4.8% 0.19ms   Lights 3 draws 257 prims 515 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        4.8% 0.19ms   DirectLighting 3 draws 257 prims 515 verts
+[2018.07.08-18.42.02:235][379]LogRHI:           4.8% 0.19ms   NonShadowedLights 3 draws 257 prims 515 verts
+[2018.07.08-18.42.02:235][379]LogRHI:              4.0% 0.16ms   StandardDeferredLighting 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:              0.9% 0.03ms   InjectNonShadowedTranslucentLighting 2 draws 256 prims 512 verts
+[2018.07.08-18.42.02:235][379]LogRHI:           0.0% 0.00ms   IndirectLighting 0 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     2.9% 0.12ms   FilterTranslucentVolume 64x64x64 Cascades:2 2 draws 256 prims 512 verts 2174 prims/ms 4348 verts/ms
+[2018.07.08-18.42.02:235][379]LogRHI:     1.5% 0.06ms   ScreenSpaceReflections 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     2.2% 0.09ms   ReflectionEnvironment PixelShader 1 draws 2 prims 4 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.0% 0.00ms   Translucency 0 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.0% 0.00ms   Translucency 1 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.0% 0.00ms   BeginSeparateTranslucency 1 draws 0 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:    23.0% 0.93ms   PostProcessing 32 draws 57691 prims 115403 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        1.6% 0.07ms   BokehDOFRecombine#2 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        6.9% 0.28ms   TemporalAA 2560x1440 2 draws 2 prims 6 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        3.1% 0.13ms   VelocityFlattenCS 2560x1440 1 draws 1 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.5% 0.02ms   VelocityScatter 2560x1440 3 draws 57600 prims 115200 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        1.5% 0.06ms   MotionBlur 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.5% 0.02ms   Downsample 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        1.4% 0.06ms   PostProcessHistogram 1 draws 1 prims 0 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.7% 0.03ms   PostProcessHistogramReduce 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.3% 0.01ms   PostProcessEyeAdaptation 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.1% 0.00ms   Downsample 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.1% 0.00ms   Downsample 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.1% 0.00ms   Downsample 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.0% 0.00ms   Downsample 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.1% 0.00ms   Downsample 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Horizontal 20x23 in 20x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.1% 0.00ms   PostProcessWeightedSampleSum#32Vertical 40x23 in 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 40x45 in 40x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.1% 0.00ms   PostProcessWeightedSampleSum#32Vertical 80x45 in 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 80x90 in 80x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#32Vertical 160x90 in 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#14Horizontal 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#14Vertical 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#14Horizontal 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.3% 0.01ms   PostProcessWeightedSampleSum#14Vertical 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.6% 0.02ms   PostProcessWeightedSampleSum#9Horizontal 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        1.1% 0.04ms   PostProcessWeightedSampleSum#9Vertical 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        0.3% 0.01ms   PostProcessCombineLUTs [1] 32x32x32 1 draws 64 prims 128 verts
+[2018.07.08-18.42.02:235][379]LogRHI:        2.8% 0.11ms   Tonemapper#4 GammaOnly=0 HandleScreenPercentage=0  2560x1440 2 draws 1 prims 3 verts
+[2018.07.08-18.42.02:235][379]LogRHI:  0.0% 0.00ms   SlateUI 1 draws 1304 prims 2608 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     0.0% 0.00ms   CanvasFlush 1 draws 1304 prims 2608 verts
+[2018.07.08-18.42.02:235][379]LogRHI:     3.4% 0.14ms   Other Children
+[2018.07.08-18.42.02:235][379]LogRHI: Total Nodes 101 Draws 70
+[2018.07.08-18.42.02:235][379]LogRHI: 
+[2018.07.08-18.42.02:235][379]LogRHI: 
+[2018.07.08-18.42.02:235][379]LogRHI: 
+[2018.07.08-18.42.02:235][379]LogRHI: MeshList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.02:235][379]LogRHI: 2560x1440,57606,6
+[2018.07.08-18.42.02:235][379]LogRHI: 64x64x64 Cascades:2,256,1
+[2018.07.08-18.42.02:235][379]LogRHI: [1] 32x32x32,64,1
+[2018.07.08-18.42.02:235][379]LogRHI: SetupMips Mips:1..10 1024x512,10,1
+[2018.07.08-18.42.02:235][379]LogRHI: 1280x720 in 1280x720,2,2
+[2018.07.08-18.42.02:235][379]LogRHI: 1280x720,2,2
+[2018.07.08-18.42.02:235][379]LogRHI: 320x180 in 320x180,2,2
+[2018.07.08-18.42.02:235][379]LogRHI: 640x360 in 640x360,2,2
+[2018.07.08-18.42.02:235][379]LogRHI: 160x90,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 80x90 in 80x90,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 640x360,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 160x90 in 160x90,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 40x23 in 40x23,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 40x45 in 40x45,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 80x45 in 80x45,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 20x23 in 20x23,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 320x180,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: SetupMip 0 2048x1024,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 80x45,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 40x23,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: GammaOnly=0 HandleScreenPercentage=0  2560x1440,1,1
+[2018.07.08-18.42.02:235][379]LogRHI: 
+[2018.07.08-18.42.02:235][379]LogRHI: MaterialList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.02:235][379]LogRHI: VelocityScatter,57600,1
+[2018.07.08-18.42.02:235][379]LogRHI: FilterTranslucentVolume,256,1
+[2018.07.08-18.42.02:235][379]LogRHI: PostProcessCombineLUTs,64,1
+[2018.07.08-18.42.02:235][379]LogRHI: HZB,11,2
+[2018.07.08-18.42.02:235][379]LogRHI: Downsample,6,6
+[2018.07.08-18.42.02:235][379]LogRHI: PostProcessWeightedSampleSum#32Horizontal,3,3
+[2018.07.08-18.42.02:235][379]LogRHI: PostProcessWeightedSampleSum#32Vertical,3,3
+[2018.07.08-18.42.02:235][379]LogRHI: PostProcessWeightedSampleSum#14Vertical,2,2
+[2018.07.08-18.42.02:236][379]LogRHI: PostProcessWeightedSampleSum#14Horizontal,2,2
+[2018.07.08-18.42.02:236][379]LogRHI: TemporalAA,2,1
+[2018.07.08-18.42.02:236][379]LogRHI: AmbientOcclusionPS,2,2
+[2018.07.08-18.42.02:236][379]LogRHI: AmbientOcclusionSetup,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: PostProcessWeightedSampleSum#9Vertical,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: ApplyAOToBasePassSceneColor,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: PostProcessWeightedSampleSum#9Horizontal,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: ScreenSpaceReflections,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: BokehDOFRecombine#2,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: MotionBlur,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: Tonemapper#4,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: 
+[2018.07.08-18.42.02:236][379]LogRHI: MiscList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.02:236][379]LogRHI: CanvasFlush,1304,1
+[2018.07.08-18.42.02:236][379]LogRHI: InjectNonShadowedTranslucentLighting,256,1
+[2018.07.08-18.42.02:236][379]LogRHI: ClearTranslucentVolumeLighting,128,1
+[2018.07.08-18.42.02:236][379]LogRHI: PostProcessEyeAdaptation,1,1
+[2018.07.08-18.42.02:236][379]LogRHI: PostProcessHistogramReduce,1,1
+[2018.07.08-18.42.04:102][482]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING GPU PROFILING FOR: Looking_At_Cone
+[2018.07.08-18.42.06:102][606]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING PROFILING FOR: Looking_At_Cone
+[2018.07.08-18.42.08:103][730]LogCheatManager: BugItGo 120.000000 396.999969 240.000000 -39.999989 0.000000 0.000000
+[2018.07.08-18.42.08:103][730]LogCheatManager: ?BugLoc=X=120.000 Y=397.000 Z=240.000?BugRot=P=-39.999989 Y=0.000000 R=0.000000
+[2018.07.08-18.42.08:136][730]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/Looking_At_Cone_game/Looking_At_Cone_game_00000.txt
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [LookingDownAtCube] Finish Test Running
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [LookingDownAtCube] Start Test Cleanup
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [LookingDownAtCube] Finish Test Cleanup
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [DoughnutConcreete] Finish Test Running
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [DoughnutConcreete] Start Test Cleanup
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [DoughnutConcreete] Finish Test Cleanup
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [LookDownCone] Finish Test Running
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [LookDownCone] Start Test Cleanup
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [LookDownCone] Finish Test Cleanup
+[2018.07.08-18.42.09:109][778]LogBlueprintUserMessages: [BP_StartupMapTestSettings_64] Finished going through all test points
+[2018.07.08-18.42.09:125][779]LogNet: Browse: /Game/Maps/Map_StartupTestSecondLevel
+[2018.07.08-18.42.09:125][779]LogLoadingSplash: Loading begins
+[2018.07.08-18.42.09:125][779]LogLoad: LoadMap: /Game/Maps/Map_StartupTestSecondLevel
+[2018.07.08-18.42.09:134][779]LogAIModule: Creating AISystem for world Map_StartupTestSecondLevel
+[2018.07.08-18.42.09:137][779]LogLoad: Game class is 'BP_BaseTestGamemode_C'
+[2018.07.08-18.42.09:138][779]LogWorld: Bringing World /Game/Maps/Map_StartupTestSecondLevel.Map_StartupTestSecondLevel up for play (max tick rate 0) at 2018.07.08-18.42.09
+[2018.07.08-18.42.09:138][779]LogWorld: Bringing up level for play took: 0.000304
+[2018.07.08-18.42.09:138][779]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Found test configuration: sentinelTest_Startup
+[2018.07.08-18.42.09:138][779]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Attempting to load: Map_StartupTestSecondLevel_sentinel
+[2018.07.08-18.42.09:161][779]LogPackageName: SearchForPackageOnDisk took   0.023s to resolve Map_StartupTestSecondLevel_sentinel.
+[2018.07.08-18.42.09:161][779]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Succesfully Loaded sentinel level: Map_StartupTestSecondLevel_sentinel
+[2018.07.08-18.42.09:162][779]LogLoadingSplash: Loading ends
+[2018.07.08-18.42.09:162][779]LogLoad: Took 0.037127 seconds to LoadMap(/Game/Maps/Map_StartupTestSecondLevel)
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Waiting for settings actor to load...
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] Succesfully found settings actor
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] Initializing Test!
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] Running with default configuration...
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] Found: Test__New_Second_Level_Point_0
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] Found: Test__Second_Level_Point_0
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] 2 Tests
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] Starting test: 1 out of 2
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_PerformancePoints_368] Start Test Setup
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_PerformancePoints_368] Finish Test Setup
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [BP_PerformancePoints_368] Start Test Running
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING PROFILING FOR: Second_Level_Point
+[2018.07.08-18.42.09:313][789]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING TEXTURE PROFILING FOR: Second_Level_Point
+[2018.07.08-18.42.09:313][789]Listing all textures.
+[2018.07.08-18.42.09:313][789]Cooked/OnDisk: Width x Height (Size in KB, Authored Bias), Current/InMem: Width x Height (Size in KB), Format, LODGroup, Name, Streaming, Usage Count
+[2018.07.08-18.42.09:313][789]2048x2048 (32768 KB, ?), 2048x2048 (32768 KB), PF_FloatRGBA, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultBloomKernel.DefaultBloomKernel, NO, 0
+[2018.07.08-18.42.09:313][789]2048x2048 (2731 KB, ?), 2048x2048 (2731 KB), PF_DXT1, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Blue.T_Sky_Blue, YES, 2
+[2018.07.08-18.42.09:313][789]512x256 (683 KB, ?), 512x256 (683 KB), PF_B8G8R8A8, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Clouds_M.T_Sky_Clouds_M, YES, 2
+[2018.07.08-18.42.09:313][789]512x512 (341 KB, ?), 512x512 (341 KB), PF_DXT5, TEXTUREGROUP_World, /Engine/EngineMaterials/T_Default_Material_Grid_M.T_Default_Material_Grid_M, YES, 1
+[2018.07.08-18.42.09:313][789]256x256 (256 KB, ?), 256x256 (256 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/PreintegratedSkinBRDF.PreintegratedSkinBRDF, NO, 0
+[2018.07.08-18.42.09:313][789]512x512 (171 KB, ?), 512x512 (171 KB), PF_DXT1, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Stars.T_Sky_Stars, YES, 2
+[2018.07.08-18.42.09:313][789]512x256 (128 KB, ?), 512x256 (128 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineFonts/RobotoDistanceField.RobotoDistanceField:RobotoDistanceField_PageA, NO, 0
+[2018.07.08-18.42.09:313][789]256x256 (85 KB, ?), 256x256 (85 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:HQ_Lightmap0_1, YES, 1
+[2018.07.08-18.42.09:313][789]128x128 (21 KB, ?), 128x128 (21 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:ShadowMapTexture2D_0, YES, 1
+[2018.07.08-18.42.09:313][789]64x64 (21 KB, ?), 64x64 (21 KB), PF_B8G8R8A8, TEXTUREGROUP_Bokeh, /Engine/EngineMaterials/DefaultBokeh.DefaultBokeh, NO, 0
+[2018.07.08-18.42.09:313][789]256x256 (85 KB, ?), 64x64 (5 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Engine/EngineMaterials/T_Default_Material_Grid_N.T_Default_Material_Grid_N, YES, 1
+[2018.07.08-18.42.09:313][789]64x64 (5 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:HQ_Lightmap0_2, NO, 1
+[2018.07.08-18.42.09:313][789]128x128 (21 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture, YES, 1
+[2018.07.08-18.42.09:313][789]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Color.GearVRController_Color, YES, 0
+[2018.07.08-18.42.09:313][789]1024x1024 (1365 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Normal.GearVRController_Normal, YES, 0
+[2018.07.08-18.42.09:313][789]32x32 (5 KB, ?), 32x32 (5 KB), PF_B8G8R8A8, TEXTUREGROUP_UI, /Engine/EngineResources/GradientTexture0.GradientTexture0, NO, 0
+[2018.07.08-18.42.09:313][789]64x64 (4 KB, ?), 64x64 (4 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq, NO, 0
+[2018.07.08-18.42.09:313][789]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_AO.GearVRController_AO, YES, 0
+[2018.07.08-18.42.09:313][789]512x512 (171 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings, YES, 0
+[2018.07.08-18.42.09:313][789]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid, YES, 0
+[2018.07.08-18.42.09:313][789]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/DefaultTexture.DefaultTexture, YES, 0
+[2018.07.08-18.42.09:313][789]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse, YES, 0
+[2018.07.08-18.42.09:313][789]64x64 (3 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:LQ_Lightmap_0_2, NO, 0
+[2018.07.08-18.42.09:313][789]256x256 (43 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:LQ_Lightmap_0_1, YES, 0
+[2018.07.08-18.42.09:313][789]512x8 (2 KB, ?), 512x8 (2 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/MiniFont.MiniFont, NO, 0
+[2018.07.08-18.42.09:313][789]32x32 (1 KB, ?), 32x32 (1 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:ShadowMapTexture2D_1, NO, 1
+[2018.07.08-18.42.09:313][789]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture, NO, 0
+[2018.07.08-18.42.09:313][789]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/Black.Black, NO, 0
+[2018.07.08-18.42.09:313][789]2x2 (0 KB, ?), 2x2 (0 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/WeightMapPlaceholderTexture.WeightMapPlaceholderTexture, NO, 0
+[2018.07.08-18.42.09:313][789]Total size: InMem= 36.39 MB  OnDisk= 39.69 MB  Count=29
+[2018.07.08-18.42.09:313][789]Total PF_B8G8R8A8 size: InMem= 0.94 MB  OnDisk= 0.94 MB 
+[2018.07.08-18.42.09:313][789]Total PF_G8 size: InMem= 0.15 MB  OnDisk= 0.15 MB 
+[2018.07.08-18.42.09:313][789]Total PF_DXT1 size: InMem= 2.85 MB  OnDisk= 4.40 MB 
+[2018.07.08-18.42.09:313][789]Total PF_DXT5 size: InMem= 0.44 MB  OnDisk= 2.11 MB 
+[2018.07.08-18.42.09:313][789]Total PF_FloatRGBA size: InMem= 32.00 MB  OnDisk= 32.00 MB 
+[2018.07.08-18.42.09:313][789]Total PF_BC5 size: InMem= 0.01 MB  OnDisk= 0.08 MB 
+[2018.07.08-18.42.09:313][789]Total TEXTUREGROUP_World size: InMem= 32.62 MB  OnDisk= 35.80 MB 
+[2018.07.08-18.42.09:313][789]Total TEXTUREGROUP_WorldNormalMap size: InMem= 0.01 MB  OnDisk= 0.08 MB 
+[2018.07.08-18.42.09:313][789]Total TEXTUREGROUP_Skybox size: InMem= 3.50 MB  OnDisk= 3.50 MB 
+[2018.07.08-18.42.09:313][789]Total TEXTUREGROUP_UI size: InMem= 0.13 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.09:313][789]Total TEXTUREGROUP_Lightmap size: InMem= 0.09 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.09:313][789]Total TEXTUREGROUP_Shadowmap size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.42.09:314][789]Total TEXTUREGROUP_Bokeh size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.42.09:522][802]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING TEXTURE PROFILING FOR: Second_Level_Point
+[2018.07.08-18.42.09:732][815]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING GPU PROFILING FOR: Second_Level_Point
+[2018.07.08-18.42.09:732][815]r.ProfileGPU.ShowUI = "0"
+[2018.07.08-18.42.09:733][815]r.ProfileGPU.PrintAssetSummary = "1"
+[2018.07.08-18.42.09:733][815]r.ShowMaterialDrawEvents = "1"
+[2018.07.08-18.42.09:733][815]Profiling the next GPU frame
+[2018.07.08-18.42.09:866][818]LogD3D11RHI: Warning: 
+[2018.07.08-18.42.09:866][818]LogD3D11RHI: Warning: 
+[2018.07.08-18.42.09:873][819]LogRHI: Perf marker hierarchy, total GPU time 6.49ms
+[2018.07.08-18.42.09:873][819]LogRHI: Warning: Profiled range was continuous.
+[2018.07.08-18.42.09:873][819]LogRHI: 100.0% 6.49ms   FRAME 71 draws 69873 prims 128114 verts
+[2018.07.08-18.42.09:873][819]LogRHI: 93.7% 6.08ms   Scene 70 draws 66485 prims 121338 verts
+[2018.07.08-18.42.09:873][819]LogRHI:     0.0% 0.00ms   PrePass DDM_AllOpaque (Forced by DBuffer) 3 draws 4064 prims 2298 verts
+[2018.07.08-18.42.09:873][819]LogRHI:        0.0% 0.00ms   BeginRenderingPrePass 1 draws 0 prims 0 verts
+[2018.07.08-18.42.09:873][819]LogRHI:     0.5% 0.03ms   ComputeLightGrid 5 draws 5 prims 0 verts
+[2018.07.08-18.42.09:873][819]LogRHI:        0.3% 0.02ms   CullLights 40x23x32 NumLights 0 NumCaptures 1 4 draws 4 prims 0 verts
+[2018.07.08-18.42.09:873][819]LogRHI:        0.2% 0.01ms   Compact 1 draws 1 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.0% 0.00ms   BeginOcclusionTests 0 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   ViewOcclusionTests 0 0 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:    13.3% 0.86ms   HZB SetupMip 0 2048x1024 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.6% 0.04ms   HZB SetupMips Mips:1..10 1024x512 10 draws 10 prims 30 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.0% 0.00ms   CompositionBeforeBasePass 0 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.3% 0.02ms   BeginRenderingSceneColor 1 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     5.9% 0.38ms   BasePass 2 draws 4064 prims 2298 verts 10612 prims/ms 6000 verts/ms
+[2018.07.08-18.42.09:874][819]LogRHI:     0.0% 0.00ms   RenderVelocities 1 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:    35.5% 2.31ms   LightCompositionTasks_PreLighting 4 draws 4 prims 12 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.6% 0.04ms   AmbientOcclusionSetup 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:       10.5% 0.68ms   AmbientOcclusionPS 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:       23.4% 1.52ms   AmbientOcclusionPS 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.9% 0.06ms   ApplyAOToBasePassSceneColor 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.1% 0.01ms   ClearStencilFromBasePass 1 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.8% 0.05ms   ClearTranslucentVolumeLighting 1 draws 128 prims 256 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     2.7% 0.18ms   Lights 3 draws 257 prims 515 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        2.7% 0.18ms   DirectLighting 3 draws 257 prims 515 verts
+[2018.07.08-18.42.09:874][819]LogRHI:           2.7% 0.18ms   NonShadowedLights 3 draws 257 prims 515 verts
+[2018.07.08-18.42.09:874][819]LogRHI:              2.1% 0.14ms   StandardDeferredLighting 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:              0.6% 0.04ms   InjectNonShadowedTranslucentLighting 2 draws 256 prims 512 verts
+[2018.07.08-18.42.09:874][819]LogRHI:           0.0% 0.00ms   IndirectLighting 0 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     2.1% 0.14ms   FilterTranslucentVolume 64x64x64 Cascades:2 2 draws 256 prims 512 verts 1880 prims/ms 3759 verts/ms
+[2018.07.08-18.42.09:874][819]LogRHI:     1.1% 0.07ms   ScreenSpaceReflections 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     2.0% 0.13ms   ReflectionEnvironment PixelShader 1 draws 2 prims 4 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     6.9% 0.45ms   Atmosphere 2560x1440 1 draws 2 prims 4 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.0% 0.00ms   Translucency 0 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.0% 0.00ms   Translucency 1 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   BeginSeparateTranslucency 1 draws 0 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:    21.9% 1.42ms   PostProcessing 32 draws 57691 prims 115403 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        1.2% 0.08ms   BokehDOFRecombine#2 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        9.9% 0.64ms   TemporalAA 2560x1440 2 draws 2 prims 6 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        2.3% 0.15ms   VelocityFlattenCS 2560x1440 1 draws 1 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.4% 0.02ms   VelocityScatter 2560x1440 3 draws 57600 prims 115200 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        1.1% 0.07ms   MotionBlur 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.4% 0.03ms   Downsample 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        1.0% 0.07ms   PostProcessHistogram 1 draws 1 prims 0 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.5% 0.03ms   PostProcessHistogramReduce 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.3% 0.02ms   PostProcessEyeAdaptation 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.1% 0.00ms   Downsample 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   Downsample 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   Downsample 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   Downsample 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   Downsample 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Horizontal 20x23 in 20x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.1% 0.00ms   PostProcessWeightedSampleSum#32Vertical 40x23 in 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 40x45 in 40x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Vertical 80x45 in 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 80x90 in 80x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Vertical 160x90 in 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#14Horizontal 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#14Vertical 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#14Horizontal 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.2% 0.02ms   PostProcessWeightedSampleSum#14Vertical 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.4% 0.03ms   PostProcessWeightedSampleSum#9Horizontal 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        1.0% 0.07ms   PostProcessWeightedSampleSum#9Vertical 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        0.2% 0.01ms   PostProcessCombineLUTs [1] 32x32x32 1 draws 64 prims 128 verts
+[2018.07.08-18.42.09:874][819]LogRHI:        2.0% 0.13ms   Tonemapper#4 GammaOnly=0 HandleScreenPercentage=0  2560x1440 2 draws 1 prims 3 verts
+[2018.07.08-18.42.09:874][819]LogRHI:  0.0% 0.00ms   SlateUI 1 draws 3388 prims 6776 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     0.0% 0.00ms   CanvasFlush 1 draws 3388 prims 6776 verts
+[2018.07.08-18.42.09:874][819]LogRHI:     6.3% 0.41ms   Other Children
+[2018.07.08-18.42.09:874][819]LogRHI: Total Nodes 103 Draws 71
+[2018.07.08-18.42.09:874][819]LogRHI: 
+[2018.07.08-18.42.09:874][819]LogRHI: 
+[2018.07.08-18.42.09:874][819]LogRHI: 
+[2018.07.08-18.42.09:874][819]LogRHI: MeshList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.09:874][819]LogRHI: 2560x1440,57608,7
+[2018.07.08-18.42.09:874][819]LogRHI: 64x64x64 Cascades:2,256,1
+[2018.07.08-18.42.09:874][819]LogRHI: [1] 32x32x32,64,1
+[2018.07.08-18.42.09:874][819]LogRHI: SetupMips Mips:1..10 1024x512,10,1
+[2018.07.08-18.42.09:874][819]LogRHI: 1280x720 in 1280x720,2,2
+[2018.07.08-18.42.09:874][819]LogRHI: 1280x720,2,2
+[2018.07.08-18.42.09:874][819]LogRHI: 320x180 in 320x180,2,2
+[2018.07.08-18.42.09:874][819]LogRHI: 640x360 in 640x360,2,2
+[2018.07.08-18.42.09:874][819]LogRHI: 160x90,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 80x90 in 80x90,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 640x360,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 160x90 in 160x90,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 40x23 in 40x23,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 40x45 in 40x45,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 80x45 in 80x45,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 20x23 in 20x23,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 320x180,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: SetupMip 0 2048x1024,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 80x45,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 40x23,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: GammaOnly=0 HandleScreenPercentage=0  2560x1440,1,1
+[2018.07.08-18.42.09:874][819]LogRHI: 
+[2018.07.08-18.42.09:874][819]LogRHI: MaterialList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.09:874][819]LogRHI: VelocityScatter,57600,1
+[2018.07.08-18.42.09:874][819]LogRHI: FilterTranslucentVolume,256,1
+[2018.07.08-18.42.09:874][819]LogRHI: PostProcessCombineLUTs,64,1
+[2018.07.08-18.42.09:874][819]LogRHI: HZB,11,2
+[2018.07.08-18.42.09:874][819]LogRHI: Downsample,6,6
+[2018.07.08-18.42.09:874][819]LogRHI: PostProcessWeightedSampleSum#32Vertical,3,3
+[2018.07.08-18.42.09:874][819]LogRHI: PostProcessWeightedSampleSum#32Horizontal,3,3
+[2018.07.08-18.42.09:875][819]LogRHI: TemporalAA,2,1
+[2018.07.08-18.42.09:875][819]LogRHI: Atmosphere,2,1
+[2018.07.08-18.42.09:875][819]LogRHI: PostProcessWeightedSampleSum#14Vertical,2,2
+[2018.07.08-18.42.09:875][819]LogRHI: AmbientOcclusionPS,2,2
+[2018.07.08-18.42.09:875][819]LogRHI: PostProcessWeightedSampleSum#14Horizontal,2,2
+[2018.07.08-18.42.09:875][819]LogRHI: AmbientOcclusionSetup,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: ApplyAOToBasePassSceneColor,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: BokehDOFRecombine#2,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: PostProcessWeightedSampleSum#9Horizontal,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: PostProcessWeightedSampleSum#9Vertical,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: ScreenSpaceReflections,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: MotionBlur,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: Tonemapper#4,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: 
+[2018.07.08-18.42.09:875][819]LogRHI: MiscList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.09:875][819]LogRHI: CanvasFlush,3388,1
+[2018.07.08-18.42.09:875][819]LogRHI: InjectNonShadowedTranslucentLighting,256,1
+[2018.07.08-18.42.09:875][819]LogRHI: ClearTranslucentVolumeLighting,128,1
+[2018.07.08-18.42.09:875][819]LogRHI: PostProcessEyeAdaptation,1,1
+[2018.07.08-18.42.09:875][819]LogRHI: PostProcessHistogramReduce,1,1
+[2018.07.08-18.42.11:742][915]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING GPU PROFILING FOR: Second_Level_Point
+[2018.07.08-18.42.13:743][ 39]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING PROFILING FOR: Second_Level_Point
+[2018.07.08-18.42.15:743][163]LogCheatManager: BugItGo -560.000000 -330.000000 230.000000 0.000000 0.000000 0.000000
+[2018.07.08-18.42.15:743][163]LogCheatManager: ?BugLoc=X=-560.000 Y=-330.000 Z=230.000?BugRot=P=0.000000 Y=0.000000 R=0.000000
+[2018.07.08-18.42.15:777][163]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/Second_Level_Point_rhi/Second_Level_Point_rhi_00000.txt
+[2018.07.08-18.42.18:758][329]LogCheatManager: BugItGo -560.000000 -330.000000 230.000000 0.000000 0.000000 0.000000
+[2018.07.08-18.42.18:758][329]LogCheatManager: ?BugLoc=X=-560.000 Y=-330.000 Z=230.000?BugRot=P=0.000000 Y=0.000000 R=0.000000
+[2018.07.08-18.42.18:792][329]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/Second_Level_Point_gpu/Second_Level_Point_gpu_00000.txt
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [BP_PerformancePoints_368] Finish Test Running
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [BP_PerformancePoints_368] Start Test Cleanup
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [BP_PerformancePoints_368] Finish Test Cleanup
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] Starting test: 2 out of 2
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [BP_PerformancePoints2] Start Test Setup
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [BP_PerformancePoints2] Finish Test Setup
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [BP_PerformancePoints2] Start Test Running
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING PROFILING FOR: New_Second_Level_Point
+[2018.07.08-18.42.19:767][371]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING TEXTURE PROFILING FOR: New_Second_Level_Point
+[2018.07.08-18.42.19:767][371]Listing all textures.
+[2018.07.08-18.42.19:767][371]Cooked/OnDisk: Width x Height (Size in KB, Authored Bias), Current/InMem: Width x Height (Size in KB), Format, LODGroup, Name, Streaming, Usage Count
+[2018.07.08-18.42.19:767][371]2048x2048 (32768 KB, ?), 2048x2048 (32768 KB), PF_FloatRGBA, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultBloomKernel.DefaultBloomKernel, NO, 0
+[2018.07.08-18.42.19:767][371]2048x2048 (2731 KB, ?), 2048x2048 (2731 KB), PF_DXT1, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Blue.T_Sky_Blue, YES, 2
+[2018.07.08-18.42.19:767][371]512x256 (683 KB, ?), 512x256 (683 KB), PF_B8G8R8A8, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Clouds_M.T_Sky_Clouds_M, YES, 2
+[2018.07.08-18.42.19:767][371]512x512 (341 KB, ?), 512x512 (341 KB), PF_DXT5, TEXTUREGROUP_World, /Engine/EngineMaterials/T_Default_Material_Grid_M.T_Default_Material_Grid_M, YES, 1
+[2018.07.08-18.42.19:767][371]256x256 (256 KB, ?), 256x256 (256 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/PreintegratedSkinBRDF.PreintegratedSkinBRDF, NO, 0
+[2018.07.08-18.42.19:767][371]512x512 (171 KB, ?), 512x512 (171 KB), PF_DXT1, TEXTUREGROUP_Skybox, /Engine/EngineSky/T_Sky_Stars.T_Sky_Stars, YES, 2
+[2018.07.08-18.42.19:767][371]512x256 (128 KB, ?), 512x256 (128 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineFonts/RobotoDistanceField.RobotoDistanceField:RobotoDistanceField_PageA, NO, 0
+[2018.07.08-18.42.19:767][371]256x256 (85 KB, ?), 256x256 (85 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:HQ_Lightmap0_1, YES, 1
+[2018.07.08-18.42.19:768][371]256x256 (85 KB, ?), 128x128 (21 KB), PF_BC5, TEXTUREGROUP_WorldNormalMap, /Engine/EngineMaterials/T_Default_Material_Grid_N.T_Default_Material_Grid_N, YES, 1
+[2018.07.08-18.42.19:768][371]128x128 (21 KB, ?), 128x128 (21 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:ShadowMapTexture2D_0, YES, 1
+[2018.07.08-18.42.19:768][371]64x64 (21 KB, ?), 64x64 (21 KB), PF_B8G8R8A8, TEXTUREGROUP_Bokeh, /Engine/EngineMaterials/DefaultBokeh.DefaultBokeh, NO, 0
+[2018.07.08-18.42.19:768][371]128x128 (21 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture, YES, 1
+[2018.07.08-18.42.19:768][371]1024x1024 (1365 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Normal.GearVRController_Normal, YES, 0
+[2018.07.08-18.42.19:768][371]512x512 (341 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_Color.GearVRController_Color, YES, 0
+[2018.07.08-18.42.19:768][371]64x64 (5 KB, ?), 64x64 (5 KB), PF_DXT5, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:HQ_Lightmap0_2, NO, 1
+[2018.07.08-18.42.19:768][371]32x32 (5 KB, ?), 32x32 (5 KB), PF_B8G8R8A8, TEXTUREGROUP_UI, /Engine/EngineResources/GradientTexture0.GradientTexture0, NO, 0
+[2018.07.08-18.42.19:768][371]64x64 (4 KB, ?), 64x64 (4 KB), PF_G8, TEXTUREGROUP_UI, /Engine/EngineMaterials/Good64x64TilingNoiseHighFreq.Good64x64TilingNoiseHighFreq, NO, 0
+[2018.07.08-18.42.19:768][371]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /OculusVR/Textures/GearVRController_AO.GearVRController_AO, YES, 0
+[2018.07.08-18.42.19:768][371]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid, YES, 0
+[2018.07.08-18.42.19:768][371]512x512 (171 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings, YES, 0
+[2018.07.08-18.42.19:768][371]128x128 (11 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/DefaultTexture.DefaultTexture, YES, 0
+[2018.07.08-18.42.19:768][371]1024x1024 (683 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse, YES, 0
+[2018.07.08-18.42.19:768][371]64x64 (3 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:LQ_Lightmap_0_2, NO, 0
+[2018.07.08-18.42.19:768][371]256x256 (43 KB, ?), 64x64 (3 KB), PF_DXT1, TEXTUREGROUP_Lightmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:LQ_Lightmap_0_1, YES, 0
+[2018.07.08-18.42.19:768][371]512x8 (2 KB, ?), 512x8 (2 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineMaterials/MiniFont.MiniFont, NO, 0
+[2018.07.08-18.42.19:768][371]32x32 (1 KB, ?), 32x32 (1 KB), PF_G8, TEXTUREGROUP_Shadowmap, /Game/Maps/Map_StartupTestSecondLevel_BuiltData.Map_StartupTestSecondLevel_BuiltData:ShadowMapTexture2D_1, NO, 1
+[2018.07.08-18.42.19:768][371]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture, NO, 0
+[2018.07.08-18.42.19:768][371]32x32 (1 KB, ?), 32x32 (1 KB), PF_DXT1, TEXTUREGROUP_World, /Engine/EngineResources/Black.Black, NO, 0
+[2018.07.08-18.42.19:768][371]2x2 (0 KB, ?), 2x2 (0 KB), PF_B8G8R8A8, TEXTUREGROUP_World, /Engine/EngineMaterials/WeightMapPlaceholderTexture.WeightMapPlaceholderTexture, NO, 0
+[2018.07.08-18.42.19:768][371]Total size: InMem= 36.41 MB  OnDisk= 39.69 MB  Count=29
+[2018.07.08-18.42.19:768][371]Total PF_B8G8R8A8 size: InMem= 0.94 MB  OnDisk= 0.94 MB 
+[2018.07.08-18.42.19:768][371]Total PF_G8 size: InMem= 0.15 MB  OnDisk= 0.15 MB 
+[2018.07.08-18.42.19:768][371]Total PF_DXT1 size: InMem= 2.85 MB  OnDisk= 4.40 MB 
+[2018.07.08-18.42.19:768][371]Total PF_DXT5 size: InMem= 0.44 MB  OnDisk= 2.11 MB 
+[2018.07.08-18.42.19:768][371]Total PF_FloatRGBA size: InMem= 32.00 MB  OnDisk= 32.00 MB 
+[2018.07.08-18.42.19:768][371]Total PF_BC5 size: InMem= 0.02 MB  OnDisk= 0.08 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_World size: InMem= 32.62 MB  OnDisk= 35.80 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_WorldNormalMap size: InMem= 0.02 MB  OnDisk= 0.08 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Skybox size: InMem= 3.50 MB  OnDisk= 3.50 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_UI size: InMem= 0.13 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Lightmap size: InMem= 0.09 MB  OnDisk= 0.13 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Shadowmap size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.42.19:768][371]Total TEXTUREGROUP_Bokeh size: InMem= 0.02 MB  OnDisk= 0.02 MB 
+[2018.07.08-18.42.19:976][384]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING TEXTURE PROFILING FOR: New_Second_Level_Point
+[2018.07.08-18.42.20:187][397]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STARTING GPU PROFILING FOR: New_Second_Level_Point
+[2018.07.08-18.42.20:187][397]r.ProfileGPU.ShowUI = "0"
+[2018.07.08-18.42.20:187][397]r.ProfileGPU.PrintAssetSummary = "1"
+[2018.07.08-18.42.20:187][397]r.ShowMaterialDrawEvents = "1"
+[2018.07.08-18.42.20:187][397]Profiling the next GPU frame
+[2018.07.08-18.42.20:321][400]LogD3D11RHI: Warning: 
+[2018.07.08-18.42.20:321][400]LogD3D11RHI: Warning: 
+[2018.07.08-18.42.20:329][401]LogRHI: Perf marker hierarchy, total GPU time 6.35ms
+[2018.07.08-18.42.20:329][401]LogRHI: Warning: Profiled range was continuous.
+[2018.07.08-18.42.20:329][401]LogRHI: 100.0% 6.35ms   FRAME 71 draws 68017 prims 124402 verts
+[2018.07.08-18.42.20:329][401]LogRHI: 93.9% 5.96ms   Scene 70 draws 66485 prims 121338 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.0% 0.00ms   PrePass DDM_AllOpaque (Forced by DBuffer) 3 draws 4064 prims 2298 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   BeginRenderingPrePass 1 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.5% 0.03ms   ComputeLightGrid 5 draws 5 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.3% 0.02ms   CullLights 40x23x32 NumLights 0 NumCaptures 1 4 draws 4 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.1% 0.01ms   Compact 1 draws 1 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.0% 0.00ms   BeginOcclusionTests 0 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   ViewOcclusionTests 0 0 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:    11.7% 0.75ms   HZB SetupMip 0 2048x1024 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.6% 0.04ms   HZB SetupMips Mips:1..10 1024x512 10 draws 10 prims 30 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.0% 0.00ms   CompositionBeforeBasePass 0 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.3% 0.02ms   BeginRenderingSceneColor 1 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     5.2% 0.33ms   BasePass 2 draws 4064 prims 2298 verts 12287 prims/ms 6948 verts/ms
+[2018.07.08-18.42.20:329][401]LogRHI:     0.0% 0.00ms   RenderVelocities 1 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:    37.5% 2.38ms   LightCompositionTasks_PreLighting 4 draws 4 prims 12 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.6% 0.04ms   AmbientOcclusionSetup 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:       11.0% 0.70ms   AmbientOcclusionPS 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:       24.9% 1.58ms   AmbientOcclusionPS 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        1.0% 0.06ms   ApplyAOToBasePassSceneColor 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.1% 0.01ms   ClearStencilFromBasePass 1 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.8% 0.05ms   ClearTranslucentVolumeLighting 1 draws 128 prims 256 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     2.3% 0.15ms   Lights 3 draws 257 prims 515 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        2.3% 0.15ms   DirectLighting 3 draws 257 prims 515 verts
+[2018.07.08-18.42.20:329][401]LogRHI:           2.3% 0.15ms   NonShadowedLights 3 draws 257 prims 515 verts
+[2018.07.08-18.42.20:329][401]LogRHI:              1.7% 0.11ms   StandardDeferredLighting 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:              0.6% 0.04ms   InjectNonShadowedTranslucentLighting 2 draws 256 prims 512 verts
+[2018.07.08-18.42.20:329][401]LogRHI:           0.0% 0.00ms   IndirectLighting 0 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     2.2% 0.14ms   FilterTranslucentVolume 64x64x64 Cascades:2 2 draws 256 prims 512 verts 1799 prims/ms 3597 verts/ms
+[2018.07.08-18.42.20:329][401]LogRHI:     1.1% 0.07ms   ScreenSpaceReflections 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     1.6% 0.10ms   ReflectionEnvironment PixelShader 1 draws 2 prims 4 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     7.8% 0.50ms   Atmosphere 2560x1440 1 draws 2 prims 4 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.0% 0.00ms   Translucency 0 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.0% 0.00ms   Translucency 1 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   BeginSeparateTranslucency 1 draws 0 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:    21.9% 1.39ms   PostProcessing 32 draws 57691 prims 115403 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        1.3% 0.08ms   BokehDOFRecombine#2 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        9.7% 0.61ms   TemporalAA 2560x1440 2 draws 2 prims 6 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        2.4% 0.15ms   VelocityFlattenCS 2560x1440 1 draws 1 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.4% 0.02ms   VelocityScatter 2560x1440 3 draws 57600 prims 115200 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        1.1% 0.07ms   MotionBlur 2560x1440 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.5% 0.03ms   Downsample 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        1.1% 0.07ms   PostProcessHistogram 1 draws 1 prims 0 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.5% 0.03ms   PostProcessHistogramReduce 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.3% 0.02ms   PostProcessEyeAdaptation 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   Downsample 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.1% 0.00ms   Downsample 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   Downsample 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   Downsample 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   Downsample 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Horizontal 20x23 in 20x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.1% 0.00ms   PostProcessWeightedSampleSum#32Vertical 40x23 in 40x23 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 40x45 in 40x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Vertical 80x45 in 80x45 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#32Horizontal 80x90 in 80x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#32Vertical 160x90 in 160x90 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.0% 0.00ms   PostProcessWeightedSampleSum#14Horizontal 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.1% 0.01ms   PostProcessWeightedSampleSum#14Vertical 320x180 in 320x180 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.2% 0.01ms   PostProcessWeightedSampleSum#14Horizontal 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.3% 0.02ms   PostProcessWeightedSampleSum#14Vertical 640x360 in 640x360 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.5% 0.03ms   PostProcessWeightedSampleSum#9Horizontal 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.8% 0.05ms   PostProcessWeightedSampleSum#9Vertical 1280x720 in 1280x720 1 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        0.2% 0.01ms   PostProcessCombineLUTs [1] 32x32x32 1 draws 64 prims 128 verts
+[2018.07.08-18.42.20:329][401]LogRHI:        2.1% 0.14ms   Tonemapper#4 GammaOnly=0 HandleScreenPercentage=0  2560x1440 2 draws 1 prims 3 verts
+[2018.07.08-18.42.20:329][401]LogRHI:  0.0% 0.00ms   SlateUI 1 draws 1532 prims 3064 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     0.0% 0.00ms   CanvasFlush 1 draws 1532 prims 3064 verts
+[2018.07.08-18.42.20:329][401]LogRHI:     6.1% 0.39ms   Other Children
+[2018.07.08-18.42.20:329][401]LogRHI: Total Nodes 103 Draws 71
+[2018.07.08-18.42.20:329][401]LogRHI: 
+[2018.07.08-18.42.20:329][401]LogRHI: 
+[2018.07.08-18.42.20:329][401]LogRHI: 
+[2018.07.08-18.42.20:329][401]LogRHI: MeshList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.20:329][401]LogRHI: 2560x1440,57608,7
+[2018.07.08-18.42.20:329][401]LogRHI: 64x64x64 Cascades:2,256,1
+[2018.07.08-18.42.20:329][401]LogRHI: [1] 32x32x32,64,1
+[2018.07.08-18.42.20:329][401]LogRHI: SetupMips Mips:1..10 1024x512,10,1
+[2018.07.08-18.42.20:329][401]LogRHI: 1280x720 in 1280x720,2,2
+[2018.07.08-18.42.20:329][401]LogRHI: 1280x720,2,2
+[2018.07.08-18.42.20:329][401]LogRHI: 320x180 in 320x180,2,2
+[2018.07.08-18.42.20:329][401]LogRHI: 640x360 in 640x360,2,2
+[2018.07.08-18.42.20:329][401]LogRHI: 160x90,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 80x90 in 80x90,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 640x360,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 160x90 in 160x90,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 40x23 in 40x23,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 40x45 in 40x45,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 80x45 in 80x45,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 20x23 in 20x23,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 320x180,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 2560x1440 SetupAsInput=0 Upsample=1 ShaderQuality=2,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 1280x720 SetupAsInput=1 Upsample=0 ShaderQuality=2,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: SetupMip 0 2048x1024,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 80x45,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 40x23,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: GammaOnly=0 HandleScreenPercentage=0  2560x1440,1,1
+[2018.07.08-18.42.20:329][401]LogRHI: 
+[2018.07.08-18.42.20:329][401]LogRHI: MaterialList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.20:329][401]LogRHI: VelocityScatter,57600,1
+[2018.07.08-18.42.20:329][401]LogRHI: FilterTranslucentVolume,256,1
+[2018.07.08-18.42.20:329][401]LogRHI: PostProcessCombineLUTs,64,1
+[2018.07.08-18.42.20:329][401]LogRHI: HZB,11,2
+[2018.07.08-18.42.20:329][401]LogRHI: Downsample,6,6
+[2018.07.08-18.42.20:329][401]LogRHI: PostProcessWeightedSampleSum#32Vertical,3,3
+[2018.07.08-18.42.20:329][401]LogRHI: PostProcessWeightedSampleSum#32Horizontal,3,3
+[2018.07.08-18.42.20:329][401]LogRHI: TemporalAA,2,1
+[2018.07.08-18.42.20:330][401]LogRHI: Atmosphere,2,1
+[2018.07.08-18.42.20:330][401]LogRHI: PostProcessWeightedSampleSum#14Vertical,2,2
+[2018.07.08-18.42.20:330][401]LogRHI: AmbientOcclusionPS,2,2
+[2018.07.08-18.42.20:330][401]LogRHI: PostProcessWeightedSampleSum#14Horizontal,2,2
+[2018.07.08-18.42.20:330][401]LogRHI: AmbientOcclusionSetup,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: ApplyAOToBasePassSceneColor,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: BokehDOFRecombine#2,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: PostProcessWeightedSampleSum#9Horizontal,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: PostProcessWeightedSampleSum#9Vertical,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: ScreenSpaceReflections,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: MotionBlur,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: Tonemapper#4,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: 
+[2018.07.08-18.42.20:330][401]LogRHI: MiscList,TriangleCount,DrawCallCount
+[2018.07.08-18.42.20:330][401]LogRHI: CanvasFlush,1532,1
+[2018.07.08-18.42.20:330][401]LogRHI: InjectNonShadowedTranslucentLighting,256,1
+[2018.07.08-18.42.20:330][401]LogRHI: ClearTranslucentVolumeLighting,128,1
+[2018.07.08-18.42.20:330][401]LogRHI: PostProcessEyeAdaptation,1,1
+[2018.07.08-18.42.20:330][401]LogRHI: PostProcessHistogramReduce,1,1
+[2018.07.08-18.42.22:192][497]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING GPU PROFILING FOR: New_Second_Level_Point
+[2018.07.08-18.42.24:193][621]LogBlueprintUserMessages: [NODE_AddBP_PerformanceComponent-0_0] STOPPING PROFILING FOR: New_Second_Level_Point
+[2018.07.08-18.42.26:193][745]LogCheatManager: BugItGo 30.000000 300.000000 230.000000 0.000000 0.000000 0.000000
+[2018.07.08-18.42.26:193][745]LogCheatManager: ?BugLoc=X=30.000 Y=300.000 Z=230.000?BugRot=P=0.000000 Y=0.000000 R=0.000000
+[2018.07.08-18.42.26:227][745]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/New_Second_Level_Point_rhi/New_Second_Level_Point_rhi_00000.txt
+[2018.07.08-18.42.29:200][911]LogCheatManager: BugItGo 30.000000 300.000000 230.000000 0.000000 0.000000 0.000000
+[2018.07.08-18.42.29:200][911]LogCheatManager: ?BugLoc=X=30.000 Y=300.000 Z=230.000?BugRot=P=0.000000 Y=0.000000 R=0.000000
+[2018.07.08-18.42.29:234][911]LogProfilingDebugging: Warning: SendDataToPCViaUnrealConsole UE_PROFILER!BUGIT:E:/Work/BusMoneyGames/sentinel-ue4/SentinelReports/unittest_output/Build/_testing/sentinelUE4/Saved/BugIt/WindowsNoEditor/New_Second_Level_Point_gpu/New_Second_Level_Point_gpu_00000.txt
+[2018.07.08-18.42.30:204][953]LogBlueprintUserMessages: [BP_PerformancePoints_368] Finish Test Running
+[2018.07.08-18.42.30:204][953]LogBlueprintUserMessages: [BP_PerformancePoints_368] Start Test Cleanup
+[2018.07.08-18.42.30:204][953]LogBlueprintUserMessages: [BP_PerformancePoints_368] Finish Test Cleanup
+[2018.07.08-18.42.30:204][953]LogBlueprintUserMessages: [BP_PerformancePoints2] Finish Test Running
+[2018.07.08-18.42.30:204][953]LogBlueprintUserMessages: [BP_PerformancePoints2] Start Test Cleanup
+[2018.07.08-18.42.30:204][953]LogBlueprintUserMessages: [BP_PerformancePoints2] Finish Test Cleanup
+[2018.07.08-18.42.30:204][953]LogBlueprintUserMessages: [BP_BaseSentinelSettings_56] Finished going through all test points
+[2018.07.08-18.42.30:205][953]Closing by request
+[2018.07.08-18.42.30:205][953]LogWindows: FPlatformMisc::RequestExit(0)
+[2018.07.08-18.42.30:351][954]LogSlate: Request Window 'sentinelUE4 (64-bit, PCD3D_SM5) ' being destroyed
+[2018.07.08-18.42.30:381][954]LogSlate: Window 'sentinelUE4 (64-bit, PCD3D_SM5) ' being destroyed
+[2018.07.08-18.42.30:381][954]LogWindowsTextInputMethodSystem: Display: IME system now deactivated.
+[2018.07.08-18.42.30:390][954]LogSlate: Slate User Destroyed.  User Index 0, Is Virtual User: 0
+[2018.07.08-18.42.30:390][954]LogExit: Preparing to exit.
+[2018.07.08-18.42.30:390][954]LogMoviePlayer: Shutting down movie player
+[2018.07.08-18.42.30:393][954]LogExit: Game engine shut down
+[2018.07.08-18.42.30:413][954]LogExit: Object subsystem successfully closed.
+[2018.07.08-18.42.30:433][954]LogD3D11RHI: Shutdown
+[2018.07.08-18.42.30:433][954]LogD3D11RHI: CleanupD3DDevice
+[2018.07.08-18.42.30:450][954]LogD3D11RHI: ~FD3D11DynamicRHI
+[2018.07.08-18.42.30:450][954]LogModuleManager: Shutting down and abandoning module AutomationController (176)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module AutomationWorker (174)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module AIModule (172)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module GameplayDebugger (171)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module WmfMediaFactory (168)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module OpenExrWrapper (166)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module ImgMediaFactory (164)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module AvfMediaFactory (162)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module CharacterAI (160)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module SessionServices (158)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module MovieSceneTracks (156)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module MovieScene (154)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module GeometryCache (152)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module StreamingPauseRendering (150)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module AnalyticsET (148)
+[2018.07.08-18.42.30:451][954]LogModuleManager: Shutting down and abandoning module ProfilerService (146)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module TaskGraph (144)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module SteamVRController (142)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module OculusInput (140)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module MobilePatchingUtils (138)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module CustomMeshComponent (136)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module CableComponent (134)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module AudioCapture (132)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module ArchVisCharacter (130)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponent (128)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module AndroidPermission (126)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module MediaCompositing (122)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module LinearTimecode (120)
+[2018.07.08-18.42.30:666][954]LogModuleManager: Shutting down and abandoning module ImgMedia (118)
+[2018.07.08-18.42.30:671][954]LogModuleManager: Shutting down and abandoning module HTML5Networking (116)
+[2018.07.08-18.42.30:671][954]LogModuleManager: Shutting down and abandoning module DatasmithContent (114)
+[2018.07.08-18.42.30:671][954]LogModuleManager: Shutting down and abandoning module RuntimePhysXCooking (112)
+[2018.07.08-18.42.30:671][954]LogModuleManager: Shutting down and abandoning module PhysXVehicles (110)
+[2018.07.08-18.42.30:671][954]LogModuleManager: Shutting down and abandoning module LocationServicesBPLibrary (108)
+[2018.07.08-18.42.30:671][954]LogModuleManager: Shutting down and abandoning module ImmediatePhysics (106)
+[2018.07.08-18.42.30:671][954]LogModuleManager: Shutting down and abandoning module LiveLink (104)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module ActorSequence (102)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module UdpMessaging (100)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module TcpMessaging (98)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module FacialAnimation (96)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module LightPropagationVolumeRuntime (94)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module Paper2D (92)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module WindowsMoviePlayer (90)
+[2018.07.08-18.42.31:236][954]LogModuleManager: Shutting down and abandoning module WmfMedia (88)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module PacketHandler (86)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module ClothingSystemRuntime (84)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module MediaAssets (82)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module Overlay (80)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module UMG (78)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module SlateReflector (76)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module Slate (74)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module MRMesh (72)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module Messaging (70)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module HeadMountedDisplay (68)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module XAudio2 (66)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module Networking (64)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module Core (62)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module LevelSequence (60)
+[2018.07.08-18.42.31:247][954]LogModuleManager: Shutting down and abandoning module Media (58)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module ImageWrapper (54)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module InputCore (52)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module PhysXCooking (50)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module SteamVR (48)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module OculusHMD (46)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module ExampleDeviceProfileSelector (44)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module AppleARKit (42)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module AugmentedReality (39)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module OnlineSubsystem (34)
+[2018.07.08-18.42.31:255][954]LogModuleManager: Shutting down and abandoning module HTTP (33)
+[2018.07.08-18.42.31:255][954]LogHttp: Display: Http module shutting down, but needs to wait on 1 outstanding Http requests:
+[2018.07.08-18.42.31:255][954]LogHttp: Display: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7BDDB2BE39-4F33-13E0-C626-079FBF9781EE%7D&AppID=UEGame.Rocket.Release%7CFB45D0A04DBFEDC3E62855B4D011C558%7CUE4Game&AppVersion=4.19.2-4033788%2B%2B%2BUE4%2BRelease-4.19&UserID=ANON-%7BE857800C-4BB3-8A4A-2B6C-46A636CB3CF8%7D%7C%7C&AppEnvironment=datacollector-binary&UploadType=eteventstream] status=Processing
+[2018.07.08-18.42.31:255][954]LogHttp: Display: Sleeping 0.5s to wait for 1 outstanding Http requests.
+[2018.07.08-18.42.31:757][954]LogHttp: Display: Sleeping 0.5s to wait for 1 outstanding Http requests.
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module SSL (32)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module ShaderCore (28)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module Landscape (26)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (24)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module OpenGLDrv (22)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module D3D11RHI (20)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (18)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module Renderer (16)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module Engine (14)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module CoreUObject (12)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module NetworkFile (10)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module CookedIterativeFile (8)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module StreamingFile (6)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module SandboxFile (4)
+[2018.07.08-18.42.32:274][954]LogModuleManager: Shutting down and abandoning module PakFile (2)
+[2018.07.08-18.42.32:276][954]LogExit: Exiting.
+[2018.07.08-18.42.32:276][954]Log file closed, 07/08/18 18:42:32

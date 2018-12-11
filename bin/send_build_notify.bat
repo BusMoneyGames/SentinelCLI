@@ -1,0 +1,1 @@
+%~dp0..\SentinelMessaging.exe -build_notify

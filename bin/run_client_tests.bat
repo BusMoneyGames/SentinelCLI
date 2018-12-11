@@ -1,0 +1,1 @@
+%~dp0..\SentinelClientTestTool.exe -run_tests

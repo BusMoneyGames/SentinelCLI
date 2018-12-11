@@ -1,0 +1,1 @@
+%~dp0..\SentinelUpload.exe -upload_reports

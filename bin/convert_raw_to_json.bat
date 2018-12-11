@@ -1,0 +1,1 @@
+%~dp0..\SentinelUnrealTool.exe -parse_info
