@@ -552,7 +552,7 @@ class SentinelSettingsFile:
         if commandlet_name in all_commandlets:
             return all_commandlets[commandlet_name]
         else:
-            L.error("No Commandlet config found for: " + commandlet_name)
+            L.warning("No Commandlet config found for: " + commandlet_name)
 
     def get_build_flags(self):
         build_settings = self.get_build_settings()

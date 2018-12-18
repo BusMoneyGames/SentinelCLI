@@ -5,7 +5,7 @@ import SentinelUE4.ue4_package_inspection
 from SentinelUE4 import ue4_project_info
 from SentinelUE4 import ue4_engine_commands
 from SentinelUE4 import ue4_data_parse
-from SentinelUE4.Editor import buildcommands, commandlets
+from SentinelUE4.Editor import commandlets, buildcommands
 
 import Utilities.BaseSentinelLogging as SentinelLogging
 L = SentinelLogging.root_logger
@@ -29,6 +29,9 @@ def main():
                         help="Compiles and cooks a build")
 
     parser.add_argument("-c", "--compile_editor", action="store_true",
+                        help="Compiles and cooks a build")
+
+    parser.add_argument("-run", "--start_editor", action="store_true",
                         help="Compiles and cooks a build")
 
     parser.add_argument("-d", "--deploy", action="store_true",
@@ -68,6 +71,9 @@ def main():
     if args.extract_package_info:
         extract_package_info(unreal_project_info)
 
+    if args.start_editor:
+        start_unreal_editor(unreal_project_info)
+
     if args.parse_package_info:
         parse_package_info(unreal_project_info)
 
@@ -93,10 +99,23 @@ def main():
         fill_ddc_cache(unreal_project_info)
 
 
+def start_unreal_editor(unreal_project_info):
+    """
+    Starts unreal engine using the engine configured by sentinel
+    :param unreal_project_info:
+    :return:
+    """
+
+    L.info("Starting Unreal Engine")
+    cmd = commandlets.EditorRunner(unreal_project_info, "")
+    cmd.run()
+
+
 def fill_ddc_cache(unreal_project_info):
 
     cmd = commandlets.FillDDCCache(unreal_project_info)
     cmd.run()
+
 
 def generate_build_data_commandlet(unreal_project_info):
     L.info("Generating built data")

@@ -62,3 +62,19 @@ class TestFillDDCCache(BaseSentinelTest.SentinelBaseTest):
 
     def test_run(self):
         self.fill_ddc_cache.run()
+
+
+class TestEditorRunner(BaseSentinelTest.SentinelBaseTest):
+    def setUp(self):
+        super().setUp()
+        L.setLevel(logging.DEBUG)
+
+        self.editor_runner = commandlets.EditorRunner(self.unreal_project_paths, "")
+
+    def test_get_command(self):
+        command = self.editor_runner.get_command()
+        print(command)
+
+    def test_run(self):
+        self.editor_runner.run()
+

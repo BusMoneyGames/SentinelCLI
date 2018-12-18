@@ -31,5 +31,3 @@ def build_game_client(unreal_project_info):
     L.info("Client Build Finished")
 
     return build_obj
-
-

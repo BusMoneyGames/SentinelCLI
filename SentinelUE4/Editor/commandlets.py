@@ -34,12 +34,30 @@ class BaseUE4Commandlet:
         self.commandlet_settings = self.unreal_project_info.settings.get_commandlet_settings(self.commandlet_name)
 
         self.project_path = unreal_project_info.get_project_path().as_posix()
-        self.engine_path = unreal_project_info.get_ue4_editor_executable_path()
 
-        self.engine_path = unreal_project_info.add_esc_char_to_path(self.engine_path)
+        self.engine_path = ""
+        self.engine_path = self._get_engine_path()
 
         self.log_file_path = unreal_project_info.get_log_folder_path()
         self.raw_log_path = unreal_project_info.get_output_data_path(CONSTANTS.RAW_DATA_FOLDER_NAME)
+
+    def _get_engine_path(self):
+        """
+        Constructs the engine path for being able to call the commandlet
+        :return:
+        """
+
+        if self.engine_path:
+            L.debug(self.engine_path)
+            return self.engine_path
+
+        # TODO move this logic over to the unreal project info object so that we just get the clean engine path
+        engine_path = self.unreal_project_info.get_ue4_editor_executable_path()
+        engine_path = self.unreal_project_info.add_esc_char_to_path(engine_path)
+
+        L.info(engine_path)
+
+        return engine_path
 
     def get_commandlet_settings(self):
 
@@ -164,6 +182,17 @@ class BaseUE4Commandlet:
         shutil.copy(self.get_source_log_file(), self.get_target_log_file())
 
         return self.get_target_log_file()
+
+
+class EditorRunner(BaseUE4Commandlet):
+
+    def get_command(self):
+        engine_path = self._get_engine_path()
+        engine_path = pathlib.Path(engine_path).parent.joinpath("UE4Editor.exe").as_posix()
+
+        project_path = self.unreal_project_info.get_project_path().as_posix()
+
+        return engine_path + " " + project_path
 
 
 class PackageInfoCommandlet(BaseUE4Commandlet):
