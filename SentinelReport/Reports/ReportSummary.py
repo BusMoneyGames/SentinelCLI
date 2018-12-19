@@ -113,6 +113,7 @@ class BaseReport:
         self.template = env.get_template(template)
 
     def add_shared_values_to_summary(self):
+        self.summary.add_value("version", "1.0.0")
         self.summary.add_value("run_name", "Not Implemented")
         self.summary.add_value("report_time", "Not Implemented")
         self.summary.add_value("version_control_changelist", "Not Implemented")
