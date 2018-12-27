@@ -298,13 +298,13 @@ class AssetChangeDetector(MessageHandler):
         self.filename = msg['filename']
 
     def run(self):
-        file = entity.File()
-        file.filename = self.filename
-        file.load_by_filename()
+        asset = entity.Asset()
+        asset.filename = self.filename
+        asset.load_by_filename()
 
-        last_hash = file.get_hash()
-        file.generate_and_save_hash()
-        current_hash = file.get_hash()
+        last_hash = asset.get_hash()
+        asset.generate_and_save_hash()
+        current_hash = asset.get_hash()
 
         result = None
         if last_hash != current_hash:

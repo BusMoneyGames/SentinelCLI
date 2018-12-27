@@ -3,11 +3,13 @@ import os
 import shutil
 
 import persistence
-import sentinel.component as component
-import sentinel.entity as entity
+import component
+import entity
+
+db = persistence.Database()
 
 
-class TestFileChangeDetector(TestCase):
+class TestAssetChangeDetector(TestCase):
 
     def setUp(self):
         self.dir = os.path.join('tmp', 'dir')
@@ -22,12 +24,20 @@ class TestFileChangeDetector(TestCase):
         with open(self.filename, 'w+') as f:
             f.write('a')
 
+        self.type1 = entity.AssetType()
+        self.type1.id = 1
+        self.type1.name = 'AssetType1'
+        self.type1.insert()
+
         self.asset = entity.Asset()
+        self.asset.name = 'DefaultAsset'
         self.asset.filename = self.filename
+        self.asset.asset_type_id = self.type1.id
+        self.asset.processing_state_id = entity.ProcessingState.PENDING
         self.asset.save()
 
     def tearDown(self):
-        persistence.Database.get_connection().rollback()
+        db.rollback()
 
     def test_new(self):
         comp = component.AssetChangeDetector('comp1', {})

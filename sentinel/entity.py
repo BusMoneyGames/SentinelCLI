@@ -77,7 +77,7 @@ class Asset(persistence.PersistentEntity):
             """
         db.execute(sql, (self.id, asset_hash.id))
 
-    def get_hash(self) -> str:
+    def get_hash(self):
         if self._hash:
             return self._hash
 
@@ -90,7 +90,11 @@ class Asset(persistence.PersistentEntity):
             order by ah.id desc
             limit 1
             """
-        return db.fetch_one(sql, (self.id,))[0]
+        row = db.fetch_one(sql, (self.id,))
+        if row:
+            return row[0]
+        else:
+            return None
 
 
 class RuleViolation(persistence.PersistentEntity):
