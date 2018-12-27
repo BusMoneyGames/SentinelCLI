@@ -15,30 +15,66 @@ class Database:
     A simple wrapper for a global database connection.
     """
 
-    _database_name = 'test'
-    _connection = None
-
-    @classmethod
-    def set_active_database(cls, name):
-        cls._database_name = name
-
-    @classmethod
-    def get_connection(cls):
-        if not cls._connection:
-            cls._connection = cls._connect()
-            cls._set_timezone()
-        return cls._connection
-
-    @classmethod
-    def _connect(cls):
-        conn_str = config.databases[cls._database_name]['connection_string']
-        return psycopg2.connect(**conn_str)
+    _instance = None
 
     @classmethod
     def _set_timezone(cls):
-        cur = cls._connection.cursor()
+        cur = cls._instance.connection.cursor()
         cur.execute("set timezone to 'utc'")
         cur.close()
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = object.__new__(cls)
+            try:
+                db_name = config.default_database
+                print(f'Connecting to database {db_name}')
+                conn_str = config.databases[db_name]['connection_string']
+                cls._instance.connection = psycopg2.connect(**conn_str)
+                cls._set_timezone()
+            except Exception as error:
+                print(f'Error: Database connection not established: {error}')
+                Database._instance = None
+            else:
+                print('Database connection established')
+
+        return cls._instance
+
+    def __init__(self):
+        self.connection = self._instance.connection
+
+    def __del__(self):
+        self.connection.close()
+
+    def get_connection(self):
+        return self._instance.connection
+
+    def commit(self):
+        self._instance.connection.commit()
+
+    def rollback(self):
+        self._instance.connection.rollback()
+
+    def execute(self, sql: str, params={}):
+        cur = self._instance.connection.cursor()
+        cur.execute(sql, params)
+        cur.close()
+
+    def mogrify(self, sql: str, params={}):
+        cur = self._instance.connection.cursor()
+        res = cur.mogrify(sql, params)
+        cur.close()
+        return res
+
+    def fetch_one(self, sql: str, params={}):
+        cur = self._instance.connection.cursor()
+        cur.execute(sql, params)
+        row = cur.fetchone()
+        cur.close()
+        return row
+
+
+db = Database()
 
 
 class PersistentEntity:
@@ -49,7 +85,6 @@ class PersistentEntity:
         self._sql_insert_with_id = None
         self._sql_update = None
         self._sql_select = None
-        self._conn = Database.get_connection()
 
     def _init_sql(self):
         pub = self._get_public_variables_no_id()
@@ -83,7 +118,7 @@ class PersistentEntity:
         return sql
 
     def _build_select(self):
-        pub = self._get_public_variables_no_id()
+        pub = self._get_public_variables()
         columns = ','.join([k for k in pub])
         sql = f"""
             select {columns}
@@ -100,80 +135,31 @@ class PersistentEntity:
         del pub['id']
         return pub
 
-    def _execute(self, sql: str, params: tuple):
-        cur = self._conn.cursor()
-        cur.execute(sql, params)
-        cur.close()
-
-    def _fetch_one(self, sql: str, params: tuple):
-        cur = self._conn.cursor()
-        cur.execute(sql, params)
-        row = cur.fetchone()
-        if row:
-            value = row[0]
-        else:
-            value = None
-        cur.close()
-        return value
-
     def insert(self):
         """
         Insert using all public variables and without getting an id back
         from the database (id provided by the user).
+        This should be used when the id (primary key) is not a serial.
         """
-        cur = self._conn.cursor()
         pub = self._get_public_variables()
-        # print(cur.mogrify(self._sql_insert_with_id, pub))
-        cur.execute(self._sql_insert_with_id, pub)
-        cur.close()
+        # print(db.mogrify(self._sql_insert_with_id, pub))
+        db.execute(self._sql_insert_with_id, pub)
 
     def save(self):
-        cur = self._conn.cursor()
         if self.id:
             pub = self._get_public_variables()
-            # print(cur.mogrify(self._sql_update, pub))
-            cur.execute(self._sql_update, pub)
+            # print(db.mogrify(self._sql_update, pub))
+            db.execute(self._sql_update, pub)
         else:
             pub = self._get_public_variables_no_id()
             # print(cur.mogrify(self._sql_insert, pub))
-            cur.execute(self._sql_insert, pub)
-            self.id = cur.fetchone()[0]
-        cur.close()
+            self.id = db.fetch_one(self._sql_insert, pub)[0]
 
     def load(self):
-        cur = self._conn.cursor()
-        # print(cur.mogrify(self._sql_select, {'id': self.id}))
-        cur.execute(self._sql_select, {'id': self.id})
-        row = cur.fetchone()
-        pub = self._get_public_variables_no_id()
+        # print(db.mogrify(self._sql_select, {'id': self.id}))
+        row = db.fetch_one(self._sql_select, {'id': self.id})
+        pub = self._get_public_variables()
         i = 0
         for key in pub:
             setattr(self, key, row[i])
             i += 1
-        cur.close()
-
-
-if __name__ == '__main__':
-    conn = Database.get_connection()
-
-    class Queue(PersistentEntity):
-        def __init__(self):
-            super().__init__()
-            self.status_id = 1
-            self.name = "abc"
-            self.value = 'some value'
-            #self._id = 251
-            self._init_sql()
-
-
-    q1 = Queue()
-    q1.value = 'brand new value'
-    print(q1.save())
-    print(q1.id)
-
-    q2 = Queue()
-    q2.id = 288
-    q2.load()
-    print(q2.id, q2.name, q2.status_id, q2.value)
-
-    conn.commit()

@@ -2,6 +2,8 @@ import xxhash
 
 import persistence
 
+db = persistence.Database()
+
 
 class ProcessingState(persistence.PersistentEntity):
     PENDING = 1
@@ -53,8 +55,8 @@ class Asset(persistence.PersistentEntity):
         super()._init_sql()
 
     def load_by_filename(self):
-        self.id = self._fetch_one('select id from asset where filename = %s',
-                                  (self.filename,))
+        self.id = db.fetch_one('select id from asset where filename = %s',
+                               (self.filename,))[0]
         self.load()
 
     def generate_and_save_hash(self):
@@ -73,7 +75,7 @@ class Asset(persistence.PersistentEntity):
             insert into asset_to_asset_hash(asset_id, asset_hash_id)
             values (%s, %s)
             """
-        self._execute(sql, (self.id, asset_hash.id))
+        db.execute(sql, (self.id, asset_hash.id))
 
     def get_hash(self) -> str:
         if self._hash:
@@ -88,7 +90,7 @@ class Asset(persistence.PersistentEntity):
             order by ah.id desc
             limit 1
             """
-        return self._fetch_one(sql, (self.id,))
+        return db.fetch_one(sql, (self.id,))[0]
 
 
 class RuleViolation(persistence.PersistentEntity):

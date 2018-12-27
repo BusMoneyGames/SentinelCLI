@@ -1,4 +1,6 @@
 
+default_database = 'test'
+
 databases = {
     'test': {
         'connection_string': {
