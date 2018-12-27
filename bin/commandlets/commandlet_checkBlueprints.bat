@@ -1,2 +1,2 @@
-%~dp0..\..\SentinelUnrealTool.exe -check_blueprints
+%~dp0..\..\SentinelUnrealTool.exe -c -check_blueprints
 pause

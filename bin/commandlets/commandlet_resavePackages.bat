@@ -1,2 +1,2 @@
-%~dp0..\..\SentinelUnrealTool.exe -resave_packages
+%~dp0..\..\SentinelUnrealTool.exe -c -resave_packages
 pause

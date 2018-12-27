@@ -1,2 +1,2 @@
-%~dp0..\..\SentinelUnrealTool.exe -resave_blueprints
+%~dp0..\..\SentinelUnrealTool.exe -c -resave_blueprints
 pause

@@ -1,2 +1,2 @@
-%~dp0..\..\SentinelUnrealTool.exe -fill_ddc
+%~dp0..\..\SentinelUnrealTool.exe -c -fill_ddc
 pause
