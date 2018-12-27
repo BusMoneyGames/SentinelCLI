@@ -28,6 +28,10 @@ class AssetType(persistence.PersistentEntity):
         self.name = None
         super()._init_sql()
 
+    def load_by_name(self):
+        self.id = db.fetch_one('select id from asset_type where name = %s',
+                               (self.name,))[0]
+        self.load()
 
 class AssetHash(persistence.PersistentEntity):
     """
