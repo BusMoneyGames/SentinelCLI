@@ -1,6 +1,5 @@
 # coding=utf-8
 import argparse
-
 import SentinelUE4.ue4_package_inspection
 from SentinelUE4 import ue4_project_info
 from SentinelUE4 import ue4_engine_commands
@@ -30,6 +29,9 @@ def main():
 
     parser.add_argument("-c", "--compile_editor", action="store_true",
                         help="Compiles and cooks a build")
+
+    parser.add_argument("-clean", "--clean_project", action="store_true",
+                        help="Cleans the temporary files from the unreal project")
 
     parser.add_argument("-run", "--start_editor", action="store_true",
                         help="Compiles and cooks a build")
@@ -74,6 +76,9 @@ def main():
     if args.start_editor:
         start_unreal_editor(unreal_project_info)
 
+    if args.clean_project:
+        clean_unreal_project(unreal_project_info)
+
     if args.parse_package_info:
         parse_package_info(unreal_project_info)
 
@@ -98,6 +103,9 @@ def main():
     if args.fill_ddc_cache:
         fill_ddc_cache(unreal_project_info)
 
+
+def clean_unreal_project(unreal_project_info):
+    ue4_project_info.clean_unreal_project(unreal_project_info.project_root_folder)
 
 def start_unreal_editor(unreal_project_info):
     """

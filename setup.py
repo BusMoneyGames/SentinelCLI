@@ -31,8 +31,11 @@ includes = ["ConfigParser",
             "idna"
             ]
 
+excludes = ["tests", "test_data", "_tests","testdata"]
+
 buildOptions = dict(packages=includes,
                     include_files=[bin_scripts],
+                    excludes=excludes,
                     build_exe=build_folder
                     )
 
