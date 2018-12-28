@@ -22,9 +22,9 @@ create table asset
 (
     id bigserial,
 
-    name text not null,
+    name text,
     filename text not null,
-    asset_type_id int4 not null,
+    asset_type_id int4,
     processing_state_id int4 not null,
 
     created_at timestamp not null default now(),

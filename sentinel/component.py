@@ -255,6 +255,7 @@ class DirectoryLister(MessageHandler):
     specified in the input message and sends each filename in a separate
     message to the output queue.
     """
+
     def __init__(self, name: str, config: dict):
         super().__init__(name, config)
         self._filenames: iter = None  # The directory filename iterator
@@ -280,16 +281,61 @@ class DirectoryLister(MessageHandler):
 
 class AssetCreator(MessageHandler):
     """
-    Creates an asset for the passed in asset if the asset does not exist.
+    Creates an asset for the passed in asset filename if the asset does not
+    exist.
     Outputs the asset id.
     """
-    pass
+    def __init__(self, name: str, config: dict):
+        super().__init__(name, config)
+        self.filename: str = None
+
+    def setup(self, msg: dict):
+        self.filename = msg['filename']
+
+    def run(self):
+        asset = entity.Asset()
+        asset.filename = self.filename
+        asset.processing_state_id = entity.ProcessingState.PENDING
+        asset.save()
+
+        return {'msg_type': 'regular', 'asset_id': asset.id}
 
 
 class AssetChangeDetector(MessageHandler):
     """
     Forwards only those assets that have changed.
     """
+
+    def __init__(self, name: str, config: dict):
+        super().__init__(name, config)
+        self.asset_id: int = None
+
+    def setup(self, msg: dict):
+        self.asset_id = msg['asset_id']
+
+    def run(self):
+        asset = entity.Asset()
+        asset.id = self.asset_id
+        asset.load()
+
+        last_hash = asset.get_hash()
+        asset.generate_and_save_hash()
+        current_hash = asset.get_hash()
+
+        result = None
+        if last_hash != current_hash:
+            result = {'msg_type': 'regular', 'asset_id': asset.id}
+
+        return result
+
+
+class AssetTypeChecker(MessageHandler):
+    """
+    Checks if an asset has a type or not.
+    Forwards assets with a type to the with_type queue.
+    Forwards assets with no type to the without_type queue.
+    """
+
     def __init__(self, name: str, config: dict):
         super().__init__(name, config)
         self.filename: str = None

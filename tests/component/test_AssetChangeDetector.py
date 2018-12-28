@@ -24,16 +24,9 @@ class TestAssetChangeDetector(TestCase):
         with open(self.filename, 'w+') as f:
             f.write('a')
 
-        self.type1 = entity.AssetType()
-        self.type1.id = 1
-        self.type1.name = 'AssetType1'
-        self.type1.insert()
-
         self.asset = entity.Asset()
-        self.asset.name = 'DefaultAsset'
         self.asset.filename = self.filename
-        self.asset.asset_type_id = self.type1.id
-        self.asset.processing_state_id = entity.ProcessingState.PENDING
+        self.asset.set_processing_state(entity.ProcessingState.PENDING)
         self.asset.save()
 
     def tearDown(self):
@@ -41,12 +34,12 @@ class TestAssetChangeDetector(TestCase):
 
     def test_new(self):
         comp = component.AssetChangeDetector('comp1', {})
-        comp.setup({'filename': self.filename})
+        comp.setup({'asset_id': self.asset.id})
 
         result = comp.run()
         self.assertEqual({
                              'msg_type': 'regular',
-                             'filename': self.filename
+                             'asset_id': self.asset.id
                          }, result)
 
     def test_no_change(self):
@@ -55,7 +48,7 @@ class TestAssetChangeDetector(TestCase):
         self.asset.generate_and_save_hash()
 
         comp = component.AssetChangeDetector('comp1', {})
-        comp.setup({'filename': self.filename})
+        comp.setup({'asset_id': self.asset.id})
 
         result = comp.run()
         self.assertIsNone(result)
@@ -65,10 +58,10 @@ class TestAssetChangeDetector(TestCase):
             f.write('b')
 
         comp = component.AssetChangeDetector('comp1', {})
-        comp.setup({'filename': self.filename})
+        comp.setup({'asset_id': self.asset.id})
 
         result = comp.run()
         self.assertEqual({
                              'msg_type': 'regular',
-                             'filename': self.filename
+                             'asset_id': self.asset.id
                          }, result)
