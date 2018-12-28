@@ -16,6 +16,19 @@ class ProcessingState(persistence.PersistentEntity):
         super()._init_sql()
 
 
+class RuleViolation(persistence.PersistentEntity):
+    """
+    An asset rule violation.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.rule_name = None
+        self.rule = None
+        self.reason = None
+        super()._init_sql()
+
+
 class AssetType(persistence.PersistentEntity):
     """
     The type of a game asset. The type is contained in this class instead
@@ -29,9 +42,10 @@ class AssetType(persistence.PersistentEntity):
         super()._init_sql()
 
     def load_by_name(self):
-        self.id = db.fetch_one('select id from asset_type where name = %s',
+        self.id = db.fetch_one('select id from state where name = %s',
                                (self.name,))[0]
         self.load()
+
 
 class AssetHash(persistence.PersistentEntity):
     """
@@ -62,6 +76,12 @@ class Asset(persistence.PersistentEntity):
         self.id = db.fetch_one('select id from asset where filename = %s',
                                (self.filename,))[0]
         self.load()
+
+    def set_type(self, asset_type: AssetType):
+        self.asset_type_id = asset_type.id
+
+    def set_processing_state(self, state_id: int):
+        self.processing_state_id = state_id
 
     def generate_and_save_hash(self):
         fhash = xxhash.xxh64()
@@ -100,16 +120,27 @@ class Asset(persistence.PersistentEntity):
         else:
             return None
 
+    def add_rule_violation(self, rule_violation: RuleViolation):
+        sql = """
+            insert into asset_to_rule_violation(asset_id, rule_violation_id)
+            values (%s, %s)
+            """
+        db.execute(sql, (self.id, rule_violation.id))
 
-class RuleViolation(persistence.PersistentEntity):
-    """
-    An asset rule violation.
-    """
+    def get_rule_violations(self):
+        rule_violations = []
 
-    def __init__(self):
-        super().__init__()
-        self.rule_name = None
-        self.rule = None
-        self.reason = None
-        super()._init_sql()
+        sql = """
+            select rule_violation_id
+            from asset_to_rule_violation
+            where asset_id = %s
+            """
+        rows = db.fetch_all(sql, (self.id,))
+        if rows:
+            for row in rows:
+                rv = RuleViolation()
+                rv.id = row[0]
+                rv.load()
+                rule_violations.append(rv)
 
+        return rule_violations

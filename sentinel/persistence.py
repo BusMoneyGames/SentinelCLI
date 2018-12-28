@@ -73,6 +73,13 @@ class Database:
         cur.close()
         return row
 
+    def fetch_all(self, sql: str, params={}):
+        cur = self._instance.connection.cursor()
+        cur.execute(sql, params)
+        row = cur.fetchall()
+        cur.close()
+        return row
+
 
 db = Database()
 
