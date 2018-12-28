@@ -42,14 +42,14 @@ class AssetType(persistence.PersistentEntity):
         super()._init_sql()
 
     def load_by_name(self):
-        self.id = db.fetch_one('select id from state where name = %s',
+        self.id = db.fetch_one('select id from asset_type where name = %s',
                                (self.name,))[0]
         self.load()
 
 
 class AssetHash(persistence.PersistentEntity):
     """
-    A hash of the contents of an asset asset.
+    A hash of the contents of an asset file.
     """
 
     def __init__(self):
