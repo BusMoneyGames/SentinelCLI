@@ -22,7 +22,8 @@ class TestDirectoryLister(TestCase):
         comp = component.DirectoryLister('comp1', {})
         comp.setup({'directory': self.root, 'extension': '.txt'})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertIsNone(result)
 
     def test_list_directory(self):
@@ -38,25 +39,29 @@ class TestDirectoryLister(TestCase):
         comp = component.DirectoryLister('comp1', {})
         comp.setup({'directory': self.root, 'extension': '.txt'})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'filename': os.path.join(self.root, 'file1.txt')
                          }, result)
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'filename': os.path.join(self.level1, 'file2.txt')
                          }, result)
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'filename': os.path.join(self.level2, 'file3.txt')
                          }, result)
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertIsNone(result)
 
     def test_windows_path(self):
@@ -67,13 +72,15 @@ class TestDirectoryLister(TestCase):
         comp = component.DirectoryLister('comp1', {})
         comp.setup({'directory': 'tmp\\dir1\\dir2', 'extension': '.txt'})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'filename': os.path.join(subdirs, 'file1.txt')
                          }, result)
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertIsNone(result)
 
     def test_mixed_path(self):
@@ -84,12 +91,14 @@ class TestDirectoryLister(TestCase):
         comp = component.DirectoryLister('comp1', {})
         comp.setup({'directory': 'tmp/dir1\\dir2', 'extension': '.txt'})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'filename': os.path.join(subdirs, 'file1.txt')
                          }, result)
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertIsNone(result)
 

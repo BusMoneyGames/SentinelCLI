@@ -36,7 +36,8 @@ class TestAssetChangeDetector(TestCase):
         comp = component.AssetChangeDetector('comp1', {})
         comp.setup({'asset_id': self.asset.id})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'asset_id': self.asset.id
@@ -50,7 +51,8 @@ class TestAssetChangeDetector(TestCase):
         comp = component.AssetChangeDetector('comp1', {})
         comp.setup({'asset_id': self.asset.id})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertIsNone(result)
 
     def test_change(self):
@@ -60,7 +62,8 @@ class TestAssetChangeDetector(TestCase):
         comp = component.AssetChangeDetector('comp1', {})
         comp.setup({'asset_id': self.asset.id})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'asset_id': self.asset.id

@@ -18,7 +18,7 @@ class Component(Process):
         self.port = 8888
         self.message_handler = None
         self.input_queue_name = None
-        self.output_queue_name = None
+        self.output_queue_names = {}
         self.throttle = Component.throttle
 
     def run(self):
@@ -92,13 +92,13 @@ class Component(Process):
     async def _handle_message(self, msg: dict):
         self.message_handler.setup(msg)
         while True:
-            result = self.message_handler.run()
+            local_queue_name, result = self.message_handler.run()
             if not result:
                 break
             result_reply = {
                 'cmd': 'send',
                 'msg_type': result['msg_type'],  # broadcast or regular
-                'queue': self.output_queue_name,
+                'queue': self.output_queue_names[local_queue_name],
                 'payload': json.dumps(result)
             }
             await self.streamer.send(result_reply)
@@ -139,7 +139,9 @@ class Builder(Component):
                 comp = Component(comp_name)
                 comp.message_handler = handler(comp_name, cfg['config'])
                 comp.input_queue_name = cfg['input_queue']
-                comp.output_queue_name = cfg['output_queue']
+                outputs = cfg['output_queues']
+                for local_name, queue_name in outputs.items():
+                    comp.output_queue_names[local_name] = queue_name
                 comp.start()
                 self._components[comp_name] = comp
 
@@ -244,9 +246,9 @@ class Printer(MessageHandler):
             eos = self._msg
             self._label_as_broadcast(eos)
             self._msg = None
-            return eos
+            return 'default', eos
 
-        return None
+        return 'default', None
 
 
 class DirectoryLister(MessageHandler):
@@ -274,9 +276,10 @@ class DirectoryLister(MessageHandler):
 
     def run(self):
         try:
-            return {'msg_type': 'regular', 'filename': next(self._filenames)}
+            return 'default', {'msg_type': 'regular',
+                               'filename': next(self._filenames)}
         except StopIteration:
-            return None
+            return 'default', None
 
 
 class AssetCreator(MessageHandler):
@@ -298,7 +301,7 @@ class AssetCreator(MessageHandler):
         asset.processing_state_id = entity.ProcessingState.PENDING
         asset.save()
 
-        return {'msg_type': 'regular', 'asset_id': asset.id}
+        return 'default', {'msg_type': 'regular', 'asset_id': asset.id}
 
 
 class AssetChangeDetector(MessageHandler):
@@ -326,7 +329,7 @@ class AssetChangeDetector(MessageHandler):
         if last_hash != current_hash:
             result = {'msg_type': 'regular', 'asset_id': asset.id}
 
-        return result
+        return 'default', result
 
 
 class AssetTypeChecker(MessageHandler):
@@ -380,7 +383,7 @@ class Grouper(MessageHandler):
             result = {'msg_type': 'regular', 'group': self.group}
             self.stream_end_count = 0
             self.group = []
-        return result
+        return 'default', result
 
 
 class UEMetadataExtractor(MessageHandler):

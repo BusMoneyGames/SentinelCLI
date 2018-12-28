@@ -20,7 +20,8 @@ class TestAssetCreator(TestCase):
         comp = component.AssetCreator('comp1', {})
         comp.setup({'filename': filename})
 
-        result = comp.run()
+        queue, result = comp.run()
+        self.assertEqual('default', queue)
 
         asset = entity.Asset()
         asset.id = result['asset_id']

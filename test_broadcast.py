@@ -18,14 +18,18 @@ components = {
         'class_name': 'Printer',
         'instance_count': 2,
         'input_queue': 'input',
-        'output_queue': 'output',
+        'output_queues': {
+            'default': 'output'
+        },
         'config': {}
     },
     'result': {
         'class_name': 'Printer',
         'instance_count': 1,
         'input_queue': 'output',
-        'output_queue': 'result',
+        'output_queues': {
+            'default': 'result'
+        },
         'config': {
             'sync_eos': True
         }
