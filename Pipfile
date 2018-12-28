@@ -12,6 +12,7 @@ boto = "*"
 "boto3" = "*"
 requests = "*"
 xxhash = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
