@@ -4,7 +4,7 @@ from unittest import TestCase
 class ComponentTest(TestCase):
 
     def verify_end_of_stream(self, comp):
-        comp.setup({'end_of_stream': True})
+        comp.setup({'from': comp.name, 'end_of_stream': True})
 
         queue, result = comp.run()
         self.assertEqual('default', queue)
@@ -15,5 +15,5 @@ class ComponentTest(TestCase):
         }, result)
 
         queue, result = comp.run()
-        self.assertIsNone(queue)
+        self.assertEqual('default', queue)
         self.assertIsNone(result)

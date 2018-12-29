@@ -93,10 +93,12 @@ class Component(Process):
         self.message_handler.setup(msg)
         while True:
             local_queue_name, result = self.message_handler.run()
-            if local_queue_name and not result:
-                continue
-            if not (local_queue_name and result):
+            if not result:
                 break
+            # if local_queue_name and not result:
+            #     continue
+            # if not (local_queue_name and result):
+            #     break
             result_reply = {
                 'cmd': 'send',
                 'msg_type': result['msg_type'],  # broadcast or regular
@@ -193,6 +195,7 @@ class MessageHandler:
         self.name = name
         self._msg = None  # The current message being processes
         self._eos_names = set()
+        self._eos_done = False
         self._sync_eos = False
         if 'sync_eos' in config:
             self._sync_eos = config['sync_eos']
@@ -202,26 +205,39 @@ class MessageHandler:
 
     def setup(self, msg: dict):
         self._msg = msg
+        self._eos_done = False
 
     def run(self):
+        all_eos_received = False
         if not self._msg:
-            return None, None
-        elif self._check_eos_count():
-            # All end of stream (EOS) messages received
-            return None, None
+            return 'default', None
         elif self._eos_received():
-            # Clear the message and forward the EOS as a broadcast
-            eos = self._reset_and_create_broadcast()
-            return 'default', eos
+            if self._check_eos_count():
+                # Sync EOS case (sync_eos = True)
+                # All end of stream (EOS) messages received
+                if self._sync_eos and not self._eos_done:
+                    # The handler still has some processing to do
+                    all_eos_received = True
+                elif self._eos_done:
+                    # Clear the message and forward the EOS as a broadcast
+                    eos = self._reset_and_create_broadcast()
+                    return 'default', eos
+            else:
+                # Non-sync EOS case (sync_eos = False or absent)
+                # Clear the message and forward the EOS as a broadcast
+                eos = self._reset_and_create_broadcast()
+                return 'default', eos
 
-        return self.process_message()
+        return self.process_message(all_eos_received)
 
-    def process_message(self):
+    def process_message(self, all_eos_received):
         raise NotImplementedError("You need to override this method")
 
     def _check_eos_count(self) -> bool:
         """
         If configured to sync EOSs' checks if all EOS have been received.
+        For example, there might be two components before this one in the
+        pipeline and we have to wait for each of them to send us their EOS.
 
         :dict msg: The supposed end of stream message.
         :return: True if all EOSs' have been received, False otherwise.
@@ -281,7 +297,7 @@ class Printer(MessageHandler):
 
         return None, None
 
-    def process_message(self):
+    def process_message(self, all_eos_received):
         # No need for this here because run is overridden
         pass
 
@@ -311,7 +327,7 @@ class DirectoryLister(MessageHandler):
                     f.append(os.path.join(root, filename))
         self._filenames = iter(f)
 
-    def process_message(self):
+    def process_message(self, all_eos_received):
         # TODO: Send EOS when done
         try:
             return 'default', {'msg_type': 'regular',
@@ -326,7 +342,7 @@ class AssetCreator(MessageHandler):
     exist.
     Outputs the asset id.
     """
-    def process_message(self):
+    def process_message(self, all_eos_received):
         asset = entity.Asset()
         asset.filename = self._msg['filename']
         asset.processing_state_id = entity.ProcessingState.PENDING
@@ -339,7 +355,7 @@ class AssetChangeDetector(MessageHandler):
     """
     Forwards only those assets that have changed.
     """
-    def process_message(self):
+    def process_message(self, all_eos_received):
         asset = entity.Asset()
         asset.id = self._msg['asset_id']
         asset.load()
@@ -361,7 +377,7 @@ class AssetTypeChecker(MessageHandler):
     Forwards an asset with a type to the with_type queue.
     Forwards an asset with no type to the without_type queue.
     """
-    def process_message(self):
+    def process_message(self, all_eos_received):
         asset = entity.Asset()
         asset.id = self._msg['asset_id']
         asset.load()
@@ -374,13 +390,14 @@ class AssetTypeChecker(MessageHandler):
         return queue, result
 
 
-class Grouper(MessageHandler):
+class AssetGrouper(MessageHandler):
     def __init__(self, name: str, config: dict):
         super().__init__(name, config)
         self.group_size = config['group_size']
-        self.max_stream_end_count: int = config['stream_end_count']
-        self.stream_end_count: int = 0
-        self.group: list = []
+        self.group_by = None
+        if 'group_by' in config:
+            self.group_by = config['group_by']
+        self.groups: dict = {}
 
     # def setup(self, msg: dict):
     #     if 'stream_end' in msg:
@@ -388,37 +405,42 @@ class Grouper(MessageHandler):
     #     else:
     #         self.group.append(msg)
 
-    def run(self):
-        if not self._msg:
-            return None, None
-        elif self._check_eos_count():
-            # All end of stream (EOS) messages received
-            return None, None
-        elif self._eos_received():
-            # Clear the message and forward the EOS as a broadcast
-            eos = self._reset_and_create_broadcast()
-            return 'default', eos
-
-        return self.process_message()
-
-    def process_message(self):
+    def process_message(self, all_eos_received):
         result = None
-        if (self.stream_end_count == self.max_stream_end_count
-                or len(self.group) == self.group_size):
-            result = {'msg_type': 'regular', 'group': self.group}
-            self.stream_end_count = 0
-            self.group = []
+
+        group = []
+        group_name = 'default'
+
+        if all_eos_received:
+            if len(self.groups) > 0:
+                group_name, group = self.groups.popitem()
+            self._eos_done = len(self.groups) == 0
+        else:
+            asset = entity.Asset()
+            asset.id = self._msg['asset_id']
+            asset.load()
+
+            if self.group_by:
+                group_name = getattr(asset, self.group_by)
+
+            if group_name not in self.groups:
+                self.groups[group_name] = []
+            self.groups[group_name].append(self._msg)
+
+            if len(self.groups[group_name]) == self.group_size:
+                group = self.groups[group_name]
+                del self.groups[group_name]
+
+        if len(group) > 0:
+            result = {
+                'msg_type': 'regular',
+                'group_name': group_name,
+                'group': group}
+
         return 'default', result
 
 
 class UEMetadataExtractor(MessageHandler):
     def __init__(self, name: str, config: dict):
         super().__init__(name, config)
-
-    def setup(self, msg: dict):
-        pass
-
-    def run(self):
-        result = None
-        return result
 
