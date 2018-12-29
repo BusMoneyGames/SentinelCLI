@@ -67,7 +67,7 @@ class Asset(persistence.PersistentEntity):
         super().__init__()
         self.name: str = None
         self.filename: str = None
-        self.asset_type_id: int = None
+        self.type_id: int = None
         self.processing_state_id: int = ProcessingState.PENDING
         self._hash: str = None
         super()._init_sql()
@@ -78,7 +78,7 @@ class Asset(persistence.PersistentEntity):
         self.load()
 
     def set_type(self, asset_type: AssetType):
-        self.asset_type_id = asset_type.id
+        self.type_id = asset_type.id
 
     def set_processing_state(self, state_id: int):
         self.processing_state_id = state_id

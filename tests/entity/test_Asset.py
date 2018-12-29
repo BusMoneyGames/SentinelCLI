@@ -47,7 +47,7 @@ class TestAsset(TestCase):
 
         self.assertEqual(a1.name, self.asset.name)
         self.assertEqual(a1.filename, self.asset.filename)
-        self.assertEqual(a1.asset_type_id, self.asset.asset_type_id)
+        self.assertEqual(a1.type_id, self.asset.type_id)
         self.assertEqual(a1.processing_state_id, self.asset.processing_state_id)
 
     def test_load_by_filename(self):
@@ -57,7 +57,7 @@ class TestAsset(TestCase):
 
         self.assertEqual(a1.name, self.asset.name)
         self.assertEqual(a1.filename, self.asset.filename)
-        self.assertEqual(a1.asset_type_id, self.asset.asset_type_id)
+        self.assertEqual(a1.type_id, self.asset.type_id)
         self.assertEqual(a1.processing_state_id, self.asset.processing_state_id)
 
     def test_hash(self):

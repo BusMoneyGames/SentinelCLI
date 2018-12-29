@@ -1,3 +1,6 @@
+import asyncio
+import time
+
 import sentinel.routing as routing
 import sentinel.component as component
 
@@ -58,7 +61,18 @@ if __name__ == '__main__':
     queue_server.start()
 
     builder = component.Builder(components)
-    builder.run()
+
+    # Enable the builder to run async (doesn't do anything for now)
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(builder.run())
+
+    # Wait a while to allow the components to start and connect
+    # TODO: Deterministically wait for the components to become ready
+    #       in the builder (builder.run).
+    #       The best way is probably to add a system queue and wait
+    #       for all the components to post a ready message onto that queue.
+    time.sleep(1)
+
     builder.send('input', {'property1': 10})
     builder.send('input', {'property1': 20})
     builder.broadcast('input', {'end_of_stream': True})

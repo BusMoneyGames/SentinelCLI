@@ -93,7 +93,9 @@ class Component(Process):
         self.message_handler.setup(msg)
         while True:
             local_queue_name, result = self.message_handler.run()
-            if not result:
+            if local_queue_name and not result:
+                continue
+            if not (local_queue_name and result):
                 break
             result_reply = {
                 'cmd': 'send',
@@ -114,7 +116,7 @@ class Component(Process):
     async def _throttle_down(self):
         self.throttle -= 1
         if self.throttle <= 0:
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.1)
             self.throttle = 0
 
 
@@ -128,7 +130,7 @@ class Builder(Component):
         self._component_configs = component_configs
         self._components = {}
 
-    def run(self):
+    async def run(self):
         for name in self._component_configs:
             cfg = self._component_configs[name]
             # handler = getattr(component, cfg.class_name)
@@ -189,37 +191,66 @@ class Builder(Component):
 class MessageHandler:
     def __init__(self, name: str, config: dict):
         self.name = name
-        self._config = config  # TODO: Pick common config from the dict
+        self._msg = None  # The current message being processes
         self._eos_names = set()
+        self._sync_eos = False
+        if 'sync_eos' in config:
+            self._sync_eos = config['sync_eos']
+        self._sync_eos_count = None
+        if 'sync_eos_count' in config:
+            self._sync_eos_count = config['sync_eos_count']
 
-    def _check_eos(self, msg: dict) -> bool:
+    def setup(self, msg: dict):
+        self._msg = msg
+
+    def run(self):
+        if not self._msg:
+            return None, None
+        elif self._check_eos_count():
+            # All end of stream (EOS) messages received
+            return None, None
+        elif self._eos_received():
+            # Clear the message and forward the EOS as a broadcast
+            eos = self._reset_and_create_broadcast()
+            return 'default', eos
+
+        return self.process_message()
+
+    def process_message(self):
+        raise NotImplementedError("You need to override this method")
+
+    def _check_eos_count(self) -> bool:
         """
         If configured to sync EOSs' checks if all EOS have been received.
 
         :dict msg: The supposed end of stream message.
         :return: True if all EOSs' have been received, False otherwise.
         """
-        if not msg:
+        if not self._msg:
             return False
-        if 'sync_eos' not in self._config:
+        if not self._sync_eos:
             return False
-        if not self._config['sync_eos']:
-            return False
-        if 'sync_eos_count' not in self._config:
+        if not self._sync_eos_count:
             return False
 
-        self._eos_names.add(msg['from'])
+        self._eos_names.add(self._msg['from'])
 
-        return len(self._eos_names) == self._config['sync_eos_count']
+        return len(self._eos_names) == self._sync_eos_count
 
-    def _is_eos(self, msg: dict) -> bool:
-        if msg:
-            return 'end_of_stream' in msg
+    def _eos_received(self) -> bool:
+        if self._msg:
+            return 'end_of_stream' in self._msg
 
-    def _label_as_broadcast(self, msg: dict):
+    def _label_message_as_broadcast(self, msg: dict):
         # TODO: prefix these special message keys
         msg['msg_type'] = 'broadcast'
         msg['from'] = self.name
+
+    def _reset_and_create_broadcast(self):
+        eos = self._msg
+        self._label_message_as_broadcast(eos)
+        self._msg = None
+        return eos
 
 
 # Worker components
@@ -235,20 +266,24 @@ class Printer(MessageHandler):
         self._msg = None
 
     def setup(self, msg: dict):
-        self._msg = msg
+        super().setup(msg)
         print(f'{self.name} received {msg}')
 
     def run(self):
-        if self._check_eos(self._msg):
+        if self._check_eos_count():
+            # All end of stream (EOS) messages received
             print(f'{self.name} received all end of stream messages')
-        elif self._is_eos(self._msg):
-            # Forward the EOS as a broadcast
-            eos = self._msg
-            self._label_as_broadcast(eos)
-            self._msg = None
+        elif self._eos_received():
+            # Clear message and forward the EOS as a broadcast
+            print(f'{self.name} received an end of stream message')
+            eos = self._reset_and_create_broadcast()
             return 'default', eos
 
-        return 'default', None
+        return None, None
+
+    def process_message(self):
+        # No need for this here because run is overridden
+        pass
 
 
 class DirectoryLister(MessageHandler):
@@ -263,6 +298,8 @@ class DirectoryLister(MessageHandler):
         self._filenames: iter = None  # The directory filename iterator
 
     def setup(self, msg: dict):
+        super().setup(msg)
+
         extension = msg['extension']
         path = os.path.join(os.path.normpath(msg['directory']))
 
@@ -274,7 +311,8 @@ class DirectoryLister(MessageHandler):
                     f.append(os.path.join(root, filename))
         self._filenames = iter(f)
 
-    def run(self):
+    def process_message(self):
+        # TODO: Send EOS when done
         try:
             return 'default', {'msg_type': 'regular',
                                'filename': next(self._filenames)}
@@ -288,16 +326,9 @@ class AssetCreator(MessageHandler):
     exist.
     Outputs the asset id.
     """
-    def __init__(self, name: str, config: dict):
-        super().__init__(name, config)
-        self.filename: str = None
-
-    def setup(self, msg: dict):
-        self.filename = msg['filename']
-
-    def run(self):
+    def process_message(self):
         asset = entity.Asset()
-        asset.filename = self.filename
+        asset.filename = self._msg['filename']
         asset.processing_state_id = entity.ProcessingState.PENDING
         asset.save()
 
@@ -308,17 +339,9 @@ class AssetChangeDetector(MessageHandler):
     """
     Forwards only those assets that have changed.
     """
-
-    def __init__(self, name: str, config: dict):
-        super().__init__(name, config)
-        self.asset_id: int = None
-
-    def setup(self, msg: dict):
-        self.asset_id = msg['asset_id']
-
-    def run(self):
+    def process_message(self):
         asset = entity.Asset()
-        asset.id = self.asset_id
+        asset.id = self._msg['asset_id']
         asset.load()
 
         last_hash = asset.get_hash()
@@ -335,31 +358,20 @@ class AssetChangeDetector(MessageHandler):
 class AssetTypeChecker(MessageHandler):
     """
     Checks if an asset has a type or not.
-    Forwards assets with a type to the with_type queue.
-    Forwards assets with no type to the without_type queue.
+    Forwards an asset with a type to the with_type queue.
+    Forwards an asset with no type to the without_type queue.
     """
-
-    def __init__(self, name: str, config: dict):
-        super().__init__(name, config)
-        self.filename: str = None
-
-    def setup(self, msg: dict):
-        self.filename = msg['filename']
-
-    def run(self):
+    def process_message(self):
         asset = entity.Asset()
-        asset.filename = self.filename
-        asset.load_by_filename()
+        asset.id = self._msg['asset_id']
+        asset.load()
 
-        last_hash = asset.get_hash()
-        asset.generate_and_save_hash()
-        current_hash = asset.get_hash()
+        queue = 'without_type'
+        result = result = {'msg_type': 'regular', 'asset_id': asset.id}
+        if asset.type_id:
+            queue = 'with_type'
 
-        result = None
-        if last_hash != current_hash:
-            result = {'msg_type': 'regular', 'filename': self.filename}
-
-        return result
+        return queue, result
 
 
 class Grouper(MessageHandler):
@@ -370,13 +382,26 @@ class Grouper(MessageHandler):
         self.stream_end_count: int = 0
         self.group: list = []
 
-    def setup(self, msg: dict):
-        if 'stream_end' in msg:
-            self.stream_end_count += 1
-        else:
-            self.group.append(msg)
+    # def setup(self, msg: dict):
+    #     if 'stream_end' in msg:
+    #         self.stream_end_count += 1
+    #     else:
+    #         self.group.append(msg)
 
     def run(self):
+        if not self._msg:
+            return None, None
+        elif self._check_eos_count():
+            # All end of stream (EOS) messages received
+            return None, None
+        elif self._eos_received():
+            # Clear the message and forward the EOS as a broadcast
+            eos = self._reset_and_create_broadcast()
+            return 'default', eos
+
+        return self.process_message()
+
+    def process_message(self):
         result = None
         if (self.stream_end_count == self.max_stream_end_count
                 or len(self.group) == self.group_size):

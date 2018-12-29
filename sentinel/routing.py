@@ -1,4 +1,5 @@
 import asyncio
+import sys
 import json
 from multiprocessing import Process
 
@@ -168,6 +169,13 @@ class QueueServer(Process):
         self._create_queues(self._queue_config)
 
         loop = asyncio.get_event_loop()
+
+        # The default event loop on Windows doesn't support subprocesses.
+        # Use the Proactor event loop instead.
+        if sys.platform == 'win32':
+            loop = asyncio.ProactorEventLoop()
+            asyncio.set_event_loop(loop)
+
         loop.call_later(0.2, self.periodic)
         coro = asyncio.start_server(self.on_new_connection,
                                     '0.0.0.0', self.port, loop=loop)

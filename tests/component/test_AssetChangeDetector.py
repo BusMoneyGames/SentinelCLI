@@ -1,7 +1,7 @@
-from unittest import TestCase
 import os
 import shutil
 
+import Utilities.test as test
 import persistence
 import component
 import entity
@@ -9,7 +9,7 @@ import entity
 db = persistence.Database()
 
 
-class TestAssetChangeDetector(TestCase):
+class TestAssetChangeDetector(test.ComponentTest):
 
     def setUp(self):
         self.dir = os.path.join('tmp', 'dir')
@@ -43,6 +43,8 @@ class TestAssetChangeDetector(TestCase):
                              'asset_id': self.asset.id
                          }, result)
 
+        self.verify_end_of_stream(comp)
+
     def test_no_change(self):
         # The asset has not changed if it has two alike consecutive hashes.
         # Simulate a previous run by manually generating a second hash.
@@ -54,6 +56,8 @@ class TestAssetChangeDetector(TestCase):
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
+
+        self.verify_end_of_stream(comp)
 
     def test_change(self):
         with open(self.filename, 'a') as f:
@@ -68,3 +72,5 @@ class TestAssetChangeDetector(TestCase):
                              'msg_type': 'regular',
                              'asset_id': self.asset.id
                          }, result)
+
+        self.verify_end_of_stream(comp)

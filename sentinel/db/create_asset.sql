@@ -24,7 +24,7 @@ create table asset
 
     name text,
     filename text not null,
-    asset_type_id int4,
+    type_id int4,
     processing_state_id int4 not null,
 
     created_at timestamp not null default now(),
@@ -32,8 +32,8 @@ create table asset
 
     constraint asset_pk
         primary key (id),
-    constraint asset_fk_asset_type_id
-        foreign key (asset_type_id)
+    constraint asset_fk_type_id
+        foreign key (type_id)
         references asset_type
 );
 
