@@ -27,7 +27,8 @@ class Component(Process):
 
         try:
             loop.run_until_complete(self.connect())
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, ConnectionResetError):
+            # This is a bit brute force way to shut down, but has to do for now.
             pass
 
         loop.close()
@@ -40,7 +41,7 @@ class Component(Process):
         loop = asyncio.get_event_loop()
         reader, writer = await asyncio.open_connection(self.host, self.port,
                                                        loop=loop)
-        self.streamer = Streamer(reader, writer)
+        self.streamer = Streamer(self.name, reader, writer)
         print(f'{self.name} connected to server')
 
     async def disconnect_from_server(self):
@@ -118,7 +119,7 @@ class Component(Process):
     async def _throttle_down(self):
         self.throttle -= 1
         if self.throttle <= 0:
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.2)
             self.throttle = 0
 
 
@@ -157,7 +158,17 @@ class Builder(Component):
         :dict msg: The message to be inserted.
         """
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.async_send(queue_name, 'regular', msg))
+        loop.run_until_complete(self._async_send(queue_name, 'regular', msg))
+
+    def wait_for_message(self, queue_name: str, msg: dict):
+        """
+        Waits for a message like msg to arrive on the queue name queue_name.
+
+        :str queue_name: The queue to wait on.
+        :dict msg: The message to wait for.
+        """
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self._async_wait_for(queue_name, msg))
 
     def broadcast(self, queue_name: str, msg: dict):
         """
@@ -169,9 +180,13 @@ class Builder(Component):
         :dict msg: The message to be broadcast.
         """
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.async_send(queue_name, 'broadcast', msg))
+        loop.run_until_complete(self._async_send(queue_name, 'broadcast', msg))
 
-    async def async_send(self, queue_name: str, msg_type: str, msg: dict):
+    def join_all(self):
+        for component in self._components:
+            component.join()
+
+    async def _async_send(self, queue_name: str, msg_type: str, msg: dict):
         await self.connect_to_server()
 
         request = {
@@ -185,9 +200,23 @@ class Builder(Component):
 
         await self.disconnect_from_server()
 
-    def join_all(self):
-        for component in self._components:
-            component.join()
+    async def _async_wait_for(self, queue_name: str, msg: dict):
+        await self.connect_to_server()
+
+        while True:
+            request = {'cmd': 'receive', 'queue': queue_name}
+            await self.streamer.send(request)
+            reply = await self.streamer.receive()
+            cmd = reply['cmd']
+            if cmd == 'message':
+                payload = reply['payload']
+                if payload:
+                    recv_msg = json.loads(reply['payload'])
+                    if recv_msg == msg:
+                        break
+            await asyncio.sleep(0.5)
+
+        await self.disconnect_from_server()
 
 
 class MessageHandler:
@@ -279,7 +308,7 @@ class Printer(MessageHandler):
     """
     def __init__(self, name: str, config: dict):
         super().__init__(name, config)
-        self._msg = None
+        self._eos_done_count = 0
 
     def setup(self, msg: dict):
         super().setup(msg)
@@ -288,14 +317,20 @@ class Printer(MessageHandler):
     def run(self):
         if self._check_eos_count():
             # All end of stream (EOS) messages received
-            print(f'{self.name} received all end of stream messages')
+            self._eos_done = True
+            self._eos_done_count += 1
+            result = None
+            if self._eos_done_count == 1:
+                print(f'{self.name} received all end of stream messages')
+                result = {'msg_type': 'regular', 'done': True}
+            return 'default', result
         elif self._eos_received():
             # Clear message and forward the EOS as a broadcast
             print(f'{self.name} received an end of stream message')
             eos = self._reset_and_create_broadcast()
             return 'default', eos
 
-        return None, None
+        return 'default', None
 
     def process_message(self, all_eos_received):
         # No need for this here because run is overridden

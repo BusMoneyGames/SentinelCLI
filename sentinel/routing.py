@@ -14,7 +14,8 @@ class Streamer:
     version_size = 1
     length_size = 4
 
-    def __init__(self, reader, writer):
+    def __init__(self, conn_id, reader, writer):
+        self.conn_id = conn_id
         self.reader = reader
         self.writer = writer
 
@@ -31,7 +32,7 @@ class Streamer:
         # Message data
         data = await self.reader.readexactly(length)
         message = json.loads(data.decode())
-        # print('streamer: received message {}'.format(message))
+        # print(f'streamer (conn_id = {self.conn_id}): received message {message}')
 
         return message
 
@@ -62,7 +63,7 @@ class Connection:
         self.id = conn_id
         # print(f'Connection with id {self.id}')
         self.server = queue_server
-        self.streamer = Streamer(reader, writer)
+        self.streamer = Streamer(self.id, reader, writer)
         self.input_queue = asyncio.Queue()
 
     async def run(self):
@@ -191,6 +192,9 @@ class QueueServer(Process):
         loop.run_until_complete(server.wait_closed())
         loop.close()
 
+    def stop(self):
+        self.terminate()
+
     def periodic(self):
         # print(self._queues['trigger'])
         loop = asyncio.get_event_loop()
@@ -241,9 +245,14 @@ class QueueServer(Process):
         return conn
 
     def _broadcast_message(self, queue_name, msg):
-        for cid in self._queue_connection_ids[queue_name]:
-            self._enqueue_on_connection(cid, msg)
+        # Only broadcast to connected queues
+        if queue_name in self._queue_connection_ids:
+            for cid in self._queue_connection_ids[queue_name]:
+                self._enqueue_on_connection(cid, msg)
+        else:
+            print(f'Dropping broadcast message to queue {queue_name}: {msg}')
 
     def _enqueue_on_connection(self, conn_id: int, msg):
+        # print(f'Enquing {msg} on connection {conn_id}')
         conn = self._connections[conn_id]
         conn.input_queue.put_nowait(msg)

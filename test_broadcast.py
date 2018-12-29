@@ -34,7 +34,8 @@ components = {
             'default': 'result'
         },
         'config': {
-            'sync_eos': True
+            'sync_eos': True,
+            'sync_eos_count': 1
         }
     }
 }
@@ -77,5 +78,7 @@ if __name__ == '__main__':
     builder.send('input', {'property1': 20})
     builder.broadcast('input', {'end_of_stream': True})
 
-    queue_server.join()
-    builder.join_all()
+    builder.wait_for_message('result', {'msg_type': 'regular', 'done': True})
+    print("Done")
+
+    queue_server.stop()
