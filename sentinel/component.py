@@ -424,7 +424,7 @@ class DirectoryLister(MessageHandler):
         self._filenames = iter(f)
 
     def process_message(self, all_eos_received):
-        print(f'{self.name} processing: {self._msg}')
+        # print(f'{self.name} processing: {self._msg}')
 
         # No special EOS handling needed here
         self._eos_done = True
@@ -445,7 +445,7 @@ class AssetCreator(MessageHandler):
     Outputs the asset id.
     """
     def process_message(self, all_eos_received):
-        print(f'{self.name} processing: {self._msg}')
+        # print(f'{self.name} processing: {self._msg}')
 
         # No special EOS handling needed here
         self._eos_done = True
@@ -471,7 +471,7 @@ class AssetChangeDetector(MessageHandler):
     Forwards only those assets that have changed.
     """
     def process_message(self, all_eos_received):
-        print(f'{self.name} processing: {self._msg}')
+        # print(f'{self.name} processing: {self._msg}')
 
         # No special EOS handling needed here
         self._eos_done = True
@@ -509,7 +509,7 @@ class AssetTypeChecker(MessageHandler):
     Forwards an asset with no type to the untyped queue.
     """
     def process_message(self, all_eos_received):
-        print(f'{self.name} processing: {self._msg}')
+        # print(f'{self.name} processing: {self._msg}')
 
         # No special EOS handling needed here
         self._eos_done = True
@@ -540,7 +540,7 @@ class AssetGrouper(MessageHandler):
         self.groups: dict = {}
 
     def process_message(self, all_eos_received):
-        print(f'{self.name} processing: {self._msg}')
+        # print(f'{self.name} processing: {self._msg}')
 
         result = None
 
@@ -574,7 +574,6 @@ class AssetGrouper(MessageHandler):
                 'msg_type': 'regular',
                 'group_name': group_name,
                 'group': group}
-            self._clear()
 
         return 'default', result
 
