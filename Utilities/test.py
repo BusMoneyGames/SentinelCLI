@@ -7,7 +7,7 @@ class ComponentTest(TestCase):
         comp.setup({'from': comp.name, 'end_of_stream': True})
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertEqual('*', queue)
         self.assertEqual({
             'msg_type': 'broadcast',
             'from': comp.name,
@@ -15,5 +15,5 @@ class ComponentTest(TestCase):
         }, result)
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertIsNone(queue)
         self.assertIsNone(result)

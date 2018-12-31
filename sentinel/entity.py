@@ -77,6 +77,26 @@ class Asset(persistence.PersistentEntity):
                                (self.filename,))[0]
         self.load()
 
+    def delete(self):
+        sql = """
+            select id
+            from asset_hash ah,
+                 asset_to_asset_hash atah
+            where atah.asset_id = %s
+            and atah.asset_hash_id = ah.id
+            """
+        try:
+            asset_hash_ids = db.fetch_all(sql, (self.id,))
+            for row in asset_hash_ids:
+                ah = AssetHash()
+                ah.id = row[0]
+                self.unlink_asset_hash(ah)
+                ah.delete()
+        except persistence.NotFoundError:
+            pass
+
+        super().delete()
+
     def set_type(self, asset_type: AssetType):
         self.type_id = asset_type.id
 
@@ -100,6 +120,13 @@ class Asset(persistence.PersistentEntity):
             values (%s, %s)
             """
         db.execute(sql, (self.id, asset_hash.id))
+
+    def unlink_asset_hash(self, asset_hash):
+        sql = """
+            delete from asset_to_asset_hash
+            where asset_hash_id = %s
+            """
+        db.execute(sql, (asset_hash.id,))
 
     def get_hash(self):
         if self._hash:

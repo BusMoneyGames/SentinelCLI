@@ -9,14 +9,14 @@ db = persistence.Database()
 class TestAssetGrouper(test.ComponentTest):
 
     def setUp(self):
-        self.typed_assets = []
+        self.assets = []
 
         self.type_count = 2
         self.assets_per_type = 5
 
         for type_id in range(self.type_count):
             assets = []
-            self.typed_assets.append(assets)
+            self.assets.append(assets)
 
             asset_type = entity.AssetType()
             asset_type.id = type_id
@@ -32,16 +32,23 @@ class TestAssetGrouper(test.ComponentTest):
                 assets.append(a)
 
     def tearDown(self):
-        db.rollback()
+        for type_id in range(self.type_count):
+            for i in range(self.assets_per_type):
+                self.assets[type_id][i].delete()
+        for type_id in range(self.type_count):
+            asset_type = entity.AssetType()
+            asset_type.id = type_id
+            asset_type.delete()
+        db.commit()
 
     def test_default_full_group(self):
         group_size = 3
         comp = component.AssetGrouper('comp1',
-                                 {
-                                     'sync_eos_count': 1,
-                                     'sync_eos': True,
-                                     'group_size': group_size
-                                 })
+                                      {
+                                          'sync_eos_count': 1,
+                                          'sync_eos': True,
+                                          'group_size': group_size
+                                      })
 
         for type_id in range(self.type_count):
 
@@ -49,7 +56,7 @@ class TestAssetGrouper(test.ComponentTest):
                 comp.setup(
                     {
                         'from': comp.name,
-                        'asset_id': self.typed_assets[type_id][i].id
+                        'asset_id': self.assets[type_id][i].id
                     })
                 queue, result = comp.run()
                 self.assertEqual('default', queue)
@@ -58,7 +65,7 @@ class TestAssetGrouper(test.ComponentTest):
             comp.setup(
                 {
                     'from': comp.name,
-                    'asset_id': self.typed_assets[type_id][i + 1].id
+                    'asset_id': self.assets[type_id][i + 1].id
                 })
             queue, result = comp.run()
             self.assertEqual('default', queue)
@@ -68,7 +75,7 @@ class TestAssetGrouper(test.ComponentTest):
             for i in range(group_size):
                 self.assertEqual(
                     {
-                        'asset_id': self.typed_assets[type_id][i].id,
+                        'asset_id': self.assets[type_id][i].id,
                         'from': comp.name
                     }, result['group'][i])
 
@@ -80,7 +87,7 @@ class TestAssetGrouper(test.ComponentTest):
         self.assertIsNone(result)
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertEqual('*', queue)
         self.assertEqual({
             'msg_type': 'broadcast',
             'from': comp.name,
@@ -88,7 +95,7 @@ class TestAssetGrouper(test.ComponentTest):
         }, result)
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertIsNone(queue)
         self.assertIsNone(result)
 
     def test_default_trailing_group(self):
@@ -101,17 +108,17 @@ class TestAssetGrouper(test.ComponentTest):
                                  })
 
         # Group 1 (full)
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][0].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][0].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][1].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][1].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][2].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][2].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertEqual('regular', result['msg_type'])
@@ -120,17 +127,17 @@ class TestAssetGrouper(test.ComponentTest):
         for i in range(group_size):
             self.assertEqual(
                 {
-                    'asset_id': self.typed_assets[0][i].id,
+                    'asset_id': self.assets[0][i].id,
                     'from': comp.name
                 }, result['group'][i])
 
         # Group 2 (partial)
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][3].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][3].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][4].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][4].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
@@ -146,12 +153,12 @@ class TestAssetGrouper(test.ComponentTest):
         for i in range(2):
             self.assertEqual(
                 {
-                    'asset_id': self.typed_assets[0][group_size + i].id,
+                    'asset_id': self.assets[0][group_size + i].id,
                     'from': comp.name
                 }, result['group'][i])
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertEqual('*', queue)
         self.assertEqual({
             'msg_type': 'broadcast',
             'from': comp.name,
@@ -159,7 +166,7 @@ class TestAssetGrouper(test.ComponentTest):
         }, result)
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertIsNone(queue)
         self.assertIsNone(result)
 
     def test_dynamic_full_groups(self):
@@ -178,7 +185,7 @@ class TestAssetGrouper(test.ComponentTest):
                 comp.setup(
                     {
                         'from': comp.name,
-                        'asset_id': self.typed_assets[type_id][i].id
+                        'asset_id': self.assets[type_id][i].id
                     })
                 queue, result = comp.run()
                 self.assertEqual('default', queue)
@@ -187,7 +194,7 @@ class TestAssetGrouper(test.ComponentTest):
             comp.setup(
                 {
                     'from': comp.name,
-                    'asset_id': self.typed_assets[type_id][i + 1].id
+                    'asset_id': self.assets[type_id][i + 1].id
                 })
             queue, result = comp.run()
             self.assertEqual('default', queue)
@@ -197,7 +204,7 @@ class TestAssetGrouper(test.ComponentTest):
             for i in range(group_size):
                 self.assertEqual(
                     {
-                        'asset_id': self.typed_assets[type_id][i].id,
+                        'asset_id': self.assets[type_id][i].id,
                         'from': comp.name
                     }, result['group'][i])
 
@@ -209,7 +216,7 @@ class TestAssetGrouper(test.ComponentTest):
         self.assertIsNone(result)
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertEqual('*', queue)
         self.assertEqual({
             'msg_type': 'broadcast',
             'from': comp.name,
@@ -217,7 +224,7 @@ class TestAssetGrouper(test.ComponentTest):
         }, result)
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertIsNone(queue)
         self.assertIsNone(result)
 
     def test_dynamic_trailing_groups(self):
@@ -231,28 +238,28 @@ class TestAssetGrouper(test.ComponentTest):
                                  })
 
         # 1st 2 full groups
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][0].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][0].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[1][0].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[1][0].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][1].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][1].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[1][1].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[1][1].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
         # Full group 1
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[1][2].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[1][2].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertEqual('regular', result['msg_type'])
@@ -261,12 +268,12 @@ class TestAssetGrouper(test.ComponentTest):
         for i in range(group_size):
             self.assertEqual(
                 {
-                    'asset_id': self.typed_assets[1][i].id,
+                    'asset_id': self.assets[1][i].id,
                     'from': comp.name
                 }, result['group'][i])
 
         # Full group 2
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][2].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][2].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertEqual('regular', result['msg_type'])
@@ -275,27 +282,27 @@ class TestAssetGrouper(test.ComponentTest):
         for i in range(group_size):
             self.assertEqual(
                 {
-                    'asset_id': self.typed_assets[0][i].id,
+                    'asset_id': self.assets[0][i].id,
                     'from': comp.name
                 }, result['group'][i])
 
         # 2nd 2 partial groups
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][3].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][3].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[1][3].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[1][3].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[1][4].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[1][4].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
 
-        comp.setup({'from': comp.name, 'asset_id': self.typed_assets[0][4].id})
+        comp.setup({'from': comp.name, 'asset_id': self.assets[0][4].id})
         queue, result = comp.run()
         self.assertEqual('default', queue)
         self.assertIsNone(result)
@@ -312,7 +319,7 @@ class TestAssetGrouper(test.ComponentTest):
         for i in range(2):
             self.assertEqual(
                 {
-                    'asset_id': self.typed_assets[1][group_size + i].id,
+                    'asset_id': self.assets[1][group_size + i].id,
                     'from': comp.name
                 }, result['group'][i])
 
@@ -325,12 +332,12 @@ class TestAssetGrouper(test.ComponentTest):
         for i in range(2):
             self.assertEqual(
                 {
-                    'asset_id': self.typed_assets[0][group_size + i].id,
+                    'asset_id': self.assets[0][group_size + i].id,
                     'from': comp.name
                 }, result['group'][i])
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertEqual('*', queue)
         self.assertEqual({
             'msg_type': 'broadcast',
             'from': comp.name,
@@ -338,5 +345,5 @@ class TestAssetGrouper(test.ComponentTest):
         }, result)
 
         queue, result = comp.run()
-        self.assertEqual('default', queue)
+        self.assertIsNone(queue)
         self.assertIsNone(result)

@@ -30,7 +30,8 @@ class TestAssetChangeDetector(test.ComponentTest):
         self.asset.save()
 
     def tearDown(self):
-        db.rollback()
+        self.asset.delete()
+        db.commit()
 
     def test_new(self):
         comp = component.AssetChangeDetector('comp1', {})

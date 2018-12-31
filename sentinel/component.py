@@ -3,8 +3,11 @@ import json
 import os
 from multiprocessing import Process
 
+import persistence
 import sentinel.entity as entity
 from sentinel.routing import Streamer
+
+db = persistence.Database()
 
 
 class Component(Process):
@@ -100,14 +103,21 @@ class Component(Process):
             #     continue
             # if not (local_queue_name and result):
             #     break
-            result_reply = {
-                'cmd': 'send',
-                'msg_type': result['msg_type'],  # broadcast or regular
-                'queue': self.output_queue_names[local_queue_name],
-                'payload': json.dumps(result)
-            }
-            await self.streamer.send(result_reply)
-            await self.streamer.receive()  # TODO: Handle the reply
+            out_queues = []
+            if local_queue_name == '*':
+                out_queues = self.output_queue_names
+            else:
+                out_queues.append(local_queue_name)
+
+            for queue_name in out_queues:
+                result_reply = {
+                    'cmd': 'send',
+                    'msg_type': result['msg_type'],  # broadcast or regular
+                    'queue': self.output_queue_names[queue_name],
+                    'payload': json.dumps(result)
+                }
+                await self.streamer.send(result_reply)
+                await self.streamer.receive()  # TODO: Handle the reply
 
     def _handle_status(self, request_reply: dict):
         if request_reply['status'] == 'error':
@@ -133,7 +143,7 @@ class Builder(Component):
         self._component_configs = component_configs
         self._components = {}
 
-    async def run(self):
+    def run(self):
         for name in self._component_configs:
             cfg = self._component_configs[name]
             # handler = getattr(component, cfg.class_name)
@@ -159,6 +169,15 @@ class Builder(Component):
         """
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self._async_send(queue_name, 'regular', msg))
+
+    def print_queue(self, queue_name: str):
+        """
+        Prints all messages arriving at the queue.
+
+        :str queue_name: The queue to print from.
+        """
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self._async_print_queue(queue_name))
 
     def wait_for_message(self, queue_name: str, msg: dict):
         """
@@ -200,6 +219,21 @@ class Builder(Component):
 
         await self.disconnect_from_server()
 
+    async def _async_print_queue(self, queue_name: str):
+        await self.connect_to_server()
+
+        while True:
+            request = {'cmd': 'receive', 'queue': queue_name}
+            await self.streamer.send(request)
+            reply = await self.streamer.receive()
+            cmd = reply['cmd']
+            if cmd == 'message':
+                payload = reply['payload']
+                if payload:
+                    recv_msg = json.loads(reply['payload'])
+                    print(recv_msg)
+            await asyncio.sleep(0.05)
+
     async def _async_wait_for(self, queue_name: str, msg: dict):
         await self.connect_to_server()
 
@@ -239,7 +273,7 @@ class MessageHandler:
     def run(self):
         all_eos_received = False
         if not self._msg:
-            return 'default', None
+            return None, None
         elif self._eos_received():
             if self._check_eos_count():
                 # Sync EOS case (sync_eos = True)
@@ -250,12 +284,12 @@ class MessageHandler:
                 elif self._eos_done:
                     # Clear the message and forward the EOS as a broadcast
                     eos = self._reset_and_create_broadcast()
-                    return 'default', eos
+                    return '*', eos
             else:
                 # Non-sync EOS case (sync_eos = False or absent)
                 # Clear the message and forward the EOS as a broadcast
                 eos = self._reset_and_create_broadcast()
-                return 'default', eos
+                return '*', eos
 
         return self.process_message(all_eos_received)
 
@@ -296,6 +330,9 @@ class MessageHandler:
         self._label_message_as_broadcast(eos)
         self._msg = None
         return eos
+
+    def _clear(self):
+        self._msg = None
 
 
 # Worker components
@@ -351,6 +388,9 @@ class DirectoryLister(MessageHandler):
     def setup(self, msg: dict):
         super().setup(msg)
 
+        if 'end_of_stream' in msg:
+            return
+
         extension = msg['extension']
         path = os.path.join(os.path.normpath(msg['directory']))
 
@@ -363,7 +403,6 @@ class DirectoryLister(MessageHandler):
         self._filenames = iter(f)
 
     def process_message(self, all_eos_received):
-        # TODO: Send EOS when done
         try:
             return 'default', {'msg_type': 'regular',
                                'filename': next(self._filenames)}
@@ -381,7 +420,13 @@ class AssetCreator(MessageHandler):
         asset = entity.Asset()
         asset.filename = self._msg['filename']
         asset.processing_state_id = entity.ProcessingState.PENDING
-        asset.save()
+        try:
+            asset.load_by_filename()
+        except persistence.NotFoundError:
+            asset.save()
+
+        db.commit()
+        self._clear()
 
         return 'default', {'msg_type': 'regular', 'asset_id': asset.id}
 
@@ -395,13 +440,22 @@ class AssetChangeDetector(MessageHandler):
         asset.id = self._msg['asset_id']
         asset.load()
 
-        last_hash = asset.get_hash()
+        try:
+            last_hash = asset.get_hash()
+        except persistence.NotFoundError:
+            last_hash = None
         asset.generate_and_save_hash()
         current_hash = asset.get_hash()
 
         result = None
         if last_hash != current_hash:
             result = {'msg_type': 'regular', 'asset_id': asset.id}
+
+        # TODO: Delete hashes older than the last two since they will probably
+        #       never be used again.
+
+        db.commit()
+        self._clear()
 
         return 'default', result
 
@@ -417,10 +471,10 @@ class AssetTypeChecker(MessageHandler):
         asset.id = self._msg['asset_id']
         asset.load()
 
-        queue = 'without_type'
-        result = result = {'msg_type': 'regular', 'asset_id': asset.id}
+        queue = 'untyped'
+        result = {'msg_type': 'regular', 'asset_id': asset.id}
         if asset.type_id:
-            queue = 'with_type'
+            queue = 'typed'
 
         return queue, result
 

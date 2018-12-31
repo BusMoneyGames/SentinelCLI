@@ -1,4 +1,3 @@
-import asyncio
 import time
 
 import sentinel.routing as routing
@@ -51,10 +50,16 @@ components['result']['config']['sync_eos_count'] = \
 # intermediate-0 received {'property1': 10}
 # intermediate-0 received {'property1': 20}
 # intermediate-0 received {'end_of_stream': True}
-# intermediate-1 received {'end_of_stream': True}
+# intermediate-0 received an end of stream message
 # result-0 received {'end_of_stream': True, 'msg_type': 'broadcast', 'from': 'intermediate-0'}
+# result-0 received an end of stream message
+# intermediate-1 received {'end_of_stream': True}
+# intermediate-1 received an end of stream message
 # result-0 received {'end_of_stream': True, 'msg_type': 'broadcast', 'from': 'intermediate-1'}
 # result-0 received all end of stream messages
+# Dropping broadcast message to queue result: {"end_of_stream": true, "msg_type": "broadcast", "from": "result-0"}
+# builder disconnected from server
+# Done
 
 if __name__ == '__main__':
     # The queue server needs to be running before the builder runs
@@ -63,15 +68,15 @@ if __name__ == '__main__':
 
     builder = component.Builder(components)
 
-    # Enable the builder to run async (doesn't do anything for now)
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(builder.run())
+    builder.run()
 
     # Wait a while to allow the components to start and connect
     # TODO: Deterministically wait for the components to become ready
-    #       in the builder (builder.run).
+    #       before continuing (builder.run should wait)
     #       The best way is probably to add a system queue and wait
     #       for all the components to post a ready message onto that queue.
+    #       Run builder.run async the same way builder.send and
+    #       builder.broadcast do it.
     time.sleep(1)
 
     builder.send('input', {'property1': 10})

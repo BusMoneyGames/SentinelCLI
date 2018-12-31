@@ -14,6 +14,7 @@ class TestAssetTypeChecker(test.ComponentTest):
         self.asset.save()
 
     def tearDown(self):
+        # Rollback is fine here because the component doesn't commit.
         db.rollback()
 
     def test_with_type(self):
@@ -21,7 +22,7 @@ class TestAssetTypeChecker(test.ComponentTest):
 
         comp.setup({'asset_id': self.asset.id})
         queue, result = comp.run()
-        self.assertEqual('without_type', queue)
+        self.assertEqual('untyped', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'asset_id': self.asset.id
@@ -42,7 +43,7 @@ class TestAssetTypeChecker(test.ComponentTest):
 
         comp.setup({'asset_id': self.asset.id})
         queue, result = comp.run()
-        self.assertEqual('with_type', queue)
+        self.assertEqual('typed', queue)
         self.assertEqual({
                              'msg_type': 'regular',
                              'asset_id': self.asset.id

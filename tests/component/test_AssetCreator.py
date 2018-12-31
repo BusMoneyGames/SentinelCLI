@@ -9,17 +9,14 @@ db = persistence.Database()
 class TestAssetCreator(test.ComponentTest):
 
     def setUp(self):
-        pass
+        self.comp = component.AssetCreator('comp1', {})
 
     def tearDown(self):
-        db.rollback()
+        db.commit()
 
-    def test_create(self):
-        filename = 'some/file/name'
-        comp = component.AssetCreator('comp1', {})
-
-        comp.setup({'filename': filename})
-        queue, result = comp.run()
+    def _create_or_get(self, filename):
+        self.comp.setup({'filename': filename})
+        queue, result = self.comp.run()
         self.assertEqual('default', queue)
 
         asset = entity.Asset()
@@ -32,5 +29,22 @@ class TestAssetCreator(test.ComponentTest):
                              'asset_id': asset.id
                          }, result)
 
-        self.verify_end_of_stream(comp)
+        queue, result = self.comp.run()
+        self.assertIsNone(queue)
+        self.assertIsNone(result)
 
+        return asset.id
+
+    def test_create_and_get(self):
+        filename = 'some/file/name'
+
+        id1 = self._create_or_get(filename)
+        id2 = self._create_or_get(filename)
+
+        self.assertEqual(id1, id2)
+
+        asset = entity.Asset()
+        asset.id = id1
+        asset.delete()
+
+        self.verify_end_of_stream(self.comp)

@@ -10,6 +10,10 @@ def to_underscore(name):
     return underscore_re.sub(r'_\1', name).lower()
 
 
+class NotFoundError(BaseException):
+    pass
+
+
 class Database:
     """
     A simple wrapper for a global database connection.
@@ -71,14 +75,18 @@ class Database:
         cur.execute(sql, params)
         row = cur.fetchone()
         cur.close()
+        if row is None:
+            raise NotFoundError()
         return row
 
     def fetch_all(self, sql: str, params={}):
         cur = self._instance.connection.cursor()
         cur.execute(sql, params)
-        row = cur.fetchall()
+        rows = cur.fetchall()
         cur.close()
-        return row
+        if rows is None:
+            raise NotFoundError()
+        return rows
 
 
 db = Database()
@@ -92,6 +100,7 @@ class PersistentEntity:
         self._sql_insert_with_id = None
         self._sql_update = None
         self._sql_select = None
+        self._sql_delete = None
 
     def _init_sql(self):
         pub = self._get_public_variables_no_id()
@@ -102,6 +111,7 @@ class PersistentEntity:
 
         self._sql_update = self._build_update()
         self._sql_select = self._build_select()
+        self._sql_delete = self._build_delete()
 
     def _build_insert(self, pub):
         columns = ','.join([k for k in pub])
@@ -134,6 +144,13 @@ class PersistentEntity:
             """
         return sql
 
+    def _build_delete(self):
+        sql = f"""
+            delete from {self._table_name}
+            where id = %(id)s
+            """
+        return sql
+
     def _get_public_variables(self):
         return {k: v for k, v in self.__dict__.items() if not k.startswith('_')}
 
@@ -153,7 +170,7 @@ class PersistentEntity:
         db.execute(self._sql_insert_with_id, pub)
 
     def save(self):
-        if self.id:
+        if self.id is not None:
             pub = self._get_public_variables()
             # print(db.mogrify(self._sql_update, pub))
             db.execute(self._sql_update, pub)
@@ -170,3 +187,8 @@ class PersistentEntity:
         for key in pub:
             setattr(self, key, row[i])
             i += 1
+
+    def delete(self):
+        if self.id is not None:
+            # print(db.mogrify(self._sql_delete, {'id': self.id})
+            db.execute(self._sql_delete, {'id': self.id})
