@@ -72,6 +72,7 @@ class Connection:
                 message = await self.streamer.receive()
                 await self._handle_message(message)
             except (ConnectionResetError, asyncio.IncompleteReadError):
+                print('************ Connection Reset ************')
                 self.server.remove_connection(self.id)
                 break
 
@@ -186,6 +187,7 @@ class QueueServer(Process):
         try:
             loop.run_forever()
         except KeyboardInterrupt:
+            print('****** Keyboard interrupt *******')
             pass
 
         server.close()

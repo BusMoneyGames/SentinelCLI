@@ -109,13 +109,13 @@ class Component(Process):
             else:
                 out_queues.append(local_queue_name)
 
+            result_reply = {
+                'cmd': 'send',
+                'msg_type': result['msg_type'],  # broadcast or regular
+                'payload': json.dumps(result)
+            }
             for queue_name in out_queues:
-                result_reply = {
-                    'cmd': 'send',
-                    'msg_type': result['msg_type'],  # broadcast or regular
-                    'queue': self.output_queue_names[queue_name],
-                    'payload': json.dumps(result)
-                }
+                result_reply['queue'] = self.output_queue_names[queue_name]
                 await self.streamer.send(result_reply)
                 await self.streamer.receive()  # TODO: Handle the reply
 
@@ -143,7 +143,7 @@ class Builder(Component):
         self._component_configs = component_configs
         self._components = {}
 
-    def run(self):
+    def build(self):
         for name in self._component_configs:
             cfg = self._component_configs[name]
             # handler = getattr(component, cfg.class_name)
@@ -159,6 +159,10 @@ class Builder(Component):
                     comp.output_queue_names[local_name] = queue_name
                 comp.start()
                 self._components[comp_name] = comp
+
+    def wait_until_connected_to_server(self):
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self.connect_to_server())
 
     def send(self, queue_name: str, msg: dict):
         """
@@ -206,7 +210,7 @@ class Builder(Component):
             component.join()
 
     async def _async_send(self, queue_name: str, msg_type: str, msg: dict):
-        await self.connect_to_server()
+        # await self.connect_to_server()
 
         request = {
             'cmd': 'send',
@@ -217,10 +221,10 @@ class Builder(Component):
         await self.streamer.send(request)
         await self.streamer.receive()  # TODO: Handle reply
 
-        await self.disconnect_from_server()
+        # await self.disconnect_from_server()
 
     async def _async_print_queue(self, queue_name: str):
-        await self.connect_to_server()
+        # await self.connect_to_server()
 
         while True:
             request = {'cmd': 'receive', 'queue': queue_name}
@@ -231,11 +235,11 @@ class Builder(Component):
                 payload = reply['payload']
                 if payload:
                     recv_msg = json.loads(reply['payload'])
-                    print(recv_msg)
-            await asyncio.sleep(0.05)
+                    print(f'printer: {recv_msg}')
+            await asyncio.sleep(0.01)
 
     async def _async_wait_for(self, queue_name: str, msg: dict):
-        await self.connect_to_server()
+        # await self.connect_to_server()
 
         while True:
             request = {'cmd': 'receive', 'queue': queue_name}
@@ -250,7 +254,7 @@ class Builder(Component):
                         break
             await asyncio.sleep(0.5)
 
-        await self.disconnect_from_server()
+        # await self.disconnect_from_server()
 
 
 class MessageHandler:
@@ -258,38 +262,52 @@ class MessageHandler:
         self.name = name
         self._msg = None  # The current message being processes
         self._eos_names = set()
-        self._eos_done = False
-        self._sync_eos = False
-        if 'sync_eos' in config:
-            self._sync_eos = config['sync_eos']
-        self._sync_eos_count = None
+        self._eos_done = None  # Tri-state
+        # self._sync_eos = False
+        # if 'sync_eos' in config:
+        #    self._sync_eos = config['sync_eos']
+        self._sync_eos_count = 1
         if 'sync_eos_count' in config:
             self._sync_eos_count = config['sync_eos_count']
 
     def setup(self, msg: dict):
         self._msg = msg
-        self._eos_done = False
+        # self._eos_done = False
 
     def run(self):
+        # print(f'{self.name} received: {self._msg}')
+
         all_eos_received = False
-        if not self._msg:
+        if self._msg is None:
             return None, None
         elif self._eos_received():
             if self._check_eos_count():
                 # Sync EOS case (sync_eos = True)
                 # All end of stream (EOS) messages received
-                if self._sync_eos and not self._eos_done:
+                # if self._sync_eos and not self._eos_done:
+                if self._eos_done is None:
+                    # The component did no work
+                    # Clear the message and forward the EOS as a broadcast
+                    self._eos_names.clear()
+                    eos = self._reset_and_create_broadcast()
+                    return '*', eos
+
+                if not self._eos_done:
                     # The handler still has some processing to do
                     all_eos_received = True
-                elif self._eos_done:
+                else:
                     # Clear the message and forward the EOS as a broadcast
+                    self._eos_names.clear()
                     eos = self._reset_and_create_broadcast()
                     return '*', eos
             else:
-                # Non-sync EOS case (sync_eos = False or absent)
-                # Clear the message and forward the EOS as a broadcast
-                eos = self._reset_and_create_broadcast()
-                return '*', eos
+                # Not all EOS's have arrived. Do nothing.
+                return None, None
+            # elif self._eos_done:
+            #     # Non-sync EOS case (sync_eos = False or absent)
+            #     # Clear the message and forward the EOS as a broadcast
+            #     eos = self._reset_and_create_broadcast()
+            #     return '*', eos
 
         return self.process_message(all_eos_received)
 
@@ -307,12 +325,14 @@ class MessageHandler:
         """
         if not self._msg:
             return False
-        if not self._sync_eos:
-            return False
+        # if not self._sync_eos:
+        #    return False
         if not self._sync_eos_count:
             return False
 
         self._eos_names.add(self._msg['from'])
+
+        # print(f'{self.name} EOS count = {len(self._eos_names)}')
 
         return len(self._eos_names) == self._sync_eos_count
 
@@ -326,6 +346,7 @@ class MessageHandler:
         msg['from'] = self.name
 
     def _reset_and_create_broadcast(self):
+        self._eos_done = None
         eos = self._msg
         self._label_message_as_broadcast(eos)
         self._msg = None
@@ -403,6 +424,13 @@ class DirectoryLister(MessageHandler):
         self._filenames = iter(f)
 
     def process_message(self, all_eos_received):
+        print(f'{self.name} processing: {self._msg}')
+
+        # No special EOS handling needed here
+        self._eos_done = True
+        if all_eos_received:
+            return None, None
+
         try:
             return 'default', {'msg_type': 'regular',
                                'filename': next(self._filenames)}
@@ -417,6 +445,13 @@ class AssetCreator(MessageHandler):
     Outputs the asset id.
     """
     def process_message(self, all_eos_received):
+        print(f'{self.name} processing: {self._msg}')
+
+        # No special EOS handling needed here
+        self._eos_done = True
+        if all_eos_received:
+            return None, None
+
         asset = entity.Asset()
         asset.filename = self._msg['filename']
         asset.processing_state_id = entity.ProcessingState.PENDING
@@ -436,6 +471,13 @@ class AssetChangeDetector(MessageHandler):
     Forwards only those assets that have changed.
     """
     def process_message(self, all_eos_received):
+        print(f'{self.name} processing: {self._msg}')
+
+        # No special EOS handling needed here
+        self._eos_done = True
+        if all_eos_received:
+            return None, None
+
         asset = entity.Asset()
         asset.id = self._msg['asset_id']
         asset.load()
@@ -463,10 +505,17 @@ class AssetChangeDetector(MessageHandler):
 class AssetTypeChecker(MessageHandler):
     """
     Checks if an asset has a type or not.
-    Forwards an asset with a type to the with_type queue.
-    Forwards an asset with no type to the without_type queue.
+    Forwards an asset with a type to the typed queue.
+    Forwards an asset with no type to the untyped queue.
     """
     def process_message(self, all_eos_received):
+        print(f'{self.name} processing: {self._msg}')
+
+        # No special EOS handling needed here
+        self._eos_done = True
+        if all_eos_received:
+            return None, None
+
         asset = entity.Asset()
         asset.id = self._msg['asset_id']
         asset.load()
@@ -475,6 +524,8 @@ class AssetTypeChecker(MessageHandler):
         result = {'msg_type': 'regular', 'asset_id': asset.id}
         if asset.type_id:
             queue = 'typed'
+
+        self._clear()
 
         return queue, result
 
@@ -488,13 +539,9 @@ class AssetGrouper(MessageHandler):
             self.group_by = config['group_by']
         self.groups: dict = {}
 
-    # def setup(self, msg: dict):
-    #     if 'stream_end' in msg:
-    #         self.stream_end_count += 1
-    #     else:
-    #         self.group.append(msg)
-
     def process_message(self, all_eos_received):
+        print(f'{self.name} processing: {self._msg}')
+
         result = None
 
         group = []
@@ -505,11 +552,13 @@ class AssetGrouper(MessageHandler):
                 group_name, group = self.groups.popitem()
             self._eos_done = len(self.groups) == 0
         else:
+            self._eos_done = False
+
             asset = entity.Asset()
             asset.id = self._msg['asset_id']
             asset.load()
 
-            if self.group_by:
+            if self.group_by is not None:
                 group_name = getattr(asset, self.group_by)
 
             if group_name not in self.groups:
@@ -525,6 +574,7 @@ class AssetGrouper(MessageHandler):
                 'msg_type': 'regular',
                 'group_name': group_name,
                 'group': group}
+            self._clear()
 
         return 'default', result
 
