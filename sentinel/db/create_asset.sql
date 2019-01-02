@@ -1,7 +1,7 @@
 
 create table asset_type
 (
-    id int4,
+    id serial,
 
     name text not null,
 

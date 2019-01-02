@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import subprocess
 from multiprocessing import Process
 
 import persistence
@@ -144,6 +145,13 @@ class Builder(Component):
         self._components = {}
 
     def build(self):
+        # TODO: Maybe use a process pool and scheduler that schedules the
+        #       components to run in the pool when there is pending work on
+        #       the component's input queue.
+        #       (This might not be worth it since the component will throttle
+        #        down when it hasn't got anything to do and then the OS can
+        #        put the process running the component to sleep for longer
+        #        periods of time to allow other busier components to run)
         for name in self._component_configs:
             cfg = self._component_configs[name]
             # handler = getattr(component, cfg.class_name)
@@ -260,6 +268,7 @@ class Builder(Component):
 class MessageHandler:
     def __init__(self, name: str, config: dict):
         self.name = name
+        self.test = False  # Set to true to enable special testing behaviour
         self._msg = None  # The current message being processes
         self._eos_names = set()
         self._eos_done = None  # Tri-state
@@ -272,7 +281,6 @@ class MessageHandler:
 
     def setup(self, msg: dict):
         self._msg = msg
-        # self._eos_done = False
 
     def run(self):
         # print(f'{self.name} received: {self._msg}')
@@ -281,52 +289,44 @@ class MessageHandler:
         if self._msg is None:
             return None, None
         elif self._eos_received():
-            if self._check_eos_count():
-                # Sync EOS case (sync_eos = True)
-                # All end of stream (EOS) messages received
-                # if self._sync_eos and not self._eos_done:
+            if self._all_eos_received():
+                # All end of stream (EOS) messages received.
                 if self._eos_done is None:
-                    # The component did no work
-                    # Clear the message and forward the EOS as a broadcast
+                    # The component did no work.
+                    # Still need to clear the message and broadcast the EOS.
+                    # print(f'{self.name} EOS 1')
                     self._eos_names.clear()
                     eos = self._reset_and_create_broadcast()
                     return '*', eos
 
                 if not self._eos_done:
-                    # The handler still has some processing to do
+                    # The handler still has some processing to do.
                     all_eos_received = True
                 else:
-                    # Clear the message and forward the EOS as a broadcast
+                    # Clear the message and forward the EOS as a broadcast.
+                    # print(f'{self.name} EOS 2')
                     self._eos_names.clear()
                     eos = self._reset_and_create_broadcast()
                     return '*', eos
             else:
                 # Not all EOS's have arrived. Do nothing.
                 return None, None
-            # elif self._eos_done:
-            #     # Non-sync EOS case (sync_eos = False or absent)
-            #     # Clear the message and forward the EOS as a broadcast
-            #     eos = self._reset_and_create_broadcast()
-            #     return '*', eos
 
         return self.process_message(all_eos_received)
 
     def process_message(self, all_eos_received):
         raise NotImplementedError("You need to override this method")
 
-    def _check_eos_count(self) -> bool:
+    def _all_eos_received(self) -> bool:
         """
-        If configured to sync EOSs' checks if all EOS have been received.
+        Checks if all EOS messages have been received.
         For example, there might be two components before this one in the
         pipeline and we have to wait for each of them to send us their EOS.
 
-        :dict msg: The supposed end of stream message.
         :return: True if all EOSs' have been received, False otherwise.
         """
         if not self._msg:
             return False
-        # if not self._sync_eos:
-        #    return False
         if not self._sync_eos_count:
             return False
 
@@ -349,7 +349,7 @@ class MessageHandler:
         self._eos_done = None
         eos = self._msg
         self._label_message_as_broadcast(eos)
-        self._msg = None
+        self._clear()
         return eos
 
     def _clear(self):
@@ -373,7 +373,7 @@ class Printer(MessageHandler):
         print(f'{self.name} received {msg}')
 
     def run(self):
-        if self._check_eos_count():
+        if self._all_eos_received():
             # All end of stream (EOS) messages received
             self._eos_done = True
             self._eos_done_count += 1
@@ -568,17 +568,173 @@ class AssetGrouper(MessageHandler):
             if len(self.groups[group_name]) == self.group_size:
                 group = self.groups[group_name]
                 del self.groups[group_name]
+                self._clear()
 
         if len(group) > 0:
             result = {
                 'msg_type': 'regular',
                 'group_name': group_name,
-                'group': group}
+                'group': group
+            }
 
         return 'default', result
 
 
-class UEMetadataExtractor(MessageHandler):
+class Command(MessageHandler):
+    """
+    Runs an Unreal Engine command and retrieves its output on stdout.
+    The text output is then forwarded unchanged to the output queue.
+    """
     def __init__(self, name: str, config: dict):
         super().__init__(name, config)
+        self._command = config['command']
+        self._project = None
+        if 'project' in config:
+            self._project = config['project']
+        self._flags = None
+        if 'flags' in config:
+            self._flags = config['flags']
+        self._type_flags = None
+        if 'type_flags' in config:
+            self._type_flags = config['type_flags']
 
+    def process_message(self, all_eos_received):
+        # TODO: Analyze the possibility of executing arbitrary user provided
+        #       commands.
+
+        # print(f'{self.name} processing: {self._msg}')
+
+        # No special EOS handling needed here
+        self._eos_done = True
+        if all_eos_received:
+            return None, None
+
+        asset_group = []
+        if 'group' in self._msg:
+            asset_group = self._msg['group']
+
+        cmd = self._build_command(asset_group)
+
+        if self.test:
+            return cmd
+        else:
+            proc = subprocess.run(cmd, encoding='iso-8859-1', stdout=subprocess.PIPE)
+            result = {
+                'msg_type': 'regular',
+                'command_output': proc.stdout  # .decode(encoding='utf-8', errors='ignore')
+            }
+
+            self._clear()
+            return 'default', result
+
+    def _build_command(self, asset_group: list) -> list:
+        cmd = [self._command]
+        if self._project is not None:
+            cmd.append(self._project)
+        if self._flags is not None:
+            self._add_flags(cmd, self._flags)
+        if 'asset_type' in self._msg:
+            # This is the name of the asset type (not the id)
+            asset_type = self._msg['asset_type']
+            if asset_type in self._type_flags:
+                flags = self._type_flags[asset_type]
+                self._add_flags(cmd,  flags)
+        # TODO: Possible optimization:
+        #       Get all the filenames in one query
+        for entry in asset_group:
+            asset = entity.Asset()
+            asset.id = entry['asset_id']
+            asset.load()
+            cmd.append(asset.filename)
+
+        return cmd
+
+    def _add_flags(self, cmd: list, flags: list):
+        for flag in flags:
+            cmd.append(flag)
+
+
+class UnrealAssetTypeAssigner(MessageHandler):
+    """
+    Extracts the asset type from the given text which is the output of the
+    Unreal Engine PkgInfoCommandlet and assigns the type to the asset.
+    The asset is found using the asset filename in the text.
+    """
+    def __init__(self, name: str, config: dict):
+        super().__init__(name, config)
+        self._text = None
+        self._pos = 0
+
+    def setup(self, msg: dict):
+        super().setup(msg)
+
+        if 'end_of_stream' in msg:
+            return
+
+        self._text = msg['command_output']
+        self._pos = 0
+
+    def process_message(self, all_eos_received):
+        # print(f'{self.name} processing: {self._msg}')
+
+        # No special EOS handling needed here
+        self._eos_done = True
+        if all_eos_received:
+            return None, None
+
+        filename = self._read_filename()
+        if filename is None:
+            return None, None
+        print(f'filename = "{filename}"')
+
+        # TODO: Handle type not found
+        type_name = self._read_type_name()
+        print(f'type_name = "{type_name}"')
+
+        asset = entity.Asset()
+        asset.filename = filename
+        asset.load_by_filename()
+
+        asset_type = entity.AssetType()
+        asset_type.name = type_name
+        try:
+            asset_type.load_by_name()
+        except persistence.NotFoundError:
+            asset_type.save()
+
+        asset.set_type(asset_type)
+        asset.save()
+
+        db.commit()
+
+        result = {
+            'msg_type': 'regular',
+            'asset_id': asset.id
+        }
+
+        return 'default', result
+
+    def _read_filename(self):
+        token = '         Filename: '
+        begin = self._text.find(token, self._pos)
+        if begin == -1:
+            return None
+        begin += len(token)
+        end = self._text.find('\n', begin)
+        filename = self._text[begin:end]
+        filename = filename.replace('/', '\\')
+        self._pos = end
+
+        return filename
+
+    def _read_type_name(self):
+        token = 'Number of assets with Asset Registry data:'
+        begin = self._text.find(token, self._pos) + len(token)
+        token = ') '
+        begin = self._text.find(token, begin) + len(token)
+        token = '\''
+        end = self._text.find(token, begin)
+        type_name = self._text[begin:end]
+        self._pos = end
+
+        return type_name

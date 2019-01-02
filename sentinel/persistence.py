@@ -32,7 +32,7 @@ class Database:
             cls._instance = object.__new__(cls)
             try:
                 db_name = config.default_database
-                print(f'Connecting to database {db_name}')
+                # print(f'Connecting to database {db_name}')
                 conn_str = config.databases[db_name]['connection_string']
                 cls._instance.connection = psycopg2.connect(**conn_str)
                 cls._set_timezone()
@@ -40,7 +40,8 @@ class Database:
                 print(f'Error: Database connection not established: {error}')
                 Database._instance = None
             else:
-                print('Database connection established')
+                # print('Database connection established')
+                pass
 
         return cls._instance
 

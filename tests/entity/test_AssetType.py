@@ -10,16 +10,15 @@ class TestAssetType(TestCase):
 
     def setUp(self):
         self.asset_type = entity.AssetType()
-        self.asset_type.id = 1
         self.asset_type.name = 'AssetType1'
-        self.asset_type.insert()
+        self.asset_type.save()
 
     def tearDown(self):
         db.rollback()
 
     def test_load(self):
         at = entity.AssetType()
-        at.id = 1
+        at.id = self.asset_type.id
         at.load()
 
         self.assertEqual(self.asset_type.id, at.id)
@@ -35,14 +34,14 @@ class TestAssetType(TestCase):
 
     def test_save(self):
         at1 = entity.AssetType()
-        at1.id = 1
+        at1.id = self.asset_type.id
         at1.load()
 
         at1.name = 'ChangedName'
         at1.save()
 
         at2 = entity.AssetType()
-        at2.id = 1
+        at2.id = self.asset_type.id
         at2.load()
 
         self.assertEqual(at1.id, at2.id)
