@@ -46,7 +46,7 @@ components = {
     },
     'detect changed asset': {
         'class_name': 'AssetChangeDetector',
-        'instance_count': 2,
+        'instance_count': 12,
         'input_queue': 'pre.unchecked_asset',
         'output_queues': {
             'default': 'pre.changed_asset'
@@ -72,7 +72,7 @@ components = {
             'default': 'untyped.asset_group'
         },
         'config': {
-            'group_size': 3
+            'group_size': 100
         }
     },
     'group into bins by type': {
@@ -83,13 +83,13 @@ components = {
             'default': 'typed.asset_group'
         },
         'config': {
-            'group_size': 3,
+            'group_size': 50,
             'group_by': 'type_id'
         }
     },
     'extract type info': {
         'class_name': 'Command',
-        'instance_count': 2,
+        'instance_count': 3,
         'input_queue': 'untyped.asset_group',
         'output_queues': {
             'default': 'untyped.assets_type_info'
@@ -136,11 +136,17 @@ if __name__ == '__main__':
     #       builder.broadcast do it.
     time.sleep(1)
 
-    directory = os.path.join(os.getcwd(), 'test_content')
+    # directory = os.path.join(os.getcwd(), 'test_content')
+    directory = 'C:\\Users\\jens\\projects\\busmoneygames\\Sentinel-UE4\\Content'
     builder.send('pre.directory',
                  {
                      'directory': directory,
                      'extension': '.uasset'
+                 })
+    builder.send('pre.directory',
+                 {
+                     'directory': directory,
+                     'extension': '.umap'
                  })
     builder.broadcast('pre.directory', {'from': 'builder', 'end_of_stream': True})
     # builder.print_queue('pre.asset_file')
