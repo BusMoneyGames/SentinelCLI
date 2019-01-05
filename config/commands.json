@@ -2,14 +2,16 @@
 	"Compile Editor": {
 		"command": "SentinelTool.exe",
 		"args": "-c",
-		"description": "compiles the game",
-		"Button Label": "Compile"
+		"description": "Compiles code in the project",
+		"label": "Compile",
+        "details"
 	},
-	"Run Editor": {
+	"Clean Project": {
 		"command": "SentinelTool.exe",
 		"args": "-c",
-		"description": "compiles the game",
-		"Button Label": "Compile"
+		"description": "Removes generated files from the project",
+		"label": "Clean Project",
+		"details": "Fudge"
 	}
 	
 }
