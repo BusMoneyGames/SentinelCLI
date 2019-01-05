@@ -7,6 +7,7 @@ home = str(pathlib.Path.home())
 
 script_file = pathlib.PurePath(os.path.realpath(__file__))
 bin_scripts = script_file.parent.joinpath("bin")
+config_files = script_file.parent.joinpath("config")
 
 build_folder = script_file.parent.joinpath("SentinelTool")
 
@@ -34,7 +35,7 @@ includes = ["ConfigParser",
 excludes = ["tests", "test_data", "_tests","testdata"]
 
 buildOptions = dict(packages=includes,
-                    include_files=[bin_scripts],
+                    include_files=[bin_scripts, config_files],
                     excludes=excludes,
                     build_exe=build_folder
                     )

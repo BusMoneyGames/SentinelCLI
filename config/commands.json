@@ -1,0 +1,15 @@
+{
+	"Compile Editor": {
+		"command": "SentinelTool.exe",
+		"args": "-c",
+		"description": "compiles the game",
+		"Button Label": "Compile"
+	},
+	"Run Editor": {
+		"command": "SentinelTool.exe",
+		"args": "-c",
+		"description": "compiles the game",
+		"Button Label": "Compile"
+	}
+	
+}
