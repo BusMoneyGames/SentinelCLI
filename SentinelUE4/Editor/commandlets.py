@@ -139,8 +139,8 @@ class BaseUE4Commandlet:
         with open(temp_dump_file, "w", encoding='utf-8') as fp:
             for line in popen.stdout:
                 line = line.decode('utf-8').rstrip()
-                print(line)
-                print(line, file=fp)
+                print(line, flush=True)
+                print(line, file=fp, flush=True)
 
         # Waiting for the process to close
         popen.wait()
