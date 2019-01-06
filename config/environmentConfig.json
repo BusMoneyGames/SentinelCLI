@@ -1,0 +1,20 @@
+{
+  "Unreal Editor Path": {
+		"script": "bin/run_editor.bat",
+		"description": "Opens the unreal editor for working on the project",
+		"label": "Start Editor",
+		"details": "Fudge"
+	},
+	"Swarm Agent Running": {
+		"script": "bin/compile_binaries.bat",
+		"description": "Compiles code in the project",
+		"label": "Compile",
+        "details": "More details about how the config works"
+	},
+	"DCC Cache Location": {
+		"script": "bin/clean_project.bat",
+		"description": "Removes generated files from the project",
+		"label": "Clean Project",
+		"details": "Fudge"
+	},
+}
