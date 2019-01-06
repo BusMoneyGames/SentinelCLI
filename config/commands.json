@@ -1,16 +1,26 @@
 {
+  "Run Editor": {
+		"script": "bin/run_editor.bat",
+		"description": "Opens the unreal editor for working on the project",
+		"label": "Start Editor",
+		"details": "Fudge"
+	},
 	"Compile Editor": {
-		"command": "SentinelTool.exe",
-		"args": "-c",
+		"script": "bin/compile_binaries.bat",
 		"description": "Compiles code in the project",
 		"label": "Compile",
-        "details"
+        "details": "More details about how the config works"
 	},
 	"Clean Project": {
-		"command": "SentinelTool.exe",
-		"args": "-c",
+		"script": "bin/clean_project.bat",
 		"description": "Removes generated files from the project",
 		"label": "Clean Project",
+		"details": "Fudge"
+	},
+	"Deploy For Testing": {
+		"script": "bin/deploy_for_testing.bat",
+		"description": "Makes a build and copies it to a test location",
+		"label": "Deploy For Testing",
 		"details": "Fudge"
 	}
 	

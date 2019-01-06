@@ -146,10 +146,10 @@ def clean_unreal_project(project_root_folder):
     for each_folder in folders_to_remove:
         try:
             shutil.rmtree(each_folder.as_posix())
-            print("Deleting:%", each_folder.as_posix())
+            print("Deleting: ", each_folder.as_posix())
         except Exception as e:
             print(e)
-            print("Unable to remove %s ", each_folder.as_posix())
+            print("Unable to remove ", each_folder.as_posix())
 
 
 clean_unreal_project("D:\Work\BusMoneyGames\Sentinel-UE4")
