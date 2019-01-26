@@ -1,3 +1,4 @@
 [submodule "Sentinel-Frontend"]
 	path = Sentinel-Frontend
 	url = git@github.com:BusMoneyGames/Sentinel-Frontend.git
+	branch = develop
