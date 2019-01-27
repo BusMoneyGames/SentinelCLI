@@ -4,6 +4,7 @@ import SentinelUE4.ue4_package_inspection
 from SentinelUE4 import ue4_project_info
 from SentinelUE4 import ue4_engine_commands
 from SentinelUE4 import ue4_data_parse
+from SentinelUE4 import ue4_project_setup
 from SentinelUE4.Editor import commandlets, buildcommands
 
 import Utilities.BaseSentinelLogging as SentinelLogging
@@ -184,6 +185,9 @@ def build_game(unreal_project_info, should_deploy, should_store_build):
         if should_store_build:
             L.info("Moving build to sentinel folder...")
             build_obj.deploy_to_sentinel_reports_folder()
+
+def setup_unreal_engine_from_source(unreal_project_info):
+    ue4_project_setup.clone_project_engine(unreal_project_info)
 
 
 if __name__ == "__main__":

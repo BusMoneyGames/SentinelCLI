@@ -11,6 +11,9 @@ class TestSentinelUnrealTool(BaseSentinelTest.SentinelBaseTest):
         # Hard reset and clean the git project
         super().setUp()
 
+    def test_setup_unreal_engine_from_source(self):
+        SentinelUnrealTool.setup_unreal_engine_from_source(self.sentinel_report_project_paths)
+
     def test_build_game(self):
         SentinelUnrealTool.compile_editor(self.unreal_project_paths)
         SentinelUnrealTool.build_game(self.unreal_project_paths, should_deploy=False, should_store_build=False)
