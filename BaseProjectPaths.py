@@ -480,9 +480,18 @@ class SentinelSettingsFile:
     def get_engine_path(self):
         # First check if we have an environment variable configured for the engine path
         env_variable_path = self._check_for_env_variable(CONSTANTS.ENV_ENGINE_PATH_PREFIX)
+        L.debug("environment variable path: %s", env_variable_path)
+
+        # Check for default engine path
+        default_engine_path = pathlib.Path(self.project_root_path).joinpath("UnrealEngine")
+        L.debug("Default Engine Path: %s", default_engine_path)
 
         if env_variable_path:
             path = pathlib.Path(env_variable_path)
+            L.info("Engine found at config variable")
+        elif default_engine_path.exists():
+            path = default_engine_path.joinpath("Engine")
+            L.info("Engine found at default path")
         else:
             # Check if there is a hardcoded path in config file
             engine_path = self._get_value_from_data("engine_path")
@@ -636,13 +645,16 @@ class SentinelSettingsFile:
 class SentinelAssetRules:
 
     def __init__(self, settings_file_path):
+        try:
+            f = open(settings_file_path, "r")
+            self.data = json.load(f)
+            L.debug("Read settings file from")
+            f.close()
+            self.asset_rules_dict = self.data["AssetRules"]
+        except:
+            self.data = {}
 
-        f = open(settings_file_path, "r")
-        self.data = json.load(f)
-        L.debug("Read settings file from")
-        f.close()
-
-        self.asset_rules_dict = self.data["AssetRules"]
+            self.asset_rules_dict = {}
 
     def get_asset_rules_for_type(self, asset_type):
 
