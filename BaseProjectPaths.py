@@ -478,9 +478,8 @@ class SentinelSettingsFile:
         return value
 
     def get_default_engine_path(self):
-        project_identifier = self.get_project_identifier()
         engine_folder_root = pathlib.Path(self.project_root_path).parent
-        return pathlib.Path(engine_folder_root).joinpath("UE4", "UE_" + project_identifier)
+        return pathlib.Path(engine_folder_root).joinpath("UnrealEngine")
 
     def get_engine_path(self):
         # First check if we have an environment variable configured for the engine path
