@@ -12,7 +12,7 @@ class ClientRunProcessor:
     Handles processing the whole log from the client run.
 
     Extracts out the sections of the logs for each test
-    Match screenshots to the _tests names
+    Match screenshots to the _featuretests names
     # Extracts information from the log about the run ( graphics adapter for example )
     """
 

@@ -95,6 +95,7 @@
    "sentinel_project_structure":{
       "sentinel_project_name":"SentinelReports",
       "sentinel_raw_logs_path":"Raw/",
+      "sentinel_archives_path": "Archive/",
       "sentinel_default_cook_log_name":"default_client_build.log",
       "sentinel_default_editor_log_name":"default_compile.log"
    },

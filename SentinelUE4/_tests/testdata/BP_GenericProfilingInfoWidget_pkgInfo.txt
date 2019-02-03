@@ -1,177 +1,0 @@
-LogPackageUtilities: Warning: Package '/Temp/Work/BusMoneyGames/sentinel-ue4/Content/External/BMG_ProfilingTools/BP_GenericProfilingInfoWidget' Summary
-LogPackageUtilities: Warning: --------------------------------------------
-LogPackageUtilities: Warning: 	         Filename: E:/Work/BusMoneyGames/sentinel-ue4/Content/External/BMG_ProfilingTools/BP_GenericProfilingInfoWidget.uasset
-LogPackageUtilities: Warning: 	     File Version: 514
-LogPackageUtilities: Warning: 	   Engine Version: 4.18.3-3832480+++UE4+Release-4.18
-LogPackageUtilities: Warning: 	   Compat Version: 4.18.0-3709383+++UE4+Release-4.18
-LogPackageUtilities: Warning: 	     PackageFlags: 40000
-LogPackageUtilities: Warning: 	        NameCount: 113
-LogPackageUtilities: Warning: 	       NameOffset: 291
-LogPackageUtilities: Warning: 	      ImportCount: 22
-LogPackageUtilities: Warning: 	     ImportOffset: 2832
-LogPackageUtilities: Warning: 	      ExportCount: 12
-LogPackageUtilities: Warning: 	     ExportOffset: 3448
-LogPackageUtilities: Warning: 	Compression Flags: 0
-LogPackageUtilities: Warning: 	  Custom Versions:
-		Key=E4B068EDF49442E9A231DA0B2E46BB41  Version=20  Friendly Name=Dev-Editor 
-		Key=B0D832E41F894F0DACCF7EB736FD4AA2  Version=10  Friendly Name=Dev-Blueprints 
-		Key=CFFC743F43B04480939114DF171D2073  Version=30  Friendly Name=Dev-Framework 
-
-LogPackageUtilities: Warning: 	             Guid: 14558844496FC167138B1D809C1E07D2
-LogPackageUtilities: Warning: 			0) ExportCount=12, NameCount=113 
-LogPackageUtilities: Warning: --------------------------------------------
-LogPackageUtilities: Warning: 	0: Name '/Game/External/BMG_ProfilingTools/BP_GenericProfilingInfoWidget' Comparison Index 59718 Display Index 59718 [Internal: /Game/External/BMG_ProfilingTools/BP_GenericProfilingInfoWidget, 0]
-LogPackageUtilities: Warning: 	1: Name '/Script/BlueprintGraph' Comparison Index 4020 Display Index 4020 [Internal: /Script/BlueprintGraph, 0]
-LogPackageUtilities: Warning: 	2: Name '/Script/CoreUObject' Comparison Index 765 Display Index 765 [Internal: /Script/CoreUObject, 0]
-LogPackageUtilities: Warning: 	3: Name '/Script/Engine' Comparison Index 9382 Display Index 9382 [Internal: /Script/Engine, 0]
-LogPackageUtilities: Warning: 	4: Name '/Script/SlateCore' Comparison Index 1484 Display Index 1484 [Internal: /Script/SlateCore, 0]
-LogPackageUtilities: Warning: 	5: Name '/Script/UMG' Comparison Index 4739 Display Index 4739 [Internal: /Script/UMG, 0]
-LogPackageUtilities: Warning: 	6: Name '/Script/UMGEditor' Comparison Index 3663 Display Index 3663 [Internal: /Script/UMGEditor, 0]
-LogPackageUtilities: Warning: 	7: Name 'AllWidgets' Comparison Index 39649 Display Index 39649 [Internal: AllWidgets, 0]
-LogPackageUtilities: Warning: 	8: Name 'AnchorData' Comparison Index 4769 Display Index 4769 [Internal: AnchorData, 0]
-LogPackageUtilities: Warning: 	9: Name 'Appearance' Comparison Index 60314 Display Index 60314 [Internal: Appearance, 0]
-LogPackageUtilities: Warning: 	10: Name 'ArrayProperty' Comparison Index 9 Display Index 9 [Internal: ArrayProperty, 0]
-LogPackageUtilities: Warning: 	11: Name 'bAllowDeletion' Comparison Index 39141 Display Index 39141 [Internal: bAllowDeletion, 0]
-LogPackageUtilities: Warning: 	12: Name 'bAllowTemplate' Comparison Index 39559 Display Index 39559 [Internal: bAllowTemplate, 0]
-LogPackageUtilities: Warning: 	13: Name 'bAutoSize' Comparison Index 39313 Display Index 39313 [Internal: bAutoSize, 0]
-LogPackageUtilities: Warning: 	14: Name 'bCanEverPaint' Comparison Index 39531 Display Index 39531 [Internal: bCanEverPaint, 0]
-LogPackageUtilities: Warning: 	15: Name 'bCanEverTick' Comparison Index 27018 Display Index 27018 [Internal: bCanEverTick, 0]
-LogPackageUtilities: Warning: 	16: Name 'bCommentBubblePinned' Comparison Index 38785 Display Index 38785 [Internal: bCommentBubblePinned, 0]
-LogPackageUtilities: Warning: 	17: Name 'bCommentBubbleVisible' Comparison Index 38784 Display Index 38784 [Internal: bCommentBubbleVisible, 0]
-LogPackageUtilities: Warning: 	18: Name 'bCookSlowConstructionWidgetTree' Comparison Index 38825 Display Index 38825 [Internal: bCookSlowConstructionWidgetTree, 0]
-LogPackageUtilities: Warning: 	19: Name 'Behavior' Comparison Index 60315 Display Index 60315 [Internal: Behavior, 0]
-LogPackageUtilities: Warning: 	20: Name 'bExpandedInDesigner' Comparison Index 28777 Display Index 28777 [Internal: bExpandedInDesigner, 0]
-LogPackageUtilities: Warning: 	21: Name 'bLegacyGeneratedClassIsAuthoritative' Comparison Index 38827 Display Index 38827 [Internal: bLegacyGeneratedClassIsAuthoritative, 0]
-LogPackageUtilities: Warning: 	22: Name 'bLegacyNeedToPurgeSkelRefs' Comparison Index 38828 Display Index 38828 [Internal: bLegacyNeedToPurgeSkelRefs, 0]
-LogPackageUtilities: Warning: 	23: Name 'BlueprintGuid' Comparison Index 38826 Display Index 38826 [Internal: BlueprintGuid, 0]
-LogPackageUtilities: Warning: 	24: Name 'BlueprintSystemVersion' Comparison Index 38841 Display Index 38841 [Internal: BlueprintSystemVersion, 0]
-LogPackageUtilities: Warning: 	25: Name 'BlueprintType' Comparison Index 3871 Display Index 3871 [Internal: BlueprintType, 0]
-LogPackageUtilities: Warning: 	26: Name 'BoolProperty' Comparison Index 3 Display Index 3 [Internal: BoolProperty, 0]
-LogPackageUtilities: Warning: 	27: Name 'Bottom' Comparison Index 3646 Display Index 3646 [Internal: Bottom, 0]
-LogPackageUtilities: Warning: 	28: Name 'bOverrideFunction' Comparison Index 38990 Display Index 38990 [Internal: bOverrideFunction, 0]
-LogPackageUtilities: Warning: 	29: Name 'BP_GenericProfilingInfoWidget' Comparison Index 59720 Display Index 59720 [Internal: BP_GenericProfilingInfoWidget, 0]
-LogPackageUtilities: Warning: 	30: Name 'BP_GenericProfilingInfoWidget_C' Comparison Index 59748 Display Index 59748 [Internal: BP_GenericProfilingInfoWidget_C, 0]
-LogPackageUtilities: Warning: 	31: Name 'CanvasPanel' Comparison Index 16378 Display Index 16378 [Internal: CanvasPanel, 0]
-LogPackageUtilities: Warning: 	32: Name 'CanvasPanelSlot' Comparison Index 16380 Display Index 16380 [Internal: CanvasPanelSlot, 0]
-LogPackageUtilities: Warning: 	33: Name 'Category' Comparison Index 3340 Display Index 3340 [Internal: Category, 0]
-LogPackageUtilities: Warning: 	34: Name 'CategorySorting' Comparison Index 38843 Display Index 38843 [Internal: CategorySorting, 0]
-LogPackageUtilities: Warning: 	35: Name 'Class' Comparison Index 105 Display Index 105 [Internal: Class, 0]
-LogPackageUtilities: Warning: 	36: Name 'Construct' Comparison Index 5009 Display Index 5009 [Internal: Construct, 0]
-LogPackageUtilities: Warning: 	37: Name 'Content' Comparison Index 22272 Display Index 22272 [Internal: Content, 0]
-LogPackageUtilities: Warning: 	38: Name 'Default__BP_GenericProfilingInfoWidget_C' Comparison Index 60316 Display Index 60316 [Internal: Default__BP_GenericProfilingInfoWidget_C, 0]
-LogPackageUtilities: Warning: 	39: Name 'Default__UserWidget' Comparison Index 46881 Display Index 46881 [Internal: Default__UserWidget, 0]
-LogPackageUtilities: Warning: 	40: Name 'Default__WidgetBlueprint' Comparison Index 46547 Display Index 46547 [Internal: Default__WidgetBlueprint, 0]
-LogPackageUtilities: Warning: 	41: Name 'DefaultGraphNode' Comparison Index 9286 Display Index 9286 [Internal: DefaultGraphNode, 0]
-LogPackageUtilities: Warning: 	42: Name 'EdGraph' Comparison Index 16041 Display Index 16041 [Internal: EdGraph, 0]
-LogPackageUtilities: Warning: 	43: Name 'EdGraphSchema_K2' Comparison Index 15885 Display Index 15885 [Internal: EdGraphSchema_K2, 0]
-LogPackageUtilities: Warning: 	44: Name 'EditedDocumentInfo' Comparison Index 10273 Display Index 10273 [Internal: EditedDocumentInfo, 0]
-LogPackageUtilities: Warning: 	45: Name 'EditedObject' Comparison Index 36122 Display Index 36122 [Internal: EditedObject, 0]
-LogPackageUtilities: Warning: 	46: Name 'EnabledState' Comparison Index 38790 Display Index 38790 [Internal: EnabledState, 0]
-LogPackageUtilities: Warning: 	47: Name 'Engine' Comparison Index 31 Display Index 31 [Internal: Engine, 0]
-LogPackageUtilities: Warning: 	48: Name 'ENodeEnabledState' Comparison Index 10817 Display Index 10817 [Internal: ENodeEnabledState, 0]
-LogPackageUtilities: Warning: 	49: Name 'ENodeEnabledState::Disabled' Comparison Index 30748 Display Index 30748 [Internal: ENodeEnabledState::Disabled, 0]
-LogPackageUtilities: Warning: 	50: Name 'EnumProperty' Comparison Index 34 Display Index 34 [Internal: EnumProperty, 0]
-LogPackageUtilities: Warning: 	51: Name 'EventGraph' Comparison Index 3960 Display Index 3960 [Internal: EventGraph, 0]
-LogPackageUtilities: Warning: 	52: Name 'EventReference' Comparison Index 38991 Display Index 38991 [Internal: EventReference, 0]
-LogPackageUtilities: Warning: 	53: Name 'FloatProperty' Comparison Index 4 Display Index 4 [Internal: FloatProperty, 0]
-LogPackageUtilities: Warning: 	54: Name 'GeneratedClass' Comparison Index 35672 Display Index 35672 [Internal: GeneratedClass, 0]
-LogPackageUtilities: Warning: 	55: Name 'Geometry' Comparison Index 1533 Display Index 1533 [Internal: Geometry, 0]
-LogPackageUtilities: Warning: 	56: Name 'GraphGuid' Comparison Index 36384 Display Index 36384 [Internal: GraphGuid, 0]
-LogPackageUtilities: Warning: 	57: Name 'Guid' Comparison Index 1033 Display Index 1033 [Internal: Guid, 0]
-LogPackageUtilities: Warning: 	58: Name 'InDeltaTime' Comparison Index 39529 Display Index 39529 [Internal: InDeltaTime, 0]
-LogPackageUtilities: Warning: 	59: Name 'Input' Comparison Index 206 Display Index 206 [Internal: Input, 0]
-LogPackageUtilities: Warning: 	60: Name 'Interaction' Comparison Index 60317 Display Index 60317 [Internal: Interaction, 0]
-LogPackageUtilities: Warning: 	61: Name 'IntProperty' Comparison Index 2 Display Index 2 [Internal: IntProperty, 0]
-LogPackageUtilities: Warning: 	62: Name 'IsDesignTime' Comparison Index 39523 Display Index 39523 [Internal: IsDesignTime, 0]
-LogPackageUtilities: Warning: 	63: Name 'K2Node_Event' Comparison Index 15935 Display Index 15935 [Internal: K2Node_Event, 0]
-LogPackageUtilities: Warning: 	64: Name 'Keywords' Comparison Index 3905 Display Index 3905 [Internal: Keywords, 0]
-LogPackageUtilities: Warning: 	65: Name 'LastEditedDocuments' Comparison Index 38182 Display Index 38182 [Internal: LastEditedDocuments, 0]
-LogPackageUtilities: Warning: 	66: Name 'Layout' Comparison Index 60318 Display Index 60318 [Internal: Layout, 0]
-LogPackageUtilities: Warning: 	67: Name 'LayoutData' Comparison Index 39314 Display Index 39314 [Internal: LayoutData, 0]
-LogPackageUtilities: Warning: 	68: Name 'Margin' Comparison Index 1535 Display Index 1535 [Internal: Margin, 0]
-LogPackageUtilities: Warning: 	69: Name 'MemberName' Comparison Index 26992 Display Index 26992 [Internal: MemberName, 0]
-LogPackageUtilities: Warning: 	70: Name 'MemberParent' Comparison Index 23961 Display Index 23961 [Internal: MemberParent, 0]
-LogPackageUtilities: Warning: 	71: Name 'MemberReference' Comparison Index 12452 Display Index 12452 [Internal: MemberReference, 0]
-LogPackageUtilities: Warning: 	72: Name 'MetaData' Comparison Index 14849 Display Index 14849 [Internal: MetaData, 0]
-LogPackageUtilities: Warning: 	73: Name 'ModuleRelativePath' Comparison Index 25721 Display Index 25721 [Internal: ModuleRelativePath, 0]
-LogPackageUtilities: Warning: 	74: Name 'NameProperty' Comparison Index 6 Display Index 6 [Internal: NameProperty, 0]
-LogPackageUtilities: Warning: 	75: Name 'Navigation' Comparison Index 28774 Display Index 28774 [Internal: Navigation, 0]
-LogPackageUtilities: Warning: 	76: Name 'NodeComment' Comparison Index 38780 Display Index 38780 [Internal: NodeComment, 0]
-LogPackageUtilities: Warning: 	77: Name 'NodeGuid' Comparison Index 38777 Display Index 38777 [Internal: NodeGuid, 0]
-LogPackageUtilities: Warning: 	78: Name 'NodePosY' Comparison Index 37615 Display Index 37615 [Internal: NodePosY, 0]
-LogPackageUtilities: Warning: 	79: Name 'Nodes' Comparison Index 34412 Display Index 34412 [Internal: Nodes, 0]
-LogPackageUtilities: Warning: 	80: Name 'None' Comparison Index 0 Display Index 0 [Internal: None, 0]
-LogPackageUtilities: Warning: 	81: Name 'Object' Comparison Index 100 Display Index 100 [Internal: Object, 0]
-LogPackageUtilities: Warning: 	82: Name 'ObjectProperty' Comparison Index 5 Display Index 5 [Internal: ObjectProperty, 0]
-LogPackageUtilities: Warning: 	83: Name 'Offsets' Comparison Index 35125 Display Index 35125 [Internal: Offsets, 0]
-LogPackageUtilities: Warning: 	84: Name 'Package' Comparison Index 207 Display Index 207 [Internal: Package, 0]
-LogPackageUtilities: Warning: 	85: Name 'PackageLocalizationNamespace' Comparison Index 987 Display Index 987 [Internal: PackageLocalizationNamespace, 0]
-LogPackageUtilities: Warning: 	86: Name 'PackageMetaData' Comparison Index 219 Display Index 219 [Internal: PackageMetaData, 0]
-LogPackageUtilities: Warning: 	87: Name 'Parent' Comparison Index 23606 Display Index 23606 [Internal: Parent, 0]
-LogPackageUtilities: Warning: 	88: Name 'ParentClass' Comparison Index 3616 Display Index 3616 [Internal: ParentClass, 0]
-LogPackageUtilities: Warning: 	89: Name 'Performance' Comparison Index 60319 Display Index 60319 [Internal: Performance, 0]
-LogPackageUtilities: Warning: 	90: Name 'PreConstruct' Comparison Index 5043 Display Index 5043 [Internal: PreConstruct, 0]
-LogPackageUtilities: Warning: 	91: Name 'Render Transform' Comparison Index 60320 Display Index 60320 [Internal: Render Transform, 0]
-LogPackageUtilities: Warning: 	92: Name 'Right' Comparison Index 1207 Display Index 1207 [Internal: Right, 0]
-LogPackageUtilities: Warning: 	93: Name 'RootWidget' Comparison Index 39650 Display Index 39650 [Internal: RootWidget, 0]
-LogPackageUtilities: Warning: 	94: Name 'SavedViewOffset' Comparison Index 36121 Display Index 36121 [Internal: SavedViewOffset, 0]
-LogPackageUtilities: Warning: 	95: Name 'SavedZoomAmount' Comparison Index 36120 Display Index 36120 [Internal: SavedZoomAmount, 0]
-LogPackageUtilities: Warning: 	96: Name 'Schema' Comparison Index 39142 Display Index 39142 [Internal: Schema, 0]
-LogPackageUtilities: Warning: 	97: Name 'ScriptStruct' Comparison Index 106 Display Index 106 [Internal: ScriptStruct, 0]
-LogPackageUtilities: Warning: 	98: Name 'Slot' Comparison Index 28793 Display Index 28793 [Internal: Slot, 0]
-LogPackageUtilities: Warning: 	99: Name 'Slots' Comparison Index 39261 Display Index 39261 [Internal: Slots, 0]
-LogPackageUtilities: Warning: 	100: Name 'StrProperty' Comparison Index 13 Display Index 13 [Internal: StrProperty, 0]
-LogPackageUtilities: Warning: 	101: Name 'StructProperty' Comparison Index 10 Display Index 10 [Internal: StructProperty, 0]
-LogPackageUtilities: Warning: 	102: Name 'Text' Comparison Index 3935 Display Index 27034 [Internal: Text, 0]
-LogPackageUtilities: Warning: 	103: Name 'TextBlock' Comparison Index 16583 Display Index 16583 [Internal: TextBlock, 0]
-LogPackageUtilities: Warning: 	104: Name 'TextProperty' Comparison Index 14 Display Index 14 [Internal: TextProperty, 0]
-LogPackageUtilities: Warning: 	105: Name 'Tick' Comparison Index 5044 Display Index 5044 [Internal: Tick, 0]
-LogPackageUtilities: Warning: 	106: Name 'ToolTip' Comparison Index 3909 Display Index 25722 [Internal: ToolTip, 0]
-LogPackageUtilities: Warning: 	107: Name 'UbergraphPages' Comparison Index 38855 Display Index 38855 [Internal: UbergraphPages, 0]
-LogPackageUtilities: Warning: 	108: Name 'UserWidget' Comparison Index 16606 Display Index 16606 [Internal: UserWidget, 0]
-LogPackageUtilities: Warning: 	109: Name 'Vector2D' Comparison Index 54 Display Index 54 [Internal: Vector2D, 0]
-LogPackageUtilities: Warning: 	110: Name 'WidgetBlueprint' Comparison Index 15880 Display Index 15880 [Internal: WidgetBlueprint, 0]
-LogPackageUtilities: Warning: 	111: Name 'WidgetBlueprintGeneratedClass' Comparison Index 16661 Display Index 16661 [Internal: WidgetBlueprintGeneratedClass, 0]
-LogPackageUtilities: Warning: 	112: Name 'WidgetTree' Comparison Index 16764 Display Index 16764 [Internal: WidgetTree, 0]
-LogPackageUtilities: Warning: --------------------------------------------
-LogPackageUtilities: Warning: 	Packages referenced by /Temp/Work/BusMoneyGames/sentinel-ue4/Content/External/BMG_ProfilingTools/BP_GenericProfilingInfoWidget:
-LogPackageUtilities: Warning: 		0) /Script/BlueprintGraph
-LogPackageUtilities: Warning: 		1) /Script/CoreUObject
-LogPackageUtilities: Warning: 		2) /Script/Engine
-LogPackageUtilities: Warning: 		3) /Script/UMG
-LogPackageUtilities: Warning: 		4) /Script/UMGEditor
-LogPackageUtilities: Warning: 		5) /Script/SlateCore
-LogPackageUtilities: Warning: --------------------------------------------
-LogPackageUtilities: Display: Asset Registry Size:       7253
-LogPackageUtilities: Display: Number of assets with Asset Registry data: 1
-LogPackageUtilities: Display: 		0) WidgetBlueprint'BP_GenericProfilingInfoWidget' (12 Tags)
-LogPackageUtilities: Display: 			"PaletteCategory": ""
-LogPackageUtilities: Display: 			"ParentClass": "Class'/Script/UMG.UserWidget'"
-LogPackageUtilities: Display: 			"BlueprintType": "BPTYPE_Normal"
-LogPackageUtilities: Display: 			"ImplementedInterfaces": ""
-LogPackageUtilities: Display: 			"GeneratedClass": "WidgetBlueprintGeneratedClass'/Game/External/BMG_ProfilingTools/BP_GenericProfilingInfoWidget.BP_GenericProfilingInfoWidget_C'"
-LogPackageUtilities: Display: 			"NumReplicatedProperties": "0"
-LogPackageUtilities: Display: 			"ParentClassPackage": "/Script/UMG"
-LogPackageUtilities: Display: 			"NativeParentClass": "Class'/Script/UMG.UserWidget'"
-LogPackageUtilities: Display: 			"BlueprintDescription": ""
-LogPackageUtilities: Display: 			"ClassFlags": "14946320"
-LogPackageUtilities: Display: 			"IsDataOnly": "False"
-LogPackageUtilities: Display: 			"FiBData": ".	GjoeJoCmvfqsjouNbobhfsQspqfsujftQspqfsujft	GjoeJoCmvfqsjouNbobhfsVcfsVcfs	GjoeJoCmvfqsjouNbobhfsObnfObnf	LjtnfuTdifnbHsbqiEjtqmbzObnf`FwfouHsbqiFwfouHsbqi	GjoeJoCmvfqsjouNbobhfs
-Eftdsjqujpo
-Eftdsjqujpo	CmvfqsjouOpHsbqiUppmujq)Opof*	GjoeJoCmvfqsjouNbobhfsOpeftOpeft	L3OpefFwfou`ObnfFwfou!|GvodujpoObnf~GvodujpoObnfVPckfduEjtqmbzObnftVtfsXjehfu;QsfDpotusvduQsf!Dpotusvdu		GjoeJoCmvfqsjouNbobhfsDmbttObnfDmbttObnf
-L3Opef`Fwfou	GjoeJoCmvfqsjouNbobhfs
-OpefHvje
-OpefHvje"8146C77951C2472D5BG62B9CCF595D7:
-	GjoeJoCmvfqsjouNbobhfsTdifnbObnfTdifnbObnfFeHsbqiTdifnb`L3	GjoeJoCmvfqsjouNbobhfsHmzqiHmzqiHsbqiFejups/Fwfou`27y	GjoeJoCmvfqsjouNbobhfsHmzqiTuzmfTfuHmzqiTuzmfTfu
-FejupsTuzmf	GjoeJoCmvfqsjouNbobhfsHmzqiDpmpsHmzqiDpmps/)S>2/111111-H>2/111111-C>2/111111-B>2/111111*	GjoeJoCmvfqsjouNbobhfs	Dpnnfou	DpnnfouUUijt!opef!jt!ejtbcmfe!boe!xjmm!opu!cf!dbmmfe/Esbh!pgg!qjot!up!cvjme!gvodujpobmjuz/	GjoeJoCmvfqsjouNbobhfsQjotQjotPvuqvu!Efmfhbuf	GjoeJoCmvfqsjouNbobhfsEfgbvmuWbmvfEfgbvmuWbmvf?	GjoeJoCmvfqsjouNbobhfs
-QjoDbufhpsz
-QjoDbufhpsz
-efmfhbuf	GjoeJoCmvfqsjouNbobhfs	JtBssbz	JtBssbz	GjoeJoCmvfqsjouNbobhfs
-JtSfgfsfodf
-JtSfgfsfodffyfd Jt!Eftjho!Ujnf!gbmtf"cppm#	L3OpefFwfou`ObnfFwfou!|GvodujpoObnf~GvodujpoObnfVPckfduEjtqmbzObnftVtfsXjehfu;DpotusvduDpotusvdu$"8FC6GG4:5C1B1:18153CFDCC48DBG7BB%	L3OpefFwfou`ObnfFwfou!|GvodujpoObnf~GvodujpoObnfVPckfduEjtqmbzObnftVtfsXjehfu;UjdlUjdl&"9892C38B5744D15BE42B49BE16CDFGB9'
-Nz!Hfpnfusz(tusvdu)	GjoeJoCmvfqsjouNbobhfs
-PckfduDmbtt
-PckfduDmbtt*
-Hfpnfusz+Jo!Efmub!Ujnf,1/1-gmpbu{"0":[],"1":[{"2":"3","4":"5","6":[{"2":"7","8":"9","10":"11","12":"13","14":"15","16":"17","18":"19","20":"21","22":[{"2":"23","24":"25","26":"27","28":false,"29":0},{"2":"25","24":"25","26":"30","28":false,"29":0},{"2":"31","24":"32","26":"33","28":false,"29":0}]},{"2":"34","8":"9","10":"35","12":"13","14":"15","16":"17","18":"19","20":"21","22":[{"2":"23","24":"25","26":"27","28":false,"29":0},{"2":"25","24":"25","26":"30","28":false,"29":0}]},{"2":"36","8":"9","10":"37","12":"13","14":"15","16":"17","18":"19","20":"21","22":[{"2":"23","24":"25","26":"27","28":false,"29":0},{"2":"25","24":"25","26":"30","28":false,"29":0},{"2":"38","24":"25","26":"39","40":"41","28":false,"29":0},{"2":"42","24":"43","26":"44","28":false,"29":0}]}],"0":[]}]}"
-LogPackageUtilities: Warning: 
-LogPackageUtilities: Warning: ********************************************

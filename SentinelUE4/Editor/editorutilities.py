@@ -52,3 +52,15 @@ class UEUtilities:
         project_file_path = uproject_files[0]
 
         return project_file_path
+
+    def get_all_content_files(self):
+        content_value = self.run_config[CONSTANTS.UNREAL_PROJECT_STRUCTURE][CONSTANTS.UNREAL_CONTENT_ROOT_PATH]
+        project_root = pathlib.Path(self.run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
+
+        content_path = project_root.joinpath(content_value)
+
+        files = []
+        for i, each_file in enumerate(content_path.glob("**/*.uasset")):
+            files.append(each_file)
+
+        return files

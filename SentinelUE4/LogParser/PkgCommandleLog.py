@@ -1,7 +1,7 @@
 # coding=utf-8
-import os
+
 import pathlib
-from SentinelUE4.LogParser import BaseLogParser
+from LogParser import BaseLogParser
 import re
 import logging
 L = logging.getLogger()

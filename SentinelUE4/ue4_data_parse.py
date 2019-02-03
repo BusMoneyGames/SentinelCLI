@@ -4,13 +4,12 @@
 import os
 import json
 import logging
-import io
-import re
 
 import CONSTANTS
-from SentinelUE4.LogParser import PkgCommandleLog
+from LogParser import PkgCommandleLog
 
 L = logging.getLogger(__name__)
+
 
 def convert_raw_data_to_json(base_path_object):
     """

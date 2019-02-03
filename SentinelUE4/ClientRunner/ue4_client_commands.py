@@ -15,8 +15,8 @@ def run_startup_test(path_obj):
 
     # Find the path to the build
     # Extract the build to a test directory
-    # Run the _tests
-    # Extract the saved folder from the _tests
+    # Run the _featuretests
+    # Extract the saved folder from the _featuretests
     # Remove the test directory
 
     # Fetching the target build folder path

@@ -239,15 +239,6 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         # Deleting the temp file and folder
         # shutil.rmtree(os.path.dirname(temp_dump_file))
 
-    def has_custom_type_config(self):
-        commandlet_settings = self.unreal_project_info.settings.get_commandlet_settings("PkgInfoCommandlet")
-        commandlet_flags = commandlet_settings["type_flags"]
-
-        if self.asset_type in commandlet_flags:
-            return True
-        else:
-            return False
-
     def _register_log_path(self, path):
         self.generated_logs.append(path)
 

@@ -6,7 +6,7 @@ import pathlib
 import shutil
 
 import CONSTANTS
-from SentinelUE4.Editor import commandlets
+from Editor import commandlets
 
 L = logging.getLogger(__name__)
 
@@ -168,9 +168,8 @@ class RawAssetUtilities:
 
 class BasePackageInspection:
 
-    def __init__(self, path_obj):
+    def __init__(self, run_config):
 
-        self.path_obj = path_obj
         self.archive_folder_path = path_obj.get_archive_folder_path()
         self.raw_data_dir = path_obj.get_output_data_path(
             CONSTANTS.RAW_DATA_FOLDER_NAME)
@@ -319,7 +318,6 @@ class BasePackageInspection:
                     shutil.copy(target_file, archive_file_path)
                 else:
                     L.error("Unable to copy %s to archive folder, path already exists", target_file)
-
 
         return all_logs
 

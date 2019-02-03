@@ -6,7 +6,7 @@ import Editor.buildcommands as buildcommands
 class TestClientBuilder(unittest.TestCase):
 
     def setUp(self):
-        f = open("_test_config.json")
+        f = open("../../_test_config.json")
         path_config = json.load(f)
         f.close()
 
@@ -22,7 +22,7 @@ class TestClientBuilder(unittest.TestCase):
 class TestEditorBuilder(unittest.TestCase):
 
     def setUp(self):
-        f = open("_test_config.json")
+        f = open("../../_test_config.json")
         path_config = json.load(f)
         f.close()
 

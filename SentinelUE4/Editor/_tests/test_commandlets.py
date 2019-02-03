@@ -12,7 +12,7 @@ class TestResavePackages(unittest.TestCase):
     def setUp(self):
         L.setLevel(logging.DEBUG)
 
-        f = open("_test_config.json")
+        f = open("../../_test_config.json")
         path_config = json.load(f)
         f.close()
 
@@ -31,7 +31,7 @@ class TestCompileAllBlueprints(unittest.TestCase):
 
         L.setLevel(logging.DEBUG)
 
-        f = open("_test_config.json")
+        f = open("../../_test_config.json")
         path_config = json.load(f)
         f.close()
 
@@ -49,7 +49,7 @@ class TestRebuildLighting(unittest.TestCase):
     def setUp(self):
         L.setLevel(logging.DEBUG)
 
-        f = open("_test_config.json")
+        f = open("../../_test_config.json")
         path_config = json.load(f)
         f.close()
 
@@ -68,7 +68,7 @@ class TestPackageInfoCommandlet(unittest.TestCase):
     def setUp(self):
         L.setLevel(logging.DEBUG)
 
-        f = open("_test_config.json")
+        f = open("../../_test_config.json")
         self.path_config = json.load(f)
         f.close()
 
