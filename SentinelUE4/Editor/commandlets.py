@@ -8,6 +8,8 @@ import pathlib
 import io
 
 import CONSTANTS
+import Editor.editorutilities as editorUtilities
+
 L = logging.getLogger(__name__)
 
 
@@ -24,6 +26,8 @@ class BaseUE4Commandlet:
         self.commandlet_name = commandlet_name
         self.files = files
         self.platform = platform
+
+        self.editor_util = editorUtilities.UEUtilities(run_config, self.platform)
 
         if log_file_name:
             self.log_file_name = log_file_name
@@ -43,8 +47,6 @@ class BaseUE4Commandlet:
         # Information about the relative structure of ue4
         self.ue_structure = self.run_config[CONSTANTS.UNREAL_ENGINE_STRUCTURE]
 
-        self.get_engine_executable()
-
     def get_commandlet_settings(self):
 
         commandlet_name = self.commandlet_settings["command"]
@@ -52,35 +54,6 @@ class BaseUE4Commandlet:
         # special flags that is used for extracting data from the engine for parsing
 
         return commandlet_prefix
-
-    def get_engine_executable(self):
-
-        file_name = self.ue_structure[CONSTANTS.UNREAL_ENGINE_WIN64_CMD_EXE] + self._get_executable_ext()
-        executable = self.engine_root_path.joinpath(self.ue_structure[CONSTANTS.UNREAL_ENGINE_BINARIES_ROOT],
-                                                    self.platform,
-                                                    file_name
-                                                    )
-        return executable
-
-    def _get_executable_ext(self):
-
-        if self.platform == "Win64":
-            return ".exe"
-        else:
-            sys.exit(0)
-
-    def get_project_file_path(self):
-        uproject_files = []
-        for each_file in self.project_root_path.glob("*.uproject"):
-            uproject_files.append(each_file)
-
-        if not len(uproject_files) == 1:
-            L.error("No project file found at: %s", self.project_root_path)
-            sys.exit(0)
-
-        project_file_path = uproject_files[0]
-
-        return project_file_path
 
     def get_command(self):
         """
@@ -107,8 +80,8 @@ class BaseUE4Commandlet:
 
         new_args = " ".join(args_list)
 
-        engine_executable = self.get_engine_executable().as_posix()
-        project_file_path = self.get_project_file_path().as_posix()
+        engine_executable = self.editor_util.get_editor_executable_path().as_posix()
+        project_file_path = self.editor_util.get_project_file_path().as_posix()
 
         cmd = engine_executable + " " + project_file_path + " " + new_args + " -LOG=" + self.log_file_name + " -UNATTENDED"
         L.info(cmd)
@@ -119,7 +92,8 @@ class BaseUE4Commandlet:
 
         path_string = ""
         for each_file_to_extract in self.files:
-            path_string = path_string + " " + each_file_to_extract
+
+            path_string = path_string + " " + str(each_file_to_extract)
 
         return path_string
 
@@ -165,7 +139,7 @@ class BaseUE4Commandlet:
 
         # quiting and returning with the correct return code
         if popen.returncode == 0:
-            L.info("Command run successfully")
+            L.info("Command ran successfully")
         else:
             import sys
             L.warning("Process exit with exit code: %s", popen.returncode)
@@ -204,19 +178,24 @@ class BaseUE4Commandlet:
 class EditorRunner(BaseUE4Commandlet):
 
     def get_command(self):
-        engine_path = self._get_engine_path()
-        engine_path = pathlib.Path(engine_path).parent.joinpath("UE4Editor.exe").as_posix()
 
-        project_path = self.unreal_project_info.get_project_path().as_posix()
+        return self.get_engine_executable() + " " + self.get_project_file_path()
 
-        return engine_path + " " + project_path
+    def get_engine_executable(self):
+
+        file_name = self.ue_structure[CONSTANTS.UNREAL_ENGINE_WIN64_EXE] + self._get_executable_ext()
+        executable = self.engine_root_path.joinpath(self.ue_structure[CONSTANTS.UNREAL_ENGINE_BINARIES_ROOT],
+                                                    self.platform,
+                                                    file_name
+                                                    )
+        return executable
 
 
 class PackageInfoCommandlet(BaseUE4Commandlet):
     """
     Runs the package info commandlet
     """
-    def __init__(self, unreal_project_info, unreal_asset_file_paths, asset_type=""):
+    def __init__(self, run_config, unreal_asset_file_paths, asset_type="Default"):
         """
 
         :param unreal_project_info:
@@ -225,7 +204,7 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         """
 
         # Initializes the object
-        super().__init__(unreal_project_info, "PkgInfoCommandlet", files=unreal_asset_file_paths)
+        super().__init__(run_config, "PkgInfoCommandlet", files=unreal_asset_file_paths)
 
         self.unreal_asset_file_paths = unreal_asset_file_paths
         self.asset_type = asset_type
@@ -244,13 +223,13 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         """
 
         commandlet_command = self.get_command()
-
-        L.info("Starting Package Info Commandlet...")
-        L.debug(commandlet_command)
+        print(commandlet_command)
 
         temp_dump_file = os.path.join(self.raw_log_path, "temp", "_tempDump.log")
+        print(temp_dump_file)
+
         if not os.path.exists(os.path.dirname(temp_dump_file)):
-            os.mkdir(os.path.dirname(temp_dump_file))
+            os.makedirs(os.path.dirname(temp_dump_file))
 
         with open(temp_dump_file, "w", encoding='utf-8', errors="ignore") as temp_out:
             subprocess.run(commandlet_command, stdout=temp_out, stderr=subprocess.STDOUT)
@@ -258,7 +237,7 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         self.split_temp_log_into_raw_files(temp_dump_file)
 
         # Deleting the temp file and folder
-        shutil.rmtree(os.path.dirname(temp_dump_file))
+        # shutil.rmtree(os.path.dirname(temp_dump_file))
 
     def has_custom_type_config(self):
         commandlet_settings = self.unreal_project_info.settings.get_commandlet_settings("PkgInfoCommandlet")
@@ -312,7 +291,8 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
                     except UnicodeEncodeError:
                         L.warning("Unable to process line" + str(i))
 
-        out_log.close()
+        if out_log:
+            out_log.close()
 
     def get_out_log_path(self, asset_name):
         """

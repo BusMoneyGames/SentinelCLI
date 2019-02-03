@@ -4,8 +4,7 @@ import os
 import logging
 import CONSTANTS
 import shutil
-
-from Utilities import fileutils
+import pathlib
 
 L = logging.getLogger(__name__)
 
@@ -15,14 +14,21 @@ class BaseUnrealBuilder:
     Base class for triggering builds for an unreal engine project
     """
 
-    def __init__(self, unreal_project_info):
+    def __init__(self, run_config):
 
         """
         :param unreal_project_info:
         """
 
-        self.unreal_project_info = unreal_project_info
-        self.log_output_folder = self.unreal_project_info.get_output_data_path(CONSTANTS.BUILD_FOLDER_PATH)
+        self.run_config = run_config
+
+        self.project_root_path = pathlib.Path(run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
+        self.sentinel_project_structure = self.run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
+        sentinel_project_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_PROJECT_NAME]
+        sentinel_logs_path = self.sentinel_project_structure[CONSTANTS.SENTINEL_RAW_LOGS_PATH]
+
+        self.log_output_folder = self.project_root_path.joinpath(sentinel_project_name,
+                                                                 sentinel_logs_path)
 
         self.log_output_file_name = "Default_Log.log"
 
@@ -111,13 +117,13 @@ class UnrealClientBuilder(BaseUnrealBuilder):
     deploy location
     """
 
-    def __init__(self, unreal_project_info):
+    def __init__(self, run_config):
         """
         Use the settings from the path object to build the client based on the settings in the settings folder
         :param unreal_project_info:
         """
-        super().__init__(unreal_project_info)
-        self.log_output_file_name = CONSTANTS.COOK_LOG_OUTPUT_NAME
+        super().__init__(run_config)
+        self.log_output_file_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_DEFAULT_COOK_FILE_NAME]
         self.compressed_path = ""
 
     def get_build_command(self):
@@ -162,15 +168,16 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         Constructs the build command and runs it
         :return: None
         """
+
         # Deleting the old build from the staging folder
-        old_build_path = self.unreal_project_info.get_staged_build_path()
+        # old_build_path = self.unreal_project_info.get_staged_build_path()
 
-        if os.path.exists(old_build_path):
-            L.info("Deleting old build from path: %s", old_build_path)
-            fileutils.delete_folder(old_build_path)
+        # if os.path.exists(old_build_path):
+            # L.info("Deleting old build from path: %s", old_build_path)
+            # fileutils.delete_folder(old_build_path)
 
-        # Calling the actual run command
         super(UnrealClientBuilder, self).run()
+
 
     def deploy_to_sentinel_reports_folder(self):
         """

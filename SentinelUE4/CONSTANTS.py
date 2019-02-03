@@ -10,3 +10,12 @@ TARGET_LOG_FOLDER_PATH = "log_saved_root_path"
 UNREAL_ENGINE_STRUCTURE = "unreal_engine_structure"
 UNREAL_ENGINE_BINARIES_ROOT = "binaries_root_folder"
 UNREAL_ENGINE_WIN64_CMD_EXE = "editor_binary_cmd_name"
+UNREAL_ENGINE_WIN64_EXE = "editor_binary_name"
+
+UNREAL_PROJECT_STRUCTURE = "unreal_project_structure"
+UNREAL_CONTENT_ROOT_PATH = "content_root_path"
+
+SENTINEL_PROJECT_STRUCTURE = "sentinel_project_structure"
+SENTINEL_PROJECT_NAME = "sentinel_project_name"
+SENTINEL_RAW_LOGS_PATH = "sentinel_raw_logs_path"
+SENTINEL_DEFAULT_COOK_FILE_NAME = "sentinel_default_cook_file_name"
