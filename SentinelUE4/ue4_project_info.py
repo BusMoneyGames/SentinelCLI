@@ -56,7 +56,7 @@ class ProjectPaths(BasePaths.BasePaths):
 
     def get_ue4_UnrealBuildTool_path(self):
 
-        p = os.path.join(self.settings.get_engine_path(),"Binaries", "DotNET", "UnrealBuildTool.exe")
+        p = os.path.join(self.settings.get_engine_path(), "Binaries", "DotNET", "UnrealBuildTool.exe")
         L.info("Build tool path: %s", p)
 
         return p

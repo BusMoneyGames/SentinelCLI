@@ -41,6 +41,16 @@ class BaseUnrealBuilder:
 
         self.log_output_file_name = "Default_Log.log"
 
+
+    @staticmethod
+    def _prefix_config_with_dash(list_of_strings):
+
+        new_list = []
+        for each in list_of_strings:
+            new_list.append("-"+each)
+
+        return new_list
+
     def get_build_command(self):
         """
         Needs to be overwritten on child
@@ -58,10 +68,10 @@ class BaseUnrealBuilder:
 
         path = self.log_output_folder.joinpath(self.log_output_file_name)
 
-        if not path.exists():
+        if not path.parent.exists():
             os.makedirs(path.parent)
 
-        L.info(cmd)
+        print(cmd)
 
         popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
@@ -89,16 +99,16 @@ class UnrealEditorBuilder(BaseUnrealBuilder):
     Handle building the unreal editor binaries for the game project
     """
 
-    def __init__(self, unreal_project_info):
+    def __init__(self, run_config):
         """
         Uses the settings from the path object to compile the editor binaries for the project
         so that we can run a client build or commandlets
         :param unreal_project_info:
         """
 
-        super().__init__(unreal_project_info)
+        super().__init__(run_config)
 
-        self.log_output_file_name = CONSTANTS.COMPILE_LOG_OUTPUT_NAME
+        self.log_output_file_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_DEFAULT_COMPILE_FILE_NAME]
 
     def get_build_command(self):
         """
@@ -106,21 +116,23 @@ class UnrealEditorBuilder(BaseUnrealBuilder):
         :return: build command
         """
 
-        project_path = "-project=" + "\"" + self.unreal_project_info.get_project_path().as_posix() + "\""
+        project_path = "-project=" + "\"" + str(self.editor_util.get_project_file_path()) + "\""
 
         # TODO after upgrading to 4.20 then I need to skip the project name to be able to compile the editor
-        cmd_list = [self.unreal_project_info.get_ue4_UnrealBuildTool_path(),
+        unreal_build_tool_path = self.editor_util.get_unreal_build_tool_path()
+
+        cmd_list = [str(unreal_build_tool_path),
                     #self.unreal_project_info.get_project_name(),
                     "Development",  # The editor build is always development
-                    self.unreal_project_info.settings.get_build_platform(),
+                    self.platform,
                     project_path,
                     ]
 
         # Adding the compile flags at the end of the settings
-        cmd_list.extend(self.unreal_project_info.settings.get_compile_flags())
+        compile_flags = self._prefix_config_with_dash(self.build_settings[CONSTANTS.UNREAL_EDITOR_COMPILE_FLAGS])
+        cmd_list.extend(compile_flags)
 
         cmd = " ".join(cmd_list)
-
         L.debug("Build command: %s", cmd)
 
         return cmd
@@ -144,14 +156,6 @@ class UnrealClientBuilder(BaseUnrealBuilder):
 
         self.compressed_path = ""
 
-    @staticmethod
-    def _prefix_config_with_dash(list_of_strings):
-
-        new_list = []
-        for each in list_of_strings:
-            new_list.append("-"+each)
-
-        return new_list
 
     def get_build_command(self):
         """
@@ -160,7 +164,6 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         """
 
         project_path = self.editor_util.get_project_file_path()
-        engine_path = self.editor_util.get_editor_executable_path()
         engine_root = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH]).resolve()
 
         build_command_name = self.build_settings[CONSTANTS.UNREAL_BUILD_COMMAND_NAME]
@@ -181,7 +184,6 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         cmd = " ".join(cmd_list)
         L.debug(cmd)
 
-        print(cmd)
         return cmd
 
     def get_cook_list_string(self):
@@ -205,66 +207,4 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         :return: None
         """
 
-        # Deleting the old build from the staging folder
-        # old_build_path = self.unreal_project_info.get_staged_build_path()
-
-        # if os.path.exists(old_build_path):
-            # L.info("Deleting old build from path: %s", old_build_path)
-            # fileutils.delete_folder(old_build_path)
-
         super(UnrealClientBuilder, self).run()
-
-
-    def deploy_to_sentinel_reports_folder(self):
-        """
-        Copies the newly made build to the sentinel deploy folder
-        :return: None
-        """
-
-        sentinel_reports_build_folder = self.unreal_project_info.get_output_data_path(CONSTANTS.BUILD_FOLDER_PATH)
-        L.info("Deploying the build to: %s", sentinel_reports_build_folder)
-
-        staged_build_folder = self.unreal_project_info.get_staged_build_path()
-        project_name = self.unreal_project_info.get_project_name()
-        zipped_build = fileutils.zip_folder(staged_build_folder, project_name + ".zip")
-
-        target_file = sentinel_reports_build_folder.joinpath(project_name + ".zip")
-
-        if target_file.exists():
-            os.remove(target_file)
-
-        shutil.copyfile(zipped_build, target_file.as_posix())
-
-        # Copies the file
-
-        return sentinel_reports_build_folder.as_posix()
-
-    def deploy_to_configured_deploy_path(self):
-        """
-        Copies the newly made build to the deploy location configured in the sentinel settings file
-        :return:
-        """
-
-        network_deploy_path = self.unreal_project_info.settings.get_deploy_path()
-        L.debug(network_deploy_path)
-
-        user_name = os.environ.get("USERNAME")
-        L.debug("User Name: %s", user_name)
-
-        project_name = self.unreal_project_info.get_project_name()
-        L.debug("Project Name: %s", project_name)
-
-        run_vr_path = self.unreal_project_info.get_staged_build_path().joinpath("run_vr.bat")
-
-        f = open(run_vr_path,"w")
-        f.writelines(["Vikingar.exe -vr"]) 
-        f.close()
-
-        target_path = os.path.join(network_deploy_path, user_name, project_name)
-        target_path = os.path.abspath(target_path)
-        L.info("Preparing to copy build to: %s", target_path)
-
-        cmd = "robocopy /MIR " + str(self.unreal_project_info.get_staged_build_path()) + " " + target_path
-        L.debug("Copy Command: %s", cmd)
-
-        subprocess.call(cmd)

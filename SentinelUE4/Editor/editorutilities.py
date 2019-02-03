@@ -23,6 +23,18 @@ class UEUtilities:
                                                     )
         return executable
 
+    def get_unreal_build_tool_path(self):
+
+        engine_root_folder = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH]).resolve()
+        engine_root_folder = engine_root_folder.joinpath("Engine")
+
+        file_name = self.ue_structure[CONSTANTS.UNREAL_ENGINE_UBT_EXE] + self._get_executable_ext()
+        executable = self.engine_root_path.joinpath(engine_root_folder,
+                                                    file_name
+                                                    )
+
+        return executable
+
     def _get_executable_ext(self):
         if self.platform == "Win64":
             return ".exe"

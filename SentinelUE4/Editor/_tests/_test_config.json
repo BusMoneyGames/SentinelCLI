@@ -1,81 +1,124 @@
 {
-	"engine_path": "../../../../../UnrealEngine/",
-	"project_root_path": "../../../..",
-	"commandlets": {
-      "PkgInfoCommandlet": {
-        "command": "PkgInfoCommandlet",
-        "flags": ["names","paths", "assetregistry"],
-        "type_flags": {
-          "Default": [ "names","paths", "assetregistry" ],
-          "StaticMesh": ["paths","depends","imports","exports","names","depends", "AssetRegistry"],
-          "Blueprint": ["paths","depends","imports","exports","names","depends", "AssetRegistry"]
-        }
+   "engine_path":"../../../../../UnrealEngine/",
+   "project_root_path":"../../../..",
+   "commandlets":{
+      "PkgInfoCommandlet":{
+         "command":"PkgInfoCommandlet",
+         "flags":[
+            "names",
+            "paths",
+            "assetregistry"
+         ],
+         "type_flags":{
+            "Default":[
+               "names",
+               "paths",
+               "assetregistry"
+            ],
+            "StaticMesh":[
+               "paths",
+               "depends",
+               "imports",
+               "exports",
+               "names",
+               "depends",
+               "AssetRegistry"
+            ],
+            "Blueprint":[
+               "paths",
+               "depends",
+               "imports",
+               "exports",
+               "names",
+               "depends",
+               "AssetRegistry"
+            ]
+         }
       },
-      "BuildLighting": {
-        "command": "ResavePackages",
-        "flags": [ "buildlighting",
-         "BuildReflectionCaptures",
-         "ForceEnableHLODForLevel",
-         "ShouldBuildHLOD",
-         "Map=/Game/Maps/Map_StartupTest",
-         "SkipDeveloperFolders",
-         "allowcommandletrendering",
-         "ignorechangelist",
-         "projectonly" ]
+      "BuildLighting":{
+         "command":"ResavePackages",
+         "flags":[
+            "buildlighting",
+            "BuildReflectionCaptures",
+            "ForceEnableHLODForLevel",
+            "ShouldBuildHLOD",
+            "Map=/Game/Maps/Map_StartupTest",
+            "SkipDeveloperFolders",
+            "allowcommandletrendering",
+            "ignorechangelist",
+            "projectonly"
+         ]
       },
-		"ResavePackages": {
-        "command": "ResavePackages",
-        "flags": ["ignorechangelist", "projectonly"]
+      "ResavePackages":{
+         "command":"ResavePackages",
+         "flags":[
+            "ignorechangelist",
+            "projectonly"
+         ]
       },
-      "CompileAllBlueprints": {
-        "command": "CompileAllBlueprints",
-        "flags": []
+      "CompileAllBlueprints":{
+         "command":"CompileAllBlueprints",
+         "flags":["projectonly"
+
+         ]
       },
-      "ResaveAllBlueprints": {
-        "command": "ResavePackages",
-        "flags": [ "-IncludeChildClasses", "ResaveClass=Blueprint", "ignorechangelist", "projectonly" ]
+      "ResaveAllBlueprints":{
+         "command":"ResavePackages",
+         "flags":[
+            "-IncludeChildClasses",
+            "ResaveClass=Blueprint",
+            "ignorechangelist",
+            "projectonly"
+         ]
       },
-      "ResaveAllMaps": {
-        "command": "ResavePackages",
-        "flags": [ "-IncludeChildClasses", "ResaveClass=World", "ignorechangelist", "projectonly" ]
+      "ResaveAllMaps":{
+         "command":"ResavePackages",
+         "flags":[
+            "-IncludeChildClasses",
+            "ResaveClass=World",
+            "ignorechangelist",
+            "projectonly"
+         ]
       }
-    },
-	"log_target_root_path": "../../../Saved/",
-	"log_saved_root_path": "../../../SentinelReports/",
-	"unreal_engine_structure": {
-		"binaries_root_folder": "Engine/Binaries",
-		"editor_binary_name": "UE4Editor",
-		"editor_binary_cmd_name": "UE4Editor-Cmd"
-	},
-    "unreal_project_structure": {
-      "content_root_path": "Content/"
-    },
-    "sentinel_project_structure": {
-    "sentinel_project_name": "SentinelReports",
-    "sentinel_raw_logs_path": "Raw/",
-    "sentinel_default_cook_file_name": "default_cook.log"
-  },
-    "unreal_build_structure": {
-      "win64_build_settings": {
-        "should_compile": true,
-        "compile_flags": [
-          "TargetType=Editor",
-          "progress",
-          "NoHotReloadFromIDE"
-        ],
-        "build_configuration": "Development",
-        "build_platform": "Win64",
-        "build_command": "BuildCookRun",
-        "build_flags": [
-          "cook",
-          "iterate",
-          "nop4",
-          "nocompileeditor",
-          "build",
-          "stage",
-          "pak",
-          "prereqs"
-        ]
+   },
+   "log_target_root_path":"../../../Saved/",
+   "log_saved_root_path":"../../../SentinelReports/",
+   "unreal_engine_structure":{
+      "binaries_root_folder":"Engine/Binaries",
+      "editor_binary_name":"UE4Editor",
+      "editor_binary_cmd_name":"UE4Editor-Cmd",
+      "unreal_build_tool_path":"Binaries/DotNET/UnrealBuildTool"
+   },
+   "unreal_project_structure":{
+      "content_root_path":"Content/"
+   },
+   "sentinel_project_structure":{
+      "sentinel_project_name":"SentinelReports",
+      "sentinel_raw_logs_path":"Raw/",
+      "sentinel_default_cook_log_name":"default_client_build.log",
+      "sentinel_default_editor_log_name":"default_compile.log"
+   },
+   "unreal_build_structure":{
+      "win64_build_settings":{
+         "should_compile":true,
+         "editor_compile_flags":[
+            "TargetType=Editor",
+            "progress",
+            "NoHotReloadFromIDE"
+         ],
+         "build_configuration":"Development",
+         "build_platform":"Win64",
+         "build_command":"BuildCookRun",
+         "build_flags":[
+            "cook",
+            "iterate",
+            "nop4",
+            "nocompileeditor",
+            "build",
+            "stage",
+            "pak",
+            "prereqs"
+         ]
       }
-    }
-  }
+   }
+}
