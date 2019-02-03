@@ -1,12 +1,13 @@
 # coding=utf-8
 import subprocess
 import shutil
+import sys
 import os
-import CONSTANTS
 import logging
 import pathlib
 import io
 
+import CONSTANTS
 L = logging.getLogger(__name__)
 
 
@@ -17,47 +18,32 @@ class BaseUE4Commandlet:
     location
     """
 
-    def __init__(self, unreal_project_info, commandlet_name, log_file_name="", files=[]):
-        """
-        :param unreal_project_info:
-        """
+    def __init__(self, run_config, commandlet_name, log_file_name="", files=[], platform="Win64"):
 
-        self.unreal_project_info = unreal_project_info
+        self.run_config = run_config
         self.commandlet_name = commandlet_name
         self.files = files
+        self.platform = platform
 
         if log_file_name:
             self.log_file_name = log_file_name
         else:
             self.log_file_name = self.commandlet_name + ".log"
 
-        self.commandlet_settings = self.unreal_project_info.settings.get_commandlet_settings(self.commandlet_name)
+        commandlet_settings_config = self.run_config[CONSTANTS.COMMANDLET_SETTINGS]
 
-        self.project_path = unreal_project_info.get_project_path().as_posix()
+        self.commandlet_settings = commandlet_settings_config[self.commandlet_name]
 
-        self.engine_path = ""
-        self.engine_path = self._get_engine_path()
+        # Getting paths and making them absolute
+        self.project_root_path = pathlib.Path(self.run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
+        self.engine_root_path = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH]).resolve()
+        self.raw_log_path = pathlib.Path(self.run_config[CONSTANTS.TARGET_LOG_FOLDER_PATH]).resolve()
+        self.saved_logs_folder_path = pathlib.Path(self.run_config[CONSTANTS.SAVED_LOGS_FOLDER_PATH]).resolve()
 
-        self.log_file_path = unreal_project_info.get_log_folder_path()
-        self.raw_log_path = unreal_project_info.get_output_data_path(CONSTANTS.RAW_DATA_FOLDER_NAME)
+        # Information about the relative structure of ue4
+        self.ue_structure = self.run_config[CONSTANTS.UNREAL_ENGINE_STRUCTURE]
 
-    def _get_engine_path(self):
-        """
-        Constructs the engine path for being able to call the commandlet
-        :return:
-        """
-
-        if self.engine_path:
-            L.debug(self.engine_path)
-            return self.engine_path
-
-        # TODO move this logic over to the unreal project info object so that we just get the clean engine path
-        engine_path = self.unreal_project_info.get_ue4_editor_executable_path()
-        engine_path = self.unreal_project_info.add_esc_char_to_path(engine_path)
-
-        L.info(engine_path)
-
-        return engine_path
+        self.get_engine_executable()
 
     def get_commandlet_settings(self):
 
@@ -66,6 +52,35 @@ class BaseUE4Commandlet:
         # special flags that is used for extracting data from the engine for parsing
 
         return commandlet_prefix
+
+    def get_engine_executable(self):
+
+        file_name = self.ue_structure[CONSTANTS.UNREAL_ENGINE_WIN64_CMD_EXE] + self._get_executable_ext()
+        executable = self.engine_root_path.joinpath(self.ue_structure[CONSTANTS.UNREAL_ENGINE_BINARIES_ROOT],
+                                                    self.platform,
+                                                    file_name
+                                                    )
+        return executable
+
+    def _get_executable_ext(self):
+
+        if self.platform == "Win64":
+            return ".exe"
+        else:
+            sys.exit(0)
+
+    def get_project_file_path(self):
+        uproject_files = []
+        for each_file in self.project_root_path.glob("*.uproject"):
+            uproject_files.append(each_file)
+
+        if not len(uproject_files) == 1:
+            L.error("No project file found at: %s", self.project_root_path)
+            sys.exit(0)
+
+        project_file_path = uproject_files[0]
+
+        return project_file_path
 
     def get_command(self):
         """
@@ -92,7 +107,10 @@ class BaseUE4Commandlet:
 
         new_args = " ".join(args_list)
 
-        cmd = self.engine_path + " " + self.project_path + " " + new_args + " -LOG=" + self.log_file_name + " -UNATTENDED"
+        engine_executable = self.get_engine_executable().as_posix()
+        project_file_path = self.get_project_file_path().as_posix()
+
+        cmd = engine_executable + " " + project_file_path + " " + new_args + " -LOG=" + self.log_file_name + " -UNATTENDED"
         L.info(cmd)
 
         return cmd
@@ -153,16 +171,15 @@ class BaseUE4Commandlet:
             L.warning("Process exit with exit code: %s", popen.returncode)
             sys.exit(popen.returncode)
 
-        #with open(temp_dump_file, "w", encoding='utf-8', errors="ignore") as temp_out:
-            #subprocess.run(commandlet_command, stdout=temp_out, stderr=subprocess.STDOUT)
-
     def get_source_log_file(self):
         """
         Get the path to the log file that is saved by the engine
         :return: source log file path
         """
 
-        return os.path.join(self.log_file_path, self.log_file_name)
+        path = self.saved_logs_folder_path.joinpath(self.log_file_name)
+
+        return path
 
     def get_target_log_file(self):
         """

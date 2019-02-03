@@ -1,15 +1,22 @@
-from Utilities import BaseSentinelTest
+import unittest
+import json
 import logging
-import SentinelUE4.Editor.commandlets as commandlets
-L = logging.getLogger()
+import Editor.commandlets as commandlets
 
-class TestResavePackages(BaseSentinelTest.SentinelBaseTest):
+L = logging.getLogger()
+import pathlib
+
+
+class TestResavePackages(unittest.TestCase):
 
     def setUp(self):
-        super().setUp()
         L.setLevel(logging.DEBUG)
 
-        self.resave_packages_commandlet = commandlets.ResavePackages(self.unreal_project_paths)
+        f = open("_test_config.json")
+        path_config = json.load(f)
+        f.close()
+
+        self.resave_packages_commandlet = commandlets.ResavePackages(path_config)
 
     def test_get_command(self):
         command = self.resave_packages_commandlet.get_command()
@@ -19,7 +26,7 @@ class TestResavePackages(BaseSentinelTest.SentinelBaseTest):
         self.resave_packages_commandlet.run()
 
 
-class TestCompileAllBlueprints(BaseSentinelTest.SentinelBaseTest):
+class TestCompileAllBlueprints(unittest.TestCase):
     def setUp(self):
         super().setUp()
         L.setLevel(logging.DEBUG)
@@ -34,7 +41,7 @@ class TestCompileAllBlueprints(BaseSentinelTest.SentinelBaseTest):
         self.compile_blueprints.run()
 
 
-class TestRebuildLighting(BaseSentinelTest.SentinelBaseTest):
+class TestRebuildLighting(unittest.TestCase):
     def setUp(self):
         super().setUp()
         L.setLevel(logging.DEBUG)
@@ -49,7 +56,7 @@ class TestRebuildLighting(BaseSentinelTest.SentinelBaseTest):
         self.rebuild_lighting.run()
 
 
-class TestFillDDCCache(BaseSentinelTest.SentinelBaseTest):
+class TestFillDDCCache(unittest.TestCase):
     def setUp(self):
         super().setUp()
         L.setLevel(logging.DEBUG)
@@ -64,7 +71,7 @@ class TestFillDDCCache(BaseSentinelTest.SentinelBaseTest):
         self.fill_ddc_cache.run()
 
 
-class TestEditorRunner(BaseSentinelTest.SentinelBaseTest):
+class TestEditorRunner(unittest.TestCase):
     def setUp(self):
         super().setUp()
         L.setLevel(logging.DEBUG)

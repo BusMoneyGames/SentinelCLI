@@ -33,7 +33,7 @@ class BasePaths:
 
         # Load config files
         self.settings_file_root_folder = ""
-        self.settings_file_root_folder = self.get_settings_file_root()
+        self.settings_file_root_folder = self._get_settings_file_root()
 
         self._load_settings_file()
         self._load_asset_config_file()
@@ -94,7 +94,7 @@ class BasePaths:
         L.info("Files to process overwritten with: %", list_of_files)
         self.files = list_of_files
 
-    def get_settings_file_root(self):
+    def _get_settings_file_root(self):
 
         if not self.settings_file_root_folder:
             self.settings_file_root_folder = self.recursively_search_for_file_down_a_directory(file_suffix=".json",
@@ -409,6 +409,7 @@ class SentinelParsedData:
             L.warning("Unable to determine the asset type from %s ", path)
 
         return asset_type
+
 
 class SentinelRawPackageData:
 

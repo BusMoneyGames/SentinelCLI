@@ -1,0 +1,51 @@
+{
+	"engine_path": "../../../../UnrealEngine/",
+	"project_root_path": "../../..",
+	"commandlets": {
+      "PkgInfoCommandlet": {
+        "command": "PkgInfoCommandlet",
+        "flags": ["names","paths", "assetregistry"],
+        "type_flags": {
+          "Default": [ "names","paths", "assetregistry" ],
+          "StaticMesh": ["paths","depends","imports","exports","names","depends", "AssetRegistry"],
+          "Blueprint": ["paths","depends","imports","exports","names","depends", "AssetRegistry"]
+        }
+      },
+      "BuildLighting": {
+        "command": "ResavePackages",
+        "flags": [ "buildlighting",
+         "BuildReflectionCaptures",
+         "ForceEnableHLODForLevel",
+         "ShouldBuildHLOD",
+         "Map=/Game/Maps/Map_StartupTest",
+         "SkipDeveloperFolders",
+         "allowcommandletrendering",
+         "ignorechangelist",
+         "projectonly" ]
+      },
+		"ResavePackages": {
+        "command": "ResavePackages",
+        "flags": ["ignorechangelist", "projectonly"]
+      },
+      "CompileAllBlueprints": {
+        "command": "CompileAllBlueprints",
+        "flags": []
+      },
+      "ResaveAllBlueprints": {
+        "command": "ResavePackages",
+        "flags": [ "-IncludeChildClasses", "ResaveClass=Blueprint", "ignorechangelist", "projectonly" ]
+      },
+      "ResaveAllMaps": {
+        "command": "ResavePackages",
+        "flags": [ "-IncludeChildClasses", "ResaveClass=World", "ignorechangelist", "projectonly" ]
+      }
+    },
+	"log_target_root_path": "../../../Saved/",
+	"log_saved_root_path": "../../../SentinelReports/",
+	"unreal_engine_structure": {
+		"binaries_root_folder": "Engine/Binaries",
+		"editor_binary_name": "UE4Editor",
+		"editor_binary_cmd_name": "UE4Editor-Cmd"
+	}
+
+}
