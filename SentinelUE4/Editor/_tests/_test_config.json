@@ -50,12 +50,32 @@
     "unreal_project_structure": {
       "content_root_path": "Content/"
     },
-  "sentinel_project_structure": {
+    "sentinel_project_structure": {
     "sentinel_project_name": "SentinelReports",
-    "sentinel_raw_logs_path":"Raw/",
+    "sentinel_raw_logs_path": "Raw/",
     "sentinel_default_cook_file_name": "default_cook.log"
-
-
+  },
+    "unreal_build_structure": {
+      "win64_build_settings": {
+        "should_compile": true,
+        "compile_flags": [
+          "TargetType=Editor",
+          "progress",
+          "NoHotReloadFromIDE"
+        ],
+        "build_configuration": "Development",
+        "build_platform": "Win64",
+        "build_command": "BuildCookRun",
+        "build_flags": [
+          "cook",
+          "iterate",
+          "nop4",
+          "nocompileeditor",
+          "build",
+          "stage",
+          "pak",
+          "prereqs"
+        ]
+      }
+    }
   }
-
-}

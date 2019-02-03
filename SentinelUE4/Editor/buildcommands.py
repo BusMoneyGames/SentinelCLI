@@ -5,7 +5,7 @@ import logging
 import CONSTANTS
 import shutil
 import pathlib
-
+import Editor.editorutilities as editorUtilities
 L = logging.getLogger(__name__)
 
 
@@ -21,9 +21,18 @@ class BaseUnrealBuilder:
         """
 
         self.run_config = run_config
+        self.all_build_settings = self.run_config[CONSTANTS.UNREAL_BUILD_SETTINGS_STRUCTURE]
+
+        # TODO Add logic to be able to switch the build settings
+        self.build_settings = self.all_build_settings["win64_build_settings"]
+
+        self.platform = self.build_settings[CONSTANTS.UNREAL_BUILD_PLATFORM_NAME]
+
+        self.editor_util = editorUtilities.UEUtilities(run_config, self.platform)
 
         self.project_root_path = pathlib.Path(run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
         self.sentinel_project_structure = self.run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
+
         sentinel_project_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_PROJECT_NAME]
         sentinel_logs_path = self.sentinel_project_structure[CONSTANTS.SENTINEL_RAW_LOGS_PATH]
 
@@ -46,7 +55,12 @@ class BaseUnrealBuilder:
         """
 
         cmd = self.get_build_command()
-        path = os.path.join(self.log_output_folder, self.log_output_file_name)
+
+        path = self.log_output_folder.joinpath(self.log_output_file_name)
+
+        if not path.exists():
+            os.makedirs(path.parent)
+
         L.info(cmd)
 
         popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -83,6 +97,7 @@ class UnrealEditorBuilder(BaseUnrealBuilder):
         """
 
         super().__init__(unreal_project_info)
+
         self.log_output_file_name = CONSTANTS.COMPILE_LOG_OUTPUT_NAME
 
     def get_build_command(self):
@@ -117,14 +132,26 @@ class UnrealClientBuilder(BaseUnrealBuilder):
     deploy location
     """
 
-    def __init__(self, run_config):
+    def __init__(self, run_config, platform="Win64"):
         """
         Use the settings from the path object to build the client based on the settings in the settings folder
         :param unreal_project_info:
         """
         super().__init__(run_config)
         self.log_output_file_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_DEFAULT_COOK_FILE_NAME]
+
+        self.editor_util = editorUtilities.UEUtilities(run_config, platform)
+
         self.compressed_path = ""
+
+    @staticmethod
+    def _prefix_config_with_dash(list_of_strings):
+
+        new_list = []
+        for each in list_of_strings:
+            new_list.append("-"+each)
+
+        return new_list
 
     def get_build_command(self):
         """
@@ -132,10 +159,34 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         :return: build command
         """
 
-        project_name = self.unreal_project_info.get_project_path().as_posix()
-        engine_path = self.unreal_project_info.settings.get_engine_path()
+        project_path = self.editor_util.get_project_file_path()
+        engine_path = self.editor_util.get_editor_executable_path()
+        engine_root = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH]).resolve()
 
-        all_files = self.unreal_project_info.get_all_content_files()
+        build_command_name = self.build_settings[CONSTANTS.UNREAL_BUILD_COMMAND_NAME]
+        build_config = self.build_settings[CONSTANTS.UNREAL_BUILD_CONFIGURATION]
+
+        # self.get_cook_list_string()
+
+        run_uat_path = engine_root.joinpath("Engine", "Build", "BatchFiles", "RunUAT.bat")
+
+        cmd_list = [str(run_uat_path),
+                    build_command_name,
+                    "-project=" + str(project_path),
+                    "-clientconfig=" + build_config
+                    ]
+
+        config_flags = self._prefix_config_with_dash(self.build_settings[CONSTANTS.UNREAL_BUILD_CONFIG_FLAGS])
+        cmd_list.extend(config_flags)
+        cmd = " ".join(cmd_list)
+        L.debug(cmd)
+
+        print(cmd)
+        return cmd
+
+    def get_cook_list_string(self):
+        # all_files = self.unreal_project_info.get_all_content_files()
+        all_files = []
         maps_to_package = []
         for e in all_files:
 
@@ -145,23 +196,8 @@ class UnrealClientBuilder(BaseUnrealBuilder):
                 L.debug("Adding %s to cook list", lower_name)
 
                 # TODO Add filtering based on prefixes from the settings file
-
-        run_uat_path = os.path.join(engine_path, "Build", "BatchFiles", "RunUAT.bat")
-
         # TODO enable the maps to package flag again
-        maps_to_package_flag = "-Map=\""+"+".join(maps_to_package) + "\""
-
-        cmd_list = [run_uat_path,
-                    "BuildCookRun",
-                    "-project=" + project_name,
-                    "-clientconfig=" + self.unreal_project_info.settings.get_build_configuration()
-                    ]
-
-        cmd_list.extend(self.unreal_project_info.settings.get_build_flags())
-        cmd = " ".join(cmd_list)
-        L.debug(cmd)
-
-        return cmd
+        maps_to_package_flag = "-Map=\"" + "+".join(maps_to_package) + "\""
 
     def run(self):
         """

@@ -15,3 +15,5 @@ class TestClientBuilder(unittest.TestCase):
     def test_build_client(self):
         self.client_builder.run()
 
+    def test_get_command(self):
+        self.client_builder.get_build_command()

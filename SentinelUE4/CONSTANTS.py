@@ -19,3 +19,10 @@ SENTINEL_PROJECT_STRUCTURE = "sentinel_project_structure"
 SENTINEL_PROJECT_NAME = "sentinel_project_name"
 SENTINEL_RAW_LOGS_PATH = "sentinel_raw_logs_path"
 SENTINEL_DEFAULT_COOK_FILE_NAME = "sentinel_default_cook_file_name"
+
+UNREAL_BUILD_SETTINGS_STRUCTURE = "unreal_build_structure"
+UNREAL_BUILD_PLATFORM_NAME = "build_platform"
+UNREAL_BUILD_COMMAND_NAME = "build_command"
+UNREAL_BUILD_CONFIG_FLAGS = "build_flags"
+UNREAL_BUILD_CONFIGURATION = "build_configuration"
+
