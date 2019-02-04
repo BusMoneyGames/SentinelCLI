@@ -6,7 +6,7 @@ from ue4_package_inspection import BasePackageInspection
 class TestExtractPackages(unittest.TestCase):
 
     def setUp(self):
-        f = open("_test_config.json")
+        f = open("../_test_config.json")
         self.path_config = json.load(f)
         f.close()
 

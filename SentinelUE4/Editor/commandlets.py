@@ -210,6 +210,9 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         self.asset_type = asset_type
         self.generated_logs = []
 
+    def has_custom_type_config(self):
+        return True
+
     def get_commandlet_flags(self):
 
         commandlet_flags = self.commandlet_settings["type_flags"][self.asset_type]

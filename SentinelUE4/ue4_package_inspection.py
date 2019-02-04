@@ -6,7 +6,7 @@ import pathlib
 import shutil
 
 import CONSTANTS
-from Editor import commandlets
+from Editor import commandlets, editorutilities
 
 L = logging.getLogger(__name__)
 
@@ -97,7 +97,7 @@ class ExtractedDataArchive:
             if not self.is_hash_value_in_archive(each_hash):
                 missing_file = self.project_hash_file_mappings[each_hash]
                 L.debug("Missing from archive %s", missing_file )
-                missing_files.append(missing_file)
+                missing_files.append(str(missing_file))
 
         return missing_files
 
@@ -170,9 +170,14 @@ class BasePackageInspection:
 
     def __init__(self, run_config):
 
-        self.archive_folder_path = path_obj.get_archive_folder_path()
-        self.raw_data_dir = path_obj.get_output_data_path(
-            CONSTANTS.RAW_DATA_FOLDER_NAME)
+        self.run_config = run_config
+
+        self.sentinel_structure = run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
+        self.archive_folder_path = pathlib.Path(self.sentinel_structure[CONSTANTS.SENTINEL_ARCHIVES_PATH]).resolve()
+
+        self.editor_util = editorutilities.UEUtilities(run_config)
+
+        self.raw_data_dir = pathlib.Path(self.sentinel_structure[CONSTANTS.SENTINEL_RAW_LOGS_PATH]).resolve()
 
         self._clear_old_data_from_raw()
 
@@ -187,8 +192,9 @@ class BasePackageInspection:
         if self.files_in_project:
             return self.files_in_project
 
-        self.files_in_project = self.path_obj.get_files_to_process()
+        self.files_in_project = self.editor_util.get_all_content_files()
 
+        print(self.files_in_project)
         return self.files_in_project
 
     def get_file_hash_info(self):
@@ -273,7 +279,7 @@ class BasePackageInspection:
         for i, each_chunk in enumerate(chunks_of_files_to_process):
 
             package_info_run_object = commandlets.PackageInfoCommandlet(
-                self.path_obj, each_chunk, asset_types)
+                self.run_config, each_chunk, asset_types)
 
             if not package_info_run_object.has_custom_type_config():
                 L.info("No custom extraction command found for: %s ", asset_types)

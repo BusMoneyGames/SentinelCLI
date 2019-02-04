@@ -1,6 +1,6 @@
 {
    "engine_path":"../../../../../UnrealEngine/",
-   "project_root_path":"../../../..",
+   "project_root_path":"../../..",
    "commandlets":{
       "PkgInfoCommandlet":{
          "command":"PkgInfoCommandlet",

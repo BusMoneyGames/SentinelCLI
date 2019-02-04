@@ -5,7 +5,7 @@ import pathlib
 
 class UEUtilities:
 
-    def __init__(self, run_config, platform):
+    def __init__(self, run_config, platform="Win64"):
         self.platform = platform
         self.run_config = run_config
 
