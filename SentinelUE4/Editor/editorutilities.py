@@ -1,6 +1,7 @@
 import CONSTANTS
 import sys
 import pathlib
+import os
 
 
 class UEUtilities:
@@ -10,8 +11,9 @@ class UEUtilities:
         self.run_config = run_config
 
         self.ue_structure = self.run_config[CONSTANTS.UNREAL_ENGINE_STRUCTURE]
-        self.engine_root_path = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH]).resolve()
-        self.project_root_path = pathlib.Path(self.run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
+        self.project_root_path = pathlib.Path(self.run_config[CONSTANTS.PROJECT_FILE_PATH]).parent
+
+        self.engine_root_path = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH])
 
     def get_editor_executable_path(self):
 
@@ -41,21 +43,9 @@ class UEUtilities:
         else:
             sys.exit(1)
 
-    def get_project_file_path(self):
-        uproject_files = []
-        for each_file in self.project_root_path.glob("*.uproject"):
-            uproject_files.append(each_file)
-
-        if not len(uproject_files) == 1:
-            sys.exit(1)
-
-        project_file_path = uproject_files[0]
-
-        return project_file_path
-
     def get_all_content_files(self):
         content_value = self.run_config[CONSTANTS.UNREAL_PROJECT_STRUCTURE][CONSTANTS.UNREAL_CONTENT_ROOT_PATH]
-        project_root = pathlib.Path(self.run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
+        project_root = pathlib.Path(self.run_config[CONSTANTS.PROJECT_FILE_PATH]).resolve()
 
         content_path = project_root.joinpath(content_value)
 

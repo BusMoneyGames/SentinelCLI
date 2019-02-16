@@ -3,7 +3,6 @@ import subprocess
 import os
 import logging
 import CONSTANTS
-import shutil
 import pathlib
 import Editor.editorutilities as editorUtilities
 L = logging.getLogger(__name__)
@@ -30,7 +29,7 @@ class BaseUnrealBuilder:
 
         self.editor_util = editorUtilities.UEUtilities(run_config, self.platform)
 
-        self.project_root_path = pathlib.Path(run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
+        self.project_root_path = pathlib.Path(run_config[CONSTANTS.PROJECT_FILE_PATH]).parent
         self.sentinel_project_structure = self.run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
 
         sentinel_project_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_PROJECT_NAME]
@@ -116,7 +115,7 @@ class UnrealEditorBuilder(BaseUnrealBuilder):
         :return: build command
         """
 
-        project_path = "-project=" + "\"" + str(self.editor_util.get_project_file_path()) + "\""
+        project_path = "-project=" + "\"" + str(self.run_config[CONSTANTS.PROJECT_FILE_PATH]) + "\""
 
         # TODO after upgrading to 4.20 then I need to skip the project name to be able to compile the editor
         unreal_build_tool_path = self.editor_util.get_unreal_build_tool_path()
@@ -163,7 +162,7 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         :return: build command
         """
 
-        project_path = self.editor_util.get_project_file_path()
+        project_path = pathlib.Path(self.run_config[CONSTANTS.PROJECT_FILE_PATH])
         engine_root = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH]).resolve()
 
         build_command_name = self.build_settings[CONSTANTS.UNREAL_BUILD_COMMAND_NAME]

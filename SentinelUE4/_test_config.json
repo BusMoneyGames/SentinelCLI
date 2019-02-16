@@ -1,6 +1,7 @@
 {
-   "engine_path":"../../../../../UnrealEngine/",
-   "project_root_path":"../../..",
+
+   "project_file_path":"",
+   "engine_path":"../UnrealEngine",
    "commandlets":{
       "PkgInfoCommandlet":{
          "command":"PkgInfoCommandlet",
@@ -81,8 +82,8 @@
          ]
       }
    },
-   "log_target_root_path":"../../../Saved/",
-   "log_saved_root_path":"../../../SentinelReports/",
+   "log_target_root_path":"Saved/",
+   "log_saved_root_path":"SentinelReports/",
    "unreal_engine_structure":{
       "binaries_root_folder":"Engine/Binaries",
       "editor_binary_name":"UE4Editor",

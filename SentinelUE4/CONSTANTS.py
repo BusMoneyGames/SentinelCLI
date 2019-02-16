@@ -1,5 +1,5 @@
 ENGINE_ROOT_PATH = "engine_path"
-PROJECT_ROOT_PATH = "project_root_path"
+PROJECT_FILE_PATH = "project_file_path"
 COMMANDLET_SETTINGS = "commandlets"
 
 # Location in the unreal project where teh log is saved

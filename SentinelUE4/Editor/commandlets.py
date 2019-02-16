@@ -39,7 +39,7 @@ class BaseUE4Commandlet:
         self.commandlet_settings = commandlet_settings_config[self.commandlet_name]
 
         # Getting paths and making them absolute
-        self.project_root_path = pathlib.Path(self.run_config[CONSTANTS.PROJECT_ROOT_PATH]).resolve()
+        self.project_root_path = pathlib.Path(self.run_config[CONSTANTS.PROJECT_FILE_PATH]).resolve()
         self.engine_root_path = pathlib.Path(self.run_config[CONSTANTS.ENGINE_ROOT_PATH]).resolve()
         self.raw_log_path = pathlib.Path(self.run_config[CONSTANTS.TARGET_LOG_FOLDER_PATH]).resolve()
         self.saved_logs_folder_path = pathlib.Path(self.run_config[CONSTANTS.SAVED_LOGS_FOLDER_PATH]).resolve()
