@@ -1,9 +1,10 @@
 import unittest
-import json
 import logging
 import Editor.commandlets as commandlets
 import pathlib
 import CONSTANTS
+import Editor._tests.helper as helper
+
 L = logging.getLogger()
 
 
@@ -12,10 +13,7 @@ class TestResavePackages(unittest.TestCase):
     def setUp(self):
         L.setLevel(logging.DEBUG)
 
-        f = open("../../_test_config.json")
-        path_config = json.load(f)
-        f.close()
-
+        path_config = helper.get_path_config_for_test()
         self.resave_packages_commandlet = commandlets.ResavePackages(path_config)
 
     def test_get_command(self):
@@ -31,10 +29,7 @@ class TestCompileAllBlueprints(unittest.TestCase):
 
         L.setLevel(logging.DEBUG)
 
-        f = open("../../_test_config.json")
-        path_config = json.load(f)
-        f.close()
-
+        path_config = helper.get_path_config_for_test()
         self.compile_blueprints = commandlets.CompileAllBlueprints(path_config)
 
     def test_get_command(self):
@@ -49,15 +44,12 @@ class TestRebuildLighting(unittest.TestCase):
     def setUp(self):
         L.setLevel(logging.DEBUG)
 
-        f = open("../../_test_config.json")
-        path_config = json.load(f)
-        f.close()
+        path_config = helper.get_path_config_for_test()
 
         self.rebuild_lighting = commandlets.RebuildLighting(path_config)
 
     def test_get_command(self):
         command = self.rebuild_lighting.get_command()
-        print(command)
 
     def test_run(self):
         self.skipTest("Light building is broken in the engine")
@@ -68,9 +60,7 @@ class TestPackageInfoCommandlet(unittest.TestCase):
     def setUp(self):
         L.setLevel(logging.DEBUG)
 
-        f = open("../../_test_config.json")
-        self.path_config = json.load(f)
-        f.close()
+        self.path_config = helper.get_path_config_for_test()
 
         files = self._get_test_files()
         self.package_info_commandlet = commandlets.PackageInfoCommandlet(self.path_config, files)
