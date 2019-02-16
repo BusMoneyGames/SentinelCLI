@@ -175,22 +175,6 @@ class BaseUE4Commandlet:
         return self.get_target_log_file()
 
 
-class EditorRunner(BaseUE4Commandlet):
-
-    def get_command(self):
-
-        return self.get_engine_executable() + " " + self.get_project_file_path()
-
-    def get_engine_executable(self):
-
-        file_name = self.ue_structure[CONSTANTS.UNREAL_ENGINE_WIN64_EXE] + self._get_executable_ext()
-        executable = self.engine_root_path.joinpath(self.ue_structure[CONSTANTS.UNREAL_ENGINE_BINARIES_ROOT],
-                                                    self.platform,
-                                                    file_name
-                                                    )
-        return executable
-
-
 class PackageInfoCommandlet(BaseUE4Commandlet):
     """
     Runs the package info commandlet
@@ -341,14 +325,11 @@ class CompileAllBlueprints(BaseUE4Commandlet):
         super().__init__(unreal_paths_object, commandlet_name="CompileAllBlueprints")
 
 
-class RebuildLighting(BaseUE4Commandlet):
+class RebuildLightingCommandlet(BaseUE4Commandlet):
     def __init__(self, unreal_paths_object):
         super().__init__(unreal_paths_object, commandlet_name="BuildLighting")
 
-class GenerateBuiltData(BaseUE4Commandlet):
-    def __init__(self, unreal_paths_object):
-        super().__init__(unreal_paths_object, commandlet_name="GenerateBuiltData")
 
-class FillDDCCache(BaseUE4Commandlet):
+class FillDDCCacheCommandlet(BaseUE4Commandlet):
     def __init__(self, unreal_paths_object):
         super().__init__(unreal_paths_object, commandlet_name="FillDDCCache")

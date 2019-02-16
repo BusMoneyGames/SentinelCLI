@@ -40,13 +40,13 @@ class TestCompileAllBlueprints(unittest.TestCase):
         self.compile_blueprints.run()
 
 
-class TestRebuildLighting(unittest.TestCase):
+class TestRebuildLightingCommandlet(unittest.TestCase):
     def setUp(self):
         L.setLevel(logging.DEBUG)
 
         path_config = helper.get_path_config_for_test()
 
-        self.rebuild_lighting = commandlets.RebuildLighting(path_config)
+        self.rebuild_lighting = commandlets.RebuildLightingCommandlet(path_config)
 
     def test_get_command(self):
         command = self.rebuild_lighting.get_command()

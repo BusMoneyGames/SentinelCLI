@@ -1,7 +1,6 @@
 import CONSTANTS
 import sys
 import pathlib
-import os
 
 
 class UEUtilities:
