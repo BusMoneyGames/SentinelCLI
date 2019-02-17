@@ -13,7 +13,8 @@ class TestClientBuilder(unittest.TestCase):
         self.client_builder.run()
 
     def test_get_command(self):
-        self.client_builder.get_build_command()
+        cmd = self.client_builder.get_build_command()
+        print(cmd)
 
 
 class TestEditorBuilder(unittest.TestCase):

@@ -84,11 +84,12 @@
       "sentinel_raw_logs_path":"Raw/",
       "sentinel_archives_path": "Cache/",
       "sentinel_processed_path": "Processed/",
+      "sentinel_build_path": "Build/",
       "sentinel_default_cook_log_name":"default_client_build.log",
       "sentinel_default_editor_log_name":"default_compile.log"
    },
    "unreal_build_structure":{
-      "win64_build_settings":{
+      "default":{
          "should_compile":true,
          "editor_compile_flags":[
             "TargetType=Editor",
@@ -105,6 +106,7 @@
             "nocompileeditor",
             "build",
             "stage",
+            "archive",
             "pak",
             "prereqs"
          ]

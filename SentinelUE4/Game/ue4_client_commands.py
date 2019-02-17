@@ -76,5 +76,3 @@ def run_startup_test(path_obj):
         shutil.rmtree(target_testing_location)
 
         L.info("Client test: %s finished", test_name)
-
-    return

@@ -6,8 +6,8 @@ import sys
 import CONSTANTS
 
 
-class AutomationTestRunner:
-
+class ClientRunner:
+    """Handles running game clients"""
     def __init__(self, game_path_obj):
         self.game_path_obj = game_path_obj
 

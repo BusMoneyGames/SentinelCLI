@@ -13,7 +13,7 @@ class BaseUnrealBuilder:
     Base class for triggering builds for an unreal engine project
     """
 
-    def __init__(self, run_config):
+    def __init__(self, run_config, build_config_name="default"):
 
         """
         :param unreal_project_info:
@@ -23,10 +23,10 @@ class BaseUnrealBuilder:
         self.all_build_settings = self.run_config[CONSTANTS.UNREAL_BUILD_SETTINGS_STRUCTURE]
 
         # TODO Add logic to be able to switch the build settings
-        self.build_settings = self.all_build_settings["win64_build_settings"]
+        self.build_config_name = build_config_name
+        self.build_settings = self.all_build_settings[self.build_config_name]
 
         self.platform = self.build_settings[CONSTANTS.UNREAL_BUILD_PLATFORM_NAME]
-
         self.editor_util = editorUtilities.UEUtilities(run_config, self.platform)
 
         self.project_root_path = pathlib.Path(run_config[CONSTANTS.PROJECT_FILE_PATH]).parent
@@ -39,7 +39,6 @@ class BaseUnrealBuilder:
                                                                  sentinel_logs_path)
 
         self.log_output_file_name = "Default_Log.log"
-
 
     @staticmethod
     def _prefix_config_with_dash(list_of_strings):
@@ -149,12 +148,21 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         :param unreal_project_info:
         """
         super().__init__(run_config)
-        self.log_output_file_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_DEFAULT_COOK_FILE_NAME]
 
+        self.log_output_file_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_DEFAULT_COOK_FILE_NAME]
         self.editor_util = editorUtilities.UEUtilities(run_config, platform)
 
-        self.compressed_path = ""
+    def get_archive_directory(self):
 
+        sentinel_output_root = self.sentinel_project_structure[CONSTANTS.SENTINEL_PROJECT_NAME]
+        build_folder_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_BUILD_PATH]
+        out_dir = self.project_root_path.joinpath(sentinel_output_root, build_folder_name, self.build_config_name)
+
+        out_dir = pathlib.Path(out_dir)
+        if not out_dir.exists():
+            os.makedirs(out_dir)
+
+        return out_dir
 
     def get_build_command(self):
         """
@@ -179,6 +187,11 @@ class UnrealClientBuilder(BaseUnrealBuilder):
                     ]
 
         config_flags = self._prefix_config_with_dash(self.build_settings[CONSTANTS.UNREAL_BUILD_CONFIG_FLAGS])
+
+        if "-archive" in config_flags:
+            archive_dir_flag = "-archivedirectory=" + str(self.get_archive_directory())
+            config_flags.append(archive_dir_flag)
+
         cmd_list.extend(config_flags)
         cmd = " ".join(cmd_list)
         L.debug(cmd)
@@ -197,6 +210,7 @@ class UnrealClientBuilder(BaseUnrealBuilder):
                 L.debug("Adding %s to cook list", lower_name)
 
                 # TODO Add filtering based on prefixes from the settings file
+
         # TODO enable the maps to package flag again
         maps_to_package_flag = "-Map=\"" + "+".join(maps_to_package) + "\""
 
@@ -207,3 +221,7 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         """
 
         super(UnrealClientBuilder, self).run()
+
+    def package_for_testing(self):
+        pass
+
