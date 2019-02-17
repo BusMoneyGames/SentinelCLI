@@ -8,7 +8,8 @@ import shutil
 
 import CONSTANTS
 from Editor import commandlets, editorutilities
-from LogParser import PkgCommandleLog
+from Editor.LogProcesser import packageinfolog
+
 
 L = logging.getLogger(__name__)
 
@@ -65,7 +66,7 @@ class PackageHashInfo:
 
         for each_hash in self.hash_value_mapping:
 
-            if self.hash_value_mapping[each_hash] == filename:
+            if str(self.hash_value_mapping[each_hash]) == filename:
                 return each_hash
 
         L.warning("Unable to find hash from filename!")
@@ -79,7 +80,6 @@ class ExtractedDataArchive:
     """
 
     def __init__(self, path_to_archive, file_hash_mappings):
-
         self.archive_folder_path = path_to_archive
         self.project_hash_file_mappings = file_hash_mappings
 
@@ -192,11 +192,14 @@ class BasePackageInspection:
 
         self.archive_folder_path = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_ARCHIVES_PATH]).resolve()
         self.raw_data_dir = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_RAW_LOGS_PATH]).resolve()
+        self.processed_path = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_PROCESSED_PATH]).resolve()
 
         if not self.archive_folder_path.exists():
             os.makedirs(self.archive_folder_path)
         if not self.raw_data_dir.exists():
             os.makedirs(self.raw_data_dir)
+        if not self.processed_path.exists():
+            os.makedirs(self.processed_path)
 
     def get_files_in_project(self):
         """
@@ -292,62 +295,77 @@ class BasePackageInspection:
             print("*"*50)
             print(each)
             print("*"*50)
+
             self._extract_from_files(chunks_of_files_to_process, each)
 
-    def _extract_from_files(self, chunks_of_files_to_process, asset_types=""):
+    def _extract_from_files(self, chunks_of_files_to_process, asset_types="Default"):
 
-        all_logs = []
         # TODO deals the case where the user deletes files
         for i, each_chunk in enumerate(chunks_of_files_to_process):
 
             package_info_run_object = commandlets.PackageInfoCommandlet(
-                self.run_config, each_chunk, asset_types)
+                self.run_config,
+                each_chunk,
+                asset_types
+            )
 
             if not package_info_run_object.has_custom_type_config():
-                L.info("No custom extraction command found for: %s ", asset_types)
+                print("Skipping detailed extract of type: ", asset_types)
                 break
 
             L.info("Starting chunk %s out of %s ", i + 1,
                    str(len(chunks_of_files_to_process)))
             L.info("Files in chunk:\n %s \n", "\n".join(each_chunk))
 
+            # Runs the extract
             package_info_run_object.run()
+
             generated_logs = package_info_run_object.get_generated_logs()
 
-            for each_log in generated_logs:
-                log_file = pathlib.Path(each_log)
-                if not log_file.exists():
-                    L.error("No File Found at: %s", log_file)
-                    continue
+            self._process_generated_logs(generated_logs)
 
-                asset_path = get_asset_path_from_log_file(log_file)
-                hash_value = self.pkg_hash_obj.get_hash_from_filename(asset_path)
+    def _process_generated_logs(self, generated_logs):
 
-                target_file = pathlib.Path(self.raw_data_dir).joinpath(
-                    hash_value, log_file.name)
-                if not target_file.parent.exists():
-                    os.mkdir(target_file.parent)
+        for each_log in generated_logs:
+            log_file = pathlib.Path(each_log)
 
-                # Moving the file to the archive folder:
-                archive_file_path = self.archive_folder_path.joinpath(
-                    hash_value, log_file.name)
+            if not log_file.exists():
+                L.error("No File Found at: %s", log_file)
+                continue
 
-                # Moving the file to a folder with the hash value
-                if not target_file.exists():
-                    shutil.move(each_log, target_file)
-                else:
-                    L.error("Unable to move %s to the target location: %s", each_log, target_file)
+            asset_path = get_asset_path_from_log_file(log_file)
+            asset_type = get_asset_type_from_log_file(log_file)
+            hash_value = self.pkg_hash_obj.get_hash_from_filename(asset_path)
 
-                # Copy the file to the archive folder
-                if not archive_file_path.parent.exists():
-                    os.mkdir(archive_file_path.parent)
+            if log_file.name.endswith("Default.log"):
+                name_with_type = log_file.name.replace("Default.log", asset_type + ".log")
+            else:
+                name_with_type = log_file.name
 
-                if not archive_file_path.exists():
-                    shutil.copy(target_file, archive_file_path)
-                else:
-                    L.error("Unable to copy %s to archive folder, path already exists", target_file)
+            target_file = pathlib.Path(self.raw_data_dir).joinpath(
+                hash_value, name_with_type)
 
-        return all_logs
+            if not target_file.parent.exists():
+                os.makedirs(target_file.parent)
+
+            # Moving the file to the archive folder:
+            archive_file_path = self.archive_folder_path.joinpath(
+                hash_value, name_with_type)
+
+            # Moving the file to a folder with the hash value
+            if not target_file.exists():
+                shutil.move(each_log, target_file)
+            else:
+                L.error("Unable to move %s to the target location: %s", each_log, target_file)
+
+            # Copy the file to the archive folder
+            if not archive_file_path.parent.exists():
+                os.mkdir(archive_file_path.parent)
+
+            if not archive_file_path.exists():
+                shutil.copy(target_file, archive_file_path)
+            else:
+                L.error("Unable to copy %s to archive folder, path already exists", target_file)
 
     def recover_files_from_archive(self):
         """
@@ -454,37 +472,56 @@ def get_asset_type_from_log_file(log_file_path):
     return asset_type
 
 
-def convert_raw_data_to_json(base_path_object):
-    """
-    Goes through all the raw extracted files and extracts any data of interest out of it.  The data of interest is then
-    Saved as a json file
+class ProcessPackageInfo:
 
-    # Find the sentinel output folder
-    # Find the test folder
-    # Iterate through all the raw package data files
-    # Convert each raw file to json file
-    # Move files to the parsed folder
+    def __init__(self, run_config):
+        self.run_config = run_config
+        self.sentinel_structure = run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
 
-    """
+    def _construct_paths(self):
+        """Makes the paths for outputs inside of the root artifact folder"""
+        project_root = pathlib.Path(self.run_config[CONSTANTS.PROJECT_FILE_PATH]).parent
+        artifact_root = pathlib.Path(project_root).joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_PROJECT_NAME])
 
-    files = base_path_object.raw_package_info.get_all_default_files()
+        self.archive_folder_path = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_ARCHIVES_PATH]).resolve()
+        self.raw_data_dir = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_RAW_LOGS_PATH]).resolve()
+        self.processed_path = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_PROCESSED_PATH]).resolve()
 
-    # Parsed output folder
-    parsed_folder_name = base_path_object.get_output_data_path(CONSTANTS.PARSED_DATA_FOLDER_NAME)
+        if not self.archive_folder_path.exists():
+            os.makedirs(self.archive_folder_path)
+        if not self.raw_data_dir.exists():
+            os.makedirs(self.raw_data_dir)
+        if not self.processed_path.exists():
+            os.makedirs(self.processed_path)
 
-    # Goes through each raw file and saves it out as a json file
-    for each_raw_file_path in files:
-        # Create the pkg object
-        each_pkg_obj = PkgCommandleLog.PkgLogObject(each_raw_file_path)
-        # Gets the name of the asset
-        asset_name = each_pkg_obj.get_asset_name()
+    def convert_raw_data_to_json(self):
+        """
+        Goes through all the raw extracted files and extracts any data of interest out of it.  The data of interest is then
+        Saved as a json file
 
-        # Save single json file
-        path = os.path.join(parsed_folder_name, asset_name + ".json")
+        # Find the sentinel output folder
+        # Find the test folder
+        # Iterate through all the raw package data files
+        # Convert each raw file to json file
+        # Move files to the parsed folder
 
-        f = open(path, 'w')
-        # Saves the package object data to disk
-        json.dump(each_pkg_obj.get_data(), f, indent=4)
-        f.close()
+        """
 
-        L.debug("Wrote: " + str(path))
+        files = base_path_object.raw_package_info.get_all_default_files()
+
+        # Goes through each raw file and saves it out as a json file
+        for each_raw_file_path in files:
+            # Create the pkg object
+            each_pkg_obj = packageinfolog.PkgLogObject(each_raw_file_path)
+            # Gets the name of the asset
+            asset_name = each_pkg_obj.get_asset_name()
+
+            # Save single json file
+            path = os.path.join(self.processed_path, asset_name + ".json")
+
+            f = open(path, 'w')
+            # Saves the package object data to disk
+            json.dump(each_pkg_obj.get_data(), f, indent=4)
+            f.close()
+
+            L.debug("Wrote: " + str(path))

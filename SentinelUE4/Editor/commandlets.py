@@ -193,11 +193,20 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         self.generated_logs = []
 
     def has_custom_type_config(self):
-        return self.asset_type in self.commandlet_settings["type_flags"]
+
+        # The default asset type is always valid
+        if self.asset_type == "Default":
+            return True
+
+        return self.asset_type in self.commandlet_settings["detail_extract_types"]
 
     def get_commandlet_flags(self):
 
-        commandlet_flags = self.commandlet_settings["type_flags"][self.asset_type]
+        # The Default asset type just used the default flags
+        if self.asset_type == "Default":
+            return super(PackageInfoCommandlet, self).get_commandlet_flags()
+
+        commandlet_flags = self.commandlet_settings["detailed_extract"]
 
         return commandlet_flags
 
@@ -246,6 +255,7 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
 
                     asset_name = self.get_asset_name_from_summary_line(line)
                     path = self.get_out_log_path(asset_name)
+
                     self._register_log_path(path)
 
                     if not out_log:
@@ -275,6 +285,7 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         Constructs the name of the output log file
         :return:
         """
+
         asset_file_name = asset_name + "_" + self.asset_type + ".log"
         path = pathlib.Path(self.raw_log_path).joinpath(asset_file_name)
 

@@ -20,6 +20,7 @@ SENTINEL_PROJECT_STRUCTURE = "sentinel_project_structure"
 SENTINEL_PROJECT_NAME = "sentinel_project_name"
 SENTINEL_RAW_LOGS_PATH = "sentinel_raw_logs_path"
 SENTINEL_ARCHIVES_PATH = "sentinel_archives_path"
+SENTINEL_PROCESSED_PATH = "sentinel_processed_path"
 SENTINEL_DEFAULT_COOK_FILE_NAME = "sentinel_default_cook_log_name"
 SENTINEL_DEFAULT_COMPILE_FILE_NAME = "sentinel_default_editor_log_name"
 

@@ -1,13 +1,12 @@
 # coding=utf-8
 
 import pathlib
-from LogParser import BaseLogParser
 import re
 import logging
 L = logging.getLogger()
 
 
-class PkgLogObject(BaseLogParser.BaseLogParser):
+class PkgLogObject:
 
     """
     Takes in a raw pkgInfo log file and extracts relevant infomation out of it.  Saves the output file as a json file

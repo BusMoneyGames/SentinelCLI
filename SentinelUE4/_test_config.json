@@ -5,27 +5,13 @@
    "commandlets":{
       "PkgInfoCommandlet":{
          "command":"PkgInfoCommandlet",
+         "detail_extract_types":["Blueprint", "StaticMesh"],
          "flags":[
             "names",
             "paths",
             "assetregistry"
          ],
-         "type_flags":{
-            "Default":[
-               "names",
-               "paths",
-               "assetregistry"
-            ],
-            "StaticMesh":[
-               "paths",
-               "depends",
-               "imports",
-               "exports",
-               "names",
-               "depends",
-               "AssetRegistry"
-            ],
-            "Blueprint":[
+            "detailed_extract":[
                "paths",
                "depends",
                "imports",
@@ -34,7 +20,7 @@
                "depends",
                "AssetRegistry"
             ]
-         }
+
       },
       "BuildLighting":{
          "command":"ResavePackages",
@@ -97,6 +83,7 @@
       "sentinel_project_name":"SentinelArtifacts",
       "sentinel_raw_logs_path":"Raw/",
       "sentinel_archives_path": "Cache/",
+      "sentinel_processed_path": "Processed/",
       "sentinel_default_cook_log_name":"default_client_build.log",
       "sentinel_default_editor_log_name":"default_compile.log"
    },
