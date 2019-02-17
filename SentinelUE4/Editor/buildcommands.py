@@ -142,15 +142,15 @@ class UnrealClientBuilder(BaseUnrealBuilder):
     deploy location
     """
 
-    def __init__(self, run_config, platform="Win64"):
+    def __init__(self, run_config, build_config_name="default"):
         """
         Use the settings from the path object to build the client based on the settings in the settings folder
         :param unreal_project_info:
         """
-        super().__init__(run_config)
+        super().__init__(run_config, build_config_name)
 
         self.log_output_file_name = self.sentinel_project_structure[CONSTANTS.SENTINEL_DEFAULT_COOK_FILE_NAME]
-        self.editor_util = editorUtilities.UEUtilities(run_config, platform)
+        self.editor_util = editorUtilities.UEUtilities(run_config, self.platform)
 
     def get_archive_directory(self):
 
@@ -183,7 +183,8 @@ class UnrealClientBuilder(BaseUnrealBuilder):
         cmd_list = [str(run_uat_path),
                     build_command_name,
                     "-project=" + str(project_path),
-                    "-clientconfig=" + build_config
+                    "-clientconfig=" + build_config,
+                    "-targetplatform=" + self.platform
                     ]
 
         config_flags = self._prefix_config_with_dash(self.build_settings[CONSTANTS.UNREAL_BUILD_CONFIG_FLAGS])
