@@ -176,9 +176,7 @@ class BaseUE4Commandlet:
 
 
 class PackageInfoCommandlet(BaseUE4Commandlet):
-    """
-    Runs the package info commandlet
-    """
+    """ Runs the package info commandlet """
     def __init__(self, run_config, unreal_asset_file_paths, asset_type="Default"):
         """
 

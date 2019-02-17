@@ -1,6 +1,6 @@
 import unittest
 import json
-from ue4_package_inspection import BasePackageInspection
+from Editor.ue4_package_inspection import BasePackageInspection
 
 
 class TestExtractPackages(unittest.TestCase):

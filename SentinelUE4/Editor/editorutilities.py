@@ -1,3 +1,5 @@
+import shutil
+
 import CONSTANTS
 import sys
 import pathlib
@@ -53,3 +55,38 @@ class UEUtilities:
             files.append(each_file)
 
         return files
+
+
+def clean_unreal_project(project_root_folder):
+    """
+
+    :param project_root_folder: folder containing the uproject file
+    :return:
+    """
+
+    project_root_folder = pathlib.Path(project_root_folder)
+    root_folders_to_remove = ["Intermediate", "Saved", "Binaries", ".vs"]
+
+    folders_to_remove = []
+
+    for each_dir_to_remove in root_folders_to_remove:
+        dir_to_remove = project_root_folder.joinpath(each_dir_to_remove)
+        if dir_to_remove.exists():
+            folders_to_remove.append(dir_to_remove)
+
+    project_root_folder.joinpath("Plugins")
+
+    for each_plugin in project_root_folder.joinpath("Plugins").glob("*"):
+        for each_root_folder_to_remove in root_folders_to_remove:
+            plugin_dir_to_remove = each_plugin.joinpath(each_root_folder_to_remove)
+            if plugin_dir_to_remove.exists():
+                folders_to_remove.append(plugin_dir_to_remove)
+
+    # Deletes the folders that were found
+    for each_folder in folders_to_remove:
+        try:
+            shutil.rmtree(each_folder.as_posix())
+            print("Deleting: ", each_folder.as_posix())
+        except Exception as e:
+            print(e)
+            print("Unable to remove ", each_folder.as_posix())
