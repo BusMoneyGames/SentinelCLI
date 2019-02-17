@@ -18,3 +18,15 @@ class TestInspectPackages(unittest.TestCase):
 
     def test_get_files_in_project(self):
         self.package_inspection.get_files_in_project()
+
+class TestProcessPackageInfo(unittest.TestCase):
+
+    def setUp(self):
+        L.setLevel(logging.DEBUG)
+        run_config = helper.get_path_config_for_test()
+
+        self.package_processor = packageinspection.ProcessPackageInfo(run_config)
+
+    def test_convert_raw_data_to_json(self):
+
+        self.package_processor.convert_raw_data_to_json()

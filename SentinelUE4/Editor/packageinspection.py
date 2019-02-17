@@ -477,6 +477,7 @@ class ProcessPackageInfo:
     def __init__(self, run_config):
         self.run_config = run_config
         self.sentinel_structure = run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
+        self._construct_paths()
 
     def _construct_paths(self):
         """Makes the paths for outputs inside of the root artifact folder"""
@@ -507,10 +508,8 @@ class ProcessPackageInfo:
 
         """
 
-        files = base_path_object.raw_package_info.get_all_default_files()
-
         # Goes through each raw file and saves it out as a json file
-        for each_raw_file_path in files:
+        for each_raw_file_path in self.raw_data_dir.glob("**/*.log"):
             # Create the pkg object
             each_pkg_obj = packageinfolog.PkgLogObject(each_raw_file_path)
             # Gets the name of the asset
