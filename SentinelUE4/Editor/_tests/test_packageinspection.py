@@ -19,6 +19,7 @@ class TestInspectPackages(unittest.TestCase):
     def test_get_files_in_project(self):
         self.package_inspection.get_files_in_project()
 
+
 class TestProcessPackageInfo(unittest.TestCase):
 
     def setUp(self):

@@ -10,7 +10,6 @@ import CONSTANTS
 from Editor import commandlets, editorutilities
 from Editor.LogProcesser import packageinfolog
 
-
 L = logging.getLogger(__name__)
 
 

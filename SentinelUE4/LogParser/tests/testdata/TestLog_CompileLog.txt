@@ -1,8 +1,0 @@
-Using 'git status' to determine working set for adaptive non-unity build.
-@progress push 5%
-@progress 'Generating code...' 0%
-@progress 'Generating code...' 67%
-@progress 'Generating code...' 100%
-@progress pop
-Target is up to date
-Total build time: 0,32 seconds (NoActionsToExecute executor: 0,00 seconds)
