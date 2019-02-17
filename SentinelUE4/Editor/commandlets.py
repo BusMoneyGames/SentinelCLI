@@ -193,7 +193,7 @@ class PackageInfoCommandlet(BaseUE4Commandlet):
         self.generated_logs = []
 
     def has_custom_type_config(self):
-        return True
+        return self.asset_type in self.commandlet_settings["type_flags"]
 
     def get_commandlet_flags(self):
 

@@ -175,17 +175,28 @@ class BasePackageInspection:
         self.run_config = run_config
 
         self.sentinel_structure = run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
-        self.archive_folder_path = pathlib.Path(self.sentinel_structure[CONSTANTS.SENTINEL_ARCHIVES_PATH]).resolve()
+        self._construct_paths()
 
         self.editor_util = editorutilities.UEUtilities(run_config)
-
-        self.raw_data_dir = pathlib.Path(self.sentinel_structure[CONSTANTS.SENTINEL_RAW_LOGS_PATH]).resolve()
 
         self._clear_old_data_from_raw()
 
         self.files_in_project = []
         self.pkg_hash_obj = None
         self.archive_obj = None
+
+    def _construct_paths(self):
+        """Makes the paths for outputs inside of the root artifact folder"""
+        project_root = pathlib.Path(self.run_config[CONSTANTS.PROJECT_FILE_PATH]).parent
+        artifact_root = pathlib.Path(project_root).joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_PROJECT_NAME])
+
+        self.archive_folder_path = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_ARCHIVES_PATH]).resolve()
+        self.raw_data_dir = artifact_root.joinpath(self.sentinel_structure[CONSTANTS.SENTINEL_RAW_LOGS_PATH]).resolve()
+
+        if not self.archive_folder_path.exists():
+            os.makedirs(self.archive_folder_path)
+        if not self.raw_data_dir.exists():
+            os.makedirs(self.raw_data_dir)
 
     def get_files_in_project(self):
         """
@@ -196,7 +207,6 @@ class BasePackageInspection:
 
         self.files_in_project = self.editor_util.get_all_content_files()
 
-        print(self.files_in_project)
         return self.files_in_project
 
     def get_file_hash_info(self):
@@ -218,10 +228,16 @@ class BasePackageInspection:
 
         return self.archive_obj
 
-    def extract_basic_package_information(self):
+    def extract_basic_package_information(self, clean=False):
         """
         Does a simple engine extract for asset to be able to determine asset type and other basic info
         """
+
+        # Delete any existing data
+        if clean:
+            self._clear_data_from_archive()
+            self._clear_old_data_from_raw()
+
         # Object that gives information about the archive
         archive_object = self.get_archive_info()
 
@@ -241,6 +257,10 @@ class BasePackageInspection:
 
     def _clear_old_data_from_raw(self):
 
+        if self.raw_data_dir.exists():
+            shutil.rmtree(self.raw_data_dir)
+
+    def _clear_data_from_archive(self):
         if self.raw_data_dir.exists():
             shutil.rmtree(self.raw_data_dir)
 
@@ -364,7 +384,8 @@ class BasePackageInspection:
             else:
                 L.error("Attempting to copy a folder that has not been cached yet")
 
-    def split_all_files_into_smaller_lists(self, all_files, count_per_list):
+    @staticmethod
+    def split_all_files_into_smaller_lists(all_files, count_per_list):
         """
         Takes a list and splits it up into smaller lists
         :param all_files:
