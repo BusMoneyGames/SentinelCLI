@@ -474,9 +474,12 @@ def get_asset_type_from_log_file(log_file_path):
 class ProcessPackageInfo:
 
     def __init__(self, run_config):
+
         self.run_config = run_config
         self.sentinel_structure = run_config[CONSTANTS.SENTINEL_PROJECT_STRUCTURE]
         self._construct_paths()
+
+        self.pkg_extractor = BasePackageInspection(run_config)
 
     def _construct_paths(self):
         """Makes the paths for outputs inside of the root artifact folder"""
@@ -506,6 +509,8 @@ class ProcessPackageInfo:
         # Move files to the parsed folder
 
         """
+
+        self.pkg_extractor.extract_basic_package_information()
 
         # Goes through each raw file and saves it out as a json file
         for each_raw_file_path in self.raw_data_dir.glob("**/*.log"):
