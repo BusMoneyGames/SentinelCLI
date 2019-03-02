@@ -2,3 +2,6 @@
 	path = SentinelUE4Component
 	url = git@github.com:BusMoneyGames/SentinelUE4Component.git
 	branch = develop
+[submodule "SentinelVCSComponent"]
+	path = SentinelVCSComponent
+	url = git@github.com:gislikon/SentinelVCSComponent.git
