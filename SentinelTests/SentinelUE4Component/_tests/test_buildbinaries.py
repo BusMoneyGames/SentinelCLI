@@ -40,7 +40,7 @@ class TestClientBuilder(unittest.TestCase):
 class TestEditorBuilder(unittest.TestCase):
 
     def setUp(self):
-        configelper.clean_compile_project()
+        helper.clean_compile_project()
         path_config = helper.get_path_config_for_test()
         self.editor_builder = buildcommands.UnrealEditorBuilder(path_config)
 
