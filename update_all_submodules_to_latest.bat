@@ -1,0 +1,5 @@
+git submodule foreach --recursive 'clean -dfx'
+git submodule foreach --recursive 'reset --hard'
+git submodule foreach --recursive './update_as_submodule.bat || :'
+git submodule foreach --recursive 'commit -m "automatic submodule update'
+git submodule foreach --recursive ''
