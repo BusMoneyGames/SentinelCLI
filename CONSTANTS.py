@@ -1,50 +1,38 @@
-# coding=utf-8
-RAW_DATA_FOLDER_NAME = "Raw"
-PARSED_DATA_FOLDER_NAME = "Parsed"
-TESTED_DATA_FOLDER_NAME = "Tested"
-REPORTS_OUTPUT_FOLDER_NAME = "Reports"
-REPORTS_DATA_FOLDER_NAME = "Data"
-SENTINEL_OUTPUT_FOLDER_NAME = "SentinelReports"
-WEB_DATA_FOLDER_NAME = "Webdata"
-WEB_TEMPLATE_FOLDER_PATH = "web"
-ARCHIVE_FOLDER_NAME = "Archive"
-BUILD_FOLDER_PATH = "Build"
-CLIENT_TEST_RESULT_FOLDER_NAME = "ClientRunResult"
-CLIENT_RAW_OUTPUT_FOLDER_NAME = "Raw_Client_Data"
 
-# Project folder structure
-PROJECT_FOLDER_STRUCTURE_TEST_OUTPUT = "project_structure_result.json"
+ENVIRONMENT_CATEGORY = "environment"
+ENGINE_ROOT_PATH = "engine_path"
+SENTINEL_ARTIFACTS_ROOT_PATH = "sentinel_artifacts_path"
+UNREAL_PROJECT_ROOT = "unreal_project_root_path"
 
-# Compile Tests
-COMPILE_TEST_LOG = "raw_blueprint_compile_results"
+COMMANDLET_SETTINGS = "commandlets"
 
-# Settings
-SETTINGS_FILE_NAME = "sentinel_settings.json"
-SETTINGS_DEPLOY_PATH = "Build_Deploy_Folder"
-SETTINGS_UNREAL_ENGINE_PATH = "Unreal_Engine_Path"
-SETTINGS_ARCHIVE_FOLDER_PATH = "Archive_Path"
-SETTINGS_SHOULD_BUILD_EDITOR = "should_build_editor"
-SETTINGS_SENTINEL_REPO_NAME = "Sentinel_Repo_Name"
-AMAZON_CREDENTIALS_SETTINGS = "web_settings"
+# Location in the unreal project where teh log is saved
+SAVED_LOGS_FOLDER_PATH = "log_target_root_path"
 
-# Run Config File
-RUN_CONFIG_FILE_NAME = "Summary.json"
-RUN_CONFIG_CURRENT_CHANGELIST = "CurrentChangelist"
-RUN_CONFIG_LAST_CHANGELIST = "LastChangelist"
-RUN_CONFIG_FILES_TO_PROCESS = "FilesToProcess"
-RUN_CONFIG_ARCHIVE_ABS_PATH = "ArchiveAbsolutePath"
-RUN_CONFIG_NEEDS_FULL_EXTRACT = "DoFullExtract"
-# Run Client Constants
+# The location where the log will be saved for parsing
+TARGET_LOG_FOLDER_PATH = "log_saved_root_path"
+UNREAL_ENGINE_STRUCTURE = "unreal_engine_structure"
+UNREAL_ENGINE_BINARIES_ROOT = "binaries_root_folder"
+UNREAL_ENGINE_WIN64_CMD_EXE = "editor_binary_cmd_name"
+UNREAL_ENGINE_WIN64_EXE = "editor_binary_name"
+UNREAL_ENGINE_UBT_EXE = "unreal_build_tool_path"
 
-CLIENT_RUN_STARTUP_TEST = "RunStartupTest"
+UNREAL_PROJECT_STRUCTURE = "ue_project_structure"
+UNREAL_CONTENT_ROOT_PATH = "content_root_path"
 
-# Project Settings
-SENTINEL_ASSET_RULES = "sentinel_assetRules.json"
+SENTINEL_PROJECT_STRUCTURE = "sentinel_project_structure"
+SENTINEL_PROJECT_NAME = "sentinel_project_name"
+SENTINEL_RAW_LOGS_PATH = "sentinel_raw_logs_path"
+SENTINEL_CACHE_ROOT = "sentinel_archives_path"
+SENTINEL_PROCESSED_PATH = "sentinel_processed_path"
+SENTINEL_BUILD_PATH = "sentinel_build_path"
+SENTINEL_DEFAULT_COOK_FILE_NAME = "sentinel_default_cook_log_name"
+SENTINEL_DEFAULT_COMPILE_FILE_NAME = "sentinel_default_editor_log_name"
 
-# Compile
-COMPILE_LOG_OUTPUT_NAME = "client_compile_output.log"
-COOK_LOG_OUTPUT_NAME = "client_cook_output.log"
+UNREAL_BUILD_SETTINGS_STRUCTURE = "unreal_build_structure"
+UNREAL_BUILD_PLATFORM_NAME = "build_platform"
+UNREAL_BUILD_COMMAND_NAME = "build_command"
+UNREAL_BUILD_CONFIG_FLAGS = "build_flags"
+UNREAL_BUILD_CONFIGURATION = "build_configuration"
+UNREAL_EDITOR_COMPILE_FLAGS = "editor_compile_flags"
 
-# Environment Variable Prefixes
-ENV_ENGINE_PATH_PREFIX = "UE4-SENTINEL-ENGINE-PATH-"
-ENV_ARCHIVE_PATH_PREFIX = "UE4-SENTINEL-ARCHIVE-PATH-"
