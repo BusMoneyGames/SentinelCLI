@@ -1,6 +1,6 @@
 import unittest
 import logging
-from SentinelUE4Component import SentinelUE4Component
+
 L = logging.getLogger()
 
 
