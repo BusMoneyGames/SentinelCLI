@@ -1,5 +1,6 @@
 import unittest
 import Editor.buildcommands as buildcommands
+from SentinelUE4Component import SentinelUE4Component
 from SentinelConfig import configelper as helper
 
 import logging
@@ -12,47 +13,54 @@ L = logging.getLogger()
 L.setLevel(logging.DEBUG)
 
 
-class TestClientBuilder(unittest.TestCase):
+class TestSentinelUE4ComponentBuild(unittest.TestCase):
 
     def setUp(self):
-        helper.clean_compile_project()
+        # helper.clean_compile_project()
         path_config = helper.get_path_config_for_test()
+        self.default_arguments = ["-config=" + str(path_config)]
 
-        self.client_builder = buildcommands.UnrealClientBuilder(path_config)
+        self.commandline_name = "SentinelUE4Component.py"
 
-    def test_build_client(self):
-        self.client_builder.run()
+    def test_help(self):
+        SentinelUE4Component.main(["-h"])
 
-    def test_get_command(self):
-        cmd = self.client_builder.get_build_command()
-        print(cmd)
+    def test_build_default(self):
 
-    def test_build_server(self):
-        path_config = helper.get_path_config_for_test()
-
-        cmd = buildcommands.UnrealClientBuilder(path_config, build_config_name="server")
-        cmd.run()
-
-    def tearDown(self):
-        helper.reset_ue_repo()
+        arguments = ["-build"]
+        arguments.extend(self.default_arguments)
+        L.info("Running %s %s ", self.commandline_name, " ".join(arguments))
+        SentinelUE4Component.main(arguments)
 
 
-class TestEditorBuilder(unittest.TestCase):
-
+class TestSentinelUE4ComponentVerify(unittest.TestCase):
     def setUp(self):
-        helper.clean_compile_project()
+        # helper.clean_compile_project()
         path_config = helper.get_path_config_for_test()
-        self.editor_builder = buildcommands.UnrealEditorBuilder(path_config)
+        self.default_arguments = ["-config=" + str(path_config)]
 
-    def test_build_client(self):
-        self.editor_builder.run()
+        self.commandline_name = "SentinelUE4Component.py"
 
-    def test_get_command(self):
-        cmd = self.editor_builder.get_build_command()
-        print(cmd)
+    def test_verify_default(self):
+        arguments = ["-verify"]
+        arguments.extend(self.default_arguments)
+        L.info("Running %s %s ", self.commandline_name, " ".join(arguments))
+        SentinelUE4Component.main(arguments)
 
-    def tearDown(self):
-        helper.reset_ue_repo()
+
+class TestSentinelUE4ComponentRun(unittest.TestCase):
+    def setUp(self):
+        # helper.clean_compile_project()
+        path_config = helper.get_path_config_for_test()
+        self.default_arguments = ["-config=" + str(path_config)]
+
+        self.commandline_name = "SentinelUE4Component.py"
+
+    def test_verify_default(self):
+        arguments = ["-run"]
+        arguments.extend(self.default_arguments)
+        L.info("Running %s %s ", self.commandline_name, " ".join(arguments))
+        SentinelUE4Component.main(arguments)
 
 
 class TestBuildShaderCompiler(unittest.TestCase):
