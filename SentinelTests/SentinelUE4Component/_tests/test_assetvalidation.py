@@ -8,7 +8,7 @@ from Validation import assetvalidation
 class TestAssetValidation(unittest.TestCase):
 
     def setUp(self):
-        self.run_config = helper.get_path_config_for_test()
+        self.run_config = helper.generate_default_config()
 
 
     def test_dostuff(self):

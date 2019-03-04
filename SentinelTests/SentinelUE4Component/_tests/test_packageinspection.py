@@ -17,7 +17,7 @@ class TestInspectPackages(unittest.TestCase):
             helper.clean_compile_project()
             self.is_first_run = False
 
-        run_config = helper.get_path_config_for_test()
+        run_config = helper.generate_default_config()
         self.package_inspection = packageinspection.BasePackageInspection(run_config)
 
     def test_extract_basic_package_information(self):
@@ -31,7 +31,7 @@ class TestProcessPackageInfo(unittest.TestCase):
 
     def setUp(self):
         L.setLevel(logging.DEBUG)
-        run_config = helper.get_path_config_for_test()
+        run_config = helper.generate_default_config()
 
         self.package_processor = packageinspection.ProcessPackageInfo(run_config)
 

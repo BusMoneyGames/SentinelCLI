@@ -1,6 +1,5 @@
-import unittest
+from SentinelTests.shared import BaseCLITestComponent
 from SentinelUE4Component import SentinelUE4Component
-from SentinelConfig import configelper as helper
 
 import logging
 
@@ -10,25 +9,6 @@ logging.basicConfig(format=FORMAT)
 
 L = logging.getLogger()
 L.setLevel(logging.DEBUG)
-
-
-class BaseCLITestComponent(unittest.TestCase):
-
-    def setUp(self):
-        # helper.clean_compile_project()
-        path_config = helper.get_path_config_for_test()
-        self.default_arguments = ["-config=" + str(path_config)]
-
-        self.commandline_name = "SentinelUE4Component.py"
-
-    def _get_arguments(self, additional_arguments):
-
-        arguments = additional_arguments
-
-        additional_arguments.extend(self.default_arguments)
-        L.info("Running %s %s ", self.commandline_name, " ".join(arguments))
-
-        return arguments
 
 
 class TestSentinelUE4ComponentBuild(BaseCLITestComponent):
