@@ -2,14 +2,8 @@ import unittest
 import Editor.commandlets as commandlets
 from SentinelConfig import configelper as helper, CONSTANTS
 
-import logging
-
-
-FORMAT = '%(message)s'
-logging.basicConfig(format=FORMAT)
-
-L = logging.getLogger()
-L.setLevel(logging.DEBUG)
+import SentinelTests.shared as shared
+L = shared.get_logger()
 
 
 class TestDefaultCommandlets(unittest.TestCase):

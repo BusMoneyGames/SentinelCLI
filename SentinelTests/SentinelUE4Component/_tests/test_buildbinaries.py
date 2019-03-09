@@ -1,14 +1,8 @@
 from SentinelTests.shared import BaseCLITestComponent
 from SentinelUE4Component import SentinelUE4Component
 
-import logging
-
-
-FORMAT = '%(message)s'
-logging.basicConfig(format=FORMAT)
-
-L = logging.getLogger()
-L.setLevel(logging.DEBUG)
+import SentinelTests.shared as shared
+L = shared.get_logger()
 
 
 class TestSentinelUE4ComponentBuild(BaseCLITestComponent):

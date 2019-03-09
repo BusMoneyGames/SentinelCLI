@@ -2,7 +2,18 @@ import unittest
 import SentinelConfig.configelper as helper
 import logging
 
-L = logging.getLogger()
+
+def get_logger():
+    format = '%(levelname)s %(message)s '
+    logging.basicConfig(format=format)
+
+    L = logging.getLogger()
+    L.setLevel(logging.DEBUG)
+
+    return L
+
+
+L = get_logger()
 
 
 class BaseCLITestComponent(unittest.TestCase):

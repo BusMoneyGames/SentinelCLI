@@ -1,7 +1,8 @@
 import unittest
-import logging
 
-L = logging.getLogger()
+import SentinelTests.shared as shared
+L = shared.get_logger()
+
 
 
 class TestGameClient(unittest.TestCase):

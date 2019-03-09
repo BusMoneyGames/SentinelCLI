@@ -1,8 +1,9 @@
 import unittest
-
 from SentinelConfig import configelper as helper
-
 from Validation import assetvalidation
+
+import SentinelTests.shared as shared
+L = shared.get_logger()
 
 
 class TestAssetValidation(unittest.TestCase):

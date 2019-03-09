@@ -1,18 +1,15 @@
 import unittest
-import logging
 import Editor.packageinspection as packageinspection
-
 from SentinelConfig import configelper as helper
 
-L = logging.getLogger()
+import SentinelTests.shared as shared
+L = shared.get_logger()
 
 
 class TestInspectPackages(unittest.TestCase):
 
     def setUp(self):
         self.is_first_run = True
-        L.setLevel(logging.DEBUG)
-
         if self.is_first_run:
             helper.clean_compile_project()
             self.is_first_run = False
@@ -30,7 +27,6 @@ class TestInspectPackages(unittest.TestCase):
 class TestProcessPackageInfo(unittest.TestCase):
 
     def setUp(self):
-        L.setLevel(logging.DEBUG)
         run_config = helper.generate_default_config()
 
         self.package_processor = packageinspection.ProcessPackageInfo(run_config)
