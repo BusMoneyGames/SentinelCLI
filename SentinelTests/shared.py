@@ -28,6 +28,6 @@ class BaseCLITestComponent(unittest.TestCase):
         arguments = additional_arguments
 
         additional_arguments.extend(self.default_arguments)
-        L.info("Running %s %s ", " ".join(arguments))
+        # L.info("Running %s %s ", " ".join(arguments))
 
         return arguments

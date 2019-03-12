@@ -12,7 +12,7 @@ class TestSentinelUE4ComponentBuild(BaseCLITestComponent):
 
     def test_build_default(self):
 
-        SentinelUE4Component.main(self._get_arguments(["-build"]))
+        SentinelUE4Component.main(self._get_arguments(["-build", "-debug"]))
 
 
 class TestSentinelUE4ComponentValidate(BaseCLITestComponent):
