@@ -20,6 +20,9 @@ class TestSentinelUE4ComponentValidate(BaseCLITestComponent):
     def test_validate_default(self):
         SentinelUE4Component.main(self._get_arguments(["-validate"]))
 
+    def test_validate_package_inspection(self):
+        SentinelUE4Component.main(self._get_arguments(["-validate", "-validation_inspect"]))
+
 
 class TestSentinelUE4ComponentRun(BaseCLITestComponent):
     def test_run_default(self):
