@@ -1,21 +1,17 @@
-# Sentinel Unreal Project # 
-The sentinel UE4 project is the test project for the sentinel tool suit,  This project allows for testing sentinel in a simple environment built for running fast
+# Sentinel Project # 
+The sentinel project is a container for all of the sentinel plugins that do the heavy lifting for the game automation. The traditional way of running the test environment is to clone the SentinelUE4 project which contains this project as a submodule.
 
-The Sentine-UE4 project also contains the Sentinel Automation Unreal plugin code that allows the game client to be run in automation mode for client tests
+[SentinelUE4 Repo] (https://github.com/BusMoneyGames/SentinelUE4)
 
-## Prerequisites ##
+## Prerequisits ##
+### Windows ###
+- Python 3.6 + 
+- Pipenv
 
-- Unreal Engine 4.21 ( Can be installed through the epic games launcher )
-- Visual Studio 2017 ( any version that it compatible with the Unreal version )
-- Python 3.6 with pipenv
-- Access to the sentinel project to clone the sub project
+### Running the Integration tests ###
 
-## Running sentinel / Creating the test environment ##
+The sentinel plugins in some cases don't do very interesting things when run in isolation so the primary responsibility of the Sentinel project is to be a container for the different plugins so we can run integration tests.
 
-- Run make_exe.bat
-- Edit sentinel_settings.json to make sure that the path to engine is set correctly
-- Run "SentinelTool/bin/_tests/test_run_all.bat"
-- This will take around 10 min since it runs the client tests
-- Wait for the run to finish
-- Go to the SentinelReports/Reports/index.html
-
+pipenv install --dev 
+pipenv run TestRunner.py -h
+pipenv run TestRunner.py -editor
