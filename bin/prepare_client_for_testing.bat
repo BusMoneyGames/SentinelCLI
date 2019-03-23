@@ -1,1 +1,0 @@
-%~dp0..\SentinelUnrealTool.exe -b -store_build

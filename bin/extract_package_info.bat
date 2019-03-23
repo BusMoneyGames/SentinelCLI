@@ -1,1 +1,0 @@
-%~dp0..\SentinelUnrealTool.exe -package_info
