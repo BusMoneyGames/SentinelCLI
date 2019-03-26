@@ -24,7 +24,7 @@ def error(err):
 
 
 @api.resource('/command/<string:command>')
-class Command(Resource):
+class RunCommand(Resource):
     def post(self, command):
 
         if command not in commands:
@@ -42,7 +42,18 @@ class Command(Resource):
             # TODO log/display exception
             return error('Unexpected error')
 
-        return {'output': f'This output is from Python, you executed the command: {command}'}
+
+@api.resource('/command')
+class Command(Resource):
+    def get(self):
+        try:
+            output = subprocess.check_output(
+                ['python', './SentinelConfig/SentinelConfig.py', '-h']).decode("utf-8")
+
+            return {'output': output}
+        except:
+            # TODO log/display exception
+            return error('Unexpected error')
 
 
 if __name__ == '__main__':
