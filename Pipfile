@@ -3,8 +3,20 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[scripts]
+server = "python server.py"
+
 [packages]
 gitpython = "*"
+cx-freeze = "*"
+pillow = "*"
+boto = "*"
+"boto3" = "*"
+requests = "*"
+sphinx = "*"
+flask = "*"
+flask-restful = "*"
+flask-cors = "*"
 
 [dev-packages]
 
