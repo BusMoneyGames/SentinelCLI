@@ -18,6 +18,12 @@ CORS(app)
 
 commands = ['start', 'restart', 'kill', 'list']
 
+ue4Component = [
+    'python', './SentinelUE4Component/SentinelUE4Component.py']
+
+sentinelConfig = [
+    'python', './SentinelConfig/SentinelConfig.py']
+
 
 def error(err):
     return {'error': err}
@@ -25,17 +31,30 @@ def error(err):
 
 @api.resource('/command/<string:command>')
 class RunCommand(Resource):
+    def get(self, command):
+        try:
+            output = subprocess.check_output(
+                ue4Component + [command]).decode("utf-8")
+
+            return {'output': output}
+        except:
+            # TODO log/display exception
+            return error('Unexpected error')
+
     def post(self, command):
 
-        if command not in commands:
-            return error(f'Invalid command: "{command}"')
+        # if command not in commands:
+        #     return error(f'Invalid command: "{command}"')
 
         print('Should run sentinel command:', command)
 
-        try:
-            # output = subprocess.check_output(['python', 'modo.py', 'rexec', command]).decode("utf-8")
+        commandSplit = command.split(' ')
 
-            output = f'Some text that should be returned\nWow this is some good text\nThis is good\nVery good\nYes\nThe command executed was: {command}'
+        print(ue4Component + commandSplit)
+
+        try:
+            output = subprocess.check_output(
+                ue4Component + commandSplit).decode("utf-8")
 
             return {'output': output}
         except:
@@ -48,7 +67,7 @@ class Command(Resource):
     def get(self):
         try:
             output = subprocess.check_output(
-                ['python', './SentinelConfig/SentinelConfig.py', '-h']).decode("utf-8")
+                sentinelConfig + ['-h']).decode("utf-8")
 
             return {'output': output}
         except:
