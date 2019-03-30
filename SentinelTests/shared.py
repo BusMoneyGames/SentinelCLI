@@ -20,7 +20,7 @@ class BaseCLITestComponent(unittest.TestCase):
 
     def setUp(self):
         # helper.clean_compile_project()
-        path_config = helper.generate_default_config()
+        path_config = helper.generate_config()
         self.default_arguments = ["-config=" + str(path_config)]
 
     def _get_arguments(self, additional_arguments):
