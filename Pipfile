@@ -17,6 +17,7 @@ sphinx = "*"
 flask = "*"
 flask-restful = "*"
 flask-cors = "*"
+click = "*"
 
 [dev-packages]
 
