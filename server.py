@@ -1,6 +1,7 @@
 import subprocess
+import json
 from argparse import ArgumentParser
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
 
@@ -23,6 +24,10 @@ ue4Component = [
 
 sentinelConfig = [
     'python', './SentinelConfig/SentinelConfig.py']
+
+configFiles = {
+    'windows_default_client': './windows_default_client.json'
+}
 
 
 def error(err):
@@ -57,8 +62,9 @@ class RunCommand(Resource):
                 ue4Component + commandSplit).decode("utf-8")
 
             return {'output': output}
-        except:
+        except Exception as e:
             # TODO log/display exception
+            print(e)
             return error('Unexpected error')
 
 
@@ -70,8 +76,50 @@ class Command(Resource):
                 sentinelConfig + ['-h']).decode("utf-8")
 
             return {'output': output}
-        except:
+        except Exception as e:
             # TODO log/display exception
+            print(e)
+            return error('Unexpected error')
+
+@api.resource('/config/<string:config>')
+class Config(Resource):
+    def get(self, config):
+        if config not in configFiles:
+            return error('Config file not found')
+
+        try:
+            with open(configFiles[config]) as configFile:
+                data = json.load(configFile)
+
+                return {'config': data}
+        except Exception as e:
+            # TODO log/display exception
+            print(e)
+            return error('Unexpected error')
+
+    def put(self, config):
+        if config not in configFiles:
+            return error('Config file not found')
+
+        body = request.get_json()
+
+        if body is None:
+            return error('Failed to parse JSON body')
+
+        try:
+            with open(configFiles[config], 'r+') as configFile:
+                data = json.load(configFile)
+
+                data.update(body)
+
+                configFile.seek(0)
+                configFile.write(json.dumps(data, indent=2))
+                configFile.truncate()
+
+                return {'success': True}
+        except Exception as e:
+            # TODO log/display exception
+            print(e)
             return error('Unexpected error')
 
 
