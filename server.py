@@ -25,8 +25,9 @@ ue4Component = [
 sentinelConfig = [
     'python', './SentinelConfig/SentinelConfig.py']
 
-configFiles = {
-    'windows_default_client': './windows_default_client.json'
+configFileBasePath = './SentinelConfig/defaultConfig'
+configFileTypes = {
+    'build': 'buildconfigs'
 }
 
 
@@ -81,25 +82,30 @@ class Command(Resource):
             print(e)
             return error('Unexpected error')
 
+
 @api.resource('/config/<string:config>')
 class Config(Resource):
     def get(self, config):
-        if config not in configFiles:
-            return error('Config file not found')
+        configType = request.args['type']
+
+        if configType not in configFileTypes:
+            return error('Invalid config file type')
 
         try:
-            with open(configFiles[config]) as configFile:
+            with open(f'{configFileBasePath}/{configFileTypes[configType]}/{config}.json') as configFile:
                 data = json.load(configFile)
 
-                return {'config': data}
+                return {'output': data}
         except Exception as e:
             # TODO log/display exception
             print(e)
             return error('Unexpected error')
 
     def put(self, config):
-        if config not in configFiles:
-            return error('Config file not found')
+        configType = request.args['type']
+
+        if configType not in configFileTypes:
+            return error('Invalid config file type')
 
         body = request.get_json()
 
@@ -107,7 +113,7 @@ class Config(Resource):
             return error('Failed to parse JSON body')
 
         try:
-            with open(configFiles[config], 'r+') as configFile:
+            with open(f'{configFileBasePath}/{configFileTypes[configType]}/{config}.json', 'r+') as configFile:
                 data = json.load(configFile)
 
                 data.update(body)
