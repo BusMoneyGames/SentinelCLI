@@ -30,6 +30,7 @@ configFileTypes = {
     'build': 'buildconfigs'
 }
 
+
 def error(err):
     return {'error': err}
 
@@ -81,6 +82,7 @@ class Command(Resource):
             print(e)
             return error('Unexpected error')
 
+
 @api.resource('/config/<string:config>')
 class Config(Resource):
     def get(self, config):
@@ -100,13 +102,18 @@ class Config(Resource):
             return error('Unexpected error')
 
     def put(self, config):
+        configType = request.args['type']
+
+        if configType not in configFileTypes:
+            return error('Invalid config file type')
+
         body = request.get_json()
 
         if body is None:
             return error('Failed to parse JSON body')
 
         try:
-            with open(configFiles[config], 'r+') as configFile:
+            with open(f'{configFileBasePath}/{configFileTypes[configType]}/{config}.json', 'r+') as configFile:
                 data = json.load(configFile)
 
                 data.update(body)
