@@ -8,3 +8,6 @@
 [submodule "SentinelConfig"]
 	path = SentinelConfig
 	url = git@github.com:BusMoneyGames/SentinelConfig.git
+[submodule "Sentinel-Frontend"]
+	path = Sentinel-Frontend
+	url = git@github.com:BusMoneyGames/Sentinel-Frontend.git
