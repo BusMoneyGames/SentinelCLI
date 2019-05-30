@@ -26,19 +26,9 @@ def _read_config(path):
 
 @click.group()
 @click.option('--path', default="", help="path to the config overwrite folder")
-@click.option('--debug', default=False, help="Turns on debug messages")
 @click.pass_context
-def cli(ctx, path, debug):
+def cli(ctx, path):
     """Sentinel Unreal Component handles running commands interacting with unreal engine"""
-
-    if debug:
-        L.setLevel(logging.DEBUG)
-        message_format = '%(levelname)s - %(message)s '
-    else:
-        message_format = '%(levelname)s %(message)s '
-        L.setLevel(logging.ERROR)
-
-    logging.basicConfig(format=message_format)
     run_directory = pathlib.Path(os.getcwd())
 
     if path:
@@ -60,24 +50,26 @@ def cli(ctx, path, debug):
     ctx.obj['RUN_CONFIG'] = _read_config(config_file_path)
 
 
-@cli.command()
-@click.argument('args', nargs=-1)
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def environment(ctx, args):
     """Local Environment Options"""
     subprocess.run("python ./SentinelConfig/SentinelConfig.py " + " ".join(args))
 
 
-@cli.command()
-@click.argument('args', nargs=-1)
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def ue4(ctx, args):
     """Unreal Engine Options"""
     subprocess.run("python ./SentinelUE4Component/SentinelUE4Component.py " + " ".join(args))
 
 
-@cli.group()
-def vcs():
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@click.argument('args', nargs=-1, type=click.UNPROCESSED)
+@click.pass_context
+def vcs(ctx, args):
     """Fetch information from version control"""
 
 
