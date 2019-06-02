@@ -24,30 +24,40 @@ def _read_config(path):
         quit(1)
 
 
-@click.group()
-@click.option('--path', default="", help="path to the config overwrite folder")
-@click.pass_context
-def cli(ctx, path):
-    """Sentinel Unreal Component handles running commands interacting with unreal engine"""
-    run_directory = pathlib.Path(os.getcwd())
+def get_commandline(script, arguments, data=None):
+    """
+    Constructs the command line that gets passed into the different sentinel commands
+    :return:
+    """
+    cmd = "python " + script
 
-    if path:
-        custom_path = pathlib.Path(path)
-        if custom_path.absolute():
-            config_file_root_dir = path
-        else:
-            config_file_root_dir = run_directory.joinpath(path)
+    if data:
+        pass_through_arguments = " "
+        for each_data in data.keys():
+            pass_through_arguments = pass_through_arguments + each_data + "=" + data[each_data]
     else:
-        # Default is one level up from current directory
-        config_file_root_dir = run_directory.parent
+        pass_through_arguments = ""
 
-    config_file_path = config_file_root_dir.joinpath("_sentinel_root.json")
-    L.debug("Reading config file from: %s Exists: %s", config_file_path, config_file_path.exists())
+    if arguments:
+        # Only add the pass through arguments if there is a command
+        cmd = cmd + pass_through_arguments + " " + " ".join(arguments)
+
+    return cmd
+
+
+@click.group()
+@click.option('--project_root', default="", help="path to the config overwrite folder")
+@click.option('--debug', default=False, help="Turns on debug messages")
+@click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
+@click.pass_context
+def cli(ctx, project_root, debug, output):
+    """Sentinel Unreal Component handles running commands interacting with unreal engine"""
+
+    run_directory = pathlib.Path(os.getcwd())
+    project_root = run_directory.parent
 
     ctx.ensure_object(dict)
-    ctx.obj['CONFIG_ROOT'] = path
-    ctx.obj['GENERATED_CONFIG_PATH'] = config_file_path
-    ctx.obj['RUN_CONFIG'] = _read_config(config_file_path)
+    ctx.obj['PROJECT_ROOT'] = project_root.as_posix()
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -55,7 +65,10 @@ def cli(ctx, path):
 @click.pass_context
 def environment(ctx, args):
     """Local Environment Options"""
-    subprocess.run("python ./SentinelConfig/SentinelConfig.py " + " ".join(args))
+
+    data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
+    cmd = get_commandline("./SentinelConfig/SentinelConfig.py", args, data)
+    subprocess.run(cmd)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -63,14 +76,22 @@ def environment(ctx, args):
 @click.pass_context
 def ue4(ctx, args):
     """Unreal Engine Options"""
-    subprocess.run("python ./SentinelUE4Component/SentinelUE4Component.py " + " ".join(args))
+
+    data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
+
+    cmd = get_commandline("./SentinelUE4Component/SentinelUE4Component.py ", args, data)
+    subprocess.run(cmd)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def vcs(ctx, args):
+
     """Fetch information from version control"""
+    data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
+    cmd = get_commandline("./SentinelVCSComponent/SentinelVCSComponent.py", args, data)
+    subprocess.run(cmd)
 
 
 if __name__ == "__main__":
