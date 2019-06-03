@@ -34,7 +34,7 @@ def get_commandline(script, arguments, data=None):
     if data:
         pass_through_arguments = " "
         for each_data in data.keys():
-            pass_through_arguments = pass_through_arguments + each_data + "=" + data[each_data]
+            pass_through_arguments = pass_through_arguments + each_data + "=" + data[each_data] + " "
     else:
         pass_through_arguments = ""
 
@@ -47,10 +47,11 @@ def get_commandline(script, arguments, data=None):
 
 @click.group()
 @click.option('--project_root', default="", help="path to the config overwrite folder")
-@click.option('--debug', default=False, help="Turns on debug messages")
+@click.option('--skip_version', default=False, help="Skips output version")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
+@click.option('--debug', default=False, help="Turns on debug messages")
 @click.pass_context
-def cli(ctx, project_root, debug, output):
+def cli(ctx, project_root, debug, output, skip_version):
     """Sentinel Unreal Component handles running commands interacting with unreal engine"""
 
     run_directory = pathlib.Path(os.getcwd())
@@ -58,6 +59,7 @@ def cli(ctx, project_root, debug, output):
 
     ctx.ensure_object(dict)
     ctx.obj['PROJECT_ROOT'] = project_root.as_posix()
+    ctx.obj['SKIP_VERSION'] = str(skip_version)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -66,7 +68,10 @@ def cli(ctx, project_root, debug, output):
 def environment(ctx, args):
     """Local Environment Options"""
 
-    data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
+    data = {
+        "--project_root": ctx.obj["PROJECT_ROOT"],
+        "--skip_version": ctx.obj['SKIP_VERSION']
+    }
     cmd = get_commandline("./SentinelConfig/SentinelConfig.py", args, data)
     subprocess.run(cmd)
 
