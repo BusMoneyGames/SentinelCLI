@@ -98,6 +98,16 @@ def vcs(ctx, args):
     cmd = get_commandline("./SentinelVCSComponent/SentinelVCSComponent.py", args, data)
     subprocess.run(cmd)
 
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@click.argument('args', nargs=-1, type=click.UNPROCESSED)
+@click.pass_context
+def extra(ctx, args):
+
+    """Extra commands """
+    data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
+    cmd = get_commandline("./SentinelExtra.py", args, data)
+    subprocess.run(cmd)
+
 
 if __name__ == "__main__":
     cli()
