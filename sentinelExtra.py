@@ -65,7 +65,6 @@ def process_missing(ctx, project_name, engine_path, config_path, version_control
                  "cache_path="+cache_path]
     default_config_cmd = default_config_cmd + " --" + " --".join(arguments)
 
-
     # Generate the first default conifg
     subprocess.run(default_config_cmd)
     subprocess.run("python sentinel.py environment generate")
