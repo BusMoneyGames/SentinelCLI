@@ -45,23 +45,42 @@ def cli(ctx, project_root, debug):
 
 
 @cli.command()
-@click.option('-o', '--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
+@click.option('--project_name', default="", help="Name of the project")
+@click.option('--engine_path', default="", help="Relative Path to the engine")
+@click.option('--config_path', default="", help="Path to a custom config folder")
+@click.option('--version_control_root', default="", help="Path to the version control root")
+@click.option('--artifacts_root', default="", help="Path to the artifacts root")
+@click.option('--cache_path', default="", help="Path to the sentinel cache")
 @click.pass_context
-def process_missing(ctx, output):
+def process_missing(ctx, project_name, engine_path, config_path, version_control_root, artifacts_root, cache_path):
     """Goes through the history and runs validation"""
     project_root = pathlib.Path(ctx.obj['PROJECT_ROOT'])
-    write_default_config(project_root)
 
+    default_config_cmd = "python sentinel.py environment make-default-config"
+    arguments = ["project_name=" + project_name,
+                 "engine_path=" + engine_path,
+                 "config_path="+ config_path,
+                 "version_control_root="+version_control_root,
+                 "artifacts_root="+ artifacts_root,
+                 "cache_path="+cache_path]
+    default_config_cmd = default_config_cmd + " --" + " --".join(arguments)
+
+
+    # Generate the first default conifg
+    subprocess.run(default_config_cmd)
     subprocess.run("python sentinel.py environment generate")
 
+    # Reading the config to initialize the vcs walker
     config_path = pathlib.Path(ctx.obj['PROJECT_ROOT']).joinpath("_generated_sentinel_config.json")
     environment_config = _read_config(config_path)
     walker = GitComponent.GitRepoWalker(environment_config)
 
+    # Generate the first default config
+
     for each_commit in walker.commits:
         walker.clean_checkout_commit(each_commit)
-        write_default_config(project_root)
 
+        subprocess.run(default_config_cmd)
         subprocess.run("python sentinel.py environment generate")
 
         subprocess.run("python sentinel.py vcs refresh")
@@ -71,24 +90,6 @@ def process_missing(ctx, output):
         subprocess.run("python sentinel.py ue4 build editor")
 
         subprocess.run("python sentinel.py ue4 project refresh-asset-info")
-
-        print(each_commit)
-
-
-def write_default_config(project_root):
-
-    generated_config = pathlib.Path(project_root).joinpath("_sentinel_root.json")
-
-    config = {"project_root_path": "SentinelUE4",
-              "engine_root_path": "UnrealEngine",
-              "sentinel_config_root_path": "SentinelConfig",
-              "version_control_root": "",
-              "sentinel_artifacts_path": "../SentinelArtifacts",
-              "sentinel_cache_path": "_SentinelCache"}
-
-    f = open(generated_config, "w")
-    f.write(json.dumps(config, indent=4))
-    f.close()
 
 
 if __name__ == "__main__":
