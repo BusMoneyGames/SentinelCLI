@@ -24,7 +24,7 @@ def _read_config(path):
         quit(1)
 
 
-def get_commandline(script, arguments, data=None):
+def get_commandline(script, global_argument, data=None):
     """
     Constructs the command line that gets passed into the different sentinel commands
     :return:
@@ -38,9 +38,12 @@ def get_commandline(script, arguments, data=None):
     else:
         pass_through_arguments = ""
 
-    if arguments:
+    if global_argument:
         # Only add the pass through arguments if there is a command
-        cmd = cmd + pass_through_arguments + " " + " ".join(arguments)
+        # cmd = cmd + pass_through_arguments + " " + " ".join(arguments)
+        cmd = cmd + pass_through_arguments + " " + " ".join(global_argument)
+
+    print(cmd)
 
     return cmd
 
@@ -98,6 +101,7 @@ def vcs(ctx, args):
     cmd = get_commandline("./SentinelVCSComponent/SentinelVCSComponent.py", args, data)
     subprocess.run(cmd)
 
+
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
@@ -106,6 +110,19 @@ def extra(ctx, args):
     """Extra commands """
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
     cmd = get_commandline("./SentinelExtra.py", args, data)
+    subprocess.run(cmd)
+
+
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@click.argument('args', nargs=-1, type=click.UNPROCESSED)
+@click.pass_context
+def database(ctx, args):
+
+    """Extra commands """
+
+    data = {}
+
+    cmd = get_commandline("./SentinelDB/SentinelDB.py", args, data)
     subprocess.run(cmd)
 
 
