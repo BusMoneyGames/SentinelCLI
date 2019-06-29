@@ -126,5 +126,19 @@ def database(ctx, args):
     subprocess.run(cmd)
 
 
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@click.argument('args', nargs=-1, type=click.UNPROCESSED)
+@click.pass_context
+def aws(ctx, args):
+
+    """Extra commands """
+
+    data = {}
+
+    cmd = get_commandline("./SentinelAWS/SentinelAWS.py", args, data)
+    subprocess.run(cmd)
+
+
+
 if __name__ == "__main__":
     cli()
