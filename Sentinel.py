@@ -24,7 +24,7 @@ def _read_config(path):
         quit(1)
 
 
-def get_commandline(script, global_argument, data=None):
+def get_commandline(script, global_argument, data=None, arguments_at_end=False):
     """
     Constructs the command line that gets passed into the different sentinel commands
     :return:
@@ -33,15 +33,24 @@ def get_commandline(script, global_argument, data=None):
 
     if data:
         pass_through_arguments = " "
+
         for each_data in data.keys():
             pass_through_arguments = pass_through_arguments + each_data + "=" + data[each_data] + " "
+
     else:
         pass_through_arguments = ""
 
     if global_argument:
         # Only add the pass through arguments if there is a command
         # cmd = cmd + pass_through_arguments + " " + " ".join(arguments)
-        cmd = cmd + pass_through_arguments + " " + " ".join(global_argument)
+        arguments = " ".join(global_argument)
+
+        # Flips the arguments to go at the end
+        # TODO understand why this is needed
+        if arguments_at_end:
+            cmd = cmd + " " + arguments + pass_through_arguments
+        else:
+           cmd = cmd + pass_through_arguments + " " + arguments
 
     print(cmd)
 
@@ -105,9 +114,10 @@ def vcs(ctx, args):
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
-def extra(ctx, args):
+def utilities(ctx, args):
 
-    """Extra commands """
+    """ Utility commands"""
+
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
     cmd = get_commandline("./SentinelExtra.py", args, data)
     subprocess.run(cmd)
@@ -118,7 +128,7 @@ def extra(ctx, args):
 @click.pass_context
 def database(ctx, args):
 
-    """Extra commands """
+    """Interact with the Sentinel DB """
 
     data = {}
 
@@ -131,13 +141,12 @@ def database(ctx, args):
 @click.pass_context
 def aws(ctx, args):
 
-    """Extra commands """
+    """ Commands to interact with aws """
 
-    data = {}
+    data = {"--database": "some_value"}
 
-    cmd = get_commandline("./SentinelAWS/SentinelAWS.py", args, data)
+    cmd = get_commandline("./SentinelAWS/SentinelAWS.py", args, data, arguments_at_end=True)
     subprocess.run(cmd)
-
 
 
 if __name__ == "__main__":

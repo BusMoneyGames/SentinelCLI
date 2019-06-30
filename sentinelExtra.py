@@ -52,20 +52,27 @@ def cli(ctx, project_root, debug):
 @click.option('--artifacts_root', default="", help="Path to the artifacts root")
 @click.option('--cache_path', default="", help="Path to the sentinel cache")
 @click.pass_context
-def process_missing(ctx, project_name, engine_path, config_path, version_control_root, artifacts_root, cache_path):
+def process_missing(ctx,
+                    project_name,
+                    engine_path,
+                    config_path,
+                    version_control_root,
+                    artifacts_root,
+                    cache_path):
     """Goes through the history and runs validation"""
-    project_root = pathlib.Path(ctx.obj['PROJECT_ROOT'])
 
     default_config_cmd = "python sentinel.py environment make-default-config"
+
     arguments = ["project_name=" + project_name,
                  "engine_path=" + engine_path,
-                 "config_path="+ config_path,
-                 "version_control_root="+version_control_root,
-                 "artifacts_root="+ artifacts_root,
+                 "config_path=" + config_path,
+                 "version_control_root=" + version_control_root,
+                 "artifacts_root=" + artifacts_root,
                  "cache_path="+cache_path]
+
     default_config_cmd = default_config_cmd + " --" + " --".join(arguments)
 
-    # Generate the first default conifg
+    # Generate the first default config
     subprocess.run(default_config_cmd)
     subprocess.run("python sentinel.py environment generate")
 
@@ -76,7 +83,7 @@ def process_missing(ctx, project_name, engine_path, config_path, version_control
 
     # Generate the first default config
 
-    for each_commit in walker.commits:
+    for i, each_commit in enumerate(walker.commits):
         walker.clean_checkout_commit(each_commit)
 
         subprocess.run(default_config_cmd)
@@ -89,6 +96,8 @@ def process_missing(ctx, project_name, engine_path, config_path, version_control
         subprocess.run("python sentinel.py ue4 build editor")
 
         subprocess.run("python sentinel.py ue4 project refresh-asset-info")
+
+        subprocess.run("python sentinel.py vcs write-history-file --commit_id=" + walker.commit_ids[i])
 
 
 if __name__ == "__main__":
