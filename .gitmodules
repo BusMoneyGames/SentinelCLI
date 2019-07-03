@@ -11,3 +11,6 @@
 [submodule "SentinelDB"]
 	path = SentinelDB
 	url = git@github.com:BusMoneyGames/SentinelDB.git
+[submodule "SentinelAWS"]
+	path = SentinelAWS
+	url = git@github.com:BusMoneyGames/SentinelAWS.git
