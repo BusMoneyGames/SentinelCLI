@@ -59,6 +59,7 @@ def process_missing(ctx,
                     version_control_root,
                     artifacts_root,
                     cache_path):
+
     """Goes through the history and runs validation"""
 
     default_config_cmd = "python sentinel.py environment make-default-config"
@@ -87,6 +88,7 @@ def process_missing(ctx,
         walker.clean_checkout_commit(each_commit)
 
         subprocess.run(default_config_cmd)
+
         subprocess.run("python sentinel.py environment generate")
 
         subprocess.run("python sentinel.py vcs refresh")
@@ -98,6 +100,8 @@ def process_missing(ctx,
         subprocess.run("python sentinel.py ue4 project refresh-asset-info")
 
         subprocess.run("python sentinel.py vcs write-history-file --commit_id=" + walker.commit_ids[i])
+
+        subprocess.run("python sentinel.py aws upload_artifacts")
 
 
 if __name__ == "__main__":

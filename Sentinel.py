@@ -143,9 +143,9 @@ def aws(ctx, args):
 
     """ Commands to interact with aws """
 
-    data = {"--database": "some_value"}
+    data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
-    cmd = get_commandline("./SentinelAWS/SentinelAWS.py", args, data, arguments_at_end=True)
+    cmd = get_commandline("./SentinelAWS/SentinelAWS.py", args, data, arguments_at_end=False)
     subprocess.run(cmd)
 
 
