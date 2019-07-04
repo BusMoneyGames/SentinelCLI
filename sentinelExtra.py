@@ -50,6 +50,7 @@ def cli(ctx, project_root, debug):
 @click.option('--config_path', default="", help="Path to a custom config folder")
 @click.option('--version_control_root', default="", help="Path to the version control root")
 @click.option('--artifacts_root', default="", help="Path to the artifacts root")
+@click.option('--s3_data_base_location', default="", help="path to the database location")
 @click.option('--cache_path', default="", help="Path to the sentinel cache")
 @click.pass_context
 def process_missing(ctx,
@@ -57,6 +58,7 @@ def process_missing(ctx,
                     engine_path,
                     config_path,
                     version_control_root,
+                    s3_data_base_location,
                     artifacts_root,
                     cache_path):
 
@@ -68,6 +70,7 @@ def process_missing(ctx,
                  "engine_path=" + engine_path,
                  "config_path=" + config_path,
                  "version_control_root=" + version_control_root,
+                 "s3_data_base_location=" + s3_data_base_location,
                  "artifacts_root=" + artifacts_root,
                  "cache_path="+cache_path]
 
