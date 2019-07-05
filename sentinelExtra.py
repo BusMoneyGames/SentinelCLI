@@ -104,7 +104,7 @@ def process_missing(ctx,
 
         subprocess.run("python sentinel.py vcs write-history-file --commit_id=" + walker.commit_ids[i])
 
-        subprocess.run("python sentinel.py aws upload_build_data")
+        subprocess.run("python sentinel.py aws upload-build-data")
 
 
 if __name__ == "__main__":
