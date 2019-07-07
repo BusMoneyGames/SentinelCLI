@@ -85,7 +85,7 @@ def environment(ctx, args):
         "--skip_version": ctx.obj['SKIP_VERSION']
     }
     cmd = get_commandline("./SentinelConfig/SentinelConfig.py", args, data)
-    subprocess.run(cmd)
+    subprocess.run(cmd, shell=True)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -97,7 +97,7 @@ def ue4(ctx, args):
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
     cmd = get_commandline("./SentinelUE4Component/SentinelUE4Component.py ", args, data)
-    subprocess.run(cmd)
+    subprocess.run(cmd, shell=True)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -108,7 +108,7 @@ def vcs(ctx, args):
     """Fetch information from version control"""
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
     cmd = get_commandline("./SentinelVCSComponent/SentinelVCSComponent.py", args, data)
-    subprocess.run(cmd)
+    subprocess.run(cmd, shell=True)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -120,7 +120,7 @@ def utilities(ctx, args):
 
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
     cmd = get_commandline("./SentinelExtra.py", args, data)
-    subprocess.run(cmd)
+    subprocess.run(cmd, shell=True)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -133,7 +133,7 @@ def database(ctx, args):
     data = {}
 
     cmd = get_commandline("./SentinelDB/SentinelDB.py", args, data)
-    subprocess.run(cmd)
+    subprocess.run(cmd, shell=True)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -146,7 +146,7 @@ def aws(ctx, args):
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
     cmd = get_commandline("./SentinelAWS/SentinelAWS.py", args, data, arguments_at_end=False)
-    subprocess.run(cmd)
+    subprocess.run(cmd, shell=True)
 
 
 if __name__ == "__main__":
