@@ -19,6 +19,8 @@ CORS(app)
 
 commands = ['start', 'restart', 'kill', 'list']
 
+sentinelPy = ['python', 'Sentinel.py']
+
 ue4Component = [
     'python', './SentinelUE4Component/SentinelUE4Component.py']
 
@@ -126,6 +128,22 @@ class Config(Resource):
         except Exception as e:
             # TODO log/display exception
             print(e)
+            return error('Unexpected error')
+
+@api.resource('/sentinel')
+class RunSentinel(Resource):
+    def post(self):
+        try:
+            body = request.get_json()
+
+            command = body["command"]
+
+            output = subprocess.check_output(
+                sentinelPy + [command]).decode("utf-8")
+
+            return {'output': output}
+        except:
+            # TODO log/display exception
             return error('Unexpected error')
 
 
