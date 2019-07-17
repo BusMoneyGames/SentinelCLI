@@ -52,7 +52,7 @@ def get_commandline(script, global_argument, data=None, arguments_at_end=False):
         else:
            cmd = cmd + pass_through_arguments + " " + arguments
 
-    print(cmd)
+    # print(cmd)
 
     return cmd
 

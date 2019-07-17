@@ -130,6 +130,7 @@ class Config(Resource):
             print(e)
             return error('Unexpected error')
 
+
 @api.resource('/sentinel')
 class RunSentinel(Resource):
     def post(self):
@@ -138,11 +139,14 @@ class RunSentinel(Resource):
 
             command = body["command"]
 
-            output = subprocess.check_output(
-                sentinelPy + [command]).decode("utf-8")
+            cmd = sentinelPy + command.split(" ")
+            output = subprocess.check_output(cmd).decode("utf-8")
 
-            return {'output': output}
-        except:
+            json_output = json.loads(output)
+            return json_output
+
+        except Exception as e:
+            print(e)
             # TODO log/display exception
             return error('Unexpected error')
 
