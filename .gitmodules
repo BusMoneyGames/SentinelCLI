@@ -2,10 +2,6 @@
 	path = SentinelUE4
 	url = git@github.com:BusMoneyGames/SentinelUE4.git
 	branch = develop
-[submodule "SentinelVCS"]
-	path = SentinelVCS
-	url = git@github.com:gislikon/SentinelVCS.git
-	branch = develop
 [submodule "SentinelEnvironment"]
 	path = SentinelEnvironment
 	url = git@github.com:BusMoneyGames/SentinelEnvironment.git
