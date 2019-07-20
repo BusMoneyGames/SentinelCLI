@@ -1,13 +1,12 @@
-[submodule "SentinelUE4Component"]
-	path = SentinelUE4Component
-	url = git@github.com:BusMoneyGames/SentinelUE4Component.git
-	branch = develop
-[submodule "SentinelVCSComponent"]
-	path = SentinelVCSComponent
-	url = git@github.com:gislikon/SentinelVCSComponent.git
-[submodule "SentinelConfig"]
-	path = SentinelConfig
-	url = git@github.com:BusMoneyGames/SentinelConfig.git
+[submodule "SentinelUE4"]
+	path = SentinelUE4
+	url = git@github.com:BusMoneyGames/SentinelUE4.git
+[submodule "SentinelVCS"]
+	path = SentinelVCS
+	url = git@github.com:gislikon/SentinelVCS.git
+[submodule "SentinelEnvironment"]
+	path = SentinelEnvironment
+	url = git@github.com:BusMoneyGames/SentinelEnvironment.git
 [submodule "SentinelDB"]
 	path = SentinelDB
 	url = git@github.com:BusMoneyGames/SentinelDB.git
