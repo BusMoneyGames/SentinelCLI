@@ -22,10 +22,10 @@ commands = ['start', 'restart', 'kill', 'list']
 sentinelPy = ['python', 'Sentinel.py']
 
 ue4Component = [
-    'python', './SentinelUE4Component/SentinelUE4Component.py']
+    'python', './SentinelUE4Component/SentinelUE4.py']
 
 sentinelConfig = [
-    'python', './SentinelConfig/SentinelConfig.py']
+    'python', './SentinelConfig/SentinelEnvironment.py']
 
 configFileBasePath = './SentinelConfig/defaultConfig'
 configFileTypes = {

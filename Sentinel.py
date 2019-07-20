@@ -84,7 +84,7 @@ def environment(ctx, args):
         "--project_root": ctx.obj["PROJECT_ROOT"],
         "--skip_version": ctx.obj['SKIP_VERSION']
     }
-    cmd = get_commandline("./SentinelConfig/SentinelConfig.py", args, data)
+    cmd = get_commandline("./SentinelEnvironment/SentinelEnvironment.py", args, data)
     subprocess.run(cmd, shell=True)
 
 
@@ -96,7 +96,7 @@ def ue4(ctx, args):
 
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
-    cmd = get_commandline("./SentinelUE4Component/SentinelUE4Component.py ", args, data)
+    cmd = get_commandline("./SentinelUE4/SentinelUE4.py ", args, data)
     subprocess.run(cmd, shell=True)
 
 
@@ -107,7 +107,7 @@ def vcs(ctx, args):
 
     """Fetch information from version control"""
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
-    cmd = get_commandline("./SentinelVCSComponent/SentinelVCSComponent.py", args, data)
+    cmd = get_commandline("./SentinelVCS/SentinelVCS.py", args, data)
     subprocess.run(cmd, shell=True)
 
 
