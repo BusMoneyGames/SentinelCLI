@@ -40,7 +40,9 @@ def _run_component_cmd(cmd, args=None):
     component_cmd = "python sentinel.py standalone-components " + cmd + " " + args
     L.debug("Running cmd: %s", component_cmd)
 
-    subprocess.run(component_cmd)
+    return_obj = subprocess.run(component_cmd)
+    if not return_obj.returncode == 0:
+        exit(1)
 
 
 @click.group()

@@ -59,6 +59,13 @@ def get_commandline(script, global_argument, data=None, arguments_at_end=False):
     return cmd
 
 
+def _run_cmd(cmd):
+    return_object = subprocess.run(cmd, shell=True)
+
+    if not return_object.returncode == 0:
+        quit(1)
+
+
 @click.group()
 @click.option('--root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
@@ -98,7 +105,7 @@ def environment(ctx, args):
         "--skip_version": ctx.obj['SKIP_VERSION']
     }
     cmd = get_commandline("./SentinelEnvironment/SentinelEnvironment.py", args, data)
-    subprocess.run(cmd, shell=True)
+    _run_cmd(cmd)
 
 
 @standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -110,7 +117,7 @@ def ue4(ctx, args):
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
     cmd = get_commandline("./SentinelUE4/SentinelUE4.py ", args, data)
-    subprocess.run(cmd, shell=True)
+    _run_cmd(cmd)
 
 
 @standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -121,7 +128,7 @@ def vcs(ctx, args):
     """Interact with the Version Control System"""
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
     cmd = get_commandline("./SentinelVCS/SentinelVCS.py", args, data)
-    subprocess.run(cmd, shell=True)
+    _run_cmd(cmd)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -133,7 +140,7 @@ def commands(ctx, args):
 
     data = {"--root": ctx.obj["PROJECT_ROOT"]}
     cmd = get_commandline("./commands.py", args, data)
-    subprocess.run(cmd, shell=True)
+    _run_cmd(cmd)
 
 
 @standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -146,7 +153,7 @@ def database(ctx, args):
     data = {}
 
     cmd = get_commandline("./SentinelDB/SentinelDB.py", args, data)
-    subprocess.run(cmd, shell=True)
+    _run_cmd(cmd)
 
 
 @standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -159,7 +166,7 @@ def aws(ctx, args):
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
     cmd = get_commandline("./SentinelAWS/SentinelAWS.py", args, data, arguments_at_end=False)
-    subprocess.run(cmd, shell=True)
+    _run_cmd(cmd)
 
 
 if __name__ == "__main__":
