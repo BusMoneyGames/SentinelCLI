@@ -29,10 +29,13 @@ def _read_config(path):
 
 def _run_component_cmd(cmd, args=None):
 
-    if args is None:
+    if args is None or args == "":
         args = ""
     elif type(args) == list:
-        args = " -".join(args)
+        args = "--" + " --".join(args)
+    elif type(args) == str:
+        # the case where the string is empty is dealt with at the top
+        args = "--" + args
 
     component_cmd = "python sentinel.py standalone-components " + cmd + " " + args
     L.debug("Running cmd: %s", component_cmd)
@@ -53,7 +56,6 @@ def cli(ctx, root):
     ctx.obj['PROJECT_ROOT'] = project_root.as_posix()
 
     L.debug("project root path: %s", project_root.as_posix())
-
 
 
 @cli.command()
@@ -98,7 +100,7 @@ def process_missing(ctx,
     walker = GitComponent.GitRepoWalker(environment_config)
 
     for i, each_commit in enumerate(walker.commits):
-        #walker.clean_checkout_commit(each_commit)
+        walker.clean_checkout_commit(each_commit)
 
         _run_component_cmd("environment make-default-config", arguments)
         _run_component_cmd("environment generate")
@@ -106,7 +108,7 @@ def process_missing(ctx,
         _run_component_cmd("environment generate")
         _run_component_cmd("ue4 build editor")
         _run_component_cmd("ue4 project refresh-asset-info")
-        _run_component_cmd("vcs write-history-file --commit_id=",  walker.commit_ids[i])
+        _run_component_cmd("vcs write-history-file", "commit_id=" + walker.commit_ids[i])
         _run_component_cmd("python aws upload-build-data")
 
 
