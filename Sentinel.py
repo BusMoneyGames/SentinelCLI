@@ -74,11 +74,18 @@ def cli(ctx, project_root, debug, output, skip_version):
     ctx.obj['SKIP_VERSION'] = str(skip_version)
 
 
-@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@cli.group()
+@click.pass_context
+def components(ctx):
+    """Interact with individual components"""
+    pass
+
+
+@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def environment(ctx, args):
-    """Local Environment Options"""
+    """Info about the local environment"""
 
     data = {
         "--project_root": ctx.obj["PROJECT_ROOT"],
@@ -88,11 +95,11 @@ def environment(ctx, args):
     subprocess.run(cmd, shell=True)
 
 
-@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def ue4(ctx, args):
-    """Unreal Engine Options"""
+    """Interact with UE4"""
 
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
@@ -100,12 +107,12 @@ def ue4(ctx, args):
     subprocess.run(cmd, shell=True)
 
 
-@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def vcs(ctx, args):
 
-    """Fetch information from version control"""
+    """Interact with the Version Control System"""
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
     cmd = get_commandline("./SentinelVCS/SentinelVCS.py", args, data)
     subprocess.run(cmd, shell=True)
@@ -123,12 +130,12 @@ def utilities(ctx, args):
     subprocess.run(cmd, shell=True)
 
 
-@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def database(ctx, args):
 
-    """Interact with the Sentinel DB """
+    """Interact with the Database"""
 
     data = {}
 
@@ -136,12 +143,12 @@ def database(ctx, args):
     subprocess.run(cmd, shell=True)
 
 
-@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def aws(ctx, args):
 
-    """ Commands to interact with aws """
+    """ Interact with Amazon Web Services """
 
     data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
 
