@@ -5,6 +5,8 @@ import os
 import json
 import subprocess
 
+from logging.config import fileConfig
+fileConfig('logging_config.ini')
 L = logging.getLogger()
 
 
@@ -58,12 +60,12 @@ def get_commandline(script, global_argument, data=None, arguments_at_end=False):
 
 
 @click.group()
-@click.option('--project_root', default="", help="path to the config overwrite folder")
-@click.option('--skip_version', default=False, help="Skips output version")
+@click.option('--root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
-@click.option('--debug', default=False, help="Turns on debug messages")
+@click.option('--no_version', is_flag=True, default=True, help="Skips output version")
+@click.option('--debug', is_flag=True, default=False, help="Verbose logging")
 @click.pass_context
-def cli(ctx, project_root, debug, output, skip_version):
+def cli(ctx, root, debug, output, no_version):
     """Sentinel Unreal Component handles running commands interacting with unreal engine"""
 
     run_directory = pathlib.Path(os.getcwd())
@@ -71,17 +73,21 @@ def cli(ctx, project_root, debug, output, skip_version):
 
     ctx.ensure_object(dict)
     ctx.obj['PROJECT_ROOT'] = project_root.as_posix()
-    ctx.obj['SKIP_VERSION'] = str(skip_version)
+    ctx.obj['SKIP_VERSION'] = str(no_version)
+
+    if debug:
+        L.setLevel(logging.DEBUG)
+        L.debug("Running in debug mode")
 
 
 @cli.group()
 @click.pass_context
-def components(ctx):
+def standalone_components(ctx):
     """Interact with individual components"""
     pass
 
 
-@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def environment(ctx, args):
@@ -95,7 +101,7 @@ def environment(ctx, args):
     subprocess.run(cmd, shell=True)
 
 
-@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def ue4(ctx, args):
@@ -107,7 +113,7 @@ def ue4(ctx, args):
     subprocess.run(cmd, shell=True)
 
 
-@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def vcs(ctx, args):
@@ -121,16 +127,16 @@ def vcs(ctx, args):
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
-def utilities(ctx, args):
+def commands(ctx, args):
 
     """ Utility commands"""
 
-    data = {"--project_root": ctx.obj["PROJECT_ROOT"]}
-    cmd = get_commandline("./SentinelExtra.py", args, data)
+    data = {"--root": ctx.obj["PROJECT_ROOT"]}
+    cmd = get_commandline("./commands.py", args, data)
     subprocess.run(cmd, shell=True)
 
 
-@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def database(ctx, args):
@@ -143,7 +149,7 @@ def database(ctx, args):
     subprocess.run(cmd, shell=True)
 
 
-@components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@standalone_components.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def aws(ctx, args):

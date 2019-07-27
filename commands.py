@@ -1,17 +1,20 @@
 import logging
 import click
+import os
 import json
 import pathlib
-import SentinelVCSComponent.Vcs.GitComponent as GitComponent
+import SentinelVCS.Vcs.GitComponent as GitComponent
 import subprocess
 
+from logging.config import fileConfig
+fileConfig('logging_config.ini')
 L = logging.getLogger()
 
 
 def _read_config(path):
     """Reads the assembled config"""
 
-    L.debug("Reading config from: %s - Exists: %s", path, path.exists())
+    L.debug("Config path: %s - Exists: %s", path, path.exists())
 
     if path.exists():
         f = open(path, "r")
@@ -20,28 +23,37 @@ def _read_config(path):
 
         return config
     else:
-        L.error("Unable to find generated config at: %s ", path)
+        L.error("No config found: %s ", path)
         quit(1)
 
 
+def _run_component_cmd(cmd, args=None):
+
+    if args is None:
+        args = ""
+    elif type(args) == list:
+        args = " -".join(args)
+
+    component_cmd = "python sentinel.py standalone-components " + cmd + " " + args
+    L.debug("Running cmd: %s", component_cmd)
+
+    subprocess.run(component_cmd)
+
+
 @click.group()
-@click.option('--project_root', default="", help="path to the config overwrite folder")
-@click.option('--debug', default=False, help="Turns on debug messages")
+@click.option('--root', default="", help="Path to the config overwrite folder")
 @click.pass_context
-def cli(ctx, project_root, debug):
-    """Sentinel Unreal Component handles running commands interacting with unreal engine"""
+def cli(ctx, root):
+    """Sentinel Commands"""
+    L.debug("This is happening")
+    run_directory = pathlib.Path(os.getcwd())
+    project_root = run_directory.parent
 
     ctx.ensure_object(dict)
-    ctx.obj['PROJECT_ROOT'] = project_root
+    ctx.obj['PROJECT_ROOT'] = project_root.as_posix()
 
-    if debug:
-        L.setLevel(logging.DEBUG)
-        message_format = '%(levelname)s - %(message)s '
-    else:
-        message_format = '%(levelname)s %(message)s '
-        L.setLevel(logging.ERROR)
+    L.debug("project root path: %s", project_root.as_posix())
 
-    logging.basicConfig(format=message_format)
 
 
 @cli.command()
@@ -64,8 +76,6 @@ def process_missing(ctx,
 
     """Goes through the history and runs validation"""
 
-    default_config_cmd = "python sentinel.py environment make-default-config"
-
     arguments = ["project_name=" + project_name,
                  "engine_path=" + engine_path,
                  "config_path=" + config_path,
@@ -74,37 +84,30 @@ def process_missing(ctx,
                  "artifacts_root=" + artifacts_root,
                  "cache_path="+cache_path]
 
-    default_config_cmd = default_config_cmd + " --" + " --".join(arguments)
+    _run_component_cmd("environment make-default-config", arguments)
+    _run_component_cmd("environment generate")
+    # default_config_cmd = default_config_cmd + " --" + " --".join(arguments)
 
     # Generate the first default config
-    subprocess.run(default_config_cmd)
-    subprocess.run("python sentinel.py environment generate")
+    # subprocess.run(default_config_cmd)
 
     # Reading the config to initialize the vcs walker
     config_path = pathlib.Path(ctx.obj['PROJECT_ROOT']).joinpath("_generated_sentinel_config.json")
+
     environment_config = _read_config(config_path)
     walker = GitComponent.GitRepoWalker(environment_config)
 
-    # Generate the first default config
-
     for i, each_commit in enumerate(walker.commits):
-        walker.clean_checkout_commit(each_commit)
+        #walker.clean_checkout_commit(each_commit)
 
-        subprocess.run(default_config_cmd)
-
-        subprocess.run("python sentinel.py environment generate")
-
-        subprocess.run("python sentinel.py vcs refresh")
-
-        subprocess.run("python sentinel.py environment generate")
-
-        subprocess.run("python sentinel.py ue4 build editor")
-
-        subprocess.run("python sentinel.py ue4 project refresh-asset-info")
-
-        subprocess.run("python sentinel.py vcs write-history-file --commit_id=" + walker.commit_ids[i])
-
-        subprocess.run("python sentinel.py aws upload-build-data")
+        _run_component_cmd("environment make-default-config", arguments)
+        _run_component_cmd("environment generate")
+        _run_component_cmd("vcs refresh")
+        _run_component_cmd("environment generate")
+        _run_component_cmd("ue4 build editor")
+        _run_component_cmd("ue4 project refresh-asset-info")
+        _run_component_cmd("vcs write-history-file --commit_id=",  walker.commit_ids[i])
+        _run_component_cmd("python aws upload-build-data")
 
 
 if __name__ == "__main__":
