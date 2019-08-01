@@ -1,31 +1,10 @@
-import logging
 import click
-import os
-import json
 import pathlib
 import SentinelVCS.Vcs.GitComponent as GitComponent
 import subprocess
 
-from logging.config import fileConfig
-fileConfig('logging_config.ini')
-L = logging.getLogger()
-
-
-def _read_config(path):
-    """Reads the assembled config"""
-
-    L.debug("Config path: %s - Exists: %s", path, path.exists())
-
-    if path.exists():
-        f = open(path, "r")
-        config = json.load(f)
-        f.close()
-
-        return config
-    else:
-        L.error("No config found: %s ", path)
-        quit(1)
-
+import utilities
+L = utilities.logger
 
 def _run_component_cmd(cmd, args=None):
 
@@ -41,23 +20,51 @@ def _run_component_cmd(cmd, args=None):
     L.debug("Running cmd: %s", component_cmd)
 
     return_obj = subprocess.run(component_cmd)
+
     if not return_obj.returncode == 0:
         exit(1)
 
 
 @click.group()
-@click.option('--root', default="", help="Path to the config overwrite folder")
+@click.option('--project_root', default="", help="Path to the config overwrite folder")
+@click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
+@click.option('--no_version', type=click.Choice(['True', 'False']), default='true', help="Skips output version")
+@click.option('--debug', type=click.Choice(['True', 'False']), default='false',  help="Verbose logging")
 @click.pass_context
-def cli(ctx, root):
+def cli(ctx, project_root, output, debug, no_version):
     """Sentinel Commands"""
-    L.debug("This is happening")
-    run_directory = pathlib.Path(os.getcwd())
-    project_root = run_directory.parent
 
-    ctx.ensure_object(dict)
-    ctx.obj['PROJECT_ROOT'] = project_root.as_posix()
+    ctx = utilities.convert_parameters_to_ctx(ctx, project_root, output, debug, no_version)
 
-    L.debug("project root path: %s", project_root.as_posix())
+
+
+@cli.command()
+def build_game():
+    """Create a playable version of the project"""
+    pass
+
+
+@cli.command()
+def build_editor():
+    """Compile UE4 editor"""
+    pass
+
+
+@cli.command()
+def validate_project():
+    """Check settings and environment"""
+    pass
+
+@cli.command()
+def validate_assets():
+    """Checks the assets"""
+    pass
+
+
+@cli.command()
+def run_client_test():
+    """Start a game client and run automation tests"""
+    pass
 
 
 @cli.command()
@@ -90,15 +97,11 @@ def process_missing(ctx,
 
     _run_component_cmd("environment make-default-config", arguments)
     _run_component_cmd("environment generate")
-    # default_config_cmd = default_config_cmd + " --" + " --".join(arguments)
-
-    # Generate the first default config
-    # subprocess.run(default_config_cmd)
 
     # Reading the config to initialize the vcs walker
     config_path = pathlib.Path(ctx.obj['PROJECT_ROOT']).joinpath("_generated_sentinel_config.json")
 
-    environment_config = _read_config(config_path)
+    environment_config = utilities.read_config(config_path)
     walker = GitComponent.GitRepoWalker(environment_config)
 
     for i, each_commit in enumerate(walker.commits):
