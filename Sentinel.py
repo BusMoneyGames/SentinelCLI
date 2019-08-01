@@ -16,7 +16,7 @@ def cli(ctx, project_root, output, debug, no_version):
     ctx = utilities.convert_parameters_to_ctx(ctx, project_root=project_root, output=output,
                                               debug=debug, no_version=no_version)
 
-    if debug:
+    if debug == 'true':
         L.setLevel(logging.DEBUG)
         L.debug("Running in debug mode")
 

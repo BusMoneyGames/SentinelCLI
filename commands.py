@@ -54,10 +54,13 @@ def cli(ctx, project_root, output, no_version, debug):
 
 
 @cli.command()
+@click.pass_context
 def build_game(ctx):
     """Create a playable version of the project"""
 
-    _run_component_cmd("ue4 build editor")
+    data = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"], data)
+    utilities.run_cmd(cmd)
 
 
 @cli.command()
@@ -70,14 +73,20 @@ def build_editor(ctx):
 
 
 @cli.command()
-def validate_project():
+@click.pass_context
+def validate_project(ctx):
     """Check settings and environment"""
-    pass
+    data = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
+    utilities.run_cmd(cmd)
 
 @cli.command()
-def validate_assets():
+@click.pass_context
+def validate_assets(ctx):
     """Checks the assets"""
-    pass
+    data = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "refresh-asset-info"], data)
+    utilities.run_cmd(cmd)
 
 
 @cli.command()
