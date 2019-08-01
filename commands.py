@@ -6,6 +6,7 @@ import subprocess
 import utilities
 L = utilities.logger
 
+
 def _run_component_cmd(cmd, args=None):
 
     if args is None or args == "":
@@ -15,9 +16,16 @@ def _run_component_cmd(cmd, args=None):
     elif type(args) == str:
         # the case where the string is empty is dealt with at the top
         args = "--" + args
+    elif type(args) == dict:
+        args_string = ""
+        for each_key in args.keys():
+            args_string = args_string + each_key + "=" + args[each_key] + " "
+
+        args = args_string
+        print(args)
 
     component_cmd = "python sentinel.py standalone-components " + cmd + " " + args
-    L.debug("Running cmd: %s", component_cmd)
+    L.debug("cmd: %s", component_cmd)
 
     return_obj = subprocess.run(component_cmd)
 
@@ -28,26 +36,37 @@ def _run_component_cmd(cmd, args=None):
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
-@click.option('--no_version', type=click.Choice(['True', 'False']), default='true', help="Skips output version")
-@click.option('--debug', type=click.Choice(['True', 'False']), default='false',  help="Verbose logging")
+@click.option('--no_version', type=click.Choice(['true', 'false']), default='true', help="Skips output version")
+@click.option('--debug', type=click.Choice(['true', 'false']), default='false',  help="Verbose logging")
 @click.pass_context
-def cli(ctx, project_root, output, debug, no_version):
+def cli(ctx, project_root, output, no_version, debug):
     """Sentinel Commands"""
 
-    ctx = utilities.convert_parameters_to_ctx(ctx, project_root, output, debug, no_version)
+    ctx = utilities.convert_parameters_to_ctx(ctx,
+                                              project_root=project_root,
+                                              output=output,
+                                              debug=debug,
+                                              no_version=no_version)
 
+    data = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
+    utilities.run_cmd(cmd)
 
 
 @cli.command()
-def build_game():
+def build_game(ctx):
     """Create a playable version of the project"""
-    pass
+
+    _run_component_cmd("ue4 build editor")
 
 
 @cli.command()
-def build_editor():
+@click.pass_context
+def build_editor(ctx):
     """Compile UE4 editor"""
-    pass
+    data = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
+    utilities.run_cmd(cmd)
 
 
 @cli.command()

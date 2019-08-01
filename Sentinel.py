@@ -1,8 +1,5 @@
 import click
 import logging
-
-from logging.config import fileConfig
-
 import utilities
 L = utilities.logger
 
@@ -10,13 +7,14 @@ L = utilities.logger
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
-@click.option('--no_version', is_flag=True, default=True, help="Skips output version")
-@click.option('--debug', is_flag=True, default=False, help="Verbose logging")
+@click.option('--no_version', type=click.Choice(['true', 'false']), default='true', help="Skips output version")
+@click.option('--debug', type=click.Choice(['true', 'false']), default='false',  help="Verbose logging")
 @click.pass_context
 def cli(ctx, project_root, output, debug, no_version):
     """Sentinel Unreal Component handles running commands interacting with unreal engine"""
 
-    ctx = utilities.convert_parameters_to_ctx(ctx, debug, no_version, output, project_root)
+    ctx = utilities.convert_parameters_to_ctx(ctx, project_root=project_root, output=output,
+                                              debug=debug, no_version=no_version)
 
     if debug:
         L.setLevel(logging.DEBUG)

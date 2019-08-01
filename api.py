@@ -13,8 +13,8 @@ L = utilities.logger
 @click.pass_context
 def cli(ctx, project_root, output, debug, no_version):
     """Sentinel Commands"""
-    ctx = utilities.convert_parameters_to_ctx(ctx, project_root, output, debug, no_version)
-
+    ctx = utilities.convert_parameters_to_ctx(ctx, project_root=project_root, output=output,
+                                              debug=debug, no_version=no_version)
 
 @cli.command()
 @click.pass_context

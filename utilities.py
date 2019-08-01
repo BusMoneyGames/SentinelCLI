@@ -65,7 +65,7 @@ def run_cmd(cmd):
         quit(1)
 
 
-def convert_parameters_to_ctx(ctx, debug, no_version, output, project_root):
+def convert_parameters_to_ctx(ctx, project_root, no_version, output, debug):
 
     if not project_root:
         run_directory = pathlib.Path(os.getcwd())
@@ -73,9 +73,9 @@ def convert_parameters_to_ctx(ctx, debug, no_version, output, project_root):
 
     ctx.ensure_object(dict)
     ctx.obj['PROJECT_ROOT'] = project_root
-    ctx.obj['SKIP_VERSION'] = str(no_version)
-    ctx.obj['OUTPUT'] = str(output)
-    ctx.obj['DEBUG'] = str(debug)
+    ctx.obj['SKIP_VERSION'] = str(no_version).lower()
+    ctx.obj['OUTPUT'] = str(output).lower()
+    ctx.obj['DEBUG'] = str(debug).lower()
 
     return ctx
 
