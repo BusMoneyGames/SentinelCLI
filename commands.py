@@ -106,6 +106,7 @@ def run_client_test():
 @click.option('--s3_data_base_location', default="", help="path to the database location")
 @click.option('--cache_path', default="", help="Path to the sentinel cache")
 @click.option('--number_of_changes', default=-1, help="How far back to go")
+@click.option('--prebuilt', default=False, help="Using pre built editor")
 @click.pass_context
 def iterate_backwards_and_execute_command(ctx,
                                           project_name,
@@ -115,7 +116,8 @@ def iterate_backwards_and_execute_command(ctx,
                                           s3_data_base_location,
                                           artifacts_root,
                                           cache_path,
-                                          number_of_changes):
+                                          number_of_changes,
+                                          prebuilt):
     """Goes through the history and runs validation"""
 
     local_default_config_args = ["--project_name=" + project_name,
@@ -189,7 +191,8 @@ def iterate_backwards_and_execute_command(ctx,
 
         # _run_component_cmd("environment generate")
 
-        utilities.run_cmd(build_editor_cmd)
+        if not prebuilt:
+            utilities.run_cmd(build_editor_cmd)
 
         utilities.run_cmd(refresh_asset_info_cmd)
         # _run_component_cmd("ue4 build editor")
