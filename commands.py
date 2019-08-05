@@ -202,7 +202,7 @@ def iterate_backwards_and_execute_command(ctx,
         # Command to refresh the asset info
         write_vcs_info_cmd = utilities.get_commandline(script_name="sentinel.py",
                                                        script_commands=["standalone-components",
-                                                                        "vcs"
+                                                                        "vcs",
                                                                         "write-history-file"],
                                                        global_arguments=global_args,
                                                        sub_command_arguments=["commit_id=" + walker.commit_ids[i]])
