@@ -176,7 +176,7 @@ def iterate_backwards_and_execute_command(ctx,
     walker = GitComponent.GitRepoWalker(environment_config)
 
     for i, each_commit in enumerate(walker.commits):
-        # walker.clean_checkout_commit(each_commit)
+        walker.clean_checkout_commit(each_commit)
 
         utilities.run_cmd(default_config_cmd)
         # _run_component_cmd("environment make-default-config", local_default_config_args)
@@ -205,7 +205,7 @@ def iterate_backwards_and_execute_command(ctx,
                                                                         "vcs",
                                                                         "write-history-file"],
                                                        global_arguments=global_args,
-                                                       sub_command_arguments=["commit_id=" + walker.commit_ids[i]])
+                                                       sub_command_arguments=["--commit_id=" + walker.commit_ids[i]])
 
         utilities.run_cmd(write_vcs_info_cmd)
         # _run_component_cmd("vcs write-history-file", "commit_id=" + walker.commit_ids[i])
