@@ -166,7 +166,7 @@ def iterate_backwards_and_execute_command(ctx,
                                                        global_arguments=global_args)
 
     utilities.run_cmd(default_config_cmd)
-
+    utilities.run_cmd(refresh_config_cmd)
     # Reading the config to initialize the vcs walker
     config_path = pathlib.Path(ctx.obj['PROJECT_ROOT']).joinpath("_generated_sentinel_config.json")
 
