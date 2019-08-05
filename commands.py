@@ -4,11 +4,11 @@ import SentinelVCS.Vcs.GitComponent as GitComponent
 import subprocess
 
 import utilities
+
 L = utilities.logger
 
 
-def _run_component_cmd(cmd, args=None):
-
+def _run_component_cmdXXX(cmd, args=None, global_args=""):
     if args is None or args == "":
         args = ""
     elif type(args) == list:
@@ -24,7 +24,7 @@ def _run_component_cmd(cmd, args=None):
         args = args_string
         print(args)
 
-    component_cmd = "python sentinel.py standalone-components " + cmd + " " + args
+    component_cmd = "python sentinel.py standalone-components " + global_args + " " + cmd + " " + args
     L.debug("cmd: %s", component_cmd)
 
     return_obj = subprocess.run(component_cmd)
@@ -37,7 +37,7 @@ def _run_component_cmd(cmd, args=None):
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
 @click.option('--no_version', type=click.Choice(['true', 'false']), default='true', help="Skips output version")
-@click.option('--debug', type=click.Choice(['true', 'false']), default='false',  help="Verbose logging")
+@click.option('--debug', type=click.Choice(['true', 'false']), default='false', help="Verbose logging")
 @click.pass_context
 def cli(ctx, project_root, output, no_version, debug):
     """Sentinel Commands"""
@@ -49,8 +49,8 @@ def cli(ctx, project_root, output, no_version, debug):
                                               no_version=no_version)
 
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
-    utilities.run_cmd(cmd)
+    # cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
+    # utilities.run_cmd(cmd)
 
 
 @cli.command()
@@ -80,12 +80,14 @@ def validate_project(ctx):
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
 
+
 @cli.command()
 @click.pass_context
 def validate_assets(ctx):
     """Checks the assets"""
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "refresh-asset-info"], data)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "refresh-asset-info"],
+                                    data)
     utilities.run_cmd(cmd)
 
 
@@ -96,35 +98,74 @@ def run_client_test():
 
 
 @cli.command()
-@click.option('--project_name', default="", help="Name of the project")
+@click.option('--project_name', required=True, help="Name of the project")
 @click.option('--engine_path', default="", help="Relative Path to the engine")
 @click.option('--config_path', default="", help="Path to a custom config folder")
 @click.option('--version_control_root', default="", help="Path to the version control root")
 @click.option('--artifacts_root', default="", help="Path to the artifacts root")
 @click.option('--s3_data_base_location', default="", help="path to the database location")
 @click.option('--cache_path', default="", help="Path to the sentinel cache")
+@click.option('--number_of_changes', default=-1, help="How far back to go")
 @click.pass_context
-def process_missing(ctx,
-                    project_name,
-                    engine_path,
-                    config_path,
-                    version_control_root,
-                    s3_data_base_location,
-                    artifacts_root,
-                    cache_path):
-
+def iterate_backwards_and_execute_command(ctx,
+                                          project_name,
+                                          engine_path,
+                                          config_path,
+                                          version_control_root,
+                                          s3_data_base_location,
+                                          artifacts_root,
+                                          cache_path,
+                                          number_of_changes):
     """Goes through the history and runs validation"""
 
-    arguments = ["project_name=" + project_name,
-                 "engine_path=" + engine_path,
-                 "config_path=" + config_path,
-                 "version_control_root=" + version_control_root,
-                 "s3_data_base_location=" + s3_data_base_location,
-                 "artifacts_root=" + artifacts_root,
-                 "cache_path="+cache_path]
+    local_default_config_args = ["--project_name=" + project_name,
+                                 "--engine_path=" + engine_path,
+                                 "--config_path=" + config_path,
+                                 "--version_control_root=" + version_control_root,
+                                 "--s3_data_base_location=" + s3_data_base_location,
+                                 "--artifacts_root=" + artifacts_root,
+                                 "--cache_path=" + cache_path]
 
-    _run_component_cmd("environment make-default-config", arguments)
-    _run_component_cmd("environment generate")
+    global_args = utilities.convert_input_to_dict(ctx)
+
+    # Command to generate the default config
+    default_config_cmd = utilities.get_commandline(script_name="sentinel.py",
+                                                   script_commands=["standalone-components", "environment",
+                                                                    "make-default-config"],
+                                                   global_arguments=global_args,
+                                                   sub_command_arguments=local_default_config_args)
+
+    # Command to refresh the config
+    refresh_config_cmd = utilities.get_commandline(script_name="sentinel.py",
+                                                   script_commands=["standalone-components",
+                                                                    "environment",
+                                                                    "generate"],
+                                                   global_arguments=global_args)
+
+    # Command refresh version control
+    vcs_refresh_cmd = utilities.get_commandline(script_name="sentinel.py",
+                                                script_commands=["standalone-components",
+                                                                 "vcs",
+                                                                 "refresh"],
+                                                global_arguments=global_args)
+
+    # Command to build the editor
+    build_editor_cmd = utilities.get_commandline(script_name="sentinel.py",
+                                                 script_commands=["standalone-components",
+                                                                  "ue4",
+                                                                  "build",
+                                                                  "editor"],
+                                                 global_arguments=global_args)
+
+    # Command to refresh the asset info
+    refresh_asset_info_cmd = utilities.get_commandline(script_name="sentinel.py",
+                                                       script_commands=["standalone-components",
+                                                                        "ue4",
+                                                                        "project",
+                                                                        "refresh-asset-info"],
+                                                       global_arguments=global_args)
+
+    utilities.run_cmd(default_config_cmd)
 
     # Reading the config to initialize the vcs walker
     config_path = pathlib.Path(ctx.obj['PROJECT_ROOT']).joinpath("_generated_sentinel_config.json")
@@ -133,16 +174,45 @@ def process_missing(ctx,
     walker = GitComponent.GitRepoWalker(environment_config)
 
     for i, each_commit in enumerate(walker.commits):
-        walker.clean_checkout_commit(each_commit)
+        # walker.clean_checkout_commit(each_commit)
 
-        _run_component_cmd("environment make-default-config", arguments)
-        _run_component_cmd("environment generate")
-        _run_component_cmd("vcs refresh")
-        _run_component_cmd("environment generate")
-        _run_component_cmd("ue4 build editor")
-        _run_component_cmd("ue4 project refresh-asset-info")
-        _run_component_cmd("vcs write-history-file", "commit_id=" + walker.commit_ids[i])
-        _run_component_cmd("python aws upload-build-data")
+        utilities.run_cmd(default_config_cmd)
+        # _run_component_cmd("environment make-default-config", local_default_config_args)
+
+        utilities.run_cmd(refresh_config_cmd)
+        # _run_component_cmd("environment generate")
+
+        utilities.run_cmd(vcs_refresh_cmd)
+
+        # _run_component_cmd("vcs refresh")
+        utilities.run_cmd(refresh_config_cmd)
+
+        # _run_component_cmd("environment generate")
+
+        utilities.run_cmd(build_editor_cmd)
+
+        utilities.run_cmd(refresh_asset_info_cmd)
+        # _run_component_cmd("ue4 build editor")
+
+        # _run_component_cmd("ue4 project refresh-asset-info")
+
+        # Command to refresh the asset info
+        write_vcs_info_cmd = utilities.get_commandline(script_name="sentinel.py",
+                                                       script_commands=["standalone-components",
+                                                                        "vcs"
+                                                                        "write-history-file"],
+                                                       global_arguments=global_args,
+                                                       sub_command_arguments=["commit_id=" + walker.commit_ids[i]])
+
+        utilities.run_cmd(write_vcs_info_cmd)
+        # _run_component_cmd("vcs write-history-file", "commit_id=" + walker.commit_ids[i])
+
+
+        #_run_component_cmd("python aws upload-build-data")
+
+        if i == number_of_changes:
+            L.info("Maximum depth reached")
+            break
 
 
 if __name__ == "__main__":

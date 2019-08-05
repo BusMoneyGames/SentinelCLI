@@ -27,34 +27,44 @@ def read_config(path):
         quit(1)
 
 
-def get_commandline(script, global_argument, data=None, arguments_at_end=False):
+def get_commandline(script_name,
+                    script_commands,
+                    global_arguments=None,
+                    sub_command_arguments=None,
+                    arguments_at_end=False):
     """
     Constructs the command line that gets passed into the different sentinel commands
     :return:
     """
-    cmd = "python " + script
 
-    if data:
+    cmd = "python " + script_name
+
+    # Constructing the global arguments
+    if global_arguments:
+        # Creates the arguments that are passed in from the root command (sentinel.py)
         pass_through_arguments = " "
-
-        for each_data in data.keys():
-            pass_through_arguments = pass_through_arguments + each_data + "=" + data[each_data] + " "
-
+        for each_data in global_arguments.keys():
+            pass_through_arguments = pass_through_arguments + each_data + "=" + global_arguments[each_data] + " "
     else:
         pass_through_arguments = ""
 
-    if global_argument:
-        # Only add the pass through arguments if there is a command
-        # cmd = cmd + pass_through_arguments + " " + " ".join(arguments)
-        arguments = " ".join(global_argument)
+    # Constructing the sub command arguments
+    arguments = ""
+    if sub_command_arguments:
+        # Creates the arguments that are local to the command in the component that is being called
+        arguments = " ".join(sub_command_arguments)
+    sub_command_arguments = arguments
 
-        # Flips the arguments to go at the end
-        # TODO understand why this is needed
-        if arguments_at_end:
-            cmd = cmd + " " + arguments + pass_through_arguments
-        else:
-            cmd = cmd + pass_through_arguments + " " + arguments
+    cmd = cmd + pass_through_arguments + " ".join(script_commands)
 
+    # Flips the arguments to go at the end
+    # TODO understand why this is needed
+    if arguments_at_end:
+        cmd = cmd + " " + sub_command_arguments
+    else:
+        cmd = cmd + " " + sub_command_arguments
+
+    L.debug(cmd)
     return cmd
 
 
@@ -88,3 +98,13 @@ def convert_input_to_dict(ctx):
         "--debug": ctx.obj['DEBUG']
     }
     return data
+
+
+def convert_input_to_string(ctx):
+
+    dict_input = convert_input_to_dict(ctx)
+    out = ""
+    for each_key in dict_input.keys():
+        out = out + each_key + "=" + dict_input[each_key] + " "
+
+    return out

@@ -21,7 +21,7 @@ def cli(ctx, project_root, output, debug, no_version):
         L.debug("Running in debug mode")
 
 
-@cli.command()
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def api(ctx, args):
@@ -34,26 +34,26 @@ def api(ctx, args):
     utilities.run_cmd(cmd)
 
 
-@cli.command()
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def commands(ctx, args):
     """Commands"""
 
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./commands.py", args, data)
-    L.debug(cmd)
+    cmd = utilities.get_commandline(script_name="./commands.py", script_commands=args, global_arguments=data)
 
     utilities.run_cmd(cmd)
 
 
-@cli.command()
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def standalone_components(ctx, args):
     """Interact with individual components"""
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./standalone.py", args, data)
+    cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args, global_arguments=data)
+    # cmd = utilities.get_commandline("./standalone.py", args, data)
     L.debug(cmd)
 
     utilities.run_cmd(cmd)
