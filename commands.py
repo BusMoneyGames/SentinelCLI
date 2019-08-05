@@ -32,7 +32,6 @@ def _run_component_cmdXXX(cmd, args=None, global_args=""):
     if not return_obj.returncode == 0:
         exit(1)
 
-
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
@@ -49,8 +48,8 @@ def cli(ctx, project_root, output, no_version, debug):
                                               no_version=no_version)
 
     data = utilities.convert_input_to_dict(ctx)
-    # cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
-    # utilities.run_cmd(cmd)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
+    utilities.run_cmd(cmd)
 
 
 @cli.command()
@@ -58,8 +57,8 @@ def cli(ctx, project_root, output, no_version, debug):
 def build_game(ctx):
     """Create a playable version of the project"""
 
-    data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"], data)
+    global_args = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"], global_args)
     utilities.run_cmd(cmd)
 
 
