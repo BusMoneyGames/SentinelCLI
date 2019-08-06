@@ -61,6 +61,15 @@ def build_game(ctx):
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"], global_args)
     utilities.run_cmd(cmd)
 
+@cli.command()
+@click.pass_context
+def setup_default_environment(ctx):
+    """Create a playable version of the project"""
+
+    global_args = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args)
+    utilities.run_cmd(cmd)
+
 
 @cli.command()
 @click.pass_context
