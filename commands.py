@@ -32,6 +32,12 @@ def _run_component_cmdXXX(cmd, args=None, global_args=""):
     if not return_obj.returncode == 0:
         exit(1)
 
+
+def generate_config(ctx):
+    data = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
+    utilities.run_cmd(cmd)
+
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
@@ -47,24 +53,23 @@ def cli(ctx, project_root, output, no_version, debug):
                                               debug=debug,
                                               no_version=no_version)
 
-    data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
-    utilities.run_cmd(cmd)
-
 
 @cli.command()
 @click.pass_context
 def build_game(ctx):
     """Create a playable version of the project"""
 
+    generate_config()
+
     global_args = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"], global_args)
     utilities.run_cmd(cmd)
 
+
 @cli.command()
 @click.pass_context
 def setup_default_environment(ctx):
-    """Create a playable version of the project"""
+    """Create default config"""
 
     global_args = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args)
@@ -75,6 +80,8 @@ def setup_default_environment(ctx):
 @click.pass_context
 def build_editor(ctx):
     """Compile UE4 editor"""
+
+    generate_config()
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
@@ -84,6 +91,8 @@ def build_editor(ctx):
 @click.pass_context
 def validate_project(ctx):
     """Check settings and environment"""
+    generate_config()
+
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
@@ -93,6 +102,9 @@ def validate_project(ctx):
 @click.pass_context
 def validate_assets(ctx):
     """Checks the assets"""
+
+    generate_config()
+
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "refresh-asset-info"],
                                     data)
