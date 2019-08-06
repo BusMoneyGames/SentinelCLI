@@ -59,7 +59,7 @@ def cli(ctx, project_root, output, no_version, debug):
 def build_game(ctx):
     """Create a playable version of the project"""
 
-    generate_config()
+    generate_config(ctx)
 
     global_args = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"], global_args)
@@ -81,7 +81,7 @@ def setup_default_environment(ctx):
 def build_editor(ctx):
     """Compile UE4 editor"""
 
-    generate_config()
+    generate_config(ctx)
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
@@ -91,7 +91,7 @@ def build_editor(ctx):
 @click.pass_context
 def validate_project(ctx):
     """Check settings and environment"""
-    generate_config()
+    generate_config(ctx)
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
@@ -103,7 +103,7 @@ def validate_project(ctx):
 def validate_assets(ctx):
     """Checks the assets"""
 
-    generate_config()
+    generate_config(ctx)
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "refresh-asset-info"],
