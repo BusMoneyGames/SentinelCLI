@@ -56,13 +56,16 @@ def cli(ctx, project_root, output, no_version, debug):
 
 @cli.command()
 @click.pass_context
-def build_game(ctx):
+@click.option('--preset', default="", help="Skips output version")
+def build_game(ctx, preset):
     """Create a playable version of the project"""
 
     generate_config(ctx)
 
     global_args = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"], global_args)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"],
+                                    global_arguments=global_args,
+                                    sub_command_arguments=["--preset="+preset])
     utilities.run_cmd(cmd)
 
 
