@@ -89,6 +89,17 @@ def build_editor(ctx):
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
 
+@cli.command()
+@click.pass_context
+def build_lightmaps(ctx):
+    """Compile UE4 editor"""
+
+    generate_config(ctx)
+    data = utilities.convert_input_to_dict(ctx)
+
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Build-Lighting"])
+    utilities.run_cmd(cmd)
+
 
 @cli.command()
 @click.pass_context
