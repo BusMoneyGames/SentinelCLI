@@ -21,12 +21,6 @@ commands = ['start', 'restart', 'kill', 'list']
 
 sentinelPy = ['python', 'Sentinel.py']
 
-ue4Component = [
-    'python', './SentinelUE4Component/SentinelUE4.py']
-
-sentinelConfig = [
-    'python', './SentinelConfig/SentinelEnvironment.py']
-
 configFileBasePath = './SentinelConfig/defaultConfig'
 configFileTypes = {
     'build': 'buildconfigs'
@@ -35,54 +29,6 @@ configFileTypes = {
 
 def error(err):
     return {'error': err}
-
-
-@api.resource('/command/<string:command>')
-class RunCommand(Resource):
-    def get(self, command):
-        try:
-            output = subprocess.check_output(
-                ue4Component + [command]).decode("utf-8")
-
-            return {'output': output}
-        except:
-            # TODO log/display exception
-            return error('Unexpected error')
-
-    def post(self, command):
-
-        # if command not in commands:
-        #     return error(f'Invalid command: "{command}"')
-
-        print('Should run sentinel command:', command)
-
-        commandSplit = command.split(' ')
-
-        print(ue4Component + commandSplit)
-
-        try:
-            output = subprocess.check_output(
-                ue4Component + commandSplit).decode("utf-8")
-
-            return {'output': output}
-        except Exception as e:
-            # TODO log/display exception
-            print(e)
-            return error('Unexpected error')
-
-
-@api.resource('/command')
-class Command(Resource):
-    def get(self):
-        try:
-            output = subprocess.check_output(
-                sentinelConfig + ['-h']).decode("utf-8")
-
-            return {'output': output}
-        except Exception as e:
-            # TODO log/display exception
-            print(e)
-            return error('Unexpected error')
 
 
 @api.resource('/config/<string:config>')
