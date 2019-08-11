@@ -92,12 +92,23 @@ def build_editor(ctx):
 @cli.command()
 @click.pass_context
 def build_lightmaps(ctx):
-    """Compile UE4 editor"""
+    """Builds the lighting for the project"""
 
     generate_config(ctx)
     data = utilities.convert_input_to_dict(ctx)
 
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Build-Lighting"])
+    utilities.run_cmd(cmd)
+
+@cli.command()
+@click.pass_context
+def compile_blueprints(ctx):
+    """Compiles all the blueprints in the project"""
+
+    generate_config(ctx)
+    data = utilities.convert_input_to_dict(ctx)
+
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Compile-Blueprints"])
     utilities.run_cmd(cmd)
 
 
