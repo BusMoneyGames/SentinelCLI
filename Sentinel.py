@@ -1,24 +1,23 @@
 import click
-import logging
 import utilities
-L = utilities.logger
+import logging
+from SentinelInternalLogger.logger import L
 
 
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
-@click.option('--no_version', type=click.Choice(['true', 'false']), default='true', help="Skips output version")
+@click.option('--no_version', type=click.Choice(['true', 'false']), default='false', help="Skips output version")
 @click.option('--debug', type=click.Choice(['true', 'false']), default='false',  help="Verbose logging")
 @click.pass_context
 def cli(ctx, project_root, output, debug, no_version):
     """Sentinel Unreal Component handles running commands interacting with unreal engine"""
 
-    ctx = utilities.convert_parameters_to_ctx(ctx, project_root=project_root, output=output,
-                                              debug=debug, no_version=no_version)
-
     if debug == 'true':
         L.setLevel(logging.DEBUG)
-        L.debug("Running in debug mode")
+
+    ctx = utilities.convert_parameters_to_ctx(ctx, project_root=project_root, output=output,
+                                              debug=debug, no_version=no_version)
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )

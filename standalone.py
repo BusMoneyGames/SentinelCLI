@@ -1,8 +1,7 @@
 import click
 import utilities
-
-L = utilities.logger
-
+import logging
+from SentinelInternalLogger.logger import L
 
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
@@ -12,6 +11,9 @@ L = utilities.logger
 @click.pass_context
 def cli(ctx, project_root, output, debug, no_version):
     """Sentinel Unreal Component handles running commands interacting with unreal engine"""
+
+    if debug == 'true':
+        L.setLevel(logging.DEBUG)
 
     ctx = utilities.convert_parameters_to_ctx(ctx, project_root=project_root, output=output,
                                               debug=debug, no_version=no_version)

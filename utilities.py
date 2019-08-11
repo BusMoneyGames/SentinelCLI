@@ -4,12 +4,7 @@ import pathlib
 import subprocess
 import logging
 
-from logging.config import fileConfig
-
-fileConfig('logging_config.ini')
-logger = logging.getLogger()
-
-L = logger
+L = logging.getLogger()
 
 
 def read_config(path):
@@ -65,7 +60,6 @@ def get_commandline(script_name,
     else:
         cmd = cmd + " " + sub_command_arguments
 
-    L.debug(cmd)
     return cmd
 
 

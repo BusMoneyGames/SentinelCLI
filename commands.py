@@ -1,42 +1,29 @@
 import click
 import pathlib
 import SentinelVCS.Vcs.GitComponent as GitComponent
-import subprocess
-
 import utilities
-
-L = utilities.logger
-
-
-def _run_component_cmdXXX(cmd, args=None, global_args=""):
-    if args is None or args == "":
-        args = ""
-    elif type(args) == list:
-        args = "--" + " --".join(args)
-    elif type(args) == str:
-        # the case where the string is empty is dealt with at the top
-        args = "--" + args
-    elif type(args) == dict:
-        args_string = ""
-        for each_key in args.keys():
-            args_string = args_string + each_key + "=" + args[each_key] + " "
-
-        args = args_string
-        print(args)
-
-    component_cmd = "python sentinel.py standalone-components " + global_args + " " + cmd + " " + args
-    L.debug("cmd: %s", component_cmd)
-
-    return_obj = subprocess.run(component_cmd)
-
-    if not return_obj.returncode == 0:
-        exit(1)
+import logging
+from SentinelInternalLogger.logger import L
 
 
 def generate_config(ctx):
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "generate"], data)
-    utilities.run_cmd(cmd)
+    generate_config_cmd = utilities.get_commandline("./Sentinel.py",
+                                                    ["standalone-components",
+                                                     "environment",
+                                                     "generate"],
+                                                    data)
+
+    refresh_vcs_cmd = utilities.get_commandline("./Sentinel.py",
+                                                ["standalone-components",
+                                                 "vcs",
+                                                 "refresh-current-status"],
+                                                data)
+
+    if data["--no_version"] == "false":
+        utilities.run_cmd(generate_config_cmd)
+
+    utilities.run_cmd(refresh_vcs_cmd)
 
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
@@ -47,12 +34,14 @@ def generate_config(ctx):
 def cli(ctx, project_root, output, no_version, debug):
     """Sentinel Commands"""
 
+    if debug == 'true':
+        L.setLevel(logging.DEBUG)
+
     ctx = utilities.convert_parameters_to_ctx(ctx,
                                               project_root=project_root,
                                               output=output,
                                               debug=debug,
                                               no_version=no_version)
-
 
 @cli.command()
 @click.pass_context
@@ -137,9 +126,10 @@ def validate_assets(ctx):
 
 
 @cli.command()
-def run_client_test():
+@click.pass_context
+def run_client_test(ctx):
     """Start a game client and run automation tests"""
-    pass
+    generate_config(ctx)
 
 
 @cli.command()
