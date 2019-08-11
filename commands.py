@@ -6,24 +6,30 @@ import logging
 from SentinelInternalLogger.logger import L
 
 
-def generate_config(ctx):
+def refresh_config(ctx, default=False):
     data = utilities.convert_input_to_dict(ctx)
+
+    defult_arg = str(default).lower()
     generate_config_cmd = utilities.get_commandline("./Sentinel.py",
                                                     ["standalone-components",
                                                      "environment",
                                                      "generate"],
-                                                    data)
+                                                    data,
+                                                    sub_command_arguments=["--default="+defult_arg])
 
+    utilities.run_cmd(generate_config_cmd)
+
+
+def refresh_vcs(ctx):
+    data = utilities.convert_input_to_dict(ctx)
     refresh_vcs_cmd = utilities.get_commandline("./Sentinel.py",
                                                 ["standalone-components",
                                                  "vcs",
                                                  "refresh-current-status"],
                                                 data)
 
-    if data["--no_version"] == "false":
-        utilities.run_cmd(generate_config_cmd)
-
     utilities.run_cmd(refresh_vcs_cmd)
+
 
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
@@ -43,13 +49,19 @@ def cli(ctx, project_root, output, no_version, debug):
                                               debug=debug,
                                               no_version=no_version)
 
+    refresh_config(ctx, default=True)
+
+    if no_version == "false":
+        refresh_vcs(ctx)
+
+    refresh_config(ctx)
+
+
 @cli.command()
 @click.pass_context
 @click.option('--preset', default="", help="Skips output version")
 def build_game(ctx, preset):
     """Create a playable version of the project"""
-
-    generate_config(ctx)
 
     global_args = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"],
@@ -60,41 +72,30 @@ def build_game(ctx, preset):
 
 @cli.command()
 @click.pass_context
-def setup_default_environment(ctx):
-    """Create default config"""
-
-    global_args = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args)
-    utilities.run_cmd(cmd)
-
-
-@cli.command()
-@click.pass_context
 def build_editor(ctx):
     """Compile UE4 editor"""
 
-    generate_config(ctx)
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
+
 
 @cli.command()
 @click.pass_context
 def build_lightmaps(ctx):
     """Builds the lighting for the project"""
 
-    generate_config(ctx)
     data = utilities.convert_input_to_dict(ctx)
 
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Build-Lighting"])
     utilities.run_cmd(cmd)
+
 
 @cli.command()
 @click.pass_context
 def compile_blueprints(ctx):
     """Compiles all the blueprints in the project"""
 
-    generate_config(ctx)
     data = utilities.convert_input_to_dict(ctx)
 
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Compile-Blueprints"])
@@ -105,7 +106,6 @@ def compile_blueprints(ctx):
 @click.pass_context
 def validate_project(ctx):
     """Check settings and environment"""
-    generate_config(ctx)
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
@@ -117,8 +117,6 @@ def validate_project(ctx):
 def validate_assets(ctx):
     """Checks the assets"""
 
-    generate_config(ctx)
-
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "refresh-asset-info"],
                                     data)
@@ -129,7 +127,7 @@ def validate_assets(ctx):
 @click.pass_context
 def run_client_test(ctx):
     """Start a game client and run automation tests"""
-    generate_config(ctx)
+    pass
 
 
 @cli.command()
