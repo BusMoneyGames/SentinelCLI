@@ -2,9 +2,6 @@ import click
 import utilities
 import json
 
-L = utilities.logger
-
-
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
@@ -33,20 +30,11 @@ def get_all_asset_info(ctx):
     """Create a playable version of the project"""
     data = utilities.convert_input_to_dict(ctx)
     args = ["database", "list-entries"]
-    sub_command_args = ["--help"]
 
-    cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args, global_arguments=data, sub_command_arguments=sub_command_args)
+    cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args,
+                                    global_arguments=data)
 
     utilities.run_cmd(cmd)
-
-    dummy_data = {"categories": ["Blueprints",
-                                 "StaticMesh",
-                                 "Texture2D"],
-                  "items": [{"name": "viking_blueprint",
-                             "category": "Blueprints"}]
-                  }
-
-    print(json.dumps(dummy_data, indent=4))
 
 
 if __name__ == "__main__":

@@ -33,6 +33,7 @@ def error(err):
 
 @api.resource('/config/<string:config>')
 class Config(Resource):
+
     def get(self, config):
         configType = request.args['type']
 
@@ -79,6 +80,7 @@ class Config(Resource):
 
 @api.resource('/sentinel')
 class RunSentinel(Resource):
+
     def post(self):
         try:
             body = request.get_json()
@@ -87,14 +89,14 @@ class RunSentinel(Resource):
 
             cmd = sentinelPy + command.split(" ")
             output = subprocess.check_output(cmd).decode("utf-8")
-
             json_output = json.loads(output)
+
             return json_output
 
         except Exception as e:
             print(e)
             # TODO log/display exception
-            return error('Unexpected error')
+            return error('Unexpected error from python server')
 
 
 if __name__ == '__main__':

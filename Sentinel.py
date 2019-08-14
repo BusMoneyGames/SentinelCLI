@@ -28,9 +28,8 @@ def api(ctx, args):
     data = utilities.convert_input_to_dict(ctx)
 
     cmd = utilities.get_commandline("./api.py", args, data)
-    L.debug(cmd)
-
     utilities.run_cmd(cmd)
+
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -41,8 +40,8 @@ def commands(ctx, args):
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline(script_name="./commands.py", script_commands=args, global_arguments=data)
-
     utilities.run_cmd(cmd)
+
 
 
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
@@ -52,7 +51,6 @@ def standalone_components(ctx, args):
     """Interact with individual components"""
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args, global_arguments=data)
-
     utilities.run_cmd(cmd)
 
 
@@ -64,6 +62,7 @@ def setup_default_environment(ctx):
     global_args = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args)
     utilities.run_cmd(cmd)
+
 
 
 if __name__ == "__main__":

@@ -63,11 +63,18 @@ def get_commandline(script_name,
     return cmd
 
 
-def run_cmd(cmd):
-    return_object = subprocess.run(cmd, shell=True)
-
-    if not return_object.returncode == 0:
+def run_cmd(cmd, print_output=True):
+    return_object = ""
+    try:
+        return_object = subprocess.check_output(cmd, shell=True, text=True)
+    except subprocess.CalledProcessError as e:
+        print(e)
         quit(1)
+
+    if print_output:
+        print(return_object)
+
+    return return_object
 
 
 def convert_parameters_to_ctx(ctx, project_root, no_version, output, debug):
