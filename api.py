@@ -25,14 +25,29 @@ def get_list_of_builds(ctx):
 
 @cli.command()
 @click.pass_context
-def get_all_asset_info(ctx):
+def get_asset_categories(ctx):
+    """returns package information"""
 
-    """Create a playable version of the project"""
     data = utilities.convert_input_to_dict(ctx)
-    args = ["database", "list-entries"]
+    args = ["database", "list-package-categories"]
 
     cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args,
-                                    global_arguments=data)
+                                    global_arguments=data, sub_command_arguments=[])
+
+    utilities.run_cmd(cmd)
+
+
+@cli.command()
+@click.option('--category', default="", help="Path to the config overwrite folder")
+@click.pass_context
+def get_category_info(ctx, category):
+    """returns package information"""
+
+    data = utilities.convert_input_to_dict(ctx)
+    args = ["database", "list-packages-in-category"]
+
+    cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args,
+                                    global_arguments=data, sub_command_arguments=["--category=" + category])
 
     utilities.run_cmd(cmd)
 
