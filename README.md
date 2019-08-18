@@ -7,6 +7,3 @@ The sentinel project is a container for all of the sentinel plugins that do the 
 ### Windows ###
 - Python 3.6 + 
 - Pipenv
-
-### Running the Integration tests ###
-
