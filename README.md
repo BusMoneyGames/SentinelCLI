@@ -10,8 +10,3 @@ The sentinel project is a container for all of the sentinel plugins that do the 
 
 ### Running the Integration tests ###
 
-The sentinel plugins in some cases don't do very interesting things when run in isolation so the primary responsibility of the Sentinel project is to be a container for the different plugins so we can run integration tests.
-
-pipenv install --dev 
-pipenv run TestRunner.py -h
-pipenv run TestRunner.py -editor
