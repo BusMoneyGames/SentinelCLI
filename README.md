@@ -9,10 +9,10 @@ Sentinel is an open source, extendable, command line tool designed to gather, or
 - Pipenv
 
 ## Get Started ##
-- Clone Sentinel to your workstation (git clone 
--- Update submodules ( git submodule update --init --recursive)
-- Generate the default environment (pipenv run python .\Sentinel.py setup-default-environment)
-- Update the config file with the correct info( engine_root_path and project_root_path are required and can be relative paths)
-- Compile all the blueprints in the level ( pipenv run python .\Sentinel.py commands compile-blueprints )
+- Clone Sentinel to your workstation (*git clone* )
+- Update submodules ( *git submodule update --init --recursive*)
+- Generate the default environment (*pipenv run python .\Sentinel.py setup-default-environment*)
+- Update the config file with the correct info( *engine_root_path and project_root_path are required and can be relative paths* )
+- Compile all the blueprints in the level ( *pipenv run python .\Sentinel.py commands compile-blueprints *)
 
 If the blueprint compile runs then Sentinel is correctly setup.
