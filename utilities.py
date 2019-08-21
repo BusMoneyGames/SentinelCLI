@@ -64,17 +64,22 @@ def get_commandline(script_name,
 
 
 def run_cmd(cmd, print_output=True):
-    return_object = ""
-    try:
-        return_object = subprocess.check_output(cmd, shell=True, text=True)
-    except subprocess.CalledProcessError as e:
-        print(e)
-        quit(1)
+    lines = []
 
-    if print_output:
-        print(return_object)
+    popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
-    return return_object
+    for line in popen.stdout:
+        line = line.decode('utf-8').rstrip()
+        print(line, flush=True)
+
+    # Waiting for the process to close
+    popen.wait()
+
+    if popen.returncode != 0:
+        import sys
+        sys.exit(popen.returncode)
+
+    return lines
 
 
 def convert_parameters_to_ctx(ctx, project_root, no_version, output, debug):
