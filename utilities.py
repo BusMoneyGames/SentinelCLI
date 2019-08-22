@@ -64,15 +64,16 @@ def get_commandline(script_name,
 
 
 def run_cmd(cmd, print_output=True):
-    return_object = ""
-    try:
-        return_object = subprocess.check_output(cmd, shell=True, text=True)
-    except subprocess.CalledProcessError as e:
-        print(e)
-        quit(1)
 
+    return_object = ""
     if print_output:
-        print(return_object)
+        subprocess.run(cmd, shell=True)
+    else:
+        try:
+            return_object = subprocess.check_output(cmd, shell=True, text=True)
+        except subprocess.CalledProcessError as e:
+            print(e)
+            quit(1)
 
     return return_object
 
