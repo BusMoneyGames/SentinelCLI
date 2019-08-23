@@ -1,5 +1,5 @@
 # Sentinel Project # 
-The sentinel project is a container for all of the sentinel plugins that do the heavy lifting for the game automation. The traditional way of running the test environment is to clone the SentinelUE4 project which contains this project as a submodule.
+Sentinel is an open source, extendable, command line tool designed to gather, organize and interpret information in a game development environment.  Additionally, Sentinel provides easy to use tools for common tasks ranging from creating and deploying game client builds, running automated tests, automatically filing bugs to directly notify developers about best practices.
 
 [SentinelUE4 Repo](https://github.com/BusMoneyGames/SentinelUE4)
 
@@ -8,10 +8,11 @@ The sentinel project is a container for all of the sentinel plugins that do the 
 - Python 3.6 + 
 - Pipenv
 
-### Running the Integration tests ###
+## Get Started ##
+- Clone Sentinel to your workstation (*git clone* )
+- Update submodules ( *git submodule update --init --recursive*)
+- Generate the default environment (*pipenv run python .\Sentinel.py setup-default-environment*)
+- Update the config file with the correct info( *engine_root_path and project_root_path are required and can be relative paths* )
+- Compile all the blueprints in the level (pipenv run python .\Sentinel.py commands compile-blueprints)
 
-The sentinel plugins in some cases don't do very interesting things when run in isolation so the primary responsibility of the Sentinel project is to be a container for the different plugins so we can run integration tests.
-
-pipenv install --dev 
-pipenv run TestRunner.py -h
-pipenv run TestRunner.py -editor
+If the blueprint compile runs then Sentinel is correctly setup.
