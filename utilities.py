@@ -67,7 +67,11 @@ def run_cmd(cmd, print_output=True):
 
     return_object = ""
     if print_output:
-        subprocess.run(cmd, shell=True)
+        complete_process = subprocess.run(cmd, shell=True)
+
+        if complete_process.returncode != 0:
+            quit(complete_process.returncode)
+
     else:
         try:
             return_object = subprocess.check_output(cmd, shell=True, text=True)
