@@ -1,4 +1,5 @@
 import click
+import os
 import pathlib
 import SentinelVCS.Vcs.GitComponent as GitComponent
 import utilities
@@ -60,7 +61,9 @@ def cli(ctx, project_root, output, no_version, debug):
 @cli.command()
 @click.pass_context
 @click.option('--preset', default="", help="Skips output version")
-def build_game(ctx, preset):
+@click.option('--deploy_path', default="", help="If set, deploys the build to to the configured location")
+@click.option('--compress', default=False, help="Compresses the artifact to a .zip file")
+def build_game(ctx, preset, deploy_path, compress):
     """Create a playable version of the project"""
 
     global_args = utilities.convert_input_to_dict(ctx)
@@ -68,6 +71,14 @@ def build_game(ctx, preset):
                                     global_arguments=global_args,
                                     sub_command_arguments=["--preset="+preset])
     utilities.run_cmd(cmd)
+
+    if deploy_path:
+        if deploy_path.lower.startswith("s3"):
+            print("Dealing with s3 path")
+        elif os.path.exists(deploy_path):
+            print("Dealing with an os path")
+        else:
+            print("Unable to access access")
 
 
 @cli.command()
