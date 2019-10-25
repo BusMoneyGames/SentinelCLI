@@ -23,11 +23,11 @@ def cli(ctx, project_root, output, debug, no_version):
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
-def api(ctx, args):
+def queries(ctx, args):
     """Queries for the web server to interact with"""
     data = utilities.convert_input_to_dict(ctx)
 
-    cmd = utilities.get_commandline("./api.py", args, data)
+    cmd = utilities.get_commandline("./queries.py", args, data)
     utilities.run_cmd(cmd)
 
 

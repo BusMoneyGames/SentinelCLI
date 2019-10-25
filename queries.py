@@ -13,11 +13,21 @@ def cli(ctx, project_root, output, debug, no_version):
     ctx = utilities.convert_parameters_to_ctx(ctx, project_root=project_root, output=output,
                                               debug=debug, no_version=no_version)
 
+@cli.command()
+@click.pass_context
+def get_environment_status(ctx):
+    """Get environment status"""
+
+    global_args = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "validate-config"],
+                                    global_arguments=global_args)
+    utilities.run_cmd(cmd)
+    return {"builds": ["label", "something"]}
+
 
 @cli.command()
 @click.pass_context
 def get_list_of_builds(ctx):
-    L.debug("Getting list of builds ")
     """Create a playable version of the project"""
 
     return {"builds": ["label", "something"]}

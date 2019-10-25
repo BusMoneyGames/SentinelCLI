@@ -1,5 +1,5 @@
-import subprocess
 import json
+import subprocess
 from argparse import ArgumentParser
 from flask import Flask, request
 from flask_restful import Resource, Api
@@ -17,8 +17,6 @@ app = Flask('sentinel')
 api = Api(app)
 CORS(app)
 
-commands = ['start', 'restart', 'kill', 'list']
-
 sentinelPy = ['python', 'Sentinel.py']
 
 configFileBasePath = './SentinelConfig/defaultConfig'
@@ -29,6 +27,37 @@ configFileTypes = {
 
 def error(err):
     return {'error': err}
+
+
+@api.resource('/queries/<requested_query>')
+class Queries(Resource):
+
+    def get(self, requested_query):
+
+        cmd = "pipenv run python Sentinel.py queries " + requested_query
+        print (cmd)
+        output = subprocess.check_output(cmd).decode("utf-8")
+
+        return {"Output": output}
+
+    def post(self):
+
+        try:
+            body = request.get_json()
+
+            command = body["command"]
+            print("Got here")
+
+            cmd = sentinelPy + command.split(" ")
+            output = subprocess.check_output(cmd).decode("utf-8")
+            json_output = json.loads(output)
+
+            return json_output
+
+        except Exception as e:
+            print(e)
+            # TODO log/display exception
+            return error('Unexpected error from python server')
 
 
 @api.resource('/config/<string:config>')
@@ -80,12 +109,12 @@ class Config(Resource):
 
 @api.resource('/sentinel')
 class RunSentinel(Resource):
-
     def post(self):
         try:
             body = request.get_json()
 
             command = body["command"]
+            print("Got here")
 
             cmd = sentinelPy + command.split(" ")
             output = subprocess.check_output(cmd).decode("utf-8")
