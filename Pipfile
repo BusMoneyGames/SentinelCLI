@@ -5,6 +5,7 @@ name = "pypi"
 
 [scripts]
 server = "python server.py"
+vcs = "python Sentinel.py standalone-components vcs"
 
 [packages]
 gitpython = "*"
