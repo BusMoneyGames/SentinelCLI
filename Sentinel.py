@@ -27,6 +27,9 @@ def queries(ctx, args):
     """Queries for the web server to interact with"""
     data = utilities.convert_input_to_dict(ctx)
 
+    if not args:
+        args = "--help"
+
     cmd = utilities.get_commandline("./queries.py", args, data)
     utilities.run_cmd(cmd)
 
@@ -36,6 +39,9 @@ def queries(ctx, args):
 @click.pass_context
 def commands(ctx, args):
     """Commands"""
+
+    if not args:
+        args = "--help"
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline(script_name="./commands.py", script_commands=args, global_arguments=data)
@@ -48,6 +54,10 @@ def commands(ctx, args):
 def standalone_components(ctx, args):
     """Interact with individual components"""
     data = utilities.convert_input_to_dict(ctx)
+
+    if not args:
+        args = "--help"
+
     cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args, global_arguments=data)
     utilities.run_cmd(cmd)
 

@@ -25,6 +25,9 @@ def cli(ctx, project_root, output, debug, no_version):
 def environment(ctx, args):
     """Info about the local environment"""
 
+    if not args:
+        args = "--help"
+
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./SentinelEnvironment/SentinelEnvironment.py", args, data)
     utilities.run_cmd(cmd)
@@ -36,6 +39,9 @@ def environment(ctx, args):
 def ue4(ctx, args):
     """Interact with UE4"""
 
+    if not args:
+        args = "--help"
+
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./SentinelUE4/SentinelUE4.py ", args, data)
     utilities.run_cmd(cmd)
@@ -45,8 +51,11 @@ def ue4(ctx, args):
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def vcs(ctx, args):
-
     """Interact with the Version Control System"""
+
+    if not args:
+        args = "--help"
+
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./SentinelVCS/SentinelVCS.py", args, data)
     utilities.run_cmd(cmd)
@@ -56,8 +65,10 @@ def vcs(ctx, args):
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def commands(ctx, args):
-
     """ Utility commands"""
+
+    if not args:
+        args = "--help"
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./commands.py", args, data)
@@ -71,6 +82,9 @@ def database(ctx, args):
 
     """Interact with the Database"""
 
+    if not args:
+        args = "--help"
+
     data = utilities.convert_input_to_dict(ctx)
 
     cmd = utilities.get_commandline("./SentinelDB/SentinelDB.py", args, data)
@@ -81,13 +95,15 @@ def database(ctx, args):
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
 def aws(ctx, args):
-
     """ Interact with Amazon Web Services """
+    if not args:
+        args = "--help"
 
     data = utilities.convert_input_to_dict(ctx)
 
     cmd = utilities.get_commandline("./SentinelAWS/SentinelAWS.py", args, data, arguments_at_end=False)
     utilities.run_cmd(cmd)
+
 
 if __name__ == "__main__":
     cli()

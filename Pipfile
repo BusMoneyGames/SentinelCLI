@@ -5,10 +5,11 @@ name = "pypi"
 
 [scripts]
 server = "python server.py"
+vcs = "python Sentinel.py standalone-components vcs"
+sentinel = "python Sentinel.py"
 
 [packages]
 gitpython = "*"
-pillow = "*"
 boto = "*"
 "boto3" = "*"
 requests = "*"
