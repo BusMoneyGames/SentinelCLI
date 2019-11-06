@@ -133,7 +133,6 @@ def validate_assets(ctx):
                                     data)
     utilities.run_cmd(cmd)
 
-
 @cli.command()
 @click.pass_context
 def run_client_test(ctx):

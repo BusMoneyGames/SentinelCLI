@@ -45,6 +45,7 @@ def commands(ctx, args):
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline(script_name="./commands.py", script_commands=args, global_arguments=data)
+
     utilities.run_cmd(cmd)
 
 
@@ -70,7 +71,6 @@ def setup_default_environment(ctx):
     global_args = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args)
     utilities.run_cmd(cmd)
-
 
 if __name__ == "__main__":
     cli()
