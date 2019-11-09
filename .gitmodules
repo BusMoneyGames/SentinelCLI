@@ -17,6 +17,3 @@
 [submodule "SentinelVCS"]
 	path = SentinelVCS
 	url = git@github.com:BusMoneyGames/SentinelVCS.git
-[submodule "SentinelInternalLogger"]
-	path = SentinelInternalLogger
-	url = git@github.com:BusMoneyGames/SentinelInternalLogger.git
