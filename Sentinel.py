@@ -1,8 +1,6 @@
 import click
 import utilities
 import logging
-from SentinelInternalLogger.logger import L
-
 
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
