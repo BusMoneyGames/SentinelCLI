@@ -62,12 +62,19 @@ def standalone_components(ctx, args):
 
 
 @cli.command()
+@click.option('--project_root', default="", help="Relative path to project root")
+@click.option('--engine_root', default="", help="Relative path to the engine")
 @click.pass_context
-def setup_default_environment(ctx):
+def setup_default_environment(ctx, project_root, engine_root):
     """Create default config"""
 
+    input_arguments = [
+        "--project_name="+project_root,
+        "--engine_path="+engine_root
+    ]
+
     global_args = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args)
+    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args,input_arguments)
     utilities.run_cmd(cmd)
 
 if __name__ == "__main__":
