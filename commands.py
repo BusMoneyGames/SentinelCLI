@@ -4,8 +4,8 @@ import pathlib
 import SentinelVCS.Vcs.GitComponent as GitComponent
 import utilities
 import logging
-from SentinelInternalLogger.logger import L
 
+L = logging.getLogger()
 
 def refresh_config(ctx, default=False):
     data = utilities.convert_input_to_dict(ctx)
@@ -40,7 +40,6 @@ def refresh_vcs(ctx):
 @click.pass_context
 def cli(ctx, project_root, output, no_version, debug):
     """Sentinel Commands"""
-
     if debug == 'true':
         L.setLevel(logging.DEBUG)
 
@@ -53,7 +52,10 @@ def cli(ctx, project_root, output, no_version, debug):
     refresh_config(ctx, default=True)
 
     if no_version == "false":
-        refresh_vcs(ctx)
+        try:
+            refresh_vcs(ctx)
+        except:
+            print("Unable to get version control information for run")
 
     refresh_config(ctx)
 
@@ -85,7 +87,6 @@ def build_game(ctx, preset, deploy_path, compress):
 @click.pass_context
 def build_editor(ctx):
     """Compile UE4 editor"""
-
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
