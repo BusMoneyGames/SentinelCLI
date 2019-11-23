@@ -114,8 +114,7 @@ class RunSentinel(Resource):
             body = request.get_json()
 
             command = body["command"]
-            print("Got here")
-
+            
             cmd = sentinelPy + command.split(" ")
             output = subprocess.check_output(cmd).decode("utf-8")
             json_output = json.loads(output)

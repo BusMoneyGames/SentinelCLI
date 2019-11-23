@@ -1,6 +1,7 @@
 import click
 import utilities
 import logging
+import os
 
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
@@ -76,6 +77,18 @@ def setup_default_environment(ctx, project_root, engine_root):
     global_args = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args,input_arguments)
     utilities.run_cmd(cmd)
+
+@cli.command()
+@click.pass_context
+def force_development_mode(ctx):
+    """Force development mode"""
+
+    # os
+    os.system("git submodule foreach git reset --hard")
+    os.system("git submodule foreach git clean -dfx")
+
+    os.system("git pull")
+    os.system("git submodule foreach checkout develop")
 
 if __name__ == "__main__":
     cli()
