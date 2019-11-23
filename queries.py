@@ -2,6 +2,7 @@ import click
 import utilities
 import json
 
+
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")

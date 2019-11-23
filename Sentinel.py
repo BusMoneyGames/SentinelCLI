@@ -3,6 +3,7 @@ import utilities
 import logging
 import os
 
+
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
 @click.option('--output', type=click.Choice(['text', 'json']), default='text', help="Output type.")
@@ -22,22 +23,8 @@ def cli(ctx, project_root, output, debug, no_version):
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
-def queries(ctx, args):
-    """Queries for the web server to interact with"""
-    data = utilities.convert_input_to_dict(ctx)
-
-    if not args:
-        args = "--help"
-
-    cmd = utilities.get_commandline("./queries.py", args, data)
-    utilities.run_cmd(cmd)
-
-
-@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
-@click.argument('args', nargs=-1, type=click.UNPROCESSED)
-@click.pass_context
-def commands(ctx, args):
-    """Commands"""
+def run_action(ctx, args):
+    """actions and commands"""
 
     if not args:
         args = "--help"
@@ -51,8 +38,8 @@ def commands(ctx, args):
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
-def standalone_components(ctx, args):
-    """Interact with individual components"""
+def run_module(ctx, args):
+    """modules in isolation"""
     data = utilities.convert_input_to_dict(ctx)
 
     if not args:
@@ -66,8 +53,8 @@ def standalone_components(ctx, args):
 @click.option('--project_root', default="", help="Relative path to project root")
 @click.option('--engine_root', default="", help="Relative path to the engine")
 @click.pass_context
-def setup_default_environment(ctx, project_root, engine_root):
-    """Create default config"""
+def setup(ctx, project_root, engine_root):
+    """first time environment"""
 
     input_arguments = [
         "--project_name="+project_root,
@@ -78,17 +65,14 @@ def setup_default_environment(ctx, project_root, engine_root):
     cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args,input_arguments)
     utilities.run_cmd(cmd)
 
+
 @cli.command()
 @click.pass_context
-def force_development_mode(ctx):
-    """Force development mode"""
+def start_backend(ctx):
+    """start the backend server"""
+    import subprocess
+    subprocess.call("python server.py")
 
-    # os
-    os.system("git submodule foreach git reset --hard")
-    os.system("git submodule foreach git clean -dfx")
-
-    os.system("git pull")
-    os.system("git submodule foreach checkout develop")
 
 if __name__ == "__main__":
     cli()
