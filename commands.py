@@ -1,18 +1,17 @@
 import click
 import os
-import pathlib
-import SentinelVCS.Vcs.GitComponent as GitComponent
 import utilities
 import logging
 
 L = logging.getLogger()
+
 
 def refresh_config(ctx, default=False):
     data = utilities.convert_input_to_dict(ctx)
 
     defult_arg = str(default).lower()
     generate_config_cmd = utilities.get_commandline("./Sentinel.py",
-                                                    ["standalone-components",
+                                                    ["run-module",
                                                      "environment",
                                                      "generate"],
                                                     data,
@@ -24,7 +23,7 @@ def refresh_config(ctx, default=False):
 def refresh_vcs(ctx):
     data = utilities.convert_input_to_dict(ctx)
     refresh_vcs_cmd = utilities.get_commandline("./Sentinel.py",
-                                                ["standalone-components",
+                                                ["run-module",
                                                  "vcs",
                                                  "refresh-current-status"],
                                                 data)
@@ -65,11 +64,11 @@ def cli(ctx, project_root, output, no_version, debug):
 @click.option('--preset', default="", help="Skips output version")
 @click.option('--deploy_path', default="", help="If set, deploys the build to to the configured location")
 @click.option('--compress', default=False, help="Compresses the artifact to a .zip file")
-def build_game(ctx, preset, deploy_path, compress):
-    """Create a playable version of the project"""
+def build_client(ctx, preset, deploy_path, compress):
+    """Builds and configures playable client"""
 
     global_args = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "client"],
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "build", "client"],
                                     global_arguments=global_args,
                                     sub_command_arguments=["--preset="+preset])
     utilities.run_cmd(cmd)
@@ -86,61 +85,69 @@ def build_game(ctx, preset, deploy_path, compress):
 @cli.command()
 @click.pass_context
 def build_editor(ctx):
-    """Compile UE4 editor"""
+    """Builds and configures the editor"""
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "build", "editor"], data)
+    utilities.run_cmd(cmd)
+
+@cli.command()
+@click.pass_context
+def build_server(ctx):
+    """Builds and configures a game server"""
+
+    print("Not implemented")
+
+
+@cli.command()
+@click.pass_context
+def generate_lightmaps(ctx):
+    """Generates lightmaps for the project"""
+
+    data = utilities.convert_input_to_dict(ctx)
+
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Build-Lighting"])
     utilities.run_cmd(cmd)
 
 
 @cli.command()
 @click.pass_context
-def build_lightmaps(ctx):
-    """Builds the lighting for the project"""
+def validate_blueprints(ctx):
+    """Check all blueprints in the project for errors"""
 
     data = utilities.convert_input_to_dict(ctx)
 
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Build-Lighting"])
-    utilities.run_cmd(cmd)
-
-
-@cli.command()
-@click.pass_context
-def compile_blueprints(ctx):
-    """Compiles all the blueprints in the project"""
-
-    data = utilities.convert_input_to_dict(ctx)
-
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Compile-Blueprints"])
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Compile-Blueprints"])
     utilities.run_cmd(cmd)
 
 
 @cli.command()
 @click.pass_context
 def validate_project(ctx):
-    """Check settings and environment"""
+    """Checks the dev environment for errors"""
 
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "build", "editor"], data)
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "build", "editor"], data)
     utilities.run_cmd(cmd)
 
 
 @cli.command()
 @click.pass_context
-def validate_assets(ctx):
-    """Checks the assets"""
+def validate_packages(ctx):
+    """Checks project packages for errors"""
 
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "ue4", "project", "refresh-asset-info"],
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "project", "refresh-asset-info"],
                                     data)
     utilities.run_cmd(cmd)
+
 
 @cli.command()
 @click.pass_context
 def run_client_test(ctx):
-    """Start a game client and run automation tests"""
+    """Run automated tests for the game client"""
     pass
 
-
+"""
 @cli.command()
 @click.option('--project_name', required=True, help="Name of the project")
 @click.option('--engine_path', default="", help="Relative Path to the engine")
@@ -162,7 +169,8 @@ def iterate_backwards_and_execute_command(ctx,
                                           cache_path,
                                           number_of_changes,
                                           prebuilt):
-    """Goes through the history and runs validation"""
+                                          
+    """ """Goes through the history and runs validation""" """
 
     local_default_config_args = ["--project_name=" + project_name,
                                  "--engine_path=" + engine_path,
@@ -176,28 +184,28 @@ def iterate_backwards_and_execute_command(ctx,
 
     # Command to generate the default config
     default_config_cmd = utilities.get_commandline(script_name="sentinel.py",
-                                                   script_commands=["standalone-components", "environment",
+                                                   script_commands=["run-module", "environment",
                                                                     "make-default-config"],
                                                    global_arguments=global_args,
                                                    sub_command_arguments=local_default_config_args)
 
     # Command to refresh the config
     refresh_config_cmd = utilities.get_commandline(script_name="sentinel.py",
-                                                   script_commands=["standalone-components",
+                                                   script_commands=["run-module",
                                                                     "environment",
                                                                     "generate"],
                                                    global_arguments=global_args)
 
     # Command refresh version control
     vcs_refresh_cmd = utilities.get_commandline(script_name="sentinel.py",
-                                                script_commands=["standalone-components",
+                                                script_commands=["run-module",
                                                                  "vcs",
                                                                  "refresh"],
                                                 global_arguments=global_args)
 
     # Command to build the editor
     build_editor_cmd = utilities.get_commandline(script_name="sentinel.py",
-                                                 script_commands=["standalone-components",
+                                                 script_commands=["run-module",
                                                                   "ue4",
                                                                   "build",
                                                                   "editor"],
@@ -205,7 +213,7 @@ def iterate_backwards_and_execute_command(ctx,
 
     # Command to refresh the asset info
     refresh_asset_info_cmd = utilities.get_commandline(script_name="sentinel.py",
-                                                       script_commands=["standalone-components",
+                                                       script_commands=["run-module",
                                                                         "ue4",
                                                                         "project",
                                                                         "refresh-asset-info"],
@@ -245,7 +253,7 @@ def iterate_backwards_and_execute_command(ctx,
 
         # Command to refresh the asset info
         write_vcs_info_cmd = utilities.get_commandline(script_name="sentinel.py",
-                                                       script_commands=["standalone-components",
+                                                       script_commands=["run-module",
                                                                         "vcs",
                                                                         "write-history-file"],
                                                        global_arguments=global_args,
@@ -260,7 +268,7 @@ def iterate_backwards_and_execute_command(ctx,
         if i == number_of_changes:
             L.info("Maximum depth reached")
             break
-
+"""
 
 if __name__ == "__main__":
     cli()
