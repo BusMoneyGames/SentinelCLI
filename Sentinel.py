@@ -62,7 +62,8 @@ def setup(ctx, project_root, engine_root):
     ]
 
     global_args = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "make-default-config"], global_args,input_arguments)
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "environment", "make-default-config"], global_args,input_arguments)
+    print(cmd)
     utilities.run_cmd(cmd)
 
 
