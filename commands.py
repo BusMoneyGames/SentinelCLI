@@ -108,6 +108,15 @@ def generate_lightmaps(ctx):
     cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=Build-Lighting"])
     utilities.run_cmd(cmd)
 
+@cli.command()
+@click.pass_context
+def generate_ddc_cache(ctx):
+    """Refreshes the DDC cache for the project"""
+
+    data = utilities.convert_input_to_dict(ctx)
+
+    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "project", "commandlet"], data, sub_command_arguments=["--task=generate-ddc-cache"])
+    utilities.run_cmd(cmd)
 
 @cli.command()
 @click.pass_context
