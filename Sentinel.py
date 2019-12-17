@@ -60,7 +60,7 @@ def setup(ctx, project_root, engine_root, config_root):
     input_arguments = [
         "--project_name="+project_root,
         "--engine_path="+engine_root,
-        # "--config_path="+config_root
+        "--config_path="+config_root
     ]
 
     global_args = utilities.convert_input_to_dict(ctx)
