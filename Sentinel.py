@@ -52,13 +52,15 @@ def run_module(ctx, args):
 @cli.command()
 @click.option('--project_root', default="", help="Relative path to project root")
 @click.option('--engine_root', default="", help="Relative path to the engine")
+@click.option('--config_root', default="", help="Path to the config file")
 @click.pass_context
-def setup(ctx, project_root, engine_root):
+def setup(ctx, project_root, engine_root, config_root):
     """first time environment"""
 
     input_arguments = [
         "--project_name="+project_root,
-        "--engine_path="+engine_root
+        "--engine_path="+engine_root,
+        "--config_path="+config_root
     ]
 
     global_args = utilities.convert_input_to_dict(ctx)
