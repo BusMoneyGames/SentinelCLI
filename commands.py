@@ -21,14 +21,7 @@ def refresh_config(ctx, default=False):
 
 
 def refresh_vcs(ctx):
-    data = utilities.convert_input_to_dict(ctx)
-    refresh_vcs_cmd = utilities.get_commandline("./Sentinel.py",
-                                                ["run-module",
-                                                 "vcs",
-                                                 "refresh-current-status"],
-                                                data)
-
-    utilities.run_cmd(refresh_vcs_cmd)
+    pass
 
 
 @click.group()
