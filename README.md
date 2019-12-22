@@ -21,6 +21,7 @@ If the blueprint compile runs then Sentinel is correctly setup.
 
 The root project is SentinelCLI which is the standard entrypoint to use the tool.  SentinelCLI then implements modules with different repsponsibility that follow this pattern
 
+```
 SentinelCLI
 sentinel.py
 - sentinel_vcs ( module ) 
@@ -29,3 +30,4 @@ sentinel.py
 -- ue4cli.py ( cli interface )
 - sentinel_aws ( module ) 
 -- awscli.py ( cli interface )
+```
