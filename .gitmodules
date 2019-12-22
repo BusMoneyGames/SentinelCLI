@@ -15,5 +15,6 @@
 	url = git@github.com:BusMoneyGames/SentinelAWS.git
 	branch = develop
 [submodule "SentinelVCS"]
-	path = SentinelVCS
-	url = git@github.com:BusMoneyGames/SentinelVCS.git
+	path = sentinel_vcs
+	url = git@github.com:BusMoneyGames/sentinel_vcs.git
+	branch = develop
