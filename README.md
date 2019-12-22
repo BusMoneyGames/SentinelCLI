@@ -16,3 +16,16 @@ Sentinel is an open source, extendable, command line tool designed to gather, or
 - Compile all the blueprints in the level (pipenv run python .\Sentinel.py commands compile-blueprints)
 
 If the blueprint compile runs then Sentinel is correctly setup.
+
+## Project Structure ##
+
+The root project is SentinelCLI which is the standard entrypoint to use the tool.  SentinelCLI then implements modules with different repsponsibility that follow this pattern
+
+SentinelCLI
+sentinel.py
+- sentinel_vcs ( module ) 
+-- vcscli.py ( cli interface )
+- sentinel_ue4 ( module ) 
+-- ue4cli.py ( cli interface )
+- sentinel_aws ( module ) 
+-- awscli.py ( cli interface )
