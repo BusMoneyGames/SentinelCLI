@@ -56,7 +56,7 @@ def vcs(ctx, args):
         args = "--help"
 
     data = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./SentinelVCS/SentinelVCS.py", args, data)
+    cmd = utilities.get_commandline("./sentinel_vcs/vcs_cli.py", args, data)
     utilities.run_cmd(cmd)
 
 
