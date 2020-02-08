@@ -3,6 +3,8 @@ import utilities
 import logging
 import os
 
+import commands
+
 
 @click.group()
 @click.option('--project_root', default="", help="Path to the config overwrite folder")
@@ -64,9 +66,11 @@ def setup(ctx, project_root, engine_root, config_root):
     ]
 
     global_args = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "environment", "make-default-config"], global_args,input_arguments)
-    print(cmd)
-    utilities.run_cmd(cmd)
+    generate_default_config_cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "environment", "make-default-config"], global_args,input_arguments)
+    utilities.run_cmd(generate_default_config_cmd)
+
+    commands.refresh_config(ctx)
+
 
 
 @cli.command()

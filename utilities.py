@@ -64,7 +64,7 @@ def get_commandline(script_name,
 
 
 def run_cmd(cmd, print_output=True):
-
+    
     return_object = ""
     if print_output:
         complete_process = subprocess.run(cmd, shell=True)
