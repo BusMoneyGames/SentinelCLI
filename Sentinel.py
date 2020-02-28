@@ -55,13 +55,15 @@ def run_module(ctx, args):
 @click.option('--project_root', default="", help="Relative path to project root")
 @click.option('--engine_root', default="", help="Relative path to the engine")
 @click.option('--config_root', default="", help="Path to the config file")
+@click.option('--artifact_name', default="", help="Artifact Name")
 @click.pass_context
-def setup(ctx, project_root, engine_root, config_root):
+def setup(ctx, project_root, engine_root, config_root, artifact_name):
     """first time environment"""
 
     input_arguments = [
         "--project_name="+project_root,
         "--engine_path="+engine_root,
+        "--artifact_name="+artifact_name,
         "--config_path="+config_root
     ]
 
