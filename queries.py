@@ -16,52 +16,12 @@ def cli(ctx, project_root, output, debug, no_version):
 
 @cli.command()
 @click.pass_context
-def get_environment_status(ctx):
-    """Get environment status"""
+def get_commit_id(ctx):
+    """Returns the current commit ID"""
 
     global_args = utilities.convert_input_to_dict(ctx)
-    cmd = utilities.get_commandline("./Sentinel.py", ["standalone-components", "environment", "validate-config"],
-                                    global_arguments=global_args)
+    cmd = utilities.get_commandline("./Sentinel.py ", ["run-module", "vcs", "get-current-commit-id"])
     utilities.run_cmd(cmd)
-    return {"builds": ["label", "something"]}
-
-
-@cli.command()
-@click.pass_context
-def get_list_of_builds(ctx):
-    """Create a playable version of the project"""
-
-    return {"builds": ["label", "something"]}
-
-
-@cli.command()
-@click.pass_context
-def get_asset_categories(ctx):
-    """returns package information"""
-
-    data = utilities.convert_input_to_dict(ctx)
-    args = ["database", "list-package-categories"]
-
-    cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args,
-                                    global_arguments=data, sub_command_arguments=[])
-
-    utilities.run_cmd(cmd)
-
-
-@cli.command()
-@click.option('--category', default="", help="Path to the config overwrite folder")
-@click.pass_context
-def get_category_info(ctx, category):
-    """returns package information"""
-
-    data = utilities.convert_input_to_dict(ctx)
-    args = ["database", "list-packages-in-category"]
-
-    cmd = utilities.get_commandline(script_name="./standalone.py", script_commands=args,
-                                    global_arguments=data, sub_command_arguments=["--category=" + category])
-
-    utilities.run_cmd(cmd)
-
 
 if __name__ == "__main__":
     cli()

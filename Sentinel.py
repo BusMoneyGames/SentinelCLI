@@ -40,6 +40,21 @@ def run_action(ctx, args):
 @cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
 @click.argument('args', nargs=-1, type=click.UNPROCESSED)
 @click.pass_context
+def run_query(ctx, args):
+    """fetch information from the environment"""
+
+    if not args:
+        args = "--help"
+
+    data = utilities.convert_input_to_dict(ctx)
+    cmd = utilities.get_commandline(script_name="./queries.py", script_commands=args, global_arguments=data)
+
+    utilities.run_cmd(cmd)
+
+
+@cli.command(context_settings=dict(ignore_unknown_options=True, help_option_names=['-_h', '--_help']), )
+@click.argument('args', nargs=-1, type=click.UNPROCESSED)
+@click.pass_context
 def run_module(ctx, args):
     """modules in isolation"""
     data = utilities.convert_input_to_dict(ctx)
@@ -72,7 +87,6 @@ def setup(ctx, project_root, engine_root, config_root, artifact_name):
     utilities.run_cmd(generate_default_config_cmd)
 
     commands.refresh_config(ctx)
-
 
 
 @cli.command()
