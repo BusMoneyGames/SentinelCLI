@@ -71,15 +71,21 @@ def run_module(ctx, args):
 @click.option('--engine_root', default="", help="Relative path to the engine")
 @click.option('--config_root', default="", help="Path to the config file")
 @click.option('--artifact_name', default="", help="Artifact Name")
+@click.option('--vcs_root', default="", help="Path to the version control root")
+@click.option('--artifacts_root', default="", help="Path to the artifacts root")
+@click.option('--cache_root', default="", help="Path to the sentinel cache")
 @click.pass_context
-def setup(ctx, project_root, engine_root, config_root, artifact_name):
+def setup(ctx, project_root, engine_root, config_root, artifact_name,vcs_root,artifacts_root,cache_root):
     """first time environment"""
 
     input_arguments = [
         "--project_name="+project_root,
         "--engine_path="+engine_root,
         "--artifact_name="+artifact_name,
-        "--config_path="+config_root
+        "--config_path="+config_root,
+        "--version_control_root="+vcs_root,
+        "--artifacts_root="+artifacts_root,
+        "--cache_path="+cache_root
     ]
 
     global_args = utilities.convert_input_to_dict(ctx)
