@@ -5,12 +5,10 @@ name = "pypi"
 
 [scripts]
 server = "python server.py"
-
 vcs = "python Sentinel.py run-module vcs"
 ue4 = "python Sentinel.py run-module  ue4" 
 db = "python Sentinel.py run-module  database" 
 environment = "python Sentinel.py run-module  environment"
-
 commands = "python Sentinel.py commands"
 query = "python Sentinel.py queries"
 sentinel = "python Sentinel.py"
@@ -24,6 +22,7 @@ flask = "*"
 flask-restful = "*"
 flask-cors = "*"
 click = "*"
+pyqt5 = "*"
 
 [dev-packages]
 pylint = "*"
