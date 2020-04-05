@@ -129,7 +129,9 @@ def validate_project(ctx):
 
     data = utilities.convert_input_to_dict(ctx)
     cmd = utilities.get_commandline("./Sentinel.py", ["run-module", "ue4", "build", "editor"], data)
-    utilities.run_cmd(cmd)
+
+    # If the compile blueprints step fails then it returns an error code,  we want the step to exit succesfully
+    utilities.run_cmd(cmd, overwrite_exit_code=0)
 
 
 @cli.command()

@@ -63,11 +63,14 @@ def get_commandline(script_name,
     return cmd
 
 
-def run_cmd(cmd, print_output=True):
+def run_cmd(cmd, print_output=True, overwrite_exit_code=-1):
     
     return_object = ""
     if print_output:
         complete_process = subprocess.run(cmd, shell=True)
+        
+        if overwrite_exit_code >= 0:
+            quit(overwrite_exit_code)
 
         if complete_process.returncode != 0:
             quit(complete_process.returncode)
