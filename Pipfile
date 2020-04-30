@@ -24,6 +24,7 @@ flask-cors = "*"
 click = "*"
 pyqt5 = "*"
 pytest = "*"
+teamcity-messages = "*"
 
 [dev-packages]
 pylint = "*"
