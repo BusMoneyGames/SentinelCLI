@@ -23,6 +23,7 @@ flask-restful = "*"
 flask-cors = "*"
 click = "*"
 pyqt5 = "*"
+pytest = "*"
 
 [dev-packages]
 pylint = "*"
